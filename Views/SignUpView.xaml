@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Shiemi.Views.SignUpView"
+             >
+    <!-- main layout -->
+    <VerticalStackLayout VerticalOptions="FillAndExpand"
+                         HorizontalOptions="FillAndExpand"
+                         BackgroundColor="{StaticResource BackgroundGreen}"
+                         >
+        <!-- header -->
+        <Label Text="Sign up"
+               FontSize="40"
+               HorizontalOptions="Center"
+               Padding="20,20"
+               />
+        <!-- forms layout -->
+        <Grid HorizontalOptions="CenterAndExpand"
+              RowDefinitions="*,*,*"
+              ColumnDefinitions="*,*"
+              ColumnSpacing="10"
+              RowSpacing="5"
+              BackgroundColor="WhiteSmoke"
+              >
+            <VerticalStackLayout Grid.Column="0"
+                                 Grid.Row="0"
+                                 >
+                <Label Text="first name"
+                       Style="{StaticResource entry-label}"
+                       />
+                <Entry x:Name="FirstName"
+                       Style="{StaticResource entry}"
+                       />
+            </VerticalStackLayout>
+            <VerticalStackLayout Grid.Column="1"
+                                 Grid.Row="0"
+                                 >
+                <Label Text="last name"
+                       Style="{StaticResource entry-label}"
+                       />
+                <Entry x:Name="LastName"
+                       Style="{StaticResource entry}"
+                       />
+            </VerticalStackLayout>
+            <VerticalStackLayout Grid.Column="0"
+                                 Grid.Row="1"
+                                 >
+                <Label Text="email"
+                       Style="{StaticResource entry-label}"
+                       />
+                <Entry x:Name="Email"
+                       Style="{StaticResource entry}"
+                       />
+            </VerticalStackLayout>
+            <VerticalStackLayout Grid.Column="1"
+                                 Grid.Row="1"
+                                 >
+                <Label Text="password"
+                       Style="{StaticResource entry-label}"
+                       />
+                <Entry x:Name="Password"
+                       Style="{StaticResource entry}"
+                       />
+            </VerticalStackLayout>
+        </Grid>
+    </VerticalStackLayout>
+</ContentPage>

@@ -4,6 +4,16 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
 
+    <!-- my styles -->
+    <!-- signup view -->
+    <Style TargetType="Label" x:Key="entry-label">
+        <Setter Property="FontSize" Value="14" />
+    </Style>
+    <Style TargetType="Entry" x:Key="entry">
+        <Setter Property="WidthRequest" Value="200" />
+    </Style>
+    <!-- signup view -->
+
     <Style TargetType="ActivityIndicator">
         <Setter Property="Color" Value="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource White}}" />
     </Style>
