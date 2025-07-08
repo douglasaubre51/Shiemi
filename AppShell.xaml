@@ -6,8 +6,6 @@
     xmlns:signup="clr-namespace:Shiemi.Views"
     Title="Create new account!">
 
-    <ShellContent
-        ContentTemplate="{DataTemplate signup:SignUpView}"
-        Route="SignUpView" />
+    <ShellContent ContentTemplate="{DataTemplate signup:SignUpView}" Route="SignUpView" />
 
 </Shell>
