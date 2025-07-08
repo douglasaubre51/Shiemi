@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.Logging;
+using Shiemi.Services;
 using Shiemi.ViewModels;
 
 namespace Shiemi
@@ -20,6 +21,9 @@ namespace Shiemi
             builder.Logging.AddDebug();
 #endif
             // middlewares
+            // services
+            builder.Services.AddTransient<SendUserDetailsService>();
+
             // view models
             builder.Services.AddTransient<SignUpVM>();
 

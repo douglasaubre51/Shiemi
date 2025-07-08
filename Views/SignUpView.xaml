@@ -14,7 +14,7 @@
         <!--  forms layout card  -->
         <Border
             Margin="20"
-            Padding="50"
+            Padding="50,20,50,50"
             BackgroundColor="{StaticResource CardBackground}"
             HorizontalOptions="CenterAndExpand"
             Style="{StaticResource card-shadow}"
@@ -41,6 +41,7 @@
                         <Entry
                             x:Name="FirstName"
                             ClearButtonVisibility="WhileEditing"
+                            IsEnabled="{Binding IsNotBusy}"
                             Style="{StaticResource entry}"
                             Text="{Binding FirstName}" />
                     </VerticalStackLayout>
@@ -52,6 +53,7 @@
                         <Entry
                             x:Name="LastName"
                             ClearButtonVisibility="WhileEditing"
+                            IsEnabled="{Binding IsNotBusy}"
                             Style="{StaticResource entry}"
                             Text="{Binding LastName}" />
                     </VerticalStackLayout>
@@ -63,6 +65,7 @@
                         <Entry
                             x:Name="Email"
                             ClearButtonVisibility="WhileEditing"
+                            IsEnabled="{Binding IsNotBusy}"
                             Style="{StaticResource entry}"
                             Text="{Binding Email}" />
                     </VerticalStackLayout>
@@ -74,6 +77,7 @@
                         <Entry
                             x:Name="Password"
                             ClearButtonVisibility="WhileEditing"
+                            IsEnabled="{Binding IsNotBusy}"
                             IsPassword="true"
                             Style="{StaticResource entry}"
                             Text="{Binding Password}" />
@@ -83,6 +87,7 @@
                         Grid.Row="2"
                         Grid.ColumnSpan="2"
                         Command="{Binding SendUserDetailsCommand}"
+                        IsEnabled="{Binding IsNotBusy}"
                         Style="{StaticResource primary-button}"
                         Text="Continue" />
                 </Grid>

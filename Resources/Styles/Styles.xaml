@@ -19,7 +19,25 @@
 
     <!--  create button  -->
     <Style x:Key="primary-button" TargetType="Button">
-        <Setter Property="BackgroundColor" Value="{StaticResource AccentGreen}" />
+        <!--  change color for active states  -->
+        <Setter Property="VisualStateManager.VisualStateGroups">
+            <VisualStateGroupList>
+                <VisualStateGroup Name="CommonStates">
+                    <!--  disabled btn color  -->
+                    <VisualState Name="Disabled">
+                        <VisualState.Setters>
+                            <Setter Property="BackgroundColor" Value="LightGrey" />
+                        </VisualState.Setters>
+                    </VisualState>
+                    <!--  active btn color  -->
+                    <VisualState Name="Normal">
+                        <VisualState.Setters>
+                            <Setter Property="BackgroundColor" Value="{StaticResource AccentGreen}" />
+                        </VisualState.Setters>
+                    </VisualState>
+                </VisualStateGroup>
+            </VisualStateGroupList>
+        </Setter>
     </Style>
 
     <!--  box shadow  -->

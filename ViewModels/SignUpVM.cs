@@ -1,5 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.Input;
 using Shiemi.Models;
+using Shiemi.Services;
 using System.ComponentModel.DataAnnotations;
 using System.Diagnostics;
 
@@ -17,53 +18,76 @@ namespace Shiemi.ViewModels
         [ObservableProperty]
         string? password;
 
-        public SignUpVM()
+        // DI
+        private readonly SendUserDetailsService _userDetailsService;
+
+        public SignUpVM(SendUserDetailsService userDetailsService)
         {
             Title = "create new account";
+            _userDetailsService = userDetailsService;
         }
 
         // for calling http post service
         [RelayCommand]
         async Task SendUserDetails()
         {
-            User user = new User()
+            if (IsBusy is true) return;
+
+            IsBusy = true;
+
+            try
             {
-                FirstName = FirstName,
-                LastName = LastName,
-                Email = Email,
-                Password = Password
-            };
+                User user = new User()
+                {
+                    FirstName = FirstName,
+                    LastName = LastName,
+                    Email = Email,
+                    Password = Password
+                };
 
-            var validationContext = new ValidationContext(user);
-            var validationResults = new List<ValidationResult>();
-
-            bool validationResult = Validator.TryValidateObject(
-                user,
-                validationContext,
-                validationResults,
-                true
-                );
-
-            Debug.WriteLine($"validation result: {validationResult}");
-
-            if (validationResult is false)
-            {
-                await Shell.Current.DisplayAlertAsync(
-                    "validation error",
-                    "enter all fields",
-                    "ok"
+                // form validation
+                var validationContext = new ValidationContext(user);
+                var validationResults = new List<ValidationResult>();
+                bool validationResult = Validator.TryValidateObject(
+                    user,
+                    validationContext,
+                    validationResults,
+                    true
                     );
 
-                foreach (var m in validationResults)
+                // validation error
+                if (validationResult is false)
                 {
-                    Debug.WriteLine(m.ToString());
+                    foreach (var m in validationResults)
+                    {
+                        Debug.WriteLine(m.ToString());
+                    }
+                    await Shell.Current.DisplayAlertAsync(
+                        "validation error",
+                        "enter all fields",
+                        "ok"
+                        );
+                    return;
                 }
 
+                // successfully validated!
+                // post request service
+                await _userDetailsService.Send(user);
+            }
+            catch (Exception e)
+            {
+                Debug.WriteLine($"{e}");
+                await Shell.Current.DisplayAlertAsync(
+                    "signing in error",
+                    "error while signing in!\ntry again later",
+                    "ok"
+                    );
                 return;
             }
-
-            Debug.WriteLine("success!");
-            return;
+            finally
+            {
+                IsBusy = false;
+            }
         }
     }
 }
