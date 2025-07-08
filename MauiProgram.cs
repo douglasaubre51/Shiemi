@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.Logging;
+using Shiemi.ViewModels;
 
 namespace Shiemi
 {
@@ -18,6 +19,9 @@ namespace Shiemi
 #if DEBUG
             builder.Logging.AddDebug();
 #endif
+            // middlewares
+            // view models
+            builder.Services.AddTransient<SignUpVM>();
 
             return builder.Build();
         }
