@@ -7,7 +7,8 @@
     <!--  tea green  -->
     <Color x:Key="BackgroundGreen">#d0f0c0</Color>
     <Color x:Key="AccentGreen">#3cb371</Color>
-    <Color x:Key="BackgroundWhite">Whitesmoke</Color>
+    <Color x:Key="BackgroundWhite">#fafafa</Color>
+    <Color x:Key="CardBackground">WhiteSmoke</Color>
 
     <!--  added bye me  -->
 

@@ -15,7 +15,7 @@
         <Border
             Margin="20"
             Padding="50"
-            BackgroundColor="WhiteSmoke"
+            BackgroundColor="{StaticResource CardBackground}"
             HorizontalOptions="CenterAndExpand"
             Style="{StaticResource card-shadow}"
             VerticalOptions="CenterAndExpand">
@@ -41,7 +41,8 @@
                         <Entry
                             x:Name="FirstName"
                             ClearButtonVisibility="WhileEditing"
-                            Style="{StaticResource entry}" />
+                            Style="{StaticResource entry}"
+                            Text="{Binding FirstName}" />
                     </VerticalStackLayout>
                     <VerticalStackLayout
                         Grid.Row="0"
@@ -51,7 +52,8 @@
                         <Entry
                             x:Name="LastName"
                             ClearButtonVisibility="WhileEditing"
-                            Style="{StaticResource entry}" />
+                            Style="{StaticResource entry}"
+                            Text="{Binding LastName}" />
                     </VerticalStackLayout>
                     <VerticalStackLayout
                         Grid.Row="1"
@@ -61,7 +63,8 @@
                         <Entry
                             x:Name="Email"
                             ClearButtonVisibility="WhileEditing"
-                            Style="{StaticResource entry}" />
+                            Style="{StaticResource entry}"
+                            Text="{Binding Email}" />
                     </VerticalStackLayout>
                     <VerticalStackLayout
                         Grid.Row="1"
@@ -72,12 +75,14 @@
                             x:Name="Password"
                             ClearButtonVisibility="WhileEditing"
                             IsPassword="true"
-                            Style="{StaticResource entry}" />
+                            Style="{StaticResource entry}"
+                            Text="{Binding Password}" />
                     </VerticalStackLayout>
                     <!--  button  -->
                     <Button
                         Grid.Row="2"
                         Grid.ColumnSpan="2"
+                        Command="{Binding SendUserDetailsCommand}"
                         Style="{StaticResource primary-button}"
                         Text="Continue" />
                 </Grid>
