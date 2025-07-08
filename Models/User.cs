@@ -1,19 +1,25 @@
-﻿using Shiemi.Attributes;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace Shiemi.Models
 {
-    public class User
+    public class User : ObservableValidator
     {
-        [UserValidation]
+        [Required]
         public string FirstName { get; set; }
 
-        [UserValidation]
+        [Required]
         public string LastName { get; set; }
 
-        [UserValidation]
+        [Required]
+        [DataType(DataType.EmailAddress)]
         public string Email { get; set; }
 
-        [UserValidation]
+        [Required]
+        [DataType(DataType.Password)]
         public string Password { get; set; }
+
+        [Required]
+        [DataType(DataType.PhoneNumber)]
+        public double PhoneNo { get; set; }
     }
 }

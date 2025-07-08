@@ -30,7 +30,7 @@
                     ColumnDefinitions="*,*"
                     ColumnSpacing="40"
                     HorizontalOptions="CenterAndExpand"
-                    RowDefinitions="*,*,*"
+                    RowDefinitions="*,*,*,*"
                     RowSpacing="40"
                     VerticalOptions="CenterAndExpand">
                     <VerticalStackLayout
@@ -39,7 +39,6 @@
                         Style="{StaticResource form-group}">
                         <Label Style="{StaticResource entry-label}" Text="firstname" />
                         <Entry
-                            x:Name="FirstName"
                             ClearButtonVisibility="WhileEditing"
                             IsEnabled="{Binding IsNotBusy}"
                             Style="{StaticResource entry}"
@@ -51,7 +50,6 @@
                         Style="{StaticResource form-group}">
                         <Label Style="{StaticResource entry-label}" Text="lastname" />
                         <Entry
-                            x:Name="LastName"
                             ClearButtonVisibility="WhileEditing"
                             IsEnabled="{Binding IsNotBusy}"
                             Style="{StaticResource entry}"
@@ -63,9 +61,9 @@
                         Style="{StaticResource form-group}">
                         <Label Style="{StaticResource entry-label}" Text="email" />
                         <Entry
-                            x:Name="Email"
                             ClearButtonVisibility="WhileEditing"
                             IsEnabled="{Binding IsNotBusy}"
+                            Keyboard="Email"
                             Style="{StaticResource entry}"
                             Text="{Binding Email}" />
                     </VerticalStackLayout>
@@ -75,21 +73,42 @@
                         Style="{StaticResource form-group}">
                         <Label Style="{StaticResource entry-label}" Text="password" />
                         <Entry
-                            x:Name="Password"
                             ClearButtonVisibility="WhileEditing"
                             IsEnabled="{Binding IsNotBusy}"
                             IsPassword="true"
                             Style="{StaticResource entry}"
                             Text="{Binding Password}" />
                     </VerticalStackLayout>
+                    <VerticalStackLayout
+                        Grid.Row="2"
+                        Grid.Column="0"
+                        Style="{StaticResource form-group}">
+                        <Label Style="{StaticResource entry-label}" Text="phoneno" />
+                        <Entry
+                            ClearButtonVisibility="WhileEditing"
+                            IsEnabled="{Binding IsNotBusy}"
+                            Keyboard="Numeric"
+                            Style="{StaticResource entry}"
+                            Text="{Binding PhoneNo}" />
+                    </VerticalStackLayout>
                     <!--  button  -->
                     <Button
-                        Grid.Row="2"
+                        Grid.Row="3"
                         Grid.ColumnSpan="2"
                         Command="{Binding SendUserDetailsCommand}"
                         IsEnabled="{Binding IsNotBusy}"
+                        IsVisible="{Binding IsNotBusy}"
                         Style="{StaticResource primary-button}"
                         Text="Continue" />
+                    <!--  spinner  -->
+                    <ActivityIndicator
+                        Grid.Row="3"
+                        Grid.ColumnSpan="2"
+                        HorizontalOptions="End"
+                        IsEnabled="{Binding IsBusy}"
+                        IsRunning="{Binding IsBusy}"
+                        VerticalOptions="Center"
+                        Color="{StaticResource AccentGreen}" />
                 </Grid>
             </StackLayout>
         </Border>

@@ -1,21 +1,27 @@
 ﻿using Shiemi.Models;
 using System.Diagnostics;
+using System.Text;
 using System.Text.Json;
 
 namespace Shiemi.Services
 {
     public class SendUserDetailsService
     {
-        string url = "http://localhost:5000/sign-up";
+        string url = "http://localhost:3000/sign-up";
         string message;
 
         public async Task Send(User user)
         {
             Debug.WriteLine("sending post request!");
 
+            var camelCaseOption = new JsonSerializerOptions()
+            {
+                PropertyNamingPolicy = JsonNamingPolicy.CamelCase
+            };
+
             // create payload
-            string payloadString = JsonSerializer.Serialize(user);
-            HttpContent payload = new StringContent(payloadString);
+            string payloadString = JsonSerializer.Serialize(user, camelCaseOption);
+            HttpContent payload = new StringContent(payloadString, Encoding.UTF8, "application/json");
 
             // send
             HttpClient client = new HttpClient();

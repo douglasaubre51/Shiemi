@@ -17,6 +17,8 @@ namespace Shiemi.ViewModels
         string? email;
         [ObservableProperty]
         string? password;
+        [ObservableProperty]
+        string phoneNo;
 
         // DI
         private readonly SendUserDetailsService _userDetailsService;
@@ -37,12 +39,17 @@ namespace Shiemi.ViewModels
 
             try
             {
+                double number;
+                double.TryParse(PhoneNo, out number);
+                Debug.WriteLine($"phone no: {number}");
+
                 User user = new User()
                 {
                     FirstName = FirstName,
                     LastName = LastName,
                     Email = Email,
-                    Password = Password
+                    Password = Password,
+                    PhoneNo = number
                 };
 
                 // form validation
@@ -78,8 +85,8 @@ namespace Shiemi.ViewModels
             {
                 Debug.WriteLine($"{e}");
                 await Shell.Current.DisplayAlertAsync(
-                    "signing in error",
-                    "error while signing in!\ntry again later",
+                    "signup in error",
+                    "error creating account!\ntry again later",
                     "ok"
                     );
                 return;
