@@ -69,6 +69,7 @@
                             Keyboard="Email"
                             Style="{StaticResource entry}"
                             Text="{Binding Email}" />
+                        <Label Style="{StaticResource validation-msg}" Text="{Binding EmailValidationMessage}" />
                     </VerticalStackLayout>
                     <!--  password  -->
                     <VerticalStackLayout

@@ -22,7 +22,10 @@ namespace Shiemi.ViewModels
         string? confirmPassword;
         [ObservableProperty]
         string? phoneNo;
+
         // form validation msg
+        [ObservableProperty]
+        string? emailValidationMessage;
         [ObservableProperty]
         string? phoneNoValidationMessage;
         [ObservableProperty]
@@ -45,6 +48,11 @@ namespace Shiemi.ViewModels
 
             IsBusy = true;
 
+            // clear validation msg labels
+            PhoneNoValidationMessage = string.Empty;
+            EmailValidationMessage = string.Empty;
+            PasswordValidationMessage = string.Empty;
+
             try
             {
                 User user = new User()
@@ -57,7 +65,7 @@ namespace Shiemi.ViewModels
                     ConfirmPassword = ConfirmPassword
                 };
 
-                // form validation
+                // validate attributes
                 var validationContext = new ValidationContext(user);
                 var validationResults = new List<ValidationResult>();
                 bool validationResult = Validator.TryValidateObject(
@@ -66,6 +74,36 @@ namespace Shiemi.ViewModels
                     validationResults,
                     true
                     );
+
+                // display email validation message label
+                var emailErrorMessage = validationResults
+                    .Where(e => e.MemberNames.Contains(nameof(User.Email)))
+                    .Select(e => e.ErrorMessage)
+                    .ToList();
+                foreach (var m in emailErrorMessage)
+                {
+                    EmailValidationMessage += m + "\n";
+                }
+
+                // display phone no validation message label
+                var phoneNoErrorMessage = validationResults
+                    .Where(e => e.MemberNames.Contains(nameof(User.PhoneNo)))
+                    .Select(e => e.ErrorMessage)
+                    .ToList();
+                foreach (var m in phoneNoErrorMessage)
+                {
+                    PhoneNoValidationMessage += m + "\n";
+                }
+
+                // display check password validation message label
+                var passwordErrorMessage = validationResults
+                    .Where(e => e.MemberNames.Contains(nameof(User.ConfirmPassword)))
+                    .Select(e => e.ErrorMessage)
+                    .ToList();
+                foreach (var m in passwordErrorMessage)
+                {
+                    PasswordValidationMessage += m.ToString() + "\n";
+                }
 
                 // validation error
                 if (validationResult is false)
@@ -76,7 +114,7 @@ namespace Shiemi.ViewModels
                     }
                     await Shell.Current.DisplayAlertAsync(
                         "validation error",
-                        "enter all fields",
+                        "enter all fields properly!",
                         "ok"
                         );
                     return;
