@@ -33,6 +33,7 @@
                     RowDefinitions="*,*,*,*"
                     RowSpacing="40"
                     VerticalOptions="CenterAndExpand">
+                    <!--  first name  -->
                     <VerticalStackLayout
                         Grid.Row="0"
                         Grid.Column="0"
@@ -44,6 +45,7 @@
                             Style="{StaticResource entry}"
                             Text="{Binding FirstName}" />
                     </VerticalStackLayout>
+                    <!--  last name  -->
                     <VerticalStackLayout
                         Grid.Row="0"
                         Grid.Column="1"
@@ -55,6 +57,7 @@
                             Style="{StaticResource entry}"
                             Text="{Binding LastName}" />
                     </VerticalStackLayout>
+                    <!--  email  -->
                     <VerticalStackLayout
                         Grid.Row="1"
                         Grid.Column="0"
@@ -67,6 +70,7 @@
                             Style="{StaticResource entry}"
                             Text="{Binding Email}" />
                     </VerticalStackLayout>
+                    <!--  password  -->
                     <VerticalStackLayout
                         Grid.Row="1"
                         Grid.Column="1"
@@ -79,17 +83,34 @@
                             Style="{StaticResource entry}"
                             Text="{Binding Password}" />
                     </VerticalStackLayout>
+                    <!--  phone no  -->
                     <VerticalStackLayout
                         Grid.Row="2"
                         Grid.Column="0"
                         Style="{StaticResource form-group}">
                         <Label Style="{StaticResource entry-label}" Text="phoneno" />
                         <Entry
+                            x:Name="PhoneNo"
                             ClearButtonVisibility="WhileEditing"
                             IsEnabled="{Binding IsNotBusy}"
-                            Keyboard="Numeric"
                             Style="{StaticResource entry}"
-                            Text="{Binding PhoneNo}" />
+                            Text="{Binding PhoneNo}"
+                            TextChanged="PhoneNo_TextChanged" />
+                        <Label Style="{StaticResource validation-msg}" Text="{Binding PhoneNoValidationMessage}" />
+                    </VerticalStackLayout>
+                    <!--  check password  -->
+                    <VerticalStackLayout
+                        Grid.Row="2"
+                        Grid.Column="1"
+                        Style="{StaticResource form-group}">
+                        <Label Style="{StaticResource entry-label}" Text="check password" />
+                        <Entry
+                            ClearButtonVisibility="WhileEditing"
+                            IsEnabled="{Binding IsNotBusy}"
+                            IsPassword="True"
+                            Style="{StaticResource entry}"
+                            Text="{Binding ConfirmPassword}" />
+                        <Label Style="{StaticResource validation-msg}" Text="{Binding PasswordValidationMessage}" />
                     </VerticalStackLayout>
                     <!--  button  -->
                     <Button

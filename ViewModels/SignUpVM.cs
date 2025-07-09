@@ -8,7 +8,8 @@ namespace Shiemi.ViewModels
 {
     public partial class SignUpVM : BaseVM
     {
-        // form binders
+        // binders
+        // form entries
         [ObservableProperty]
         string? firstName;
         [ObservableProperty]
@@ -18,7 +19,14 @@ namespace Shiemi.ViewModels
         [ObservableProperty]
         string? password;
         [ObservableProperty]
-        string phoneNo;
+        string? confirmPassword;
+        [ObservableProperty]
+        string? phoneNo;
+        // form validation msg
+        [ObservableProperty]
+        string? phoneNoValidationMessage;
+        [ObservableProperty]
+        string? passwordValidationMessage;
 
         // DI
         private readonly SendUserDetailsService _userDetailsService;
@@ -39,17 +47,14 @@ namespace Shiemi.ViewModels
 
             try
             {
-                double number;
-                double.TryParse(PhoneNo, out number);
-                Debug.WriteLine($"phone no: {number}");
-
                 User user = new User()
                 {
                     FirstName = FirstName,
                     LastName = LastName,
                     Email = Email,
                     Password = Password,
-                    PhoneNo = number
+                    PhoneNo = PhoneNo,
+                    ConfirmPassword = ConfirmPassword
                 };
 
                 // form validation
@@ -96,5 +101,6 @@ namespace Shiemi.ViewModels
                 IsBusy = false;
             }
         }
+
     }
 }

@@ -11,6 +11,11 @@
     <Style x:Key="entry" TargetType="Entry">
         <Setter Property="WidthRequest" Value="250" />
     </Style>
+    <!--  validation message  -->
+    <Style x:Key="validation-msg" TargetType="Label">
+        <Setter Property="FontSize" Value="10" />
+        <Setter Property="TextColor" Value="Red" />
+    </Style>
 
     <!--  form-group  -->
     <Style x:Key="form-group" TargetType="VerticalStackLayout">
