@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using System.Text.Json;
+using Microsoft.Extensions.Logging;
 using Shiemi.Helpers;
 using Shiemi.Services;
 using Shiemi.ViewModels;
@@ -24,8 +25,18 @@ namespace Shiemi
             // middlewares
             // helpers
             builder.Services.AddTransient<SignInValidator>();
+
             // services
+            builder.Services.AddSingleton(
+                new JsonSerializerOptions
+                {
+                    PropertyNamingPolicy = JsonNamingPolicy.CamelCase
+                }
+            );
+            // REST
             builder.Services.AddTransient<SendUserDetailsService>();
+            builder.Services.AddTransient<UserService>();
+
             // view models
             builder.Services.AddTransient<SignInVM>();
             builder.Services.AddTransient<SignUpVM>();

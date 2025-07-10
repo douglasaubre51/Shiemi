@@ -2,6 +2,7 @@ using System.Diagnostics;
 using CommunityToolkit.Mvvm.Input;
 using Shiemi.Helpers;
 using Shiemi.Models;
+using Shiemi.Services;
 
 namespace Shiemi.ViewModels;
 
@@ -18,16 +19,18 @@ public partial class SignInVM : BaseVM
     [ObservableProperty]
     string passwordValidationMessage;
 
-    // services
+    // di
     private readonly SignInValidator _validator;
+    private readonly UserService _userService;
 
     // temp error message holders
     public string tempEmailMessage;
     public string tempPasswordMessage;
 
-    public SignInVM(SignInValidator signInValidator)
+    public SignInVM(SignInValidator signInValidator, UserService userService)
     {
         _validator = signInValidator;
+        _userService = userService;
     }
 
     [RelayCommand]
@@ -37,28 +40,55 @@ public partial class SignInVM : BaseVM
 
         IsBusy = true;
 
-        SignIn model = new SignIn()
+        try
         {
-            Email = Email,
-            Password = Password
-        };
+            SignIn model = new SignIn()
+            {
+                Email = Email,
+                Password = Password
+            };
 
-        // call helper
-        bool isValid = _validator.Validate(model, out tempEmailMessage, out tempPasswordMessage);
+            // call helper
+            bool isValid = _validator.Validate(model, out tempEmailMessage, out tempPasswordMessage);
 
-        // send error messages to error label binders
-        EmailValidationMessage = tempEmailMessage;
-        PasswordValidationMessage = tempPasswordMessage;
+            // send error messages to error label binders
+            EmailValidationMessage = tempEmailMessage;
+            PasswordValidationMessage = tempPasswordMessage;
 
-        if (!isValid)
+            if (!isValid) return;
+
+
+            // call signin rest service
+            bool signInStatus = await _userService.RequestSignIn(model);
+
+            // signed in!
+            Debug.WriteLine("Success is permanent!");
+
+            // failure
+            if (!signInStatus)
+            {
+                await Shell.Current.DisplayAlertAsync(
+                    "signin error!",
+                    "invalid credentials!",
+                    "try again"
+                );
+
+                return;
+            }
+        }
+        catch (Exception e)
         {
-            IsBusy = false;
+            Debug.WriteLine($"{e}");
+            await Shell.Current.DisplayAlertAsync(
+                "signin error!",
+                "something went wrong!",
+                "try again"
+            );
             return;
         }
-
-        // validation successful!
-        Debug.WriteLine("Success is permanent!");
-        IsBusy = false;
-        return;
+        finally
+        {
+            IsBusy = false;
+        }
     }
 }

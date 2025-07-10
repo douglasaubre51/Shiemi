@@ -10,17 +10,20 @@ namespace Shiemi.Services
         string url = "http://localhost:3000/sign-up";
         string message;
 
+        // di
+        private readonly JsonSerializerOptions _jsonCasing;
+
+        public SendUserDetailsService(JsonSerializerOptions jsonSerializerOptions)
+        {
+            _jsonCasing = jsonSerializerOptions;
+        }
+
         public async Task Send(User user)
         {
             Debug.WriteLine("sending post request!");
 
-            var camelCaseOption = new JsonSerializerOptions()
-            {
-                PropertyNamingPolicy = JsonNamingPolicy.CamelCase
-            };
-
             // create payload
-            string payloadString = JsonSerializer.Serialize(user, camelCaseOption);
+            string payloadString = JsonSerializer.Serialize(user, _jsonCasing);
             HttpContent payload = new StringContent(payloadString, Encoding.UTF8, "application/json");
 
             // send
