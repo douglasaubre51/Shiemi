@@ -3,9 +3,25 @@
     x:Class="Shiemi.AppShell"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:signin="clr-namespace:Shiemi.Views">
+    xmlns:signin="clr-namespace:Shiemi.Views"
+    xmlns:signup="clr-namespace:Shiemi.Views"
+    Shell.FlyoutBehavior="Flyout"
+    BackgroundColor="{StaticResource BackgroundWhite}">
 
-    <ShellContent ContentTemplate="{DataTemplate signin:SignInView}"
-                  Route="SignInView"/>
+    <!--flyout items-->
+    <FlyoutItem Title="Sign in">
+        <Tab>
+            <ShellContent ContentTemplate="{DataTemplate signin:SignInView}"
+                          Route="SignInView"/>
+        </Tab>
+    </FlyoutItem>
 
+    <FlyoutItem Title="Sign up">
+        <Tab>
+            <ShellContent ContentTemplate="{DataTemplate signup:SignUpView}"
+                          Route="SignUpView"/>
+        </Tab>
+    </FlyoutItem>
+
+    <!-- footer -->
 </Shell>

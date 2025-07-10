@@ -4,8 +4,7 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:viewModel="clr-namespace:Shiemi.ViewModels"
-    x:DataType="viewModel:SignUpVM"
-    BackgroundColor="{StaticResource BackgroundWhite}">
+    x:DataType="viewModel:SignUpVM">
     <!--  main layout  -->
     <VerticalStackLayout
         HorizontalOptions="FillAndExpand"
@@ -39,7 +38,7 @@
                         Grid.Column="0"
                         Style="{StaticResource form-group}">
                         <Label Style="{StaticResource entry-label}"
-                                Text="firstname"/>
+                               Text="firstname"/>
                         <Entry
                             ClearButtonVisibility="WhileEditing"
                             IsEnabled="{Binding IsNotBusy}"
@@ -52,7 +51,7 @@
                         Grid.Column="1"
                         Style="{StaticResource form-group}">
                         <Label Style="{StaticResource entry-label}"
-                                Text="lastname"/>
+                               Text="lastname"/>
                         <Entry
                             ClearButtonVisibility="WhileEditing"
                             IsEnabled="{Binding IsNotBusy}"
@@ -65,7 +64,7 @@
                         Grid.Column="0"
                         Style="{StaticResource form-group}">
                         <Label Style="{StaticResource entry-label}"
-                                Text="email"/>
+                               Text="email"/>
                         <Entry
                             ClearButtonVisibility="WhileEditing"
                             IsEnabled="{Binding IsNotBusy}"
@@ -73,7 +72,7 @@
                             Style="{StaticResource entry}"
                             Text="{Binding Email}"/>
                         <Label Style="{StaticResource validation-msg}"
-                                Text="{Binding EmailValidationMessage}"/>
+                               Text="{Binding EmailValidationMessage}"/>
                     </VerticalStackLayout>
                     <!--  password  -->
                     <VerticalStackLayout
@@ -81,7 +80,7 @@
                         Grid.Column="1"
                         Style="{StaticResource form-group}">
                         <Label Style="{StaticResource entry-label}"
-                                Text="password"/>
+                               Text="password"/>
                         <Entry
                             ClearButtonVisibility="WhileEditing"
                             IsEnabled="{Binding IsNotBusy}"
@@ -95,7 +94,7 @@
                         Grid.Column="0"
                         Style="{StaticResource form-group}">
                         <Label Style="{StaticResource entry-label}"
-                                Text="phoneno"/>
+                               Text="phoneno"/>
                         <Entry
                             x:Name="PhoneNo"
                             ClearButtonVisibility="WhileEditing"
@@ -104,7 +103,7 @@
                             Text="{Binding PhoneNo}"
                             TextChanged="PhoneNo_TextChanged"/>
                         <Label Style="{StaticResource validation-msg}"
-                                Text="{Binding PhoneNoValidationMessage}"/>
+                               Text="{Binding PhoneNoValidationMessage}"/>
                     </VerticalStackLayout>
                     <!--  check password  -->
                     <VerticalStackLayout
@@ -112,7 +111,7 @@
                         Grid.Column="1"
                         Style="{StaticResource form-group}">
                         <Label Style="{StaticResource entry-label}"
-                                Text="check password"/>
+                               Text="check password"/>
                         <Entry
                             ClearButtonVisibility="WhileEditing"
                             IsEnabled="{Binding IsNotBusy}"
@@ -120,7 +119,7 @@
                             Style="{StaticResource entry}"
                             Text="{Binding ConfirmPassword}"/>
                         <Label Style="{StaticResource validation-msg}"
-                                Text="{Binding PasswordValidationMessage}"/>
+                               Text="{Binding PasswordValidationMessage}"/>
                     </VerticalStackLayout>
                     <!--  button  -->
                     <Button
