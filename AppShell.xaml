@@ -24,4 +24,15 @@
     </FlyoutItem>
 
     <!-- footer -->
+    <Shell.FlyoutFooter>
+        <VerticalStackLayout
+            Margin="20"
+            VerticalOptions="Center"
+            HorizontalOptions="Start">
+            <Label Text="Shiemi"
+                   FontSize="Header"/>
+            <Label Text="by douglasaubre51"
+                   FontSize="Caption"/>
+        </VerticalStackLayout>
+    </Shell.FlyoutFooter>
 </Shell>

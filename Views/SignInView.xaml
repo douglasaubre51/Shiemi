@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewModel="clr-namespace:Shiemi.ViewModels"
+             x:DataType="viewModel:SignInVM"
              x:Class="Shiemi.Views.SignInView">
     <!-- main layout -->
     <VerticalStackLayout
@@ -33,6 +35,8 @@
                     <Label Text="email"
                            Style="{StaticResource entry-label}"/>
                     <Entry
+                        IsEnabled="{Binding IsNotBusy}"
+                        Text="{Binding Email}"
                         ClearButtonVisibility="WhileEditing"
                         Grid.Row="1"
                         Grid.Column="0"
@@ -45,6 +49,8 @@
                     <Label Text="password"
                            Style="{StaticResource entry-label}"/>
                     <Entry
+                        IsEnabled="{Binding IsNotBusy}"
+                        Text="{Binding Password}"
                         ClearButtonVisibility="WhileEditing"
                         IsPassword="True"
                         Grid.Row="1"
@@ -54,11 +60,20 @@
 
                 <!-- button -->
                 <Button
+                    Command="{Binding TriggerSignInCommand}"
+                    IsVisible="{Binding IsNotBusy}"
+                    IsEnabled="{Binding IsNotBusy}"
                     Text="Continue"
                     Grid.Row="3"
                     Style="{StaticResource primary-button}"/>
 
                 <!-- spinner -->
+                <ActivityIndicator
+                    HorizontalOptions="End"
+                    Grid.Row="3"
+                    Color="Green"
+                    IsEnabled="{Binding IsBusy}"
+                    IsRunning="{Binding IsBusy}"/>
             </Grid>
         </Border>
     </VerticalStackLayout>
