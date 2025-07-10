@@ -12,9 +12,18 @@ public partial class SignInVM : BaseVM
     string email;
     [ObservableProperty]
     string password;
+    // form validation binders
+    [ObservableProperty]
+    string emailValidationMessage;
+    [ObservableProperty]
+    string passwordValidationMessage;
 
     // services
     private readonly SignInValidator _validator;
+
+    // temp error message holders
+    public string tempEmailMessage;
+    public string tempPasswordMessage;
 
     public SignInVM(SignInValidator signInValidator)
     {
@@ -34,7 +43,12 @@ public partial class SignInVM : BaseVM
             Password = Password
         };
 
-        bool isValid = _validator.Validate(model);
+        // call helper
+        bool isValid = _validator.Validate(model, out tempEmailMessage, out tempPasswordMessage);
+
+        // send error messages to error label binders
+        EmailValidationMessage = tempEmailMessage;
+        PasswordValidationMessage = tempPasswordMessage;
 
         if (!isValid)
         {
@@ -42,6 +56,7 @@ public partial class SignInVM : BaseVM
             return;
         }
 
+        // validation successful!
         Debug.WriteLine("Success is permanent!");
         IsBusy = false;
         return;

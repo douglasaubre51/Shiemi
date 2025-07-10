@@ -20,7 +20,7 @@
                 HorizontalOptions="CenterAndExpand"
                 ColumnDefinitions="*"
                 ColumnSpacing="40"
-                RowSpacing="40"
+                RowSpacing="30"
                 RowDefinitions="*,*,*,*">
                 <!-- header tag -->
                 <Label Text="Sign in"
@@ -41,6 +41,8 @@
                         Grid.Row="1"
                         Grid.Column="0"
                         Style="{StaticResource entry}"/>
+                    <Label Text="{Binding EmailValidationMessage}"
+                           Style="{StaticResource validation-msg}"/>
                 </VerticalStackLayout>
 
                 <!-- password -->
@@ -56,6 +58,8 @@
                         Grid.Row="1"
                         Grid.Column="0"
                         Style="{StaticResource entry}"/>
+                    <Label Text="{Binding PasswordValidationMessage}"
+                           Style="{StaticResource validation-msg}"/>
                 </VerticalStackLayout>
 
                 <!-- button -->
