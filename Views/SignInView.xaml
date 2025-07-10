@@ -5,7 +5,7 @@
              x:Class="Shiemi.Views.SignInView">
     <!-- main layout -->
     <VerticalStackLayout
-        Margin="10"
+        Margin="30"
         HorizontalOptions="FillAndExpand"
         VerticalOptions="CenterAndExpand">
         <!-- card layout -->
