@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             BackgroundColor="{StaticResource BackgroundWhite}"
+             x:Class="Shiemi.Views.SignInView">
+    <!-- main layout -->
+    <VerticalStackLayout
+        Margin="10"
+        HorizontalOptions="FillAndExpand"
+        VerticalOptions="CenterAndExpand">
+        <!-- card layout -->
+        <Border VerticalOptions="CenterAndExpand"
+                HorizontalOptions="CenterAndExpand"
+                Style="{StaticResource card-shadow}"
+                BackgroundColor="{StaticResource CardBackground}"
+                Padding="50,20,50,50">
+            <!-- form grid -->
+            <Grid
+                HorizontalOptions="CenterAndExpand"
+                ColumnDefinitions="*"
+                ColumnSpacing="40"
+                RowSpacing="40"
+                RowDefinitions="*,*,*,*">
+                <!-- header tag -->
+                <Label Text="Sign in"
+                       Style="{StaticResource header-tag}"
+                       VerticalOptions="Center"
+                       Grid.Row="0"
+                       HorizontalOptions="Start"/>
+
+                <!-- email -->
+                <VerticalStackLayout
+                    Grid.Row="1">
+                    <Label Text="email"
+                           Style="{StaticResource entry-label}"/>
+                    <Entry
+                        ClearButtonVisibility="WhileEditing"
+                        Grid.Row="1"
+                        Grid.Column="0"
+                        Style="{StaticResource entry}"/>
+                </VerticalStackLayout>
+
+                <!-- password -->
+                <VerticalStackLayout
+                    Grid.Row="2">
+                    <Label Text="password"
+                           Style="{StaticResource entry-label}"/>
+                    <Entry
+                        ClearButtonVisibility="WhileEditing"
+                        IsPassword="True"
+                        Grid.Row="1"
+                        Grid.Column="0"
+                        Style="{StaticResource entry}"/>
+                </VerticalStackLayout>
+
+                <!-- button -->
+                <Button
+                    Text="Continue"
+                    Grid.Row="3"
+                    Style="{StaticResource primary-button}"/>
+
+                <!-- spinner -->
+            </Grid>
+        </Border>
+    </VerticalStackLayout>
+</ContentPage>
