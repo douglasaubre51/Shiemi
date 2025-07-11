@@ -65,16 +65,7 @@ public partial class SignInVM : BaseVM
             Debug.WriteLine("Success is permanent!");
 
             // failure
-            if (!signInStatus)
-            {
-                await Shell.Current.DisplayAlertAsync(
-                    "signin error!",
-                    "invalid credentials!",
-                    "try again"
-                );
-
-                return;
-            }
+            if (!signInStatus) return;
         }
         catch (Exception e)
         {
