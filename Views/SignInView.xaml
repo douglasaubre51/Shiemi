@@ -1,83 +1,77 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:viewModel="clr-namespace:Shiemi.ViewModels"
-             x:DataType="viewModel:SignInVM"
-             x:Class="Shiemi.Views.SignInView">
-    <!-- main layout -->
-    <VerticalStackLayout
-        Margin="20"
-        HorizontalOptions="FillAndExpand"
-        VerticalOptions="CenterAndExpand">
-        <!-- card layout -->
-        <Border VerticalOptions="CenterAndExpand"
-                HorizontalOptions="CenterAndExpand"
-                Style="{StaticResource card-shadow}"
-                BackgroundColor="{StaticResource CardBackground}"
-                Padding="50,20,50,50">
-            <!-- form grid -->
+<ContentPage
+    x:Class="Shiemi.Views.SignInView"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:viewModel="clr-namespace:Shiemi.ViewModels"
+    x:DataType="viewModel:SignInVM">
+    <!--  main layout  -->
+    <VerticalStackLayout HorizontalOptions="Fill" VerticalOptions="Center">
+        <!--  card layout  -->
+        <Border
+            Padding="50,20,50,50"
+            BackgroundColor="{StaticResource CardBackground}"
+            HorizontalOptions="Center"
+            Style="{StaticResource card-shadow}"
+            VerticalOptions="Center">
+            <!--  form grid  -->
             <Grid
-                HorizontalOptions="CenterAndExpand"
                 ColumnDefinitions="*"
                 ColumnSpacing="40"
-                RowSpacing="30"
-                RowDefinitions="*,*,*,*">
-                <!-- header tag -->
-                <Label Text="Sign in"
-                       Style="{StaticResource header-tag}"
-                       VerticalOptions="Center"
-                       Grid.Row="0"
-                       HorizontalOptions="Start"/>
+                HorizontalOptions="Center"
+                RowDefinitions="*,*,*,*"
+                RowSpacing="30">
+                <!--  header tag  -->
+                <Label
+                    Grid.Row="0"
+                    HorizontalOptions="Start"
+                    Style="{StaticResource header-tag}"
+                    Text="Sign in"
+                    VerticalOptions="Center" />
 
-                <!-- email -->
-                <VerticalStackLayout
-                    Grid.Row="1">
-                    <Label Text="email"
-                           Style="{StaticResource entry-label}"/>
+                <!--  email  -->
+                <VerticalStackLayout Grid.Row="1">
+                    <Label Style="{StaticResource entry-label}" Text="email" />
                     <Entry
-                        IsEnabled="{Binding IsNotBusy}"
-                        Text="{Binding Email}"
-                        ClearButtonVisibility="WhileEditing"
                         Grid.Row="1"
                         Grid.Column="0"
-                        Style="{StaticResource entry}"/>
-                    <Label Text="{Binding EmailValidationMessage}"
-                           Style="{StaticResource validation-msg}"/>
+                        ClearButtonVisibility="WhileEditing"
+                        IsEnabled="{Binding IsNotBusy}"
+                        Style="{StaticResource entry}"
+                        Text="{Binding Email}" />
+                    <Label Style="{StaticResource validation-msg}" Text="{Binding EmailValidationMessage}" />
                 </VerticalStackLayout>
 
-                <!-- password -->
-                <VerticalStackLayout
-                    Grid.Row="2">
-                    <Label Text="password"
-                           Style="{StaticResource entry-label}"/>
+                <!--  password  -->
+                <VerticalStackLayout Grid.Row="2">
+                    <Label Style="{StaticResource entry-label}" Text="password" />
                     <Entry
-                        IsEnabled="{Binding IsNotBusy}"
-                        Text="{Binding Password}"
+                        Grid.Row="1"
+                        Grid.Column="0"
                         ClearButtonVisibility="WhileEditing"
+                        IsEnabled="{Binding IsNotBusy}"
                         IsPassword="True"
-                        Grid.Row="1"
-                        Grid.Column="0"
-                        Style="{StaticResource entry}"/>
-                    <Label Text="{Binding PasswordValidationMessage}"
-                           Style="{StaticResource validation-msg}"/>
+                        Style="{StaticResource entry}"
+                        Text="{Binding Password}" />
+                    <Label Style="{StaticResource validation-msg}" Text="{Binding PasswordValidationMessage}" />
                 </VerticalStackLayout>
 
-                <!-- button -->
+                <!--  button  -->
                 <Button
+                    Grid.Row="3"
                     Command="{Binding TriggerSignInCommand}"
-                    IsVisible="{Binding IsNotBusy}"
                     IsEnabled="{Binding IsNotBusy}"
-                    Text="Continue"
-                    Grid.Row="3"
-                    Style="{StaticResource primary-button}"/>
+                    IsVisible="{Binding IsNotBusy}"
+                    Style="{StaticResource primary-button}"
+                    Text="Continue" />
 
-                <!-- spinner -->
+                <!--  spinner  -->
                 <ActivityIndicator
-                    HorizontalOptions="End"
                     Grid.Row="3"
-                    Color="Green"
+                    HorizontalOptions="End"
                     IsEnabled="{Binding IsBusy}"
-                    IsRunning="{Binding IsBusy}"/>
+                    IsRunning="{Binding IsBusy}"
+                    Color="Green" />
             </Grid>
         </Border>
     </VerticalStackLayout>

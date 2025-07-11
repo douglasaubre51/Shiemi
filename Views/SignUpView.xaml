@@ -7,125 +7,113 @@
     x:DataType="viewModel:SignUpVM">
     <!--  main layout  -->
     <VerticalStackLayout
-        HorizontalOptions="FillAndExpand"
+        HorizontalOptions="Fill"
         Spacing="30"
-        VerticalOptions="CenterAndExpand">
+        VerticalOptions="Center">
         <!--  forms layout card  -->
         <Border
             Margin="20"
             Padding="50,20,50,50"
             BackgroundColor="{StaticResource CardBackground}"
-            HorizontalOptions="CenterAndExpand"
+            HorizontalOptions="Center"
             Style="{StaticResource card-shadow}"
-            VerticalOptions="CenterAndExpand">
-            <StackLayout Spacing="30">
+            VerticalOptions="Center">
+            <StackLayout Spacing="40">
                 <!--  header  -->
                 <Label
                     FontSize="50"
                     HorizontalOptions="Start"
-                    Text="Sign up"/>
+                    Text="Sign up" />
                 <!--  forms grid container  -->
                 <Grid
                     ColumnDefinitions="*,*"
                     ColumnSpacing="40"
-                    HorizontalOptions="CenterAndExpand"
+                    HorizontalOptions="Center"
                     RowDefinitions="*,*,*,*"
                     RowSpacing="30"
-                    VerticalOptions="CenterAndExpand">
+                    VerticalOptions="Center">
                     <!--  first name  -->
                     <VerticalStackLayout
                         Grid.Row="0"
                         Grid.Column="0"
                         Style="{StaticResource form-group}">
-                        <Label Style="{StaticResource entry-label}"
-                               Text="firstname"/>
+                        <Label Style="{StaticResource entry-label}" Text="firstname" />
                         <Entry
                             ClearButtonVisibility="WhileEditing"
                             IsEnabled="{Binding IsNotBusy}"
                             Style="{StaticResource entry}"
-                            Text="{Binding FirstName}"/>
-                        <Label Style="{StaticResource validation-msg}"
-                               Text="{Binding FirstNameMessage}"/>
+                            Text="{Binding FirstName}" />
+                        <Label Style="{StaticResource validation-msg}" Text="{Binding FirstNameMessage}" />
                     </VerticalStackLayout>
                     <!--  last name  -->
                     <VerticalStackLayout
                         Grid.Row="0"
                         Grid.Column="1"
                         Style="{StaticResource form-group}">
-                        <Label Style="{StaticResource entry-label}"
-                               Text="lastname"/>
+                        <Label Style="{StaticResource entry-label}" Text="lastname" />
                         <Entry
                             ClearButtonVisibility="WhileEditing"
                             IsEnabled="{Binding IsNotBusy}"
                             Style="{StaticResource entry}"
-                            Text="{Binding LastName}"/>
-                        <Label Style="{StaticResource validation-msg}"
-                               Text="{Binding LastNameMessage}"/>
+                            Text="{Binding LastName}" />
+                        <Label Style="{StaticResource validation-msg}" Text="{Binding LastNameMessage}" />
                     </VerticalStackLayout>
                     <!--  email  -->
                     <VerticalStackLayout
                         Grid.Row="1"
                         Grid.Column="0"
                         Style="{StaticResource form-group}">
-                        <Label Style="{StaticResource entry-label}"
-                               Text="email"/>
+                        <Label Style="{StaticResource entry-label}" Text="email" />
                         <Entry
                             ClearButtonVisibility="WhileEditing"
                             IsEnabled="{Binding IsNotBusy}"
                             Keyboard="Email"
                             Style="{StaticResource entry}"
-                            Text="{Binding Email}"/>
-                        <Label Style="{StaticResource validation-msg}"
-                               Text="{Binding EmailMessage}"/>
+                            Text="{Binding Email}" />
+                        <Label Style="{StaticResource validation-msg}" Text="{Binding EmailMessage}" />
                     </VerticalStackLayout>
                     <!--  password  -->
                     <VerticalStackLayout
                         Grid.Row="1"
                         Grid.Column="1"
                         Style="{StaticResource form-group}">
-                        <Label Style="{StaticResource entry-label}"
-                               Text="password"/>
+                        <Label Style="{StaticResource entry-label}" Text="password" />
                         <Entry
                             ClearButtonVisibility="WhileEditing"
                             IsEnabled="{Binding IsNotBusy}"
                             IsPassword="true"
                             Style="{StaticResource entry}"
-                            Text="{Binding Password}"/>
-                        <Label Style="{StaticResource validation-msg}"
-                               Text="{Binding PasswordMessage}"/>
+                            Text="{Binding Password}" />
+                        <Label Style="{StaticResource validation-msg}" Text="{Binding PasswordMessage}" />
                     </VerticalStackLayout>
                     <!--  phone no  -->
                     <VerticalStackLayout
                         Grid.Row="2"
                         Grid.Column="0"
                         Style="{StaticResource form-group}">
-                        <Label Style="{StaticResource entry-label}"
-                               Text="phoneno"/>
+                        <Label Style="{StaticResource entry-label}" Text="phoneno" />
                         <Entry
                             x:Name="PhoneNo"
                             ClearButtonVisibility="WhileEditing"
                             IsEnabled="{Binding IsNotBusy}"
                             Style="{StaticResource entry}"
                             Text="{Binding PhoneNo}"
-                            TextChanged="PhoneNo_TextChanged"/>
-                        <Label Style="{StaticResource validation-msg}"
-                               Text="{Binding PhoneNoMessage}"/>
+                            TextChanged="PhoneNo_TextChanged" />
+                        <Label Style="{StaticResource validation-msg}" Text="{Binding PhoneNoMessage}" />
                     </VerticalStackLayout>
                     <!--  check password  -->
                     <VerticalStackLayout
                         Grid.Row="2"
                         Grid.Column="1"
                         Style="{StaticResource form-group}">
-                        <Label Style="{StaticResource entry-label}"
-                               Text="check password"/>
+                        <Label Style="{StaticResource entry-label}" Text="check password" />
                         <Entry
                             ClearButtonVisibility="WhileEditing"
                             IsEnabled="{Binding IsNotBusy}"
                             IsPassword="True"
                             Style="{StaticResource entry}"
-                            Text="{Binding ConfirmPassword}"/>
-                        <Label Style="{StaticResource validation-msg}"
-                               Text="{Binding CheckPasswordMessage}"/>
+                            Text="{Binding ConfirmPassword}" />
+                        <Label Style="{StaticResource validation-msg}" Text="{Binding CheckPasswordMessage}" />
                     </VerticalStackLayout>
                     <!--  button  -->
                     <Button
@@ -135,7 +123,7 @@
                         IsEnabled="{Binding IsNotBusy}"
                         IsVisible="{Binding IsNotBusy}"
                         Style="{StaticResource primary-button}"
-                        Text="Continue"/>
+                        Text="Continue" />
                     <!--  spinner  -->
                     <ActivityIndicator
                         Grid.Row="3"
@@ -144,7 +132,7 @@
                         IsEnabled="{Binding IsBusy}"
                         IsRunning="{Binding IsBusy}"
                         VerticalOptions="Center"
-                        Color="{StaticResource AccentGreen}"/>
+                        Color="{StaticResource AccentGreen}" />
                 </Grid>
             </StackLayout>
         </Border>

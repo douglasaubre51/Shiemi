@@ -5,34 +5,31 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:signin="clr-namespace:Shiemi.Views"
     xmlns:signup="clr-namespace:Shiemi.Views"
-    Shell.FlyoutBehavior="Flyout"
-    BackgroundColor="{StaticResource BackgroundWhite}">
+    FlyoutBehavior="Flyout"
+    Shell.NavBarIsVisible="False">
 
-    <!--flyout items-->
+    <!--  flyout items  -->
     <FlyoutItem Title="Sign in">
         <Tab>
-            <ShellContent ContentTemplate="{DataTemplate signin:SignInView}"
-                          Route="SignInView"/>
+            <ShellContent ContentTemplate="{DataTemplate signin:SignInView}" Route="SignInView" />
         </Tab>
     </FlyoutItem>
 
     <FlyoutItem Title="Sign up">
         <Tab>
-            <ShellContent ContentTemplate="{DataTemplate signup:SignUpView}"
-                          Route="SignUpView"/>
+            <ShellContent ContentTemplate="{DataTemplate signup:SignUpView}" Route="SignUpView" />
         </Tab>
     </FlyoutItem>
 
-    <!-- footer -->
+
+    <!--  footer  -->
     <Shell.FlyoutFooter>
         <VerticalStackLayout
             Margin="20"
-            VerticalOptions="Center"
-            HorizontalOptions="Start">
-            <Label Text="Shiemi"
-                   FontSize="Header"/>
-            <Label Text="by douglasaubre51"
-                   FontSize="Caption"/>
+            HorizontalOptions="Start"
+            VerticalOptions="Center">
+            <Label FontSize="Header" Text="Shiemi" />
+            <Label FontSize="Caption" Text="by douglasaubre51" />
         </VerticalStackLayout>
     </Shell.FlyoutFooter>
 </Shell>
