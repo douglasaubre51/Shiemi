@@ -18,7 +18,7 @@
             HorizontalOptions="CenterAndExpand"
             Style="{StaticResource card-shadow}"
             VerticalOptions="CenterAndExpand">
-            <StackLayout Spacing="50">
+            <StackLayout Spacing="30">
                 <!--  header  -->
                 <Label
                     FontSize="50"
@@ -30,7 +30,7 @@
                     ColumnSpacing="40"
                     HorizontalOptions="CenterAndExpand"
                     RowDefinitions="*,*,*,*"
-                    RowSpacing="40"
+                    RowSpacing="30"
                     VerticalOptions="CenterAndExpand">
                     <!--  first name  -->
                     <VerticalStackLayout
@@ -44,6 +44,8 @@
                             IsEnabled="{Binding IsNotBusy}"
                             Style="{StaticResource entry}"
                             Text="{Binding FirstName}"/>
+                        <Label Style="{StaticResource validation-msg}"
+                               Text="{Binding FirstNameMessage}"/>
                     </VerticalStackLayout>
                     <!--  last name  -->
                     <VerticalStackLayout
@@ -57,6 +59,8 @@
                             IsEnabled="{Binding IsNotBusy}"
                             Style="{StaticResource entry}"
                             Text="{Binding LastName}"/>
+                        <Label Style="{StaticResource validation-msg}"
+                               Text="{Binding LastNameMessage}"/>
                     </VerticalStackLayout>
                     <!--  email  -->
                     <VerticalStackLayout
@@ -72,7 +76,7 @@
                             Style="{StaticResource entry}"
                             Text="{Binding Email}"/>
                         <Label Style="{StaticResource validation-msg}"
-                               Text="{Binding EmailValidationMessage}"/>
+                               Text="{Binding EmailMessage}"/>
                     </VerticalStackLayout>
                     <!--  password  -->
                     <VerticalStackLayout
@@ -87,6 +91,8 @@
                             IsPassword="true"
                             Style="{StaticResource entry}"
                             Text="{Binding Password}"/>
+                        <Label Style="{StaticResource validation-msg}"
+                               Text="{Binding PasswordMessage}"/>
                     </VerticalStackLayout>
                     <!--  phone no  -->
                     <VerticalStackLayout
@@ -103,7 +109,7 @@
                             Text="{Binding PhoneNo}"
                             TextChanged="PhoneNo_TextChanged"/>
                         <Label Style="{StaticResource validation-msg}"
-                               Text="{Binding PhoneNoValidationMessage}"/>
+                               Text="{Binding PhoneNoMessage}"/>
                     </VerticalStackLayout>
                     <!--  check password  -->
                     <VerticalStackLayout
@@ -119,13 +125,13 @@
                             Style="{StaticResource entry}"
                             Text="{Binding ConfirmPassword}"/>
                         <Label Style="{StaticResource validation-msg}"
-                               Text="{Binding PasswordValidationMessage}"/>
+                               Text="{Binding CheckPasswordMessage}"/>
                     </VerticalStackLayout>
                     <!--  button  -->
                     <Button
                         Grid.Row="3"
                         Grid.ColumnSpan="2"
-                        Command="{Binding SendUserDetailsCommand}"
+                        Command="{Binding TriggerSignUpCommand}"
                         IsEnabled="{Binding IsNotBusy}"
                         IsVisible="{Binding IsNotBusy}"
                         Style="{StaticResource primary-button}"

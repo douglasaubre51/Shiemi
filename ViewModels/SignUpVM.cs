@@ -1,8 +1,9 @@
-﻿using CommunityToolkit.Mvvm.Input;
+﻿using System.Text.RegularExpressions;
+using CommunityToolkit.Mvvm.Input;
+using Shiemi.Dto;
+using Shiemi.Helpers;
 using Shiemi.Models;
 using Shiemi.Services;
-using System.ComponentModel.DataAnnotations;
-using System.Diagnostics;
 
 namespace Shiemi.ViewModels
 {
@@ -25,33 +26,45 @@ namespace Shiemi.ViewModels
 
         // form validation msg
         [ObservableProperty]
-        string? emailValidationMessage;
+        string? firstNameMessage;
         [ObservableProperty]
-        string? phoneNoValidationMessage;
+        string? lastNameMessage;
         [ObservableProperty]
-        string? passwordValidationMessage;
+        string? emailMessage;
+        [ObservableProperty]
+        string? phoneNoMessage;
+        [ObservableProperty]
+        string? passwordMessage;
+        [ObservableProperty]
+        string? checkPasswordMessage;
 
         // DI
-        private readonly SendUserDetailsService _userDetailsService;
+        private readonly UserService _userService;
+        private readonly SignUpValidator _validator;
 
-        public SignUpVM(SendUserDetailsService userDetailsService)
+        public SignUpVM(UserService userService, SignUpValidator signUpValidator)
         {
             Title = "create new account";
-            _userDetailsService = userDetailsService;
+
+            _userService = userService;
+            _validator = signUpValidator;
         }
 
         // for calling http post service
         [RelayCommand]
-        async Task SendUserDetails()
+        async Task TriggerSignUp()
         {
             if (IsBusy is true) return;
 
             IsBusy = true;
 
-            // clear validation msg labels
-            PhoneNoValidationMessage = string.Empty;
-            EmailValidationMessage = string.Empty;
-            PasswordValidationMessage = string.Empty;
+            // clear validation labels
+            FirstNameMessage = string.Empty;
+            LastNameMessage = string.Empty;
+            EmailMessage = string.Empty;
+            PhoneNoMessage = string.Empty;
+            PasswordMessage = string.Empty;
+            CheckPasswordMessage = string.Empty;
 
             try
             {
@@ -66,67 +79,35 @@ namespace Shiemi.ViewModels
                 };
 
                 // validate attributes
-                var validationContext = new ValidationContext(user);
-                var validationResults = new List<ValidationResult>();
-                bool validationResult = Validator.TryValidateObject(
-                    user,
-                    validationContext,
-                    validationResults,
-                    true
-                    );
+                SignUpValidatorDto? signUpValidatorDto = await _validator.Validate(user);
 
-                // display email validation message label
-                var emailErrorMessage = validationResults
-                    .Where(e => e.MemberNames.Contains(nameof(User.Email)))
-                    .Select(e => e.ErrorMessage)
-                    .ToList();
-                foreach (var m in emailErrorMessage)
+                if (signUpValidatorDto is not null)
                 {
-                    EmailValidationMessage += m + "\n";
-                }
+                    (
+                        FirstNameMessage,
+                        LastNameMessage,
+                        EmailMessage,
+                        PhoneNoMessage,
+                        PasswordMessage,
+                        CheckPasswordMessage
+                        ) = signUpValidatorDto;
 
-                // display phone no validation message label
-                var phoneNoErrorMessage = validationResults
-                    .Where(e => e.MemberNames.Contains(nameof(User.PhoneNo)))
-                    .Select(e => e.ErrorMessage)
-                    .ToList();
-                foreach (var m in phoneNoErrorMessage)
-                {
-                    PhoneNoValidationMessage += m + "\n";
-                }
-
-                // display check password validation message label
-                var passwordErrorMessage = validationResults
-                    .Where(e => e.MemberNames.Contains(nameof(User.ConfirmPassword)))
-                    .Select(e => e.ErrorMessage)
-                    .ToList();
-                foreach (var m in passwordErrorMessage)
-                {
-                    PasswordValidationMessage += m.ToString() + "\n";
-                }
-
-                // validation error
-                if (validationResult is false)
-                {
-                    foreach (var m in validationResults)
-                    {
-                        Debug.WriteLine(m.ToString());
-                    }
-                    await Shell.Current.DisplayAlertAsync(
-                        "validation error",
-                        "enter all fields properly!",
-                        "ok"
-                        );
                     return;
                 }
 
-                // successfully validated!
-                // post request service
-                await _userDetailsService.Send(user);
+                // signup!
+                bool HasCreatedAccount = await _userService.RequestSignUp(user);
+                if (!HasCreatedAccount) return;
+
+                //success
+                await Shell.Current.DisplayAlertAsync(
+                    "signup successfull!",
+                    "created new account successfully!",
+                    "continue"
+                );
             }
             catch (Exception e)
             {
-                Debug.WriteLine($"{e}");
                 await Shell.Current.DisplayAlertAsync(
                     "signup in error",
                     "error creating account!\ntry again later",

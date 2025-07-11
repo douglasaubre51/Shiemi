@@ -22,10 +22,6 @@ namespace Shiemi
 #if DEBUG
             builder.Logging.AddDebug();
 #endif
-            // middlewares
-            // helpers
-            builder.Services.AddTransient<SignInValidator>();
-
             // services
             builder.Services.AddSingleton(
                 new JsonSerializerOptions
@@ -33,8 +29,12 @@ namespace Shiemi
                     PropertyNamingPolicy = JsonNamingPolicy.CamelCase
                 }
             );
+
+            // helpers
+            builder.Services.AddTransient<SignInValidator>();
+            builder.Services.AddTransient<SignUpValidator>();
+
             // REST
-            builder.Services.AddTransient<SendUserDetailsService>();
             builder.Services.AddTransient<UserService>();
 
             // view models
