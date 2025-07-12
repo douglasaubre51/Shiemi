@@ -4,6 +4,12 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
 
         <!--  my styles  -->
+        <!-- flyout -->
+        <!-- <Style  TargetType="FlyoutPage">
+                <Setter Property="Shadow"
+                        Value="LightGrey 1 10"/>
+        </Style> -->
+
         <!-- signin view -->
         <!-- header -->
         <Style x:Key="header-tag"
