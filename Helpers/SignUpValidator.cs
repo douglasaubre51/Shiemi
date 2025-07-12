@@ -1,18 +1,17 @@
-using System.ComponentModel.DataAnnotations;
 using Shiemi.Dto;
-using Shiemi.Models;
+using System.ComponentModel.DataAnnotations;
 
 namespace Shiemi.Helpers;
 
 public class SignUpValidator
 {
-    public async Task<SignUpValidatorDto?> Validate(User user)
+    public async Task<SignUpValidatorDto?> Validate(SignUpDto signUpDto)
     {
         // validate user
-        var validationContext = new ValidationContext(user);
+        var validationContext = new ValidationContext(signUpDto);
         var validationResults = new List<ValidationResult>();
         bool validationResult = Validator.TryValidateObject(
-            user,
+            signUpDto,
             validationContext,
             validationResults,
             true
@@ -25,7 +24,7 @@ public class SignUpValidator
 
             // collect validation errors
             var firstNameErrorMessage = validationResults
-                .Where(e => e.MemberNames.Contains(nameof(User.FirstName)))
+                .Where(e => e.MemberNames.Contains(nameof(SignUpDto.FirstName)))
                 .Select(e => e.ErrorMessage)
                 .ToList();
             foreach (var m in firstNameErrorMessage)
@@ -34,7 +33,7 @@ public class SignUpValidator
             }
 
             var lastNameErrorMessage = validationResults
-                .Where(e => e.MemberNames.Contains(nameof(User.LastName)))
+                .Where(e => e.MemberNames.Contains(nameof(SignUpDto.LastName)))
                 .Select(e => e.ErrorMessage)
                 .ToList();
             foreach (var m in lastNameErrorMessage)
@@ -43,7 +42,7 @@ public class SignUpValidator
             }
 
             var emailErrorMessage = validationResults
-                .Where(e => e.MemberNames.Contains(nameof(User.Email)))
+                .Where(e => e.MemberNames.Contains(nameof(SignUpDto.Email)))
                 .Select(e => e.ErrorMessage)
                 .ToList();
             foreach (var m in emailErrorMessage)
@@ -52,7 +51,7 @@ public class SignUpValidator
             }
 
             var phoneNoErrorMessage = validationResults
-                .Where(e => e.MemberNames.Contains(nameof(User.PhoneNo)))
+                .Where(e => e.MemberNames.Contains(nameof(SignUpDto.PhoneNo)))
                 .Select(e => e.ErrorMessage)
                 .ToList();
             foreach (var m in phoneNoErrorMessage)
@@ -61,7 +60,7 @@ public class SignUpValidator
             }
 
             var passwordErrorMessage = validationResults
-                .Where(e => e.MemberNames.Contains(nameof(User.Password)))
+                .Where(e => e.MemberNames.Contains(nameof(SignUpDto.Password)))
                 .Select(e => e.ErrorMessage)
                 .ToList();
             foreach (var m in passwordErrorMessage)
@@ -70,7 +69,7 @@ public class SignUpValidator
             }
 
             var checkPasswordErrorMessage = validationResults
-                .Where(e => e.MemberNames.Contains(nameof(User.ConfirmPassword)))
+                .Where(e => e.MemberNames.Contains(nameof(SignUpDto.ConfirmPassword)))
                 .Select(e => e.ErrorMessage)
                 .ToList();
             foreach (var m in checkPasswordErrorMessage)

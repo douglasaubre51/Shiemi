@@ -22,6 +22,12 @@
         </Tab>
     </FlyoutItem>
 
+    <FlyoutItem Title="Sign up">
+        <Tab>
+            <ShellContent ContentTemplate="{DataTemplate signup:SignUpView}" Route="SignUpView" />
+        </Tab>
+    </FlyoutItem>
+
     <!--  footer  -->
     <Shell.FlyoutFooter>
         <VerticalStackLayout

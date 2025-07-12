@@ -1,4 +1,4 @@
-using Shiemi.Models;
+using Shiemi.Dto;
 using System.Text;
 using System.Text.Json;
 
@@ -15,7 +15,7 @@ public class UserService
     }
 
     // POST: sign-in
-    public async Task<bool> RequestSignIn(SignIn signIn)
+    public async Task<bool> RequestSignIn(SignInDto signIn)
     {
         string url = "http://localhost:3000/sign-in";
 
@@ -43,12 +43,12 @@ public class UserService
     }
 
     // POST: sign-up
-    public async Task<bool> RequestSignUp(User user)
+    public async Task<bool> RequestSignUp(SignUpDto signUpDto)
     {
         string url = "http://localhost:3000/sign-up";
 
         // create payload
-        string payloadString = JsonSerializer.Serialize(user, _jsonCasing);
+        string payloadString = JsonSerializer.Serialize(signUpDto, _jsonCasing);
         HttpContent payload = new StringContent(payloadString, Encoding.UTF8, "application/json");
 
         // send

@@ -1,6 +1,6 @@
 using CommunityToolkit.Mvvm.Input;
+using Shiemi.Dto;
 using Shiemi.Helpers;
-using Shiemi.Models;
 using Shiemi.Services;
 using System.Diagnostics;
 
@@ -42,7 +42,7 @@ public partial class SignInVM : BaseVM
 
         try
         {
-            SignIn model = new SignIn()
+            SignInDto model = new SignInDto()
             {
                 Email = Email,
                 Password = Password

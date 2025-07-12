@@ -1,8 +1,8 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace Shiemi.Models;
+namespace Shiemi.Dto;
 
-public class SignIn
+public class SignInDto
 {
     [Required]
     [EmailAddress(ErrorMessage = "not an email!")]

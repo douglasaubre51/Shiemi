@@ -1,12 +1,12 @@
 using System.ComponentModel.DataAnnotations;
 using System.Diagnostics;
-using Shiemi.Models;
+using Shiemi.Dto;
 
 namespace Shiemi.Helpers;
 
 public class SignInValidator
 {
-    public bool Validate(SignIn model, out string emailValidation, out string passwordValidation)
+    public bool Validate(SignInDto model, out string emailValidation, out string passwordValidation)
     {
         // assign default values to out vars
         emailValidation = string.Empty;
@@ -30,7 +30,7 @@ public class SignInValidator
             // write to labels
             // email validation label
             var emailValidationMessages = results
-            .Where(e => e.MemberNames.Contains(nameof(SignIn.Email)))
+            .Where(e => e.MemberNames.Contains(nameof(SignInDto.Email)))
             .Select(e => e.ErrorMessage)
             .ToList();
             foreach (var m in emailValidationMessages)
@@ -40,7 +40,7 @@ public class SignInValidator
 
             // email validation label
             var passwordValidationMessages = results.
-            Where(e => e.MemberNames.Contains(nameof(SignIn.Password)))
+            Where(e => e.MemberNames.Contains(nameof(SignInDto.Password)))
             .Select(e => e.ErrorMessage)
             .ToList();
             foreach (var m in passwordValidationMessages)

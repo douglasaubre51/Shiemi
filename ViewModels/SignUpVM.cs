@@ -1,8 +1,6 @@
-﻿using System.Text.RegularExpressions;
-using CommunityToolkit.Mvvm.Input;
+﻿using CommunityToolkit.Mvvm.Input;
 using Shiemi.Dto;
 using Shiemi.Helpers;
-using Shiemi.Models;
 using Shiemi.Services;
 
 namespace Shiemi.ViewModels
@@ -68,7 +66,7 @@ namespace Shiemi.ViewModels
 
             try
             {
-                User user = new User()
+                SignUpDto signUpDto = new()
                 {
                     FirstName = FirstName,
                     LastName = LastName,
@@ -79,7 +77,7 @@ namespace Shiemi.ViewModels
                 };
 
                 // validate attributes
-                SignUpValidatorDto? signUpValidatorDto = await _validator.Validate(user);
+                SignUpValidatorDto? signUpValidatorDto = await _validator.Validate(signUpDto);
 
                 if (signUpValidatorDto is not null)
                 {
@@ -96,7 +94,7 @@ namespace Shiemi.ViewModels
                 }
 
                 // signup!
-                bool HasCreatedAccount = await _userService.RequestSignUp(user);
+                bool HasCreatedAccount = await _userService.RequestSignUp(signUpDto);
                 if (!HasCreatedAccount) return;
 
                 //success
