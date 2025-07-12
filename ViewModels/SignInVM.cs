@@ -1,8 +1,8 @@
-using System.Diagnostics;
 using CommunityToolkit.Mvvm.Input;
 using Shiemi.Helpers;
 using Shiemi.Models;
 using Shiemi.Services;
+using System.Diagnostics;
 
 namespace Shiemi.ViewModels;
 
@@ -60,12 +60,11 @@ public partial class SignInVM : BaseVM
 
             // call signin rest service
             bool signInStatus = await _userService.RequestSignIn(model);
-
-            // signed in!
-            Debug.WriteLine("Success is permanent!");
-
             // failure
             if (!signInStatus) return;
+
+            // signed in!
+
         }
         catch (Exception e)
         {
