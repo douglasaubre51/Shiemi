@@ -39,6 +39,11 @@ public class UserService
         }
 
         // success
+        // fetch user id
+        string responseJsonString = await response.Content.ReadAsStringAsync();
+        UserIdDto? dto = JsonSerializer.Deserialize<UserIdDto>(responseJsonString, _jsonCasing);
+        string userId = dto.UserId;
+
         return true;
     }
 

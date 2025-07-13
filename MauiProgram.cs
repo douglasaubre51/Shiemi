@@ -1,8 +1,8 @@
-﻿using System.Text.Json;
-using Microsoft.Extensions.Logging;
+﻿using Microsoft.Extensions.Logging;
 using Shiemi.Helpers;
 using Shiemi.Services;
 using Shiemi.ViewModels;
+using System.Text.Json;
 
 namespace Shiemi
 {
