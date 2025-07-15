@@ -1,4 +1,6 @@
 using Shiemi.Dto;
+using Shiemi.Models;
+using System.Diagnostics;
 using System.Text;
 using System.Text.Json;
 
@@ -9,13 +11,16 @@ public class UserService
     // di
     private readonly JsonSerializerOptions _jsonCasing;
 
+    HttpClient _client;
+
     public UserService(JsonSerializerOptions jsonSerializerOptions)
     {
         _jsonCasing = jsonSerializerOptions;
+        _client = new HttpClient();
     }
 
     // POST: sign-in
-    public async Task<bool> RequestSignIn(SignInDto signIn)
+    public async Task<string?> RequestSignIn(SignInDto signIn)
     {
         string url = "http://localhost:3000/sign-in";
 
@@ -23,10 +28,7 @@ public class UserService
         HttpContent content = new StringContent(payloadString, Encoding.UTF8, "application/json");
 
         // send post request!
-        HttpClient client = new HttpClient();
-        HttpResponseMessage response = await client.PostAsync(url, content);
-
-        // failure
+        HttpResponseMessage response = await _client.PostAsync(url, content);
         if (!response.IsSuccessStatusCode)
         {
             string message = await response.Content.ReadAsStringAsync();
@@ -35,7 +37,7 @@ public class UserService
                 $"{message}",
                 "try again"
             );
-            return false;
+            return null;
         }
 
         // success
@@ -44,7 +46,7 @@ public class UserService
         UserIdDto? dto = JsonSerializer.Deserialize<UserIdDto>(responseJsonString, _jsonCasing);
         string userId = dto.UserId;
 
-        return true;
+        return userId;
     }
 
     // POST: sign-up
@@ -56,9 +58,8 @@ public class UserService
         string payloadString = JsonSerializer.Serialize(signUpDto, _jsonCasing);
         HttpContent payload = new StringContent(payloadString, Encoding.UTF8, "application/json");
 
-        // send
-        HttpClient client = new HttpClient();
-        var response = await client.PostAsync(url, payload);
+        // send a post request
+        var response = await _client.PostAsync(url, payload);
 
         // failure!
         if (!response.IsSuccessStatusCode)
@@ -74,5 +75,28 @@ public class UserService
 
         // success!
         return true;
+    }
+
+    // GET: user-details/:user_id
+    public async Task<Details?> RequestUserDetails(string userId)
+    {
+        string url = "http://localhost:3000/user-details/" + userId;
+
+        HttpResponseMessage response;
+        string jsonContent;
+
+        // send a get request!
+        response = await _client.GetAsync(url);
+        jsonContent = await response.Content.ReadAsStringAsync();
+        if (!response.IsSuccessStatusCode)
+        {
+            Debug.WriteLine($"{jsonContent}");
+            return null;
+        }
+
+        // success
+        var details = JsonSerializer.Deserialize<Details>(jsonContent, _jsonCasing);
+        Debug.WriteLine($"user here : {details.FirstName}");
+        return details;
     }
 }

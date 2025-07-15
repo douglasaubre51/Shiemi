@@ -1,6 +1,7 @@
 using CommunityToolkit.Mvvm.Input;
 using Shiemi.Dto;
 using Shiemi.Helpers;
+using Shiemi.Models;
 using Shiemi.Services;
 using System.Diagnostics;
 
@@ -22,15 +23,17 @@ public partial class SignInVM : BaseVM
     // di
     private readonly SignInValidator _validator;
     private readonly UserService _userService;
+    private readonly StorageService _storageService;
 
     // temp error message holders
     public string tempEmailMessage;
     public string tempPasswordMessage;
 
-    public SignInVM(SignInValidator signInValidator, UserService userService)
+    public SignInVM(SignInValidator signInValidator, UserService userService, StorageService storageService)
     {
         _validator = signInValidator;
         _userService = userService;
+        _storageService = storageService;
     }
 
     [RelayCommand]
@@ -54,17 +57,19 @@ public partial class SignInVM : BaseVM
             // send error messages to error label binders
             EmailValidationMessage = tempEmailMessage;
             PasswordValidationMessage = tempPasswordMessage;
-
             if (!isValid) return;
 
+            // call signin service
+            string userId = await _userService.RequestSignIn(model);
+            if (userId is null) return;
 
-            // call signin rest service
-            bool signInStatus = await _userService.RequestSignIn(model);
-            // failure
-            if (!signInStatus) return;
+            // request user details
+            Details details = await _userService.RequestUserDetails(userId);
 
-            // signed in!
-
+            Debug.WriteLine(details.FirstName);
+            // save user details
+            _storageService.StoreUserDetails(details);
+            _storageService.ViewUserDetails();
         }
         catch (Exception e)
         {
