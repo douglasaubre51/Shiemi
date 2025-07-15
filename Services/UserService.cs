@@ -88,6 +88,7 @@ public class UserService
         // send a get request!
         response = await _client.GetAsync(url);
         jsonContent = await response.Content.ReadAsStringAsync();
+
         if (!response.IsSuccessStatusCode)
         {
             Debug.WriteLine($"{jsonContent}");
@@ -96,7 +97,6 @@ public class UserService
 
         // success
         var details = JsonSerializer.Deserialize<Details>(jsonContent, _jsonCasing);
-        Debug.WriteLine($"user here : {details.FirstName}");
         return details;
     }
 }

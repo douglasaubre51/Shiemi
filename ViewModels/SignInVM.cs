@@ -66,7 +66,6 @@ public partial class SignInVM : BaseVM
             // request user details
             Details details = await _userService.RequestUserDetails(userId);
 
-            Debug.WriteLine(details.FirstName);
             // save user details
             _storageService.StoreUserDetails(details);
             _storageService.ViewUserDetails();
