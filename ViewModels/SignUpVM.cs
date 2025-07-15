@@ -2,6 +2,7 @@
 using Shiemi.Dto;
 using Shiemi.Helpers;
 using Shiemi.Services;
+using System.Diagnostics;
 
 namespace Shiemi.ViewModels
 {
@@ -36,6 +37,16 @@ namespace Shiemi.ViewModels
         [ObservableProperty]
         string? checkPasswordMessage;
 
+        // imagebutton
+        [ObservableProperty]
+        string imageSource = string.Empty;
+        [ObservableProperty]
+        bool imageBtnVisibility = false;
+
+        // image upload button
+        [ObservableProperty]
+        bool imageUploadBtnVisibility = true;
+
         // DI
         private readonly UserService _userService;
         private readonly SignUpValidator _validator;
@@ -46,6 +57,44 @@ namespace Shiemi.ViewModels
 
             _userService = userService;
             _validator = signUpValidator;
+        }
+
+        // image upload
+        [RelayCommand]
+        async Task TriggerPhotoUpload()
+        {
+            if (IsBusy is true) return;
+
+            IsBusy = true;
+
+            try
+            {
+                // load file picker
+                var image = await FilePicker.Default.PickAsync(
+                    new PickOptions
+                    {
+                        FileTypes = FilePickerFileType.Images
+                    }
+                    );
+                if (image is null) return;
+
+                // turnoff image upload btn
+                if (ImageUploadBtnVisibility is true) ImageUploadBtnVisibility = false;
+
+                // display profile pic
+                ImageBtnVisibility = true;
+                ImageSource = image.FullPath.ToString();
+
+                // call cloudinary api service
+            }
+            catch (Exception e)
+            {
+                Debug.WriteLine($"error triggering upload: {e}");
+            }
+            finally
+            {
+                IsBusy = false;
+            }
         }
 
         // for calling http post service

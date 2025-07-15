@@ -43,6 +43,7 @@ namespace Shiemi
             // view models
             builder.Services.AddTransient<SignInVM>();
             builder.Services.AddTransient<SignUpVM>();
+            builder.Services.AddTransient<UserProfileVM>();
 
             return builder.Build();
         }

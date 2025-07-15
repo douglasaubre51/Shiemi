@@ -1,5 +1,4 @@
 ﻿using Shiemi.Models;
-using System.Diagnostics;
 
 namespace Shiemi.Services
 {
@@ -15,10 +14,17 @@ namespace Shiemi.Services
             preferences.Set("PhoneNo", details.PhoneNo);
         }
 
-        public void ViewUserDetails()
+        public Details FetchUserDetails()
         {
-            Debug.WriteLine(Preferences.Default.Get("FirstName", "no name"));
-            Debug.WriteLine(Preferences.Default.Get("LastName", "no name"));
+            Details details = new()
+            {
+                FirstName = Preferences.Default.Get("FirstName", "..."),
+                LastName = Preferences.Default.Get("LastName", "..."),
+                Email = Preferences.Default.Get("Email", "..."),
+                PhoneNo = Preferences.Default.Get("PhoneNo", 0),
+            };
+
+            return details;
         }
     }
 }

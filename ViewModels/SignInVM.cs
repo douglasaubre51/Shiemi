@@ -68,7 +68,6 @@ public partial class SignInVM : BaseVM
 
             // save user details
             _storageService.StoreUserDetails(details);
-            _storageService.ViewUserDetails();
         }
         catch (Exception e)
         {

@@ -2,7 +2,10 @@
 <ContentPage
     x:Class="Shiemi.Views.UserProfileView"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:viewModel="clr-namespace:Shiemi.ViewModels"
+    x:DataType="viewModel:UserProfileVM">
+
     <Grid
         Margin="20"
         ColumnDefinitions="*,*"
@@ -11,11 +14,9 @@
         RowDefinitions="*"
         VerticalOptions="Fill">
         <VerticalStackLayout Grid.Column="0" Spacing="10">
-            <Border>
-                <Image />
-            </Border>
-            <Label Style="{StaticResource user-name-header}" Text="User Name" />
+            <Label Style="{StaticResource user-name-header}" Text="{Binding Username}" />
+            <Label Style="{StaticResource user-name-header}" Text="{Binding Email}" />
+            <Label Style="{StaticResource user-name-header}" Text="{Binding PhoneNo}" />
         </VerticalStackLayout>
-
     </Grid>
 </ContentPage>
