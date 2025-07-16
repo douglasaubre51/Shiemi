@@ -6,73 +6,76 @@
     xmlns:viewModel="clr-namespace:Shiemi.ViewModels"
     x:DataType="viewModel:SignInVM">
     <!--  main layout  -->
-    <VerticalStackLayout HorizontalOptions="Fill" VerticalOptions="Center">
-        <!--  card layout  -->
-        <Border
-            Padding="50,20,50,50"
-            BackgroundColor="{StaticResource CardBackground}"
-            HorizontalOptions="Center"
-            Style="{StaticResource card-shadow}"
-            VerticalOptions="Center">
-            <!--  form grid  -->
-            <Grid
-                ColumnDefinitions="*"
-                ColumnSpacing="40"
+    <ScrollView Orientation="Both">
+        <VerticalStackLayout HorizontalOptions="Fill" VerticalOptions="Center">
+            <!--  card layout  -->
+            <Border
+                Margin="20"
+                Padding="50,20,50,50"
+                BackgroundColor="{StaticResource CardBackground}"
                 HorizontalOptions="Center"
-                RowDefinitions="*,*,*,*"
-                RowSpacing="30">
-                <!--  header tag  -->
-                <Label
-                    Grid.Row="0"
-                    HorizontalOptions="Start"
-                    Style="{StaticResource header-tag}"
-                    Text="Sign in"
-                    VerticalOptions="Center" />
+                Style="{StaticResource card-shadow}"
+                VerticalOptions="Center">
+                <!--  form grid  -->
+                <Grid
+                    ColumnDefinitions="*"
+                    ColumnSpacing="40"
+                    HorizontalOptions="Center"
+                    RowDefinitions="*,*,*,*"
+                    RowSpacing="20">
+                    <!--  header tag  -->
+                    <Label
+                        Grid.Row="0"
+                        HorizontalOptions="Start"
+                        Style="{StaticResource header-tag}"
+                        Text="Sign in"
+                        VerticalOptions="Center" />
 
-                <!--  email  -->
-                <VerticalStackLayout Grid.Row="1">
-                    <Label Style="{StaticResource entry-label}" Text="email" />
-                    <Entry
-                        Grid.Row="1"
-                        Grid.Column="0"
-                        ClearButtonVisibility="WhileEditing"
+                    <!--  email  -->
+                    <VerticalStackLayout Grid.Row="1">
+                        <Label Style="{StaticResource entry-label}" Text="email" />
+                        <Entry
+                            Grid.Row="1"
+                            Grid.Column="0"
+                            ClearButtonVisibility="WhileEditing"
+                            IsEnabled="{Binding IsNotBusy}"
+                            Style="{StaticResource entry}"
+                            Text="{Binding Email}" />
+                        <Label Style="{StaticResource validation-msg}" Text="{Binding EmailValidationMessage}" />
+                    </VerticalStackLayout>
+
+                    <!--  password  -->
+                    <VerticalStackLayout Grid.Row="2">
+                        <Label Style="{StaticResource entry-label}" Text="password" />
+                        <Entry
+                            Grid.Row="1"
+                            Grid.Column="0"
+                            ClearButtonVisibility="WhileEditing"
+                            IsEnabled="{Binding IsNotBusy}"
+                            IsPassword="True"
+                            Style="{StaticResource entry}"
+                            Text="{Binding Password}" />
+                        <Label Style="{StaticResource validation-msg}" Text="{Binding PasswordValidationMessage}" />
+                    </VerticalStackLayout>
+
+                    <!--  button  -->
+                    <Button
+                        Grid.Row="3"
+                        Command="{Binding TriggerSignInCommand}"
                         IsEnabled="{Binding IsNotBusy}"
-                        Style="{StaticResource entry}"
-                        Text="{Binding Email}" />
-                    <Label Style="{StaticResource validation-msg}" Text="{Binding EmailValidationMessage}" />
-                </VerticalStackLayout>
+                        IsVisible="{Binding IsNotBusy}"
+                        Style="{StaticResource primary-button}"
+                        Text="Continue" />
 
-                <!--  password  -->
-                <VerticalStackLayout Grid.Row="2">
-                    <Label Style="{StaticResource entry-label}" Text="password" />
-                    <Entry
-                        Grid.Row="1"
-                        Grid.Column="0"
-                        ClearButtonVisibility="WhileEditing"
-                        IsEnabled="{Binding IsNotBusy}"
-                        IsPassword="True"
-                        Style="{StaticResource entry}"
-                        Text="{Binding Password}" />
-                    <Label Style="{StaticResource validation-msg}" Text="{Binding PasswordValidationMessage}" />
-                </VerticalStackLayout>
-
-                <!--  button  -->
-                <Button
-                    Grid.Row="3"
-                    Command="{Binding TriggerSignInCommand}"
-                    IsEnabled="{Binding IsNotBusy}"
-                    IsVisible="{Binding IsNotBusy}"
-                    Style="{StaticResource primary-button}"
-                    Text="Continue" />
-
-                <!--  spinner  -->
-                <ActivityIndicator
-                    Grid.Row="3"
-                    HorizontalOptions="End"
-                    IsEnabled="{Binding IsBusy}"
-                    IsRunning="{Binding IsBusy}"
-                    Color="Green" />
-            </Grid>
-        </Border>
-    </VerticalStackLayout>
+                    <!--  spinner  -->
+                    <ActivityIndicator
+                        Grid.Row="3"
+                        HorizontalOptions="End"
+                        IsEnabled="{Binding IsBusy}"
+                        IsRunning="{Binding IsBusy}"
+                        Color="Green" />
+                </Grid>
+            </Border>
+        </VerticalStackLayout>
+    </ScrollView>
 </ContentPage>
