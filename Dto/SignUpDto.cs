@@ -29,5 +29,7 @@ namespace Shiemi.Dto
         [Required]
         [StringLength(10, ErrorMessage = "not a valid phone no!", MinimumLength = 10)]
         public string PhoneNo { get; set; }
+
+        public string ProfilePhoto { get; set; } = string.Empty;
     }
 }

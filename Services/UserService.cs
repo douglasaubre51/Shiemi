@@ -1,6 +1,7 @@
 using Shiemi.Dto;
 using Shiemi.Models;
 using System.Diagnostics;
+using System.Net.Http.Headers;
 using System.Text;
 using System.Text.Json;
 
@@ -50,16 +51,32 @@ public class UserService
     }
 
     // POST: sign-up
-    public async Task<bool> RequestSignUp(SignUpDto signUpDto)
+    public async Task<bool> RequestSignUp(SignUpDto signUpDto, string imageSource)
     {
         string url = "http://localhost:3000/sign-up";
 
-        // create payload
-        string payloadString = JsonSerializer.Serialize(signUpDto, _jsonCasing);
-        HttpContent payload = new StringContent(payloadString, Encoding.UTF8, "application/json");
+        // create form
+        var form = new MultipartFormDataContent();
+        form.Add(new StringContent(signUpDto.FirstName), "firstName");
+        form.Add(new StringContent(signUpDto.LastName), "lastName");
+        form.Add(new StringContent(signUpDto.Email), "email");
+        form.Add(new StringContent(signUpDto.Password), "password");
+        form.Add(new StringContent(signUpDto.PhoneNo), "phoneNo");
 
-        // send a post request
-        var response = await _client.PostAsync(url, payload);
+        var imageForm = new ByteArrayContent(await File.ReadAllBytesAsync(imageSource));
+        var imageExtension = Path.GetExtension(imageSource);
+        string mimeType = imageExtension.ToLower() switch
+        {
+            ".jpg" or ".jpeg" => "image/jpeg",
+            ".png" => "image/png",
+            ".svg" => "image/svg+xml",
+            _ => "application/octet-stream"
+        };
+        imageForm.Headers.ContentType = MediaTypeHeaderValue.Parse(mimeType);
+        form.Add(imageForm, "profilePhoto", Path.GetFileName(imageSource));
+
+        // send a post request with form
+        var response = await _client.PostAsync(url, form);
 
         // failure!
         if (!response.IsSuccessStatusCode)

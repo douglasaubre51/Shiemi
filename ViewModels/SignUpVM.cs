@@ -85,7 +85,6 @@ namespace Shiemi.ViewModels
                 ImageBtnVisibility = true;
                 ImageSource = image.FullPath.ToString();
 
-                // call cloudinary api service
             }
             catch (Exception e)
             {
@@ -142,11 +141,11 @@ namespace Shiemi.ViewModels
                     return;
                 }
 
-                // signup!
-                bool HasCreatedAccount = await _userService.RequestSignUp(signUpDto);
+                // signup
+                bool HasCreatedAccount = await _userService.RequestSignUp(signUpDto,ImageSource);
                 if (!HasCreatedAccount) return;
 
-                //success
+                //success!
                 await Shell.Current.DisplayAlertAsync(
                     "signup successfull!",
                     "created new account successfully!",
