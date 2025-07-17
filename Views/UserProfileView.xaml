@@ -5,19 +5,45 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:viewModel="clr-namespace:Shiemi.ViewModels"
     x:DataType="viewModel:UserProfileVM">
+    <ScrollView Orientation="Both">
+        <!--  main layout  -->
+        <Grid
+            Margin="20"
+            ColumnDefinitions="*,*"
+            ColumnSpacing="20"
+            HorizontalOptions="Fill"
+            RowDefinitions="Auto,*"
+            RowSpacing="30"
+            VerticalOptions="Fill">
+            <!--  header tag  -->
+            <Label
+                Grid.Row="0"
+                Grid.Column="0"
+                Style="{StaticResource profile-header-tag}"
+                Text="Profile" />
+            <!--  user details  -->
+            <VerticalStackLayout
+                Grid.Row="1"
+                Grid.Column="0"
+                HorizontalOptions="Fill"
+                Spacing="20"
+                VerticalOptions="Fill">
+                <!--  profile image  -->
+                <Border
+                    HeightRequest="350"
+                    HorizontalOptions="Fill"
+                    Style="{StaticResource card-shadow}"
+                    VerticalOptions="Fill">
+                    <Image Aspect="Fill" Source="{Binding ProfilePhoto}" />
+                </Border>
+                <!--  text details  -->
+                <VerticalStackLayout>
+                    <Label Style="{StaticResource user-name-header}" Text="{Binding Username}" />
+                    <Label Style="{StaticResource email-label}" Text="{Binding Email}" />
+                    <Label Style="{StaticResource phone-label}" Text="{Binding PhoneNo}" />
+                </VerticalStackLayout>
+            </VerticalStackLayout>
+        </Grid>
 
-    <Grid
-        Margin="20"
-        ColumnDefinitions="*,*"
-        ColumnSpacing="20"
-        HorizontalOptions="Fill"
-        RowDefinitions="*"
-        VerticalOptions="Fill">
-        <VerticalStackLayout Grid.Column="0" Spacing="10">
-            <Image Source="{Binding ProfilePhoto}" />
-            <Label Style="{StaticResource user-name-header}" Text="{Binding Username}" />
-            <Label Style="{StaticResource user-name-header}" Text="{Binding Email}" />
-            <Label Style="{StaticResource user-name-header}" Text="{Binding PhoneNo}" />
-        </VerticalStackLayout>
-    </Grid>
+    </ScrollView>
 </ContentPage>

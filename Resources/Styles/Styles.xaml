@@ -4,10 +4,20 @@
 
     <!--  my styles  -->
     <!--  userprofile view  -->
-    <!--  user name title label  -->
+    <!--  username label  -->
+    <Style x:Key="profile-header-tag" TargetType="Label">
+        <Setter Property="FontSize" Value="60" />
+    </Style>
     <Style x:Key="user-name-header" TargetType="Label">
-        <Setter Property="FontSize" Value="40" />
-        <Setter Property="FontAttributes" Value="Bold" />
+        <Setter Property="FontSize" Value="30" />
+    </Style>
+    <!--  emailId label  -->
+    <Style x:Key="email-label" TargetType="Label">
+        <Setter Property="FontSize" Value="Caption" />
+    </Style>
+    <!--  phone label  -->
+    <Style x:Key="phone-label" TargetType="Label">
+        <Setter Property="FontSize" Value="Caption" />
     </Style>
 
     <!--  signin view  -->

@@ -139,7 +139,7 @@ namespace Shiemi.ViewModels
 
                     return;
                 }
-                if (string.IsNullOrEmpty(imageSource))
+                if (string.IsNullOrEmpty(ImageSource))
                 {
                     Debug.WriteLine("add an image!");
                     return;

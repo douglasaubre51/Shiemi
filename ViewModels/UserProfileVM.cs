@@ -25,7 +25,7 @@ namespace Shiemi.ViewModels
             Details details = _storageService.FetchUserDetails();
 
             // bind details on init!
-            username = details.FirstName;
+            username = details.FirstName + " " + details.LastName;
             email = details.Email;
             phoneNo = details.PhoneNo;
             profilePhoto = details.ProfilePhoto;
