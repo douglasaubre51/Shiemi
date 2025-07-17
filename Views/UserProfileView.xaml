@@ -14,6 +14,7 @@
         RowDefinitions="*"
         VerticalOptions="Fill">
         <VerticalStackLayout Grid.Column="0" Spacing="10">
+            <Image Source="{Binding ProfilePhoto}" />
             <Label Style="{StaticResource user-name-header}" Text="{Binding Username}" />
             <Label Style="{StaticResource user-name-header}" Text="{Binding Email}" />
             <Label Style="{StaticResource user-name-header}" Text="{Binding PhoneNo}" />

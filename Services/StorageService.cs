@@ -12,6 +12,7 @@ namespace Shiemi.Services
             preferences.Set("LastName", details.LastName);
             preferences.Set("Email", details.Email);
             preferences.Set("PhoneNo", details.PhoneNo);
+            preferences.Set("ProfilePhoto", details.ProfilePhoto);
         }
 
         public Details FetchUserDetails()
@@ -22,6 +23,7 @@ namespace Shiemi.Services
                 LastName = Preferences.Default.Get("LastName", "..."),
                 Email = Preferences.Default.Get("Email", "..."),
                 PhoneNo = Preferences.Default.Get("PhoneNo", 0),
+                ProfilePhoto = Preferences.Default.Get("ProfilePhoto", "")
             };
 
             return details;

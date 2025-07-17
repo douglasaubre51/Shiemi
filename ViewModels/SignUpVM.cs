@@ -126,7 +126,6 @@ namespace Shiemi.ViewModels
 
                 // validate attributes
                 SignUpValidatorDto? signUpValidatorDto = await _validator.Validate(signUpDto);
-
                 if (signUpValidatorDto is not null)
                 {
                     (
@@ -140,9 +139,14 @@ namespace Shiemi.ViewModels
 
                     return;
                 }
+                if (string.IsNullOrEmpty(imageSource))
+                {
+                    Debug.WriteLine("add an image!");
+                    return;
+                }
 
                 // signup
-                bool HasCreatedAccount = await _userService.RequestSignUp(signUpDto,ImageSource);
+                bool HasCreatedAccount = await _userService.RequestSignUp(signUpDto, ImageSource);
                 if (!HasCreatedAccount) return;
 
                 //success!
@@ -155,7 +159,7 @@ namespace Shiemi.ViewModels
             catch (Exception e)
             {
                 await Shell.Current.DisplayAlertAsync(
-                    "signup in error",
+                    "signup error",
                     "error creating account!\ntry again later",
                     "ok"
                     );

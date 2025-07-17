@@ -119,7 +119,7 @@
                             </VerticalStackLayout>
                             <!--  Image upload button  -->
                             <Button
-                                Grid.RowSpan="4"
+                                Grid.RowSpan="3"
                                 Grid.Column="2"
                                 Command="{Binding TriggerPhotoUploadCommand}"
                                 IsEnabled="{Binding IsNotBusy}"
@@ -129,7 +129,7 @@
                                 WidthRequest="300" />
                             <!--  image btn for image viewing and upload  -->
                             <Border
-                                Grid.RowSpan="4"
+                                Grid.RowSpan="3"
                                 Grid.Column="2"
                                 HeightRequest="300"
                                 IsEnabled="{Binding IsNotBusy}"
@@ -144,7 +144,7 @@
                             <!--  submit button  -->
                             <Button
                                 Grid.Row="3"
-                                Grid.ColumnSpan="2"
+                                Grid.ColumnSpan="3"
                                 Command="{Binding TriggerSignUpCommand}"
                                 IsEnabled="{Binding IsNotBusy}"
                                 IsVisible="{Binding IsNotBusy}"

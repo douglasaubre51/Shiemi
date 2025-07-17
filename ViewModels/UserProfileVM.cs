@@ -12,6 +12,8 @@ namespace Shiemi.ViewModels
         string email;
         [ObservableProperty]
         double phoneNo;
+        [ObservableProperty]
+        string profilePhoto;
 
         // di
         readonly StorageService _storageService;
@@ -26,6 +28,7 @@ namespace Shiemi.ViewModels
             username = details.FirstName;
             email = details.Email;
             phoneNo = details.PhoneNo;
+            profilePhoto = details.ProfilePhoto;
         }
     }
 }
