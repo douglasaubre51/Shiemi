@@ -6,10 +6,15 @@
     <!--  added bye me  -->
     <!--  tea green  -->
     <Color x:Key="BackgroundGreen">#d0f0c0</Color>
-    <Color x:Key="AccentGreen">#3cb371</Color>
     <Color x:Key="BackgroundWhite">#fafafa</Color>
-    <Color x:Key="CardBackground">WhiteSmoke</Color>
+    <Color x:Key="AccentGreen">#3cb371</Color>
 
+    <Color x:Key="background">White</Color>
+    <Color x:Key="primary-card-backgroud">#e0e0e0</Color>
+    <Color x:Key="PrimaryHeader">grey</Color>
+
+    <Color x:Key="AccentRed">#e63946</Color>
+    <Color x:Key="AccentBlue">#a8dadc</Color>
     <!--  added bye me  -->
 
     <Color x:Key="Primary">#512BD4</Color>
