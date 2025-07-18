@@ -12,7 +12,7 @@
             <Border
                 Margin="20"
                 Padding="50,20,50,50"
-                BackgroundColor="{StaticResource CardBackground}"
+                BackgroundColor="{StaticResource secondary-background-clr}"
                 HorizontalOptions="Center"
                 Style="{StaticResource card-shadow}"
                 VerticalOptions="Center">
@@ -73,7 +73,7 @@
                         HorizontalOptions="End"
                         IsEnabled="{Binding IsBusy}"
                         IsRunning="{Binding IsBusy}"
-                        Color="Green" />
+                        Color="{StaticResource secondary-accent-clr}" />
                 </Grid>
             </Border>
         </VerticalStackLayout>

@@ -17,7 +17,7 @@ namespace Shiemi
                 {
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
-                    fonts.AddFont("Poppins-light.ttf", "PoppinsLight");
+                    fonts.AddFont("Poppins-Light.ttf", "PoppinsLight");
                 });
 
 #if DEBUG

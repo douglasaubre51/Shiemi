@@ -7,28 +7,24 @@
     <!--  username label  -->
     <Style x:Key="profile-header-tag" TargetType="Label">
         <Setter Property="FontSize" Value="20" />
-        <Setter Property="FontFamily" Value="{StaticResource PrimaryHeader}" />
-        <Setter Property="TextColor" Value="{StaticResource BackgroundBlue}" />
+        <Setter Property="FontFamily" Value="PoppinsLight" />
     </Style>
     <Style x:Key="user-name-header" TargetType="Label">
         <Setter Property="FontSize" Value="30" />
-        <Setter Property="TextColor" Value="{StaticResource BackgroundBlue}" />
     </Style>
     <!--  emailId label  -->
     <Style x:Key="email-label" TargetType="Label">
         <Setter Property="FontSize" Value="Caption" />
-        <Setter Property="TextColor" Value="Grey" />
     </Style>
     <!--  phone label  -->
     <Style x:Key="phone-label" TargetType="Label">
         <Setter Property="FontSize" Value="Caption" />
-        <Setter Property="TextColor" Value="Grey" />
     </Style>
     <!--  profile card  -->
     <Style x:Key="profile-card" TargetType="Border">
         <Setter Property="Stroke" Value="Transparent" />
         <Setter Property="StrokeShape" Value="RoundRectangle 10" />
-        <Setter Property="BackgroundColor" Value="{StaticResource primary-card-backgroud}" />
+        <Setter Property="BackgroundColor" Value="{StaticResource secondary-background-clr}" />
     </Style>
     <!--  secondary btn  -->
     <Style x:Key="secondary-button" TargetType="Button">
@@ -45,10 +41,9 @@
                     <!--  active btn color  -->
                     <VisualState Name="Normal">
                         <VisualState.Setters>
-                            <Setter Property="TextColor" Value="{StaticResource AccentGreen}" />
-                            <Setter Property="BorderColor" Value="{StaticResource AccentGreen}" />
+                            <Setter Property="TextColor" Value="White" />
                             <Setter Property="BorderWidth" Value="1" />
-                            <Setter Property="BackgroundColor" Value="{StaticResource CardBackground}" />
+                            <Setter Property="BackgroundColor" Value="{StaticResource secondary-accent-clr}" />
                         </VisualState.Setters>
                     </VisualState>
                 </VisualStateGroup>
@@ -95,7 +90,7 @@
                     <!--  active btn color  -->
                     <VisualState Name="Normal">
                         <VisualState.Setters>
-                            <Setter Property="BackgroundColor" Value="{StaticResource AccentGreen}" />
+                            <Setter Property="BackgroundColor" Value="{StaticResource secondary-accent-clr}" />
                         </VisualState.Setters>
                     </VisualState>
                 </VisualStateGroup>
