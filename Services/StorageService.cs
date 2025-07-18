@@ -1,5 +1,4 @@
 ﻿using Shiemi.Models;
-using System.Diagnostics;
 
 namespace Shiemi.Services
 {
@@ -9,6 +8,7 @@ namespace Shiemi.Services
         {
             IPreferences preferences = Preferences.Default;
 
+            preferences.Set("UserId", details.UserId);
             preferences.Set("FirstName", details.FirstName);
             preferences.Set("LastName", details.LastName);
             preferences.Set("Email", details.Email);
@@ -18,10 +18,9 @@ namespace Shiemi.Services
 
         public Details FetchUserDetails()
         {
-            Debug.WriteLine(Preferences.Default.Get<long>("PhoneNo", 100));
-
             Details details = new()
             {
+                UserId = Preferences.Default.Get("UserId", "..."),
                 FirstName = Preferences.Default.Get("FirstName", "..."),
                 LastName = Preferences.Default.Get("LastName", "..."),
                 Email = Preferences.Default.Get("Email", "..."),
