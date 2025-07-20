@@ -34,6 +34,9 @@ public partial class SignInVM : BaseVM
         _validator = signInValidator;
         _userService = userService;
         _storageService = storageService;
+        // set page title
+        Title = "Sign In";
+        Debug.WriteLine(Title);
     }
 
     [RelayCommand]

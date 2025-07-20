@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="Shiemi.Views.ProjectView"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:viewmodel="clr-namespace:Shiemi.ViewModels"
+    x:DataType="viewmodel:ProjectVM">
+    <Grid
+        Margin="20"
+        ColumnDefinitions="*"
+        HorizontalOptions="Fill"
+        RowDefinitions="*,2*,Auto"
+        VerticalOptions="Fill">
+
+        <!--  page title  -->
+        <Label
+            Grid.Row="0"
+            HorizontalOptions="Start"
+            Style="{StaticResource primary-title-txt}"
+            Text="projects"
+            VerticalOptions="Start" />
+
+        <!--  add new project btn  -->
+        <Button
+            Grid.Row="2"
+            Command="{Binding TriggerNewProjectCommand}"
+            IsEnabled="{Binding IsNotBusy}"
+            IsVisible="{Binding IsNotBusy}"
+            Style="{StaticResource primary-button}"
+            Text="new" />
+
+        <!--  spinner  -->
+        <ActivityIndicator
+            Grid.Row="2"
+            IsRunning="{Binding IsBusy}"
+            IsVisible="{Binding IsBusy}" />
+    </Grid>
+</ContentPage>

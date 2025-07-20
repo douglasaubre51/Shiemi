@@ -3,6 +3,7 @@
     x:Class="Shiemi.AppShell"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:project="clr-namespace:Shiemi.Views"
     xmlns:signin="clr-namespace:Shiemi.Views"
     xmlns:signup="clr-namespace:Shiemi.Views"
     xmlns:userprofile="clr-namespace:Shiemi.Views"
@@ -10,6 +11,12 @@
     Shell.NavBarIsVisible="False">
 
     <!--  flyout items  -->
+    <FlyoutItem Title="Projects">
+        <Tab>
+            <ShellContent ContentTemplate="{DataTemplate project:ProjectView}" Route="ProjectView" />
+        </Tab>
+    </FlyoutItem>
+
     <FlyoutItem Title="Profile">
         <Tab>
             <ShellContent ContentTemplate="{DataTemplate userprofile:UserProfileView}" Route="UserProfileView" />

@@ -34,10 +34,8 @@ namespace Shiemi
             // helpers
             builder.Services.AddTransient<SignInValidator>();
             builder.Services.AddTransient<SignUpValidator>();
-
             // storage
             builder.Services.AddTransient<StorageService>();
-
             // REST
             builder.Services.AddTransient<UserService>();
 
@@ -45,6 +43,7 @@ namespace Shiemi
             builder.Services.AddTransient<SignInVM>();
             builder.Services.AddTransient<SignUpVM>();
             builder.Services.AddTransient<UserProfileVM>();
+            builder.Services.AddTransient<ProjectVM>();
 
             return builder.Build();
         }

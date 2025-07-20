@@ -1,7 +1,6 @@
 ﻿namespace Shiemi.ViewModels
 {
-    [ObservableObject]
-    public partial class BaseVM
+    public partial class BaseVM : ObservableObject
     {
         [ObservableProperty]
         [NotifyPropertyChangedFor(nameof(IsNotBusy))]
