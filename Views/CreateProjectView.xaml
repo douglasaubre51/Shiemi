@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="Shiemi.Views.CreateProjectView"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+
+    <Grid
+        Margin="20"
+        HorizontalOptions="Fill"
+        RowDefinitions="*,Auto"
+        VerticalOptions="Fill">
+
+        <ScrollView
+            Grid.Row="0"
+            HorizontalOptions="Fill"
+            Orientation="Both"
+            VerticalOptions="Fill">
+
+            <Grid
+                x:Name="FormGrid"
+                ColumnDefinitions="*,*"
+                ColumnSpacing="100"
+                HorizontalOptions="Center"
+                RowDefinitions="70,*,*,*"
+                RowSpacing="30"
+                VerticalOptions="Start">
+
+                <!--  header  -->
+                <Label
+                    Grid.Row="0"
+                    Grid.ColumnSpan="2"
+                    HorizontalOptions="Start"
+                    Style="{StaticResource header-1}"
+                    Text="new project" />
+
+                <!--  title  -->
+                <VerticalStackLayout
+                    Grid.Row="1"
+                    Grid.Column="0"
+                    HorizontalOptions="Start"
+                    Spacing="10"
+                    VerticalOptions="Start">
+                    <Label
+                        HorizontalOptions="Start"
+                        Style="{StaticResource entry-label}"
+                        Text="Title" />
+
+                    <Entry
+                        ClearButtonVisibility="WhileEditing"
+                        MaxLength="30"
+                        Style="{StaticResource entry}" />
+                </VerticalStackLayout>
+
+                <!--  short desc  -->
+                <VerticalStackLayout
+                    Grid.Row="2"
+                    Grid.Column="0"
+                    HorizontalOptions="Fill"
+                    Spacing="10"
+                    VerticalOptions="Fill">
+                    <Label Style="{StaticResource entry-label}" Text="Short Description" />
+
+                    <Editor
+                        AutoSize="TextChanges"
+                        HorizontalOptions="Fill"
+                        MaxLength="70"
+                        VerticalOptions="Fill" />
+                </VerticalStackLayout>
+
+                <!--  desc  -->
+                <VerticalStackLayout
+                    Grid.Row="3"
+                    Grid.ColumnSpan="2"
+                    HorizontalOptions="Fill"
+                    Spacing="10"
+                    VerticalOptions="Fill">
+                    <Label Style="{StaticResource entry-label}" Text="Description" />
+
+                    <Editor HeightRequest="100" HorizontalOptions="Fill" />
+                </VerticalStackLayout>
+
+                <!--  ends at date  -->
+                <VerticalStackLayout
+                    Grid.Row="1"
+                    Grid.Column="1"
+                    HorizontalOptions="Start"
+                    Spacing="10"
+                    VerticalOptions="End">
+                    <Label Style="{StaticResource entry-label}" Text="Ends At" />
+
+                    <DatePicker WidthRequest="200" />
+                </VerticalStackLayout>
+
+                <!--  image upload  -->
+                <VerticalStackLayout
+                    Grid.Row="2"
+                    Grid.Column="1"
+                    HorizontalOptions="Start"
+                    Spacing="10"
+                    VerticalOptions="End">
+                    <Label Style="{StaticResource entry-label}" Text="Upload Image" />
+
+                    <Button Style="{StaticResource secondary-button}" WidthRequest="200" />
+                </VerticalStackLayout>
+            </Grid>
+        </ScrollView>
+        <!--  create btn  -->
+        <Button
+            Grid.Row="1"
+            HorizontalOptions="Fill"
+            Style="{StaticResource primary-button}"
+            Text="continue"
+            WidthRequest="{Binding Source={x:Reference FormGrid}, Path=Width}" />
+    </Grid>
+</ContentPage>

@@ -1,18 +1,24 @@
 ﻿using CommunityToolkit.Mvvm.Input;
+using Shiemi.Services;
 using System.Diagnostics;
 
 namespace Shiemi.ViewModels
 {
     public partial class ProjectVM : BaseVM
     {
-        public ProjectVM()
+        // di
+        readonly ProjectService _projectService;
+
+        public ProjectVM(ProjectService projectService)
         {
             Title = "Projects";
+
+            _projectService = projectService;
         }
 
         // on add project btn clicked!
         [RelayCommand]
-        void TriggerNewProject()
+        async Task TriggerNewProject()
         {
             if (IsBusy is true) return;
 
@@ -20,10 +26,11 @@ namespace Shiemi.ViewModels
 
             try
             {
+                await _projectService.CreateNewProject();
             }
             catch (Exception e)
             {
-                Debug.WriteLine($"new project error:{e}");
+                Debug.WriteLine($"newproject error:{e}");
             }
             finally
             {

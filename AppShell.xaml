@@ -3,35 +3,38 @@
     x:Class="Shiemi.AppShell"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:project="clr-namespace:Shiemi.Views"
-    xmlns:signin="clr-namespace:Shiemi.Views"
-    xmlns:signup="clr-namespace:Shiemi.Views"
-    xmlns:userprofile="clr-namespace:Shiemi.Views"
+    xmlns:views="clr-namespace:Shiemi.Views"
     FlyoutBehavior="Flyout"
     Shell.NavBarIsVisible="False">
 
     <!--  flyout items  -->
+    <FlyoutItem Title="Add new Project">
+        <Tab>
+            <ShellContent ContentTemplate="{DataTemplate views:CreateProjectView}" Route="CreateTemplateView" />
+        </Tab>
+    </FlyoutItem>
+
     <FlyoutItem Title="Projects">
         <Tab>
-            <ShellContent ContentTemplate="{DataTemplate project:ProjectView}" Route="ProjectView" />
+            <ShellContent ContentTemplate="{DataTemplate views:ProjectView}" Route="ProjectView" />
         </Tab>
     </FlyoutItem>
 
     <FlyoutItem Title="Profile">
         <Tab>
-            <ShellContent ContentTemplate="{DataTemplate userprofile:UserProfileView}" Route="UserProfileView" />
+            <ShellContent ContentTemplate="{DataTemplate views:UserProfileView}" Route="UserProfileView" />
         </Tab>
     </FlyoutItem>
 
     <FlyoutItem Title="Sign in">
         <Tab>
-            <ShellContent ContentTemplate="{DataTemplate signin:SignInView}" Route="SignInView" />
+            <ShellContent ContentTemplate="{DataTemplate views:SignInView}" Route="SignInView" />
         </Tab>
     </FlyoutItem>
 
     <FlyoutItem Title="Sign up">
         <Tab>
-            <ShellContent ContentTemplate="{DataTemplate signup:SignUpView}" Route="SignUpView" />
+            <ShellContent ContentTemplate="{DataTemplate views:SignUpView}" Route="SignUpView" />
         </Tab>
     </FlyoutItem>
 

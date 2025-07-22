@@ -5,6 +5,11 @@
     <!--  my styles  -->
 
     <!--  project view  -->
+    <Style x:Key="header-1" TargetType="Label">
+        <Setter Property="FontSize" Value="40" />
+        <Setter Property="TextColor" Value="{StaticResource primary-text-clr}" />
+    </Style>
+
     <Style x:Key="primary-title-txt" TargetType="Label">
         <Setter Property="FontFamily" Value="PoppinsLight" />
         <Setter Property="FontSize" Value="50" />

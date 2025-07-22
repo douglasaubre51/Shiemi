@@ -13,6 +13,9 @@
     <Color x:Key="primary-accent-clr">#3cb371</Color>
     <Color x:Key="secondary-accent-clr">#e63946</Color>
 
+    <!--  text colours  -->
+    <Color x:Key="primary-text-clr">Black</Color>
+
     <!--  added bye me  -->
 
     <Color x:Key="Primary">#512BD4</Color>
