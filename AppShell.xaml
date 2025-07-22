@@ -8,12 +8,6 @@
     Shell.NavBarIsVisible="False">
 
     <!--  flyout items  -->
-    <FlyoutItem Title="Add new Project">
-        <Tab>
-            <ShellContent ContentTemplate="{DataTemplate views:CreateProjectView}" Route="CreateTemplateView" />
-        </Tab>
-    </FlyoutItem>
-
     <FlyoutItem Title="Projects">
         <Tab>
             <ShellContent ContentTemplate="{DataTemplate views:ProjectView}" Route="ProjectView" />
@@ -26,26 +20,27 @@
         </Tab>
     </FlyoutItem>
 
-    <FlyoutItem Title="Sign in">
-        <Tab>
-            <ShellContent ContentTemplate="{DataTemplate views:SignInView}" Route="SignInView" />
-        </Tab>
-    </FlyoutItem>
-
-    <FlyoutItem Title="Sign up">
-        <Tab>
-            <ShellContent ContentTemplate="{DataTemplate views:SignUpView}" Route="SignUpView" />
-        </Tab>
-    </FlyoutItem>
-
     <!--  footer  -->
     <Shell.FlyoutFooter>
         <VerticalStackLayout
             Margin="20"
-            HorizontalOptions="Start"
+            HorizontalOptions="Fill"
             VerticalOptions="Center">
-            <Label FontSize="Header" Text="Shiemi" />
-            <Label FontSize="Caption" Text="by douglasaubre51" />
+            <Label
+                FontSize="Header"
+                Text="Shiemi"
+                VerticalOptions="Start" />
+            <Label
+                FontSize="Caption"
+                Text="by douglasaubre51"
+                VerticalOptions="Start" />
+
+            <!--  logout btn  -->
+            <Button
+                Margin="0,20,0,0"
+                Clicked="Button_Clicked"
+                Style="{StaticResource secondary-button}"
+                Text="logout" />
         </VerticalStackLayout>
     </Shell.FlyoutFooter>
 </Shell>

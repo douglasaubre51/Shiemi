@@ -34,9 +34,9 @@ public partial class SignInVM : BaseVM
         _validator = signInValidator;
         _userService = userService;
         _storageService = storageService;
+
         // set page title
         Title = "Sign In";
-        Debug.WriteLine(Title);
     }
 
     [RelayCommand]
@@ -66,11 +66,15 @@ public partial class SignInVM : BaseVM
             string userId = await _userService.RequestSignIn(model);
             if (userId is null) return;
 
+            _storageService.ClearUserData();
+
             // request user details
             Details details = await _userService.RequestUserDetails(userId);
 
             // save user details
             _storageService.StoreUserDetails(details);
+
+            await Shell.Current.GoToAsync("ProfileView");
         }
         catch (Exception e)
         {

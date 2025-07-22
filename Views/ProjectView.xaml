@@ -23,7 +23,7 @@
         <!--  add new project btn  -->
         <Button
             Grid.Row="2"
-            Command="{Binding TriggerNewProjectCommand}"
+            Command="{Binding GoToCreateProjectViewCommand}"
             IsEnabled="{Binding IsNotBusy}"
             IsVisible="{Binding IsNotBusy}"
             Style="{StaticResource primary-button}"

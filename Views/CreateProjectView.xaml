@@ -2,7 +2,9 @@
 <ContentPage
     x:Class="Shiemi.Views.CreateProjectView"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:viewmodel="clr-namespace:Shiemi.ViewModels"
+    x:DataType="viewmodel:CreateProjectVM">
 
     <Grid
         Margin="20"
@@ -107,6 +109,7 @@
         <!--  create btn  -->
         <Button
             Grid.Row="1"
+            x:DataType="Grid"
             HorizontalOptions="Fill"
             Style="{StaticResource primary-button}"
             Text="continue"

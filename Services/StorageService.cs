@@ -30,5 +30,10 @@ namespace Shiemi.Services
 
             return details;
         }
+
+        public void ClearUserData()
+        {
+            Preferences.Default.Clear();
+        }
     }
 }

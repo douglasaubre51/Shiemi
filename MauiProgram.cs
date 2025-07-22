@@ -2,6 +2,7 @@
 using Shiemi.Helpers;
 using Shiemi.Services;
 using Shiemi.ViewModels;
+using Shiemi.Views;
 using System.Text.Json;
 
 namespace Shiemi
@@ -48,6 +49,15 @@ namespace Shiemi
             builder.Services.AddTransient<SignUpVM>();
             builder.Services.AddTransient<UserProfileVM>();
             builder.Services.AddTransient<ProjectVM>();
+            builder.Services.AddTransient<CreateProjectVM>();
+
+            // views
+            builder.Services.AddTransient<SignInView>();
+            builder.Services.AddTransient<SignUpView>();
+            builder.Services.AddTransient<UserProfileView>();
+            builder.Services.AddTransient<ProjectView>();
+            builder.Services.AddTransient<CreateProjectView>();
+
 
             return builder.Build();
         }

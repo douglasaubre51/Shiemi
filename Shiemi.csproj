@@ -11,6 +11,9 @@
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>enable</Nullable>
 
+		<MauiEnableXamlCBindingWithSourceCompilation>true</MauiEnableXamlCBindingWithSourceCompilation>
+
+
 		<!-- Display name -->
 		<ApplicationTitle>Shiemi</ApplicationTitle>
 
