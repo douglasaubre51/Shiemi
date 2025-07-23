@@ -155,6 +155,8 @@ namespace Shiemi.ViewModels
                     "created new account successfully!",
                     "continue"
                 );
+
+                await Shell.Current.GoToAsync("SignInView");
             }
             catch (Exception e)
             {

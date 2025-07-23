@@ -11,6 +11,7 @@ namespace Shiemi
             // register routes
             Routing.RegisterRoute("CreateProjectView", typeof(CreateProjectView));
             Routing.RegisterRoute("SignInView", typeof(SignInView));
+            Routing.RegisterRoute("SignUpView", typeof(SignUpView));
             Routing.RegisterRoute("ProfileView", typeof(UserProfileView));
         }
 

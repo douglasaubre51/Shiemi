@@ -20,9 +20,9 @@
                 <Grid
                     ColumnDefinitions="*"
                     ColumnSpacing="40"
-                    HorizontalOptions="Center"
-                    RowDefinitions="*,*,*,*"
-                    RowSpacing="20">
+                    HorizontalOptions="Fill"
+                    RowDefinitions="*,4*,4*,*"
+                    RowSpacing="15">
                     <!--  header tag  -->
                     <Label
                         Grid.Row="0"
@@ -58,14 +58,29 @@
                         <Label Style="{StaticResource validation-msg}" Text="{Binding PasswordValidationMessage}" />
                     </VerticalStackLayout>
 
-                    <!--  button  -->
-                    <Button
+                    <!--  btn container  -->
+                    <VerticalStackLayout
                         Grid.Row="3"
-                        Command="{Binding TriggerSignInCommand}"
-                        IsEnabled="{Binding IsNotBusy}"
-                        IsVisible="{Binding IsNotBusy}"
-                        Style="{StaticResource primary-button}"
-                        Text="Continue" />
+                        HorizontalOptions="Fill"
+                        Spacing="15"
+                        VerticalOptions="Center">
+                        <!--  signin button  -->
+                        <Button
+                            Command="{Binding TriggerSignInCommand}"
+                            IsEnabled="{Binding IsNotBusy}"
+                            IsVisible="{Binding IsNotBusy}"
+                            Style="{StaticResource primary-button}"
+                            Text="continue" />
+
+                        <!--  goto signup button  -->
+                        <Button
+                            Command="{Binding GoToSignUpViewCommand}"
+                            IsEnabled="{Binding IsNotBusy}"
+                            IsVisible="{Binding IsNotBusy}"
+                            Style="{StaticResource tertiary-btn}"
+                            Text="don't have an account?" />
+
+                    </VerticalStackLayout>
 
                     <!--  spinner  -->
                     <ActivityIndicator

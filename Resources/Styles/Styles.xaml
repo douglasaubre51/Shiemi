@@ -4,7 +4,7 @@
 
     <!--  my styles  -->
 
-    <!--  project view  -->
+    <!--  headers  -->
     <Style x:Key="header-1" TargetType="Label">
         <Setter Property="FontSize" Value="40" />
         <Setter Property="TextColor" Value="{StaticResource primary-text-clr}" />
@@ -16,29 +16,56 @@
         <Setter Property="TextColor" Value="{StaticResource Gray500}" />
     </Style>
 
-    <!--  userprofile view  -->
     <!--  username label  -->
     <Style x:Key="profile-header-tag" TargetType="Label">
         <Setter Property="FontSize" Value="20" />
         <Setter Property="FontFamily" Value="PoppinsLight" />
     </Style>
+
     <Style x:Key="user-name-header" TargetType="Label">
         <Setter Property="FontSize" Value="30" />
     </Style>
+
     <!--  emailId label  -->
     <Style x:Key="email-label" TargetType="Label">
         <Setter Property="FontSize" Value="Caption" />
     </Style>
+
     <!--  phone label  -->
     <Style x:Key="phone-label" TargetType="Label">
         <Setter Property="FontSize" Value="Caption" />
     </Style>
+
     <!--  profile card  -->
     <Style x:Key="profile-card" TargetType="Border">
         <Setter Property="Stroke" Value="Transparent" />
         <Setter Property="StrokeShape" Value="RoundRectangle 10" />
         <Setter Property="BackgroundColor" Value="{StaticResource secondary-background-clr}" />
     </Style>
+
+    <!--  primary button  -->
+    <Style x:Key="primary-button" TargetType="Button">
+        <!--  change color for active states  -->
+        <Setter Property="VisualStateManager.VisualStateGroups">
+            <VisualStateGroupList>
+                <VisualStateGroup Name="CommonStates">
+                    <!--  disabled btn color  -->
+                    <VisualState Name="Disabled">
+                        <VisualState.Setters>
+                            <Setter Property="BackgroundColor" Value="LightGrey" />
+                        </VisualState.Setters>
+                    </VisualState>
+                    <!--  active btn color  -->
+                    <VisualState Name="Normal">
+                        <VisualState.Setters>
+                            <Setter Property="BackgroundColor" Value="{StaticResource secondary-accent-clr}" />
+                        </VisualState.Setters>
+                    </VisualState>
+                </VisualStateGroup>
+            </VisualStateGroupList>
+        </Setter>
+    </Style>
+
     <!--  secondary btn  -->
     <Style x:Key="secondary-button" TargetType="Button">
         <!--  change color for active states  -->
@@ -64,19 +91,48 @@
         </Setter>
     </Style>
 
-    <!--  signin view  -->
+    <!--  tertiary btn  -->
+    <Style x:Key="tertiary-btn" TargetType="Button">
+        <Setter Property="VisualStateManager.VisualStateGroups">
+            <VisualStateGroupList>
+                <VisualStateGroup Name="CommonStates">
+
+                    <!--  on hover  -->
+                    <VisualState Name="PointerOver">
+                        <VisualState.Setters>
+                            <Setter Property="BackgroundColor" Value="White" />
+                            <Setter Property="BorderWidth" Value="1" />
+                            <Setter Property="TextColor" Value="{StaticResource secondary-accent-clr}" />
+                        </VisualState.Setters>
+                    </VisualState>
+
+                    <!--  on active  -->
+                    <VisualState Name="Normal">
+                        <VisualState.Setters>
+                            <Setter Property="BackgroundColor" Value="{StaticResource secondary-background-clr}" />
+                            <Setter Property="TextColor" Value="{StaticResource secondary-accent-clr}" />
+                        </VisualState.Setters>
+                    </VisualState>
+
+                </VisualStateGroup>
+            </VisualStateGroupList>
+        </Setter>
+    </Style>
+
     <!--  header  -->
     <Style x:Key="header-tag" TargetType="Label">
         <Setter Property="FontSize" Value="50" />
     </Style>
-    <!--  signup view  -->
+
     <!--  entry  -->
     <Style x:Key="entry-label" TargetType="Label">
         <Setter Property="FontSize" Value="14" />
     </Style>
+
     <Style x:Key="entry" TargetType="Entry">
         <Setter Property="WidthRequest" Value="250" />
     </Style>
+
     <!--  validation message  -->
     <Style x:Key="validation-msg" TargetType="Label">
         <Setter Property="FontSize" Value="10" />
@@ -88,28 +144,6 @@
         <Setter Property="Spacing" Value="0" />
     </Style>
 
-    <!--  create button  -->
-    <Style x:Key="primary-button" TargetType="Button">
-        <!--  change color for active states  -->
-        <Setter Property="VisualStateManager.VisualStateGroups">
-            <VisualStateGroupList>
-                <VisualStateGroup Name="CommonStates">
-                    <!--  disabled btn color  -->
-                    <VisualState Name="Disabled">
-                        <VisualState.Setters>
-                            <Setter Property="BackgroundColor" Value="LightGrey" />
-                        </VisualState.Setters>
-                    </VisualState>
-                    <!--  active btn color  -->
-                    <VisualState Name="Normal">
-                        <VisualState.Setters>
-                            <Setter Property="BackgroundColor" Value="{StaticResource secondary-accent-clr}" />
-                        </VisualState.Setters>
-                    </VisualState>
-                </VisualStateGroup>
-            </VisualStateGroupList>
-        </Setter>
-    </Style>
 
     <!--  box shadow  -->
     <Style x:Key="card-shadow" TargetType="Border">
@@ -122,7 +156,6 @@
         <Setter Property="Shadow" Value="LightGrey 1 10" />
     </Style>
 
-    <!--  signup view  -->
     <!--  my styles  -->
 
     <Style TargetType="ActivityIndicator">

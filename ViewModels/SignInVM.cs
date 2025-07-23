@@ -40,6 +40,14 @@ public partial class SignInVM : BaseVM
     }
 
     [RelayCommand]
+    async Task GoToSignUpView()
+    {
+        if (IsBusy is true) return;
+
+        await Shell.Current.GoToAsync("SignUpView");
+    }
+
+    [RelayCommand]
     async Task TriggerSignIn()
     {
         if (IsBusy is true) return;

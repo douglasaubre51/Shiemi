@@ -37,7 +37,7 @@
 
                             <!--  profile image  -->
                             <Border
-                                HeightRequest="250"
+                                HeightRequest="300"
                                 HorizontalOptions="Fill"
                                 Stroke="Transparent"
                                 StrokeShape="RoundRectangle 5"
