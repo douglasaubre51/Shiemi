@@ -35,7 +35,7 @@
                     Style="{StaticResource header-1}"
                     Text="new project" />
 
-                <!--  title  -->
+                <!--  title group  -->
                 <VerticalStackLayout
                     Grid.Row="1"
                     Grid.Column="0"
@@ -50,7 +50,10 @@
                     <Entry
                         ClearButtonVisibility="WhileEditing"
                         MaxLength="30"
-                        Style="{StaticResource entry}" />
+                        Style="{StaticResource entry}"
+                        Text="{Binding Title}" />
+
+                    <Label Style="{StaticResource validation-msg}" Text="{Binding TitleMessage}" />
                 </VerticalStackLayout>
 
                 <!--  short desc  -->
@@ -66,7 +69,10 @@
                         AutoSize="TextChanges"
                         HorizontalOptions="Fill"
                         MaxLength="70"
+                        Text="{Binding ShortDescription}"
                         VerticalOptions="Fill" />
+
+                    <Label Style="{StaticResource validation-msg}" Text="{Binding ShortDescriptionMessage}" />
                 </VerticalStackLayout>
 
                 <!--  desc  -->
@@ -78,7 +84,12 @@
                     VerticalOptions="Fill">
                     <Label Style="{StaticResource entry-label}" Text="Description" />
 
-                    <Editor HeightRequest="100" HorizontalOptions="Fill" />
+                    <Editor
+                        HeightRequest="100"
+                        HorizontalOptions="Fill"
+                        Text="{Binding Description}" />
+
+                    <Label Style="{StaticResource validation-msg}" Text="{Binding DescriptionMessage}" />
                 </VerticalStackLayout>
 
                 <!--  ends at date  -->
@@ -87,7 +98,7 @@
                     Grid.Column="1"
                     HorizontalOptions="Start"
                     Spacing="10"
-                    VerticalOptions="End">
+                    VerticalOptions="Start">
                     <Label Style="{StaticResource entry-label}" Text="Ends At" />
 
                     <DatePicker WidthRequest="200" />
@@ -99,20 +110,27 @@
                     Grid.Column="1"
                     HorizontalOptions="Start"
                     Spacing="10"
-                    VerticalOptions="End">
-                    <Label Style="{StaticResource entry-label}" Text="Upload Image" />
+                    VerticalOptions="Start">
+                    <Label Style="{StaticResource entry-label}" Text="optional" />
 
-                    <Button Style="{StaticResource secondary-button}" WidthRequest="200" />
+                    <Button
+                        Command="{Binding TriggerFilePickerCommand}"
+                        IsEnabled="{Binding IsNotBusy}"
+                        Style="{StaticResource secondary-button}"
+                        Text="add image"
+                        WidthRequest="200" />
                 </VerticalStackLayout>
             </Grid>
         </ScrollView>
+
         <!--  create btn  -->
         <Button
             Grid.Row="1"
-            x:DataType="Grid"
+            Command="{Binding TriggerCreateNewProjectCommand}"
             HorizontalOptions="Fill"
+            IsEnabled="{Binding IsNotBusy}"
             Style="{StaticResource primary-button}"
             Text="continue"
-            WidthRequest="{Binding Source={x:Reference FormGrid}, Path=Width}" />
+            WidthRequest="{Binding Source={x:Reference FormGrid}, Path=Width, x:DataType=Grid}" />
     </Grid>
 </ContentPage>
