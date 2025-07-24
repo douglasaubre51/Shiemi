@@ -5,9 +5,10 @@
     <!--  added bye me  -->
 
     <!--  background colours  -->
-    <Color x:Key="primary-background-clr">White</Color>
+    <Color x:Key="primary-background-clr">#fff0f5</Color>
     <Color x:Key="secondary-background-clr">#c0c0c0</Color>
     <Color x:Key="tertiary-background-clr">#a8dadc</Color>
+    <Color x:Key="fourth-background-clr">#ffffff</Color>
 
     <!--  accent colours  -->
     <Color x:Key="primary-accent-clr">#3cb371</Color>

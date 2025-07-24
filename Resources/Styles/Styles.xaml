@@ -3,6 +3,13 @@
 <ResourceDictionary xmlns="http://schemas.microsoft.com/dotnet/2021/maui" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
 
     <!--  my styles  -->
+    <!--  rounder corners  -->
+    <Style x:Key="primary-project-card" TargetType="Border">
+        <Setter Property="StrokeShape" Value="RoundRectangle 10" />
+        <Setter Property="Stroke" Value="Transparent" />
+        <Setter Property="StrokeMiterLimit" Value="0" />
+    </Style>
+
 
     <!--  headers  -->
     <Style x:Key="header-1" TargetType="Label">
@@ -13,6 +20,12 @@
     <Style x:Key="primary-title-txt" TargetType="Label">
         <Setter Property="FontFamily" Value="PoppinsLight" />
         <Setter Property="FontSize" Value="50" />
+        <Setter Property="TextColor" Value="{StaticResource Gray500}" />
+    </Style>
+
+    <Style x:Key="secondary-title-txt" TargetType="Label">
+        <Setter Property="FontFamily" Value="PoppinsLight" />
+        <Setter Property="FontSize" Value="30" />
         <Setter Property="TextColor" Value="{StaticResource Gray500}" />
     </Style>
 
