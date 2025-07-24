@@ -1,13 +1,35 @@
 ﻿using CommunityToolkit.Mvvm.Input;
+using Shiemi.Models;
+using Shiemi.Services;
+using System.Collections.ObjectModel;
+using System.Diagnostics;
 
 namespace Shiemi.ViewModels
 {
     public partial class ProjectVM : BaseVM
     {
-        public ProjectVM()
+        // services
+        readonly ProjectService _projectService;
+
+        // collections
+
+        [ObservableProperty]
+        ObservableCollection<ProjectModel>? projects = new();
+
+        readonly string userId;
+
+        public ProjectVM(ProjectService projectService)
         {
             Title = "Projects";
+
+            // fetch userid
+            userId = StorageService.GetUserId();
+
+            //di
+            _projectService = projectService;
+
         }
+
 
         // on add project btn clicked!
         [RelayCommand]
@@ -17,6 +39,26 @@ namespace Shiemi.ViewModels
 
             // go to createprojectview
             await Shell.Current.GoToAsync("CreateProjectView");
+        }
+
+
+        // store all projects
+        public async Task FillProjectCollection()
+        {
+            IsBusy = true;
+
+            try
+            {
+                Projects = await _projectService.GetAllProjects(userId);
+            }
+            catch (Exception e)
+            {
+                Debug.WriteLine($"Add to projectcollection error: {e}");
+            }
+            finally
+            {
+                IsBusy = false;
+            }
         }
     }
 }

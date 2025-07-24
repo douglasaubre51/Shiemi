@@ -2,9 +2,9 @@
 
 namespace Shiemi.Services
 {
-    public class StorageService
+    public static class StorageService
     {
-        public void StoreUserDetails(Details details)
+        public static void StoreUserDetails(Details details)
         {
             IPreferences preferences = Preferences.Default;
 
@@ -16,7 +16,7 @@ namespace Shiemi.Services
             preferences.Set("ProfilePhoto", details.ProfilePhoto);
         }
 
-        public Details FetchUserDetails()
+        public static Details FetchUserDetails()
         {
             Details details = new()
             {
@@ -31,9 +31,14 @@ namespace Shiemi.Services
             return details;
         }
 
-        public void ClearUserData()
+        public static void ClearUserData()
         {
             Preferences.Default.Clear();
+        }
+
+        public static string GetUserId()
+        {
+            return Preferences.Default.Get<String>("UserId", string.Empty);
         }
     }
 }

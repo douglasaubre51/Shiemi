@@ -31,15 +31,13 @@ namespace Shiemi
             builder.Services.AddTransient<SignUpValidator>();
 
             // services
+            builder.Services.AddSingleton<IConnectivity>(Connectivity.Current);
             builder.Services.AddSingleton(
                 new JsonSerializerOptions
                 {
                     PropertyNamingPolicy = JsonNamingPolicy.CamelCase
                 }
             );
-
-            // storage
-            builder.Services.AddTransient<StorageService>();
 
             // REST
             builder.Services.AddTransient<UserService>();

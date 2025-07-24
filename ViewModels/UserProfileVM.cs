@@ -16,17 +16,13 @@ namespace Shiemi.ViewModels
         [ObservableProperty]
         string profilePhoto;
 
-        // di
-        readonly StorageService _storageService;
-
         // init view
-        public UserProfileVM(StorageService storageService)
+        public UserProfileVM()
         {
             Title = "Profile";
             Debug.WriteLine(Title);
 
-            _storageService = storageService;
-            Details details = _storageService.FetchUserDetails();
+            Details details = StorageService.FetchUserDetails();
 
             // bind details on init!
             username = details.FirstName + " " + details.LastName;

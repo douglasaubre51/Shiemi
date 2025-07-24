@@ -23,17 +23,15 @@ public partial class SignInVM : BaseVM
     // di
     private readonly SignInValidator _validator;
     private readonly UserService _userService;
-    private readonly StorageService _storageService;
 
     // temp error message holders
     public string tempEmailMessage;
     public string tempPasswordMessage;
 
-    public SignInVM(SignInValidator signInValidator, UserService userService, StorageService storageService)
+    public SignInVM(SignInValidator signInValidator, UserService userService)
     {
         _validator = signInValidator;
         _userService = userService;
-        _storageService = storageService;
 
         // set page title
         Title = "Sign In";
@@ -74,13 +72,13 @@ public partial class SignInVM : BaseVM
             string userId = await _userService.RequestSignIn(model);
             if (userId is null) return;
 
-            _storageService.ClearUserData();
+            StorageService.ClearUserData();
 
             // request user details
             Details details = await _userService.RequestUserDetails(userId);
 
             // save user details
-            _storageService.StoreUserDetails(details);
+            StorageService.StoreUserDetails(details);
 
             await Shell.Current.GoToAsync("ProfileView");
         }
