@@ -8,7 +8,5 @@
         public string Description { get; set; }
         public string ShortDescription { get; set; }
         public decimal Price { get; set; }
-
-        public DateOnly EndsAt { get; set; }
     }
 }

@@ -3,6 +3,7 @@
     x:Class="Shiemi.Views.CreateProjectView"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
     xmlns:viewmodel="clr-namespace:Shiemi.ViewModels"
     x:DataType="viewmodel:CreateProjectVM">
 
@@ -92,33 +93,42 @@
                     <Label Style="{StaticResource validation-msg}" Text="{Binding DescriptionMessage}" />
                 </VerticalStackLayout>
 
-                <!--  ends at date  -->
+                <!--  price  -->
                 <VerticalStackLayout
                     Grid.Row="1"
                     Grid.Column="1"
                     HorizontalOptions="Start"
                     Spacing="10"
                     VerticalOptions="Start">
-                    <Label Style="{StaticResource entry-label}" Text="Ends At" />
+                    <Label Style="{StaticResource entry-label}" Text="Price" />
 
-                    <DatePicker WidthRequest="200" />
+                    <Entry Style="{StaticResource entry}" Text="{Binding Price}">
+                        <Entry.Behaviors>
+                            <toolkit:CharactersValidationBehavior
+                                Flags="ValidateOnValueChanged,ValidateOnUnfocused"
+                                IsValid="{Binding IsPriceValid}"
+                                RegexPattern="\d+\.\d+" />
+                        </Entry.Behaviors>
+                    </Entry>
+
+                    <Label Style="{StaticResource validation-msg}" Text="{Binding PriceMessage}" />
                 </VerticalStackLayout>
 
                 <!--  image upload  -->
                 <VerticalStackLayout
                     Grid.Row="2"
                     Grid.Column="1"
-                    HorizontalOptions="Start"
+                    HorizontalOptions="Fill"
                     Spacing="10"
-                    VerticalOptions="Start">
+                    VerticalOptions="Fill">
                     <Label Style="{StaticResource entry-label}" Text="optional" />
 
                     <Button
                         Command="{Binding TriggerFilePickerCommand}"
+                        HorizontalOptions="Fill"
                         IsEnabled="{Binding IsNotBusy}"
                         Style="{StaticResource secondary-button}"
-                        Text="add image"
-                        WidthRequest="200" />
+                        Text="add image" />
                 </VerticalStackLayout>
             </Grid>
         </ScrollView>

@@ -1,4 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.Input;
+using Shiemi.Dto;
+using Shiemi.Services;
 using System.Diagnostics;
 
 namespace Shiemi.ViewModels
@@ -13,7 +15,7 @@ namespace Shiemi.ViewModels
         [ObservableProperty]
         string description;
         [ObservableProperty]
-        DateTime endsAt;
+        string price;
 
         // form validation message binders
         [ObservableProperty]
@@ -22,6 +24,20 @@ namespace Shiemi.ViewModels
         string shortDescriptionMessage;
         [ObservableProperty]
         string descriptionMessage;
+        [ObservableProperty]
+        string priceMessage;
+
+        // validity props
+        [ObservableProperty]
+        bool isPriceValid;
+
+        // di
+        readonly ProjectService _projectService;
+
+        public CreateProjectVM(ProjectService projectService)
+        {
+            _projectService = projectService;
+        }
 
         [RelayCommand]
         async Task TriggerCreateNewProject()
@@ -35,10 +51,39 @@ namespace Shiemi.ViewModels
                 bool formValidationResult = FormValidator();
                 if (!formValidationResult) return;
 
-                Debug.WriteLine("create new project");
+                // convert string price to decimal
+                decimal cost = decimal.Parse(Price);
+
+                // validated, pack data
+                string userId = StorageService.GetUserId();
+                ProjectDto project = new()
+                {
+                    UserId = userId,
+                    Title = Title,
+                    Price = cost,
+                    ShortDescription = shortDescription,
+                    Description = description
+                };
+
+                // call service
+                bool result = await _projectService.AddProject(project);
+                if (result is false)
+                {
+                    await Shell.Current
+                        .DisplayAlertAsync(
+                        "create project error",
+                        "error creating new project!",
+                        "ok"
+                        );
+                    return;
+                }
+
+                // success
+                await Shell.Current.GoToAsync("..");
             }
             catch (Exception e)
             {
+                Debug.WriteLine($"createproject error: {e}");
             }
             finally
             {
@@ -46,6 +91,7 @@ namespace Shiemi.ViewModels
             }
         }
 
+        // pick and upload photo
         [RelayCommand]
         async Task TriggerFilePicker()
         {
@@ -71,6 +117,7 @@ namespace Shiemi.ViewModels
             TitleMessage = string.Empty;
             ShortDescriptionMessage = string.Empty;
             DescriptionMessage = string.Empty;
+            PriceMessage = string.Empty;
 
             if (string.IsNullOrWhiteSpace(Title))
             {
@@ -87,6 +134,12 @@ namespace Shiemi.ViewModels
             if (string.IsNullOrWhiteSpace(Description))
             {
                 DescriptionMessage += "required!";
+                return false;
+            }
+
+            if (IsPriceValid is true)
+            {
+                PriceMessage += "price is in digits!";
                 return false;
             }
 

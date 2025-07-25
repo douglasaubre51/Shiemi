@@ -30,7 +30,5 @@ namespace Shiemi.Models
 
         [BsonElement("createdAt")]
         public DateTime CreatedAt { get; set; }
-        [BsonElement("endsAt")]
-        public DateTime EndsAt { get; set; }
     }
 }

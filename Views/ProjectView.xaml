@@ -56,7 +56,8 @@
                                     VerticalOptions="Fill">
                                     <Label Style="{StaticResource secondary-title-txt}" Text="{Binding Title}" />
                                     <Label Text="{Binding ShortDescription}" />
-                                    <Label Text="{Binding EndsAt}" />
+                                    <Label Text="{Binding Price, StringFormat='$ {0}'}" />
+                                    <Label Text="{Binding CreatedAt, StringFormat='last date: {0}'}" />
                                 </VerticalStackLayout>
 
                             </Border>
