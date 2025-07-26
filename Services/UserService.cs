@@ -95,7 +95,7 @@ public class UserService
     }
 
     // GET: user-details/:user_id
-    public async Task<Details?> RequestUserDetails(string userId)
+    public async Task<DetailsModel?> RequestUserDetails(string userId)
     {
         string url = "http://localhost:3000/user-details/" + userId;
 
@@ -113,7 +113,7 @@ public class UserService
         }
 
         // success
-        var details = JsonSerializer.Deserialize<Details>(jsonContent, _jsonCasing);
+        var details = JsonSerializer.Deserialize<DetailsModel>(jsonContent, _jsonCasing);
         return details;
     }
 }

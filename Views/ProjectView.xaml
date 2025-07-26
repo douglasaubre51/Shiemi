@@ -19,7 +19,7 @@
     </ContentPage.MenuBarItems>
     <!--  refresh btn  -->
     <ContentPage.ToolbarItems>
-        <ToolbarItem Command="{Binding FillProjectCollectionCommand}" Text="refresh" />
+        <ToolbarItem Command="{Binding FillProjectCollectionCommand}" Text="Refresh" />
     </ContentPage.ToolbarItems>
     <!--  main grid  -->
     <Grid
@@ -32,7 +32,7 @@
         <!--  project collection  -->
         <Border
             Grid.Row="0"
-            Margin="10,10,40,10"
+            Margin="10,10,0,10"
             Style="{StaticResource primary-project-card}">
             <ScrollView Orientation="Both">
                 <CollectionView
@@ -44,7 +44,6 @@
                         <DataTemplate x:DataType="model:ProjectModel">
                             <!--  item  -->
                             <Border
-                                Margin="10,10,40,10"
                                 BackgroundColor="{StaticResource fourth-background-clr}"
                                 HorizontalOptions="Fill"
                                 Style="{StaticResource primary-project-card}"

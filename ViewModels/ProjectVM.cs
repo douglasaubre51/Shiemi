@@ -50,7 +50,7 @@ namespace Shiemi.ViewModels
 
             try
             {
-                var collection = await _projectService.GetAllProjects(userId);
+                var collection = await _projectService.GetAllProjectsById(userId);
                 if (collection is null) return;
 
                 Projects = collection;

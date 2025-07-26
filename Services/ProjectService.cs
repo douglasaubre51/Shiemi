@@ -1,4 +1,5 @@
-﻿using MongoDB.Bson;
+﻿using CommunityToolkit.Maui.Core.Extensions;
+using MongoDB.Bson;
 using MongoDB.Bson.Serialization;
 using Shiemi.Dto;
 using Shiemi.Models;
@@ -25,9 +26,46 @@ namespace Shiemi.Services
             _connectivity = connectivity;
         }
 
+        // fetch all projects
+        // GET projects/get-all
+        public async Task<ObservableCollection<ProjectModel>?> GetAllProjects()
+        {
+            if (_connectivity.NetworkAccess != NetworkAccess.Internet)
+            {
+                Debug.WriteLine("offline!");
+                return null;
+            }
+
+            string url = "http://localhost:3000/project/get-all";
+
+            HttpResponseMessage response = await _client.GetAsync(url);
+            string payloadString = await response.Content.ReadAsStringAsync();
+            if (!response.IsSuccessStatusCode)
+            {
+                Debug.WriteLine($"getall projects error: {payloadString}");
+                return null;
+            }
+
+            // success
+            // parse into doc
+            BsonDocument bsonDocument = BsonDocument.Parse(payloadString);
+            // select dto as array
+            BsonArray bsonArray = bsonDocument["projectsDto"].AsBsonArray;
+
+            ObservableCollection<ProjectModel>? projectModels = [];
+            // deserialize each bson object into projectmodel and convert to list
+            projectModels = bsonArray
+                .Select(
+                x => BsonSerializer.Deserialize<ProjectModel>(x.AsBsonDocument)
+                )
+                .ToObservableCollection();
+
+            return projectModels;
+        }
+
         // fetch all projects by userId
         // GET: userId
-        public async Task<ObservableCollection<ProjectModel>?> GetAllProjects(string userId)
+        public async Task<ObservableCollection<ProjectModel>?> GetAllProjectsById(string userId)
         {
             // check connection!
             if (_connectivity.NetworkAccess != NetworkAccess.Internet)
@@ -36,7 +74,7 @@ namespace Shiemi.Services
                 return null;
             }
 
-            string url = "http://localhost:3000/project/get-all?userId=" + userId;
+            string url = "http://localhost:3000/project/getall-by-userid?userId=" + userId;
 
             HttpResponseMessage response = await _client.GetAsync(url);
             string payload = await response.Content.ReadAsStringAsync();
@@ -60,6 +98,10 @@ namespace Shiemi.Services
         //POST: create
         public async Task<bool> AddProject(ProjectDto project)
         {
+            if (_connectivity.NetworkAccess != NetworkAccess.Internet)
+            {
+                return false;
+            }
             string url = "http://localhost:3000/project/create";
 
             HttpResponseMessage response = await _client

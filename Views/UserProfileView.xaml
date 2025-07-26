@@ -5,36 +5,28 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:viewModel="clr-namespace:Shiemi.ViewModels"
     x:DataType="viewModel:UserProfileVM">
-
     <Grid
         Margin="30,40,30,20"
         RowDefinitions="*"
         RowSpacing="10">
-
         <ScrollView
             HorizontalOptions="Fill"
             Orientation="Both"
             VerticalOptions="Fill">
-
             <!--  main grid  -->
             <VerticalStackLayout
                 Grid.Row="0"
                 HorizontalOptions="Start"
                 VerticalOptions="Fill">
-
                 <Border Padding="20,10,20,20" Style="{StaticResource profile-card}">
-
                     <!--  profile stack  -->
                     <VerticalStackLayout Spacing="10">
-
                         <Label Style="{StaticResource profile-header-tag}" Text="profile" />
-
                         <!--  user details with image stack  -->
                         <VerticalStackLayout
                             HorizontalOptions="Fill"
                             Spacing="20"
                             VerticalOptions="Fill">
-
                             <!--  profile image  -->
                             <Border
                                 HeightRequest="300"
@@ -45,7 +37,6 @@
                                 WidthRequest="350">
                                 <Image Aspect="Fill" Source="{Binding ProfilePhoto}" />
                             </Border>
-
                             <!--  text details stack  -->
                             <VerticalStackLayout>
                                 <Label Style="{StaticResource user-name-header}" Text="{Binding Username}" />
@@ -53,7 +44,6 @@
                                 <Label Style="{StaticResource phone-label}" Text="{Binding PhoneNo}" />
                             </VerticalStackLayout>
                         </VerticalStackLayout>
-
                         <!--  edit btn  -->
                         <Button
                             Margin="0,20,0,0"

@@ -50,6 +50,7 @@ namespace Shiemi
             builder.Services.AddTransient<UserProfileVM>();
             builder.Services.AddTransient<ProjectVM>();
             builder.Services.AddTransient<CreateProjectVM>();
+            builder.Services.AddTransient<MarketPlaceVM>();
 
             // views
             builder.Services.AddTransient<SignInView>();
@@ -57,6 +58,7 @@ namespace Shiemi
             builder.Services.AddTransient<UserProfileView>();
             builder.Services.AddTransient<ProjectView>();
             builder.Services.AddTransient<CreateProjectView>();
+            builder.Services.AddTransient<MarketPlaceView>();
 
 
             return builder.Build();

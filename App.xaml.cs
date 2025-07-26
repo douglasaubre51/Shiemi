@@ -9,7 +9,15 @@
 
         protected override Window CreateWindow(IActivationState? activationState)
         {
-            return new Window(new AppShell());
+            var displayInfo = DeviceDisplay.Current.MainDisplayInfo;
+
+            return new Window(new AppShell())
+            {
+                Width = 1200,
+                Height = 700,
+                X = (displayInfo.Width / displayInfo.Density - 1200) / 2,
+                Y = (displayInfo.Height / displayInfo.Density - 700) / 2
+            };
         }
     }
 }

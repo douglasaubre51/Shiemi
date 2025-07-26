@@ -32,7 +32,7 @@
                             ColumnSpacing="40"
                             HorizontalOptions="Center"
                             RowDefinitions="*,*,*,*"
-                            RowSpacing="15"
+                            RowSpacing="45"
                             VerticalOptions="Center">
                             <!--  first name  -->
                             <VerticalStackLayout

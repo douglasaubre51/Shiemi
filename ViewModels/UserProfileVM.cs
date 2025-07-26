@@ -22,7 +22,7 @@ namespace Shiemi.ViewModels
             Title = "Profile";
             Debug.WriteLine(Title);
 
-            Details details = StorageService.FetchUserDetails();
+            DetailsModel details = StorageService.FetchUserDetails();
 
             // bind details on init!
             username = details.FirstName + " " + details.LastName;

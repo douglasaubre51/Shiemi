@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="Shiemi.Views.MarketPlaceView"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:model="clr-namespace:Shiemi.Models"
+    xmlns:viewmodel="clr-namespace:Shiemi.ViewModels"
+    x:DataType="viewmodel:MarketPlaceVM"
+    Shell.NavBarIsVisible="True">
+    <!--  filters  -->
+    <ContentPage.MenuBarItems>
+        <MenuBarItem Text="Sort">
+            <MenuFlyoutSubItem Text="price">
+                <MenuFlyoutItem Command="{Binding SortPriceLowToHighCommand}" Text="low to high" />
+                <MenuFlyoutItem Command="{Binding SortPriceHighToLowCommand}" Text="high to low" />
+            </MenuFlyoutSubItem>
+            <MenuFlyoutSubItem Text="created date">
+                <MenuFlyoutItem Command="{Binding SortCreatedDateLowToHighCommand}" Text="ascending" />
+                <MenuFlyoutItem Command="{Binding SortCreatedDateHighToLowCommand}" Text="descending" />
+            </MenuFlyoutSubItem>
+            <MenuFlyoutItem Command="{Binding RefreshCollectionCommand}" Text="none" />
+        </MenuBarItem>
+    </ContentPage.MenuBarItems>
+    <!--  refresh btn  -->
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Command="{Binding RefreshCollectionCommand}" Text="Refresh" />
+    </ContentPage.ToolbarItems>
+    <!--  main layout  -->
+    <Grid
+        Margin="20"
+        HorizontalOptions="Fill"
+        RowDefinitions="*"
+        VerticalOptions="Fill">
+        <!--  collections layout  -->
+        <ScrollView
+            HorizontalOptions="Fill"
+            Orientation="Vertical"
+            VerticalOptions="Fill">
+            <CollectionView
+                HorizontalOptions="Fill"
+                ItemSizingStrategy="MeasureAllItems"
+                ItemsSource="{Binding Projects}"
+                SelectionMode="Single"
+                VerticalOptions="Fill">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="model:ProjectModel">
+                        <!--  item  -->
+                        <Border
+                            Padding="10"
+                            BackgroundColor="White"
+                            HorizontalOptions="Fill"
+                            MinimumWidthRequest="500"
+                            Style="{StaticResource primary-project-card}"
+                            VerticalOptions="Fill">
+                            <VerticalStackLayout
+                                Padding="10"
+                                HorizontalOptions="Fill"
+                                Spacing="10"
+                                VerticalOptions="Fill">
+                                <Label Style="{StaticResource secondary-title-txt}" Text="{Binding Title}" />
+                                <Label Text="{Binding ShortDescription}" />
+                                <Label Text="{Binding Price, StringFormat='$ {0}'}" />
+                                <Label Text="{Binding CreatedAt, StringFormat='created at: {0}'}" />
+                            </VerticalStackLayout>
+                        </Border>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+                <!--  item layout  -->
+                <CollectionView.ItemsLayout>
+                    <GridItemsLayout
+                        HorizontalItemSpacing="10"
+                        Orientation="Vertical"
+                        Span="{OnIdiom Default=1,
+                                       Desktop=2}"
+                        VerticalItemSpacing="10" />
+                </CollectionView.ItemsLayout>
+            </CollectionView>
+        </ScrollView>
+        <!--  spinner  -->
+        <ActivityIndicator
+            Grid.Row="0"
+            IsEnabled="{Binding IsBusy}"
+            IsRunning="{Binding IsBusy}" />
+    </Grid>
+</ContentPage>

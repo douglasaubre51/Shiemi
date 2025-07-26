@@ -75,7 +75,7 @@ public partial class SignInVM : BaseVM
             StorageService.ClearUserData();
 
             // request user details
-            Details details = await _userService.RequestUserDetails(userId);
+            DetailsModel details = await _userService.RequestUserDetails(userId);
 
             // save user details
             StorageService.StoreUserDetails(details);

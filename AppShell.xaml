@@ -8,6 +8,12 @@
     Shell.NavBarIsVisible="False">
 
     <!--  flyout items  -->
+    <FlyoutItem Title="Store">
+        <Tab>
+            <ShellContent ContentTemplate="{DataTemplate views:MarketPlaceView}" Route="MarketPlaceView" />
+        </Tab>
+    </FlyoutItem>
+
     <FlyoutItem Title="Projects">
         <Tab>
             <ShellContent ContentTemplate="{DataTemplate views:ProjectView}" Route="ProjectView" />

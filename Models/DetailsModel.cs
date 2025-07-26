@@ -1,6 +1,6 @@
 ﻿namespace Shiemi.Models
 {
-    public class Details
+    public class DetailsModel
     {
         public string UserId { get; set; }
         public string FirstName { get; set; }

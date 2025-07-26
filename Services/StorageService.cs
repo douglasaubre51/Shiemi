@@ -4,7 +4,7 @@ namespace Shiemi.Services
 {
     public static class StorageService
     {
-        public static void StoreUserDetails(Details details)
+        public static void StoreUserDetails(DetailsModel details)
         {
             IPreferences preferences = Preferences.Default;
 
@@ -16,9 +16,9 @@ namespace Shiemi.Services
             preferences.Set("ProfilePhoto", details.ProfilePhoto);
         }
 
-        public static Details FetchUserDetails()
+        public static DetailsModel FetchUserDetails()
         {
-            Details details = new()
+            DetailsModel details = new()
             {
                 UserId = Preferences.Default.Get("UserId", "..."),
                 FirstName = Preferences.Default.Get("FirstName", "..."),
