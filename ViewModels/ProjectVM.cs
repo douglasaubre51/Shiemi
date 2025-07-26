@@ -43,13 +43,17 @@ namespace Shiemi.ViewModels
 
 
         // store all projects
+        [RelayCommand]
         public async Task FillProjectCollection()
         {
             IsBusy = true;
 
             try
             {
-                Projects = await _projectService.GetAllProjects(userId);
+                var collection = await _projectService.GetAllProjects(userId);
+                if (collection is null) return;
+
+                Projects = collection;
             }
             catch (Exception e)
             {

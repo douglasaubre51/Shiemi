@@ -6,26 +6,32 @@
     xmlns:model="clr-namespace:Shiemi.Models"
     xmlns:viewmodel="clr-namespace:Shiemi.ViewModels"
     x:DataType="viewmodel:ProjectVM"
-    BackgroundColor="{StaticResource primary-background-clr}">
+    BackgroundColor="{StaticResource primary-background-clr}"
+    Shell.BackgroundColor="{StaticResource primary-background-clr}"
+    Shell.NavBarIsVisible="True">
+    <ContentPage.MenuBarItems>
+        <MenuBarItem Text="File">
+            <MenuFlyoutItem Command="{Binding GoToCreateProjectViewCommand}" Text="new" />
+        </MenuBarItem>
+        <MenuBarItem Text="Edit">
+            <MenuFlyoutItem Text="remove selected items" />
+        </MenuBarItem>
+    </ContentPage.MenuBarItems>
+    <!--  refresh btn  -->
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Command="{Binding FillProjectCollectionCommand}" Text="refresh" />
+    </ContentPage.ToolbarItems>
+    <!--  main grid  -->
     <Grid
         Margin="20"
         ColumnDefinitions="*"
         HorizontalOptions="Fill"
-        RowDefinitions="100,*,Auto"
+        RowDefinitions="*,Auto"
         RowSpacing="10"
         VerticalOptions="Fill">
-
-        <!--  page title  -->
-        <Label
-            Grid.Row="0"
-            HorizontalOptions="Start"
-            Style="{StaticResource primary-title-txt}"
-            Text="projects"
-            VerticalOptions="Start" />
-
         <!--  project collection  -->
         <Border
-            Grid.Row="1"
+            Grid.Row="0"
             Margin="10,10,40,10"
             Style="{StaticResource primary-project-card}">
             <ScrollView Orientation="Both">
@@ -33,7 +39,6 @@
                     HorizontalOptions="Fill"
                     ItemsSource="{Binding Projects}"
                     VerticalOptions="Fill">
-
                     <!--  template  -->
                     <CollectionView.ItemTemplate>
                         <DataTemplate x:DataType="model:ProjectModel">
@@ -44,11 +49,9 @@
                                 HorizontalOptions="Fill"
                                 Style="{StaticResource primary-project-card}"
                                 VerticalOptions="Fill">
-
                                 <!--  tap event  -->
                                 <Border.GestureRecognizers />
-
-                                <!--  layout  -->
+                                <!--  item layout  -->
                                 <VerticalStackLayout
                                     Margin="20"
                                     HorizontalOptions="Fill"
@@ -57,25 +60,22 @@
                                     <Label Style="{StaticResource secondary-title-txt}" Text="{Binding Title}" />
                                     <Label Text="{Binding ShortDescription}" />
                                     <Label Text="{Binding Price, StringFormat='$ {0}'}" />
-                                    <Label Text="{Binding CreatedAt, StringFormat='last date: {0}'}" />
+                                    <Label HorizontalOptions="End" Text="{Binding CreatedAt, StringFormat='created at: {0}'}" />
                                 </VerticalStackLayout>
-
                             </Border>
                         </DataTemplate>
                     </CollectionView.ItemTemplate>
                 </CollectionView>
             </ScrollView>
         </Border>
-
         <!--  add new project btn  -->
         <Button
-            Grid.Row="2"
+            Grid.Row="1"
             Command="{Binding GoToCreateProjectViewCommand}"
             IsEnabled="{Binding IsNotBusy}"
             IsVisible="{Binding IsNotBusy}"
             Style="{StaticResource primary-button}"
             Text="new" />
-
         <!--  spinner  -->
         <ActivityIndicator
             Grid.Row="2"
