@@ -49,7 +49,7 @@
                             Padding="10"
                             BackgroundColor="White"
                             HorizontalOptions="Fill"
-                            MinimumWidthRequest="500"
+                            MinimumWidthRequest="300"
                             Style="{StaticResource primary-project-card}"
                             VerticalOptions="Fill">
                             <VerticalStackLayout

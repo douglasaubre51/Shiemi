@@ -9,6 +9,7 @@
     BackgroundColor="{StaticResource primary-background-clr}"
     Shell.BackgroundColor="{StaticResource primary-background-clr}"
     Shell.NavBarIsVisible="True">
+    <!--  menu bar  -->
     <ContentPage.MenuBarItems>
         <MenuBarItem Text="File">
             <MenuFlyoutItem Command="{Binding GoToCreateProjectViewCommand}" Text="new" />
@@ -26,59 +27,54 @@
         Margin="20"
         ColumnDefinitions="*"
         HorizontalOptions="Fill"
-        RowDefinitions="*,Auto"
-        RowSpacing="10"
+        RowDefinitions="*"
         VerticalOptions="Fill">
-        <!--  project collection  -->
-        <Border
-            Grid.Row="0"
-            Margin="10,10,0,10"
-            Style="{StaticResource primary-project-card}">
-            <ScrollView Orientation="Both">
-                <CollectionView
-                    HorizontalOptions="Fill"
-                    ItemsSource="{Binding Projects}"
-                    VerticalOptions="Fill">
-                    <!--  template  -->
-                    <CollectionView.ItemTemplate>
-                        <DataTemplate x:DataType="model:ProjectModel">
-                            <!--  item  -->
-                            <Border
-                                BackgroundColor="{StaticResource fourth-background-clr}"
+        <!--  project grid  -->
+        <ScrollView Grid.Row="0" Orientation="Both">
+            <CollectionView
+                HorizontalOptions="Fill"
+                ItemSizingStrategy="MeasureAllItems"
+                ItemsSource="{Binding Projects}"
+                VerticalOptions="Fill">
+                <!--  template  -->
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="model:ProjectModel">
+                        <!--  item  -->
+                        <Border
+                            BackgroundColor="{StaticResource fourth-background-clr}"
+                            HorizontalOptions="Fill"
+                            Style="{StaticResource primary-project-card}"
+                            VerticalOptions="Fill">
+                            <!--  tap event  -->
+                            <Border.GestureRecognizers />
+                            <!--  item layout  -->
+                            <VerticalStackLayout
+                                Margin="20"
                                 HorizontalOptions="Fill"
-                                Style="{StaticResource primary-project-card}"
+                                Spacing="10"
                                 VerticalOptions="Fill">
-                                <!--  tap event  -->
-                                <Border.GestureRecognizers />
-                                <!--  item layout  -->
-                                <VerticalStackLayout
-                                    Margin="20"
-                                    HorizontalOptions="Fill"
-                                    Spacing="10"
-                                    VerticalOptions="Fill">
-                                    <Label Style="{StaticResource secondary-title-txt}" Text="{Binding Title}" />
-                                    <Label Text="{Binding ShortDescription}" />
-                                    <Label Text="{Binding Price, StringFormat='$ {0}'}" />
-                                    <Label HorizontalOptions="End" Text="{Binding CreatedAt, StringFormat='created at: {0}'}" />
-                                </VerticalStackLayout>
-                            </Border>
-                        </DataTemplate>
-                    </CollectionView.ItemTemplate>
-                </CollectionView>
-            </ScrollView>
-        </Border>
-        <!--  add new project btn  -->
-        <Button
-            Grid.Row="1"
-            Command="{Binding GoToCreateProjectViewCommand}"
-            IsEnabled="{Binding IsNotBusy}"
-            IsVisible="{Binding IsNotBusy}"
-            Style="{StaticResource primary-button}"
-            Text="new" />
+                                <Label
+                                    HorizontalOptions="Start"
+                                    Style="{StaticResource secondary-title-txt}"
+                                    Text="{Binding Title}" />
+                                <Label HorizontalOptions="Start" Text="{Binding Price, StringFormat='$ {0}'}" />
+                                <Label HorizontalOptions="Start" Text="{Binding CreatedAt, StringFormat='created at: {0}'}" />
+                            </VerticalStackLayout>
+                        </Border>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+                <!--  item spacing  -->
+                <CollectionView.ItemsLayout>
+                    <LinearItemsLayout ItemSpacing="10" Orientation="Vertical" />
+                </CollectionView.ItemsLayout>
+            </CollectionView>
+        </ScrollView>
         <!--  spinner  -->
         <ActivityIndicator
-            Grid.Row="2"
+            Grid.Row="0"
+            HorizontalOptions="Center"
             IsRunning="{Binding IsBusy}"
-            IsVisible="{Binding IsBusy}" />
+            IsVisible="{Binding IsBusy}"
+            VerticalOptions="Center" />
     </Grid>
 </ContentPage>
