@@ -53,8 +53,6 @@ namespace Shiemi.ViewModels
 
         public SignUpVM(UserService userService, SignUpValidator signUpValidator)
         {
-            Title = "Sign Up";
-            Debug.WriteLine(Title);
             _userService = userService;
             _validator = signUpValidator;
         }

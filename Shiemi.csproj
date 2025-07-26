@@ -130,6 +130,8 @@
 
 	<ItemGroup>
 	  <Folder Include="Attributes\" />
+	  <Folder Include="WidgetModels\" />
+	  <Folder Include="Widgets\" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -137,6 +139,9 @@
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\MarketPlaceView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\ProjectInfoView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\ProjectView.xaml">

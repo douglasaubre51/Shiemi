@@ -16,13 +16,9 @@ namespace Shiemi.Services
         IConnectivity _connectivity;
         JsonSerializerOptions _jsonCasing;
 
-        HttpClient _client;
-
         public ProjectService(IConnectivity connectivity, JsonSerializerOptions jsonSerializerOptions)
         {
-            _client = new HttpClient();
             _jsonCasing = jsonSerializerOptions;
-
             _connectivity = connectivity;
         }
 
@@ -37,6 +33,7 @@ namespace Shiemi.Services
             }
 
             string url = "http://localhost:3000/project/get-all";
+            HttpClient _client = new HttpClient();
 
             HttpResponseMessage response = await _client.GetAsync(url);
             string payloadString = await response.Content.ReadAsStringAsync();
@@ -75,6 +72,7 @@ namespace Shiemi.Services
             }
 
             string url = "http://localhost:3000/project/getall-by-userid?userId=" + userId;
+            HttpClient _client = new HttpClient();
 
             HttpResponseMessage response = await _client.GetAsync(url);
             string payload = await response.Content.ReadAsStringAsync();
@@ -102,7 +100,9 @@ namespace Shiemi.Services
             {
                 return false;
             }
+
             string url = "http://localhost:3000/project/create";
+            HttpClient _client = new HttpClient();
 
             HttpResponseMessage response = await _client
                 .PostAsJsonAsync<ProjectDto>(

@@ -3,7 +3,6 @@ using Microsoft.Extensions.Logging;
 using Shiemi.Helpers;
 using Shiemi.Services;
 using Shiemi.ViewModels;
-using Shiemi.Views;
 using System.Text.Json;
 
 namespace Shiemi
@@ -40,8 +39,8 @@ namespace Shiemi
             );
 
             // REST
-            builder.Services.AddTransient<UserService>();
-            builder.Services.AddTransient<ProjectService>();
+            builder.Services.AddSingleton<UserService>();
+            builder.Services.AddSingleton<ProjectService>();
 
 
             // view models
@@ -51,14 +50,9 @@ namespace Shiemi
             builder.Services.AddTransient<ProjectVM>();
             builder.Services.AddTransient<CreateProjectVM>();
             builder.Services.AddTransient<MarketPlaceVM>();
+            builder.Services.AddTransient<ProjectInfoVM>();
 
-            // views
-            builder.Services.AddTransient<SignInView>();
-            builder.Services.AddTransient<SignUpView>();
-            builder.Services.AddTransient<UserProfileView>();
-            builder.Services.AddTransient<ProjectView>();
-            builder.Services.AddTransient<CreateProjectView>();
-            builder.Services.AddTransient<MarketPlaceView>();
+            // widget models
 
 
             return builder.Build();

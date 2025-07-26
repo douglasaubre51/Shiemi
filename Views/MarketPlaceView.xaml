@@ -62,6 +62,9 @@
                                 <Label Text="{Binding Price, StringFormat='$ {0}'}" />
                                 <Label Text="{Binding CreatedAt, StringFormat='created at: {0}'}" />
                             </VerticalStackLayout>
+                            <Border.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:MarketPlaceVM}}, x:DataType=viewmodel:MarketPlaceVM, Path=GoToProjectInfoViewCommand}" CommandParameter="{Binding .}" />
+                            </Border.GestureRecognizers>
                         </Border>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>

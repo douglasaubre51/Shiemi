@@ -20,8 +20,6 @@ namespace Shiemi.ViewModels
 
         public ProjectVM(ProjectService projectService)
         {
-            Title = "Projects";
-
             // fetch userid
             userId = StorageService.GetUserId();
 

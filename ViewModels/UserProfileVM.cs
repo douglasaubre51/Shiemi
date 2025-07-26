@@ -1,6 +1,5 @@
 ﻿using Shiemi.Models;
 using Shiemi.Services;
-using System.Diagnostics;
 
 namespace Shiemi.ViewModels
 {
@@ -19,9 +18,6 @@ namespace Shiemi.ViewModels
         // init view
         public UserProfileVM()
         {
-            Title = "Profile";
-            Debug.WriteLine(Title);
-
             DetailsModel details = StorageService.FetchUserDetails();
 
             // bind details on init!

@@ -61,8 +61,8 @@ namespace Shiemi.ViewModels
                     UserId = userId,
                     Title = Title,
                     Price = cost,
-                    ShortDescription = shortDescription,
-                    Description = description
+                    ShortDescription = ShortDescription,
+                    Description = Description
                 };
 
                 // call service
@@ -93,7 +93,7 @@ namespace Shiemi.ViewModels
 
         // pick and upload photo
         [RelayCommand]
-        async Task TriggerFilePicker()
+        void TriggerFilePicker()
         {
             if (IsBusy is true) return;
 

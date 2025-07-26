@@ -12,18 +12,16 @@ public class UserService
     // di
     private readonly JsonSerializerOptions _jsonCasing;
 
-    HttpClient _client;
-
     public UserService(JsonSerializerOptions jsonSerializerOptions)
     {
         _jsonCasing = jsonSerializerOptions;
-        _client = new HttpClient();
     }
 
     // POST: sign-in
     public async Task<string?> RequestSignIn(SignInDto signIn)
     {
         string url = "http://localhost:3000/sign-in";
+        HttpClient _client = new HttpClient();
 
         string payloadString = JsonSerializer.Serialize(signIn, _jsonCasing);
         HttpContent content = new StringContent(payloadString, Encoding.UTF8, "application/json");
@@ -54,6 +52,7 @@ public class UserService
     public async Task<bool> RequestSignUp(SignUpDto signUpDto, string imageSource)
     {
         string url = "http://localhost:3000/sign-up";
+        HttpClient _client = new HttpClient();
 
         // create form
         var form = new MultipartFormDataContent();
@@ -98,6 +97,7 @@ public class UserService
     public async Task<DetailsModel?> RequestUserDetails(string userId)
     {
         string url = "http://localhost:3000/user-details/" + userId;
+        HttpClient _client = new HttpClient();
 
         HttpResponseMessage response;
         string jsonContent;

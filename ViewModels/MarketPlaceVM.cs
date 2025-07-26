@@ -2,6 +2,7 @@
 using CommunityToolkit.Mvvm.Input;
 using Shiemi.Models;
 using Shiemi.Services;
+using Shiemi.Views;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 
@@ -22,9 +23,32 @@ namespace Shiemi.ViewModels
             Projects = new();
         }
 
+        // user selected a project
+        [RelayCommand]
+        async Task GoToProjectInfoView(ProjectModel selectedProject)
+        {
+            if (IsBusy is true) return;
+
+            try
+            {
+                await Shell.Current.GoToAsync(
+                    nameof(ProjectInfoView),
+                    true,
+                    new Dictionary<string, object>
+                    {
+                    { "Project",selectedProject }
+                    }
+                    );
+            }
+            catch (Exception e)
+            {
+                Debug.WriteLine($"goto projectinfo view error: {e}");
+            }
+        }
+
         // sort:price low to high
         [RelayCommand]
-        async Task SortPriceLowToHigh()
+        void SortPriceLowToHigh()
         {
             if (IsBusy is true) return;
             if (Projects is null) return;
@@ -35,7 +59,7 @@ namespace Shiemi.ViewModels
         }
         // sort:price high to low
         [RelayCommand]
-        async Task SortPriceHighToLow()
+        void SortPriceHighToLow()
         {
             if (IsBusy is true) return;
             if (Projects is null) return;
@@ -46,7 +70,7 @@ namespace Shiemi.ViewModels
         }
         // sort:createddate low to high
         [RelayCommand]
-        async Task SortCreatedDateLowToHigh()
+        void SortCreatedDateLowToHigh()
         {
             if (IsBusy is true) return;
             if (Projects is null) return;
@@ -57,7 +81,7 @@ namespace Shiemi.ViewModels
         }
         // sort:createddate high to low
         [RelayCommand]
-        async Task SortCreatedDateHighToLow()
+        void SortCreatedDateHighToLow()
         {
             if (IsBusy is true) return;
             if (Projects is null) return;

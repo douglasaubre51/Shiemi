@@ -32,9 +32,6 @@ public partial class SignInVM : BaseVM
     {
         _validator = signInValidator;
         _userService = userService;
-
-        // set page title
-        Title = "Sign In";
     }
 
     [RelayCommand]
@@ -80,7 +77,7 @@ public partial class SignInVM : BaseVM
             // save user details
             StorageService.StoreUserDetails(details);
 
-            await Shell.Current.GoToAsync("ProfileView");
+            await Shell.Current.GoToAsync("///UserProfileView");
         }
         catch (Exception e)
         {
