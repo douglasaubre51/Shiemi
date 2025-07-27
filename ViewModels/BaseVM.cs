@@ -5,7 +5,9 @@
         [ObservableProperty]
         [NotifyPropertyChangedFor(nameof(IsNotBusy))]
         bool isBusy;
-
         public bool IsNotBusy => !IsBusy;
+
+        [ObservableProperty]
+        string pageTitle;
     }
 }

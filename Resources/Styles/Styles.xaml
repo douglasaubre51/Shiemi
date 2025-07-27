@@ -24,7 +24,7 @@
     </Style>
     <Style x:Key="primary-title-txt" TargetType="Label">
         <Setter Property="FontFamily" Value="PoppinsLight" />
-        <Setter Property="FontSize" Value="50" />
+        <Setter Property="FontSize" Value="60" />
         <Setter Property="TextColor" Value="{StaticResource Gray500}" />
     </Style>
     <Style x:Key="secondary-title-txt" TargetType="Label">
@@ -33,6 +33,18 @@
         <Setter Property="TextColor" Value="{StaticResource Gray500}" />
     </Style>
     <Style x:Key="profile-header-tag" TargetType="Label">
+        <Setter Property="FontSize" Value="20" />
+        <Setter Property="FontFamily" Value="PoppinsLight" />
+    </Style>
+    <Style x:Key="description-txt" TargetType="Label">
+        <Setter Property="FontSize" Value="25" />
+        <Setter Property="FontFamily" Value="PoppinsLight" />
+    </Style>
+    <Style x:Key="price-txt" TargetType="Label">
+        <Setter Property="FontSize" Value="20" />
+        <Setter Property="FontFamily" Value="PoppinsLight" />
+    </Style>
+    <Style x:Key="date-txt" TargetType="Label">
         <Setter Property="FontSize" Value="20" />
         <Setter Property="FontFamily" Value="PoppinsLight" />
     </Style>
