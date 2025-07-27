@@ -1,4 +1,6 @@
-﻿namespace Shiemi
+﻿using Shiemi.Views;
+
+namespace Shiemi
 {
     public partial class App : Application
     {
@@ -18,6 +20,18 @@
                 X = (displayInfo.Width / displayInfo.Density - 1200) / 2,
                 Y = (displayInfo.Height / displayInfo.Density - 700) / 2
             };
+        }
+
+        protected override async void OnStart()
+        {
+            bool isUserLoggedIn = Preferences.Default.ContainsKey("UserId");
+
+            if (!isUserLoggedIn)
+                await Shell.Current.GoToAsync(nameof(SignInView), true);
+            else
+                await Shell.Current.GoToAsync("///MarketPlaceView", true);
+
+            base.OnStart();
         }
     }
 }

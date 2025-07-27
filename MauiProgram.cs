@@ -3,6 +3,7 @@ using Microsoft.Extensions.Logging;
 using Shiemi.Helpers.Validators;
 using Shiemi.Services;
 using Shiemi.ViewModels;
+using Shiemi.ViewModels.Project;
 using System.Text.Json;
 
 namespace Shiemi
@@ -51,6 +52,7 @@ namespace Shiemi
             builder.Services.AddTransient<CreateProjectVM>();
             builder.Services.AddTransient<MarketPlaceVM>();
             builder.Services.AddTransient<ProjectInfoVM>();
+            builder.Services.AddTransient<ProjectDetailsVM>();
 
             // widget models
 

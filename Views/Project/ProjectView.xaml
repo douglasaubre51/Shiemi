@@ -46,7 +46,9 @@
                             Style="{StaticResource primary-project-card}"
                             VerticalOptions="Fill">
                             <!--  tap event  -->
-                            <Border.GestureRecognizers />
+                            <Border.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:ProjectVM}}, x:DataType=viewmodel:ProjectVM, Path=GoToProjectDetailsViewCommand}" CommandParameter="{Binding .}" />
+                            </Border.GestureRecognizers>
                             <!--  item layout  -->
                             <VerticalStackLayout
                                 Margin="20"
