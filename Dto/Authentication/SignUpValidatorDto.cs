@@ -1,4 +1,4 @@
-namespace Shiemi.Dto;
+namespace Shiemi.Dto.Authentication;
 
 public class SignUpValidatorDto
 {

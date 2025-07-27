@@ -1,4 +1,5 @@
-using Shiemi.Dto;
+using Shiemi.Dto.Authentication;
+using Shiemi.Dto.User;
 using Shiemi.Models;
 using System.Diagnostics;
 using System.Net.Http.Headers;

@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace Shiemi.Dto;
+namespace Shiemi.Dto.Authentication;
 
 public class SignInDto
 {

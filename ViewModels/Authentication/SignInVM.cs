@@ -1,6 +1,6 @@
 using CommunityToolkit.Mvvm.Input;
-using Shiemi.Dto;
-using Shiemi.Helpers;
+using Shiemi.Dto.Authentication;
+using Shiemi.Helpers.Validators;
 using Shiemi.Models;
 using Shiemi.Services;
 using System.Diagnostics;

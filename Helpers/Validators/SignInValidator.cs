@@ -1,8 +1,8 @@
 using System.ComponentModel.DataAnnotations;
 using System.Diagnostics;
-using Shiemi.Dto;
+using Shiemi.Dto.Authentication;
 
-namespace Shiemi.Helpers;
+namespace Shiemi.Helpers.Validators;
 
 public class SignInValidator
 {

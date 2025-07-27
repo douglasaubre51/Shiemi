@@ -1,7 +1,7 @@
-using Shiemi.Dto;
+using Shiemi.Dto.Authentication;
 using System.ComponentModel.DataAnnotations;
 
-namespace Shiemi.Helpers;
+namespace Shiemi.Helpers.Validators;
 
 public class SignUpValidator
 {

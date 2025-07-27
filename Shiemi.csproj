@@ -135,22 +135,22 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <MauiXaml Update="Views\CreateProjectView.xaml">
+	  <MauiXaml Update="Views\Project\CreateProjectView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Views\MarketPlaceView.xaml">
+	  <MauiXaml Update="Views\MarketPlace\MarketPlaceView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Views\ProjectInfoView.xaml">
+	  <MauiXaml Update="Views\Project\ProjectInfoView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Views\ProjectView.xaml">
+	  <MauiXaml Update="Views\Project\ProjectView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Views\SignUpView.xaml">
+	  <MauiXaml Update="Views\Authentication\SignUpView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Views\UserProfileView.xaml">
+	  <MauiXaml Update="Views\User\UserProfileView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	</ItemGroup>
