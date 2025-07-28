@@ -30,7 +30,11 @@
         RowDefinitions="*"
         VerticalOptions="Fill">
         <!--  project grid  -->
-        <ScrollView Grid.Row="0" Orientation="Both">
+        <ScrollView
+            Grid.Row="0"
+            HorizontalOptions="Fill"
+            Orientation="Vertical"
+            VerticalOptions="Fill">
             <CollectionView
                 HorizontalOptions="Fill"
                 ItemSizingStrategy="MeasureAllItems"
@@ -43,6 +47,8 @@
                         <Border
                             BackgroundColor="{StaticResource fourth-background-clr}"
                             HorizontalOptions="Fill"
+                            MinimumHeightRequest="200"
+                            MinimumWidthRequest="300"
                             Style="{StaticResource primary-project-card}"
                             VerticalOptions="Fill">
                             <!--  tap event  -->
@@ -50,24 +56,30 @@
                                 <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:ProjectVM}}, x:DataType=viewmodel:ProjectVM, Path=GoToProjectDetailsViewCommand}" CommandParameter="{Binding .}" />
                             </Border.GestureRecognizers>
                             <!--  item layout  -->
-                            <VerticalStackLayout
+                            <Grid
                                 Margin="20"
                                 HorizontalOptions="Fill"
-                                Spacing="10"
+                                RowDefinitions="*,Auto"
                                 VerticalOptions="Fill">
                                 <Label
-                                    HorizontalOptions="Start"
-                                    Style="{StaticResource secondary-title-txt}"
+                                    Grid.Row="0"
+                                    Style="{StaticResource title-txt-card}"
                                     Text="{Binding Title}" />
-                                <Label HorizontalOptions="Start" Text="{Binding Price, StringFormat='$ {0}'}" />
-                                <Label HorizontalOptions="Start" Text="{Binding CreatedAt, StringFormat='created at: {0}'}" />
-                            </VerticalStackLayout>
+                                <Label
+                                    Grid.Row="1"
+                                    Style="{StaticResource shortDescription-txt-card}"
+                                    Text="{Binding ShortDescription}" />
+                            </Grid>
                         </Border>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
                 <!--  item spacing  -->
                 <CollectionView.ItemsLayout>
-                    <LinearItemsLayout ItemSpacing="10" Orientation="Vertical" />
+                    <GridItemsLayout
+                        HorizontalItemSpacing="10"
+                        Orientation="Vertical"
+                        Span="2"
+                        VerticalItemSpacing="10" />
                 </CollectionView.ItemsLayout>
             </CollectionView>
         </ScrollView>

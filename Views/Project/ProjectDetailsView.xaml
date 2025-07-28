@@ -6,11 +6,48 @@
     xmlns:viewmodel="clr-namespace:Shiemi.ViewModels.Project"
     Title="ProjectDetailsView"
     x:DataType="viewmodel:ProjectDetailsVM">
-    <VerticalStackLayout>
-        <Label
-            HorizontalOptions="Start"
-            Style="{StaticResource primary-title-txt}"
-            Text="{Binding Project.Title}"
-            VerticalOptions="Start" />
-    </VerticalStackLayout>
+    <ScrollView Orientation="Both">
+        <!--  main grid  -->
+        <Grid
+            Margin="20"
+            HorizontalOptions="Fill"
+            RowDefinitions="*,3*,Auto"
+            VerticalOptions="Fill">
+            <!--  title  -->
+            <Label
+                Grid.Row="0"
+                Style="{StaticResource title-txt-details}"
+                Text="{Binding Project.Title}" />
+            <!--  desc layout  -->
+            <VerticalStackLayout
+                Grid.Row="1"
+                HorizontalOptions="Fill"
+                Spacing="20"
+                VerticalOptions="Fill">
+                <!--  desc title  -->
+                <Label FontSize="24" Text="Description" />
+                <!--  desc  -->
+                <Label Style="{StaticResource description-txt-details}" Text="{Binding Project.Description}" />
+            </VerticalStackLayout>
+            <!--  footer  layout  -->
+            <VerticalStackLayout
+                Grid.Row="2"
+                HorizontalOptions="Fill"
+                VerticalOptions="Fill">
+                <!--  price  -->
+                <Label Style="{StaticResource price-txt-details}" Text="{Binding Project.Price, StringFormat='estimated cost: ${0}'}" />
+                <!--  date  -->
+                <Label Style="{StaticResource date-txt-details}" Text="{Binding Project.CreatedAt}" />
+            </VerticalStackLayout>
+            <!--  footer btn group  -->
+            <HorizontalStackLayout
+                Grid.Row="2"
+                HorizontalOptions="End"
+                Spacing="10">
+                <Button Style="{StaticResource primary-btn-details}" Text="chat" />
+                <Button Style="{StaticResource secondary-btn-details}" Text="edit" />
+                <Button Style="{StaticResource tertiary-btn-details}" Text="delete" />
+            </HorizontalStackLayout>
+        </Grid>
+    </ScrollView>
 </ContentPage>

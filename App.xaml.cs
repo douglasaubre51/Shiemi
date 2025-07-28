@@ -29,7 +29,7 @@ namespace Shiemi
             if (!isUserLoggedIn)
                 await Shell.Current.GoToAsync(nameof(SignInView), true);
             else
-                await Shell.Current.GoToAsync("///MarketPlaceView", true);
+                await Shell.Current.GoToAsync("///ProjectView", true);
 
             base.OnStart();
         }

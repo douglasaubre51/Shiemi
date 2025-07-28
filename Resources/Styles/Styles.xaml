@@ -14,6 +14,89 @@
         <Setter Property="Shadow" Value="LightGrey 1 10" />
     </Style>
 
+    <!--  details btn  -->
+    <Style x:Key="primary-btn-details" TargetType="Button">
+        <Setter Property="WidthRequest" Value="200" />
+        <Setter Property="VisualStateManager.VisualStateGroups">
+            <VisualStateGroupList>
+                <VisualStateGroup Name="CommonStates">
+                    <!--  on active  -->
+                    <VisualState Name="Normal">
+                        <VisualState.Setters>
+                            <Setter Property="BackgroundColor" Value="{StaticResource tertiary-accent-clr}" />
+                            <Setter Property="TextColor" Value="White" />
+                        </VisualState.Setters>
+                    </VisualState>
+                </VisualStateGroup>
+            </VisualStateGroupList>
+        </Setter>
+    </Style>
+    <Style x:Key="secondary-btn-details" TargetType="Button">
+        <Setter Property="WidthRequest" Value="100" />
+    </Style>
+    <Style x:Key="tertiary-btn-details" TargetType="Button">
+        <Setter Property="WidthRequest" Value="100" />
+        <Setter Property="VisualStateManager.VisualStateGroups">
+            <VisualStateGroupList>
+                <VisualStateGroup Name="CommonStates">
+                    <!--  on hover  -->
+                    <VisualState Name="PointerOver">
+                        <VisualState.Setters>
+                            <Setter Property="BackgroundColor" Value="Red" />
+                            <Setter Property="BorderWidth" Value="1" />
+                            <Setter Property="TextColor" Value="White" />
+                        </VisualState.Setters>
+                    </VisualState>
+                    <!--  on active  -->
+                    <VisualState Name="Normal">
+                        <VisualState.Setters>
+                            <Setter Property="BackgroundColor" Value="White" />
+                            <Setter Property="TextColor" Value="Black" />
+                        </VisualState.Setters>
+                    </VisualState>
+                </VisualStateGroup>
+            </VisualStateGroupList>
+        </Setter>
+    </Style>
+
+    <!--  card text  -->
+    <Style x:Key="title-txt-card" TargetType="Label">
+        <Setter Property="FontSize" Value="25" />
+        <Setter Property="FontFamily" Value="PoppinsLight" />
+    </Style>
+    <Style x:Key="shortDescription-txt-card" TargetType="Label">
+        <Setter Property="FontSize" Value="13" />
+        <Setter Property="FontFamily" Value="PoppinsLight" />
+    </Style>
+    <Style x:Key="user-txt-card" TargetType="Label">
+        <Setter Property="FontSize" Value="10" />
+        <Setter Property="FontFamily" Value="PoppinsLight" />
+        <Setter Property="TextColor" Value="LightGrey" />
+    </Style>
+    <Style x:Key="date-txt-card" TargetType="Label">
+        <Setter Property="FontSize" Value="10" />
+        <Setter Property="FontFamily" Value="PoppinsLight" />
+    </Style>
+
+    <!--  project details  -->
+    <Style x:Key="title-txt-details" TargetType="Label">
+        <Setter Property="FontSize" Value="50" />
+        <Setter Property="FontFamily" Value="PoppinsLight" />
+    </Style>
+    <Style x:Key="description-txt-details" TargetType="Label">
+        <Setter Property="FontSize" Value="18" />
+        <Setter Property="FontFamily" Value="PoppinsLight" />
+    </Style>
+    <Style x:Key="date-txt-details" TargetType="Label">
+        <Setter Property="FontSize" Value="13" />
+        <Setter Property="FontFamily" Value="PoppinsLight" />
+        <Setter Property="TextColor" Value="Grey" />
+    </Style>
+    <Style x:Key="price-txt-details" TargetType="Label">
+        <Setter Property="FontSize" Value="16" />
+        <Setter Property="FontFamily" Value="PoppinsLight" />
+    </Style>
+
     <!--  headers  -->
     <Style x:Key="header-tag" TargetType="Label">
         <Setter Property="FontSize" Value="50" />
@@ -38,6 +121,10 @@
     </Style>
     <Style x:Key="description-txt" TargetType="Label">
         <Setter Property="FontSize" Value="25" />
+        <Setter Property="FontFamily" Value="PoppinsLight" />
+    </Style>
+    <Style x:Key="shortDescription-txt" TargetType="Label">
+        <Setter Property="FontSize" Value="13" />
         <Setter Property="FontFamily" Value="PoppinsLight" />
     </Style>
     <Style x:Key="price-txt" TargetType="Label">
