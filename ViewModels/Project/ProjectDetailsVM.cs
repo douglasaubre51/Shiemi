@@ -1,4 +1,6 @@
-﻿using Shiemi.Models;
+﻿using CommunityToolkit.Mvvm.Input;
+using Shiemi.Models;
+using Shiemi.Views.Project;
 
 namespace Shiemi.ViewModels.Project
 {
@@ -7,5 +9,13 @@ namespace Shiemi.ViewModels.Project
     {
         [ObservableProperty]
         ProjectModel project;
+
+        [RelayCommand]
+        async Task GoToEditProjectView()
+        {
+            if (IsBusy is true) return;
+
+            await Shell.Current.GoToAsync(nameof(EditProjectView), true);
+        }
     }
 }

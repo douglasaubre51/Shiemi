@@ -53,6 +53,7 @@ namespace Shiemi
             builder.Services.AddTransient<MarketPlaceVM>();
             builder.Services.AddTransient<ProjectInfoVM>();
             builder.Services.AddTransient<ProjectDetailsVM>();
+            builder.Services.AddTransient<EditProjectVM>();
 
             // widget models
 

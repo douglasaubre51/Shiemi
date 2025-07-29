@@ -157,6 +157,11 @@
         <Setter Property="FontSize" Value="Caption" />
     </Style>
 
+    <!--  editors  -->
+    <Style x:Key="editor-txt-edit" TargetType="Editor">
+        <Setter Property="HeightRequest" Value="50" />
+    </Style>
+
     <!--  form-group  -->
     <Style x:Key="form-group" TargetType="VerticalStackLayout">
         <Setter Property="Spacing" Value="0" />

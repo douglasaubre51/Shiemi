@@ -3,11 +3,56 @@
     x:Class="Shiemi.Views.Project.EditProjectView"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    Title="EditProjectView">
-    <VerticalStackLayout>
-        <Label
-            HorizontalOptions="Start"
-            Text="so empty!"
-            VerticalOptions="Start" />
-    </VerticalStackLayout>
+    xmlns:viewmodel="clr-namespace:Shiemi.ViewModels.Project"
+    Title="EditProjectView"
+    x:DataType="viewmodel:EditProjectVM">
+    <!--  main layout  -->
+    <ScrollView Margin="20" Orientation="Vertical">
+        <VerticalStackLayout
+            HorizontalOptions="Fill"
+            MinimumWidthRequest="400"
+            Spacing="40"
+            VerticalOptions="Fill">
+            <!--  title  -->
+            <Label
+                Style="{StaticResource title-txt-details}"
+                Text="edit project"
+                VerticalOptions="Start" />
+            <Grid
+                ColumnDefinitions="*,*"
+                HorizontalOptions="Fill"
+                RowDefinitions="*,*,*,*,*"
+                RowSpacing="40"
+                VerticalOptions="Fill">
+                <!--  project title  -->
+                <VerticalStackLayout Grid.Row="0" Spacing="5">
+                    <Label Style="{StaticResource entry-label}" Text="Title" />
+                    <Entry HorizontalOptions="Fill" />
+                </VerticalStackLayout>
+                <!--  price  -->
+                <VerticalStackLayout Grid.Row="1" Spacing="5">
+                    <Label Style="{StaticResource entry-label}" Text="Price" />
+                    <Entry HorizontalOptions="Fill" />
+                </VerticalStackLayout>
+                <!--  short desc  -->
+                <VerticalStackLayout Grid.Row="2" Spacing="5">
+                    <Label Style="{StaticResource entry-label}" Text="Short Description" />
+                    <Editor
+                        HorizontalOptions="Fill"
+                        MaxLength="50"
+                        Style="{StaticResource editor-txt-edit}" />
+                </VerticalStackLayout>
+                <!--  desc  -->
+                <VerticalStackLayout Grid.Row="3" Spacing="5">
+                    <Label Style="{StaticResource entry-label}" Text="Description" />
+                    <Editor HorizontalOptions="Fill" Style="{StaticResource editor-txt-edit}" />
+                </VerticalStackLayout>
+                <Button
+                    Grid.Row="4"
+                    HorizontalOptions="Fill"
+                    Style="{StaticResource primary-button}"
+                    Text="save" />
+            </Grid>
+        </VerticalStackLayout>
+    </ScrollView>
 </ContentPage>

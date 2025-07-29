@@ -16,6 +16,7 @@ namespace Shiemi
             Routing.RegisterRoute(nameof(CreateProjectView), typeof(CreateProjectView));
             Routing.RegisterRoute(nameof(ProjectInfoView), typeof(ProjectInfoView));
             Routing.RegisterRoute(nameof(ProjectDetailsView), typeof(ProjectDetailsView));
+            Routing.RegisterRoute(nameof(EditProjectView), typeof(EditProjectView));
         }
 
         private async void Button_Clicked(object sender, EventArgs e)
