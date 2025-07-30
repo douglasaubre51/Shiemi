@@ -7,7 +7,7 @@
     Title="TitleBarWindow"
     x:DataType="viewmodel:BaseVM">
     <Window.TitleBar>
-        <TitleBar Title="{Binding PageTitle}" />
+        <TitleBar Title="Shiemi" />
 
     </Window.TitleBar>
 </Window>
