@@ -15,7 +15,16 @@ namespace Shiemi.ViewModels.Project
         {
             if (IsBusy is true) return;
 
-            await Shell.Current.GoToAsync(nameof(EditProjectView), true);
+            Dictionary<string, object> currentProject = new()
+            {
+                {"Project",Project }
+            };
+
+            await Shell.Current.GoToAsync(
+                nameof(EditProjectView),
+                true,
+                currentProject
+                );
         }
     }
 }

@@ -4,22 +4,27 @@ namespace Shiemi
 {
     public partial class App : Application
     {
-        public App()
+        public TitleBarWindow _window { get; set; }
+
+        public App(TitleBarWindow window)
         {
             InitializeComponent();
+            _window = window;
         }
 
         protected override Window CreateWindow(IActivationState? activationState)
         {
             var displayInfo = DeviceDisplay.Current.MainDisplayInfo;
 
-            return new Window(new AppShell())
-            {
-                Width = 1200,
-                Height = 700,
-                X = (displayInfo.Width / displayInfo.Density - 1200) / 2,
-                Y = (displayInfo.Height / displayInfo.Density - 700) / 2
-            };
+            // specify dimensions and positions
+            _window.Width = 1200;
+            _window.Height = 700;
+            _window.X = (displayInfo.Width / displayInfo.Density - 1200) / 2;
+            _window.Y = (displayInfo.Height / displayInfo.Density - 700) / 2;
+
+            _window.Page = new AppShell();
+
+            return _window;
         }
 
         protected override async void OnStart()

@@ -44,7 +44,13 @@ namespace Shiemi
             builder.Services.AddSingleton<ProjectService>();
 
 
+            // titlebar window
+            builder.Services.AddSingleton<TitleBarWindow>();
+
+
             // view models
+            builder.Services.AddSingleton<BaseVM>();
+
             builder.Services.AddTransient<SignInVM>();
             builder.Services.AddTransient<SignUpVM>();
             builder.Services.AddTransient<UserProfileVM>();
@@ -55,7 +61,6 @@ namespace Shiemi
             builder.Services.AddTransient<ProjectDetailsVM>();
             builder.Services.AddTransient<EditProjectVM>();
 
-            // widget models
 
 
             return builder.Build();

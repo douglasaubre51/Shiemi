@@ -9,4 +9,16 @@ public partial class EditProjectView : ContentPage
         InitializeComponent();
         BindingContext = viewModel;
     }
+
+    protected override void OnAppearing()
+    {
+        base.OnAppearing();
+
+        var model = BindingContext as EditProjectVM;
+
+        model.Title = model.Project.Title;
+        model.ShortDescription = model.Project.ShortDescription;
+        model.Description = model.Project.Description;
+        model.Price = model.Project.Price;
+    }
 }

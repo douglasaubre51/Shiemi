@@ -19,7 +19,7 @@
                 Text="edit project"
                 VerticalOptions="Start" />
             <Grid
-                ColumnDefinitions="*,*"
+                ColumnDefinitions="*,*,*"
                 HorizontalOptions="Fill"
                 RowDefinitions="*,*,*,*,*"
                 RowSpacing="40"
@@ -27,12 +27,12 @@
                 <!--  project title  -->
                 <VerticalStackLayout Grid.Row="0" Spacing="5">
                     <Label Style="{StaticResource entry-label}" Text="Title" />
-                    <Entry HorizontalOptions="Fill" />
+                    <Entry HorizontalOptions="Fill" Text="{Binding Title}" />
                 </VerticalStackLayout>
                 <!--  price  -->
                 <VerticalStackLayout Grid.Row="1" Spacing="5">
                     <Label Style="{StaticResource entry-label}" Text="Price" />
-                    <Entry HorizontalOptions="Fill" />
+                    <Entry HorizontalOptions="Fill" Text="{Binding Price}" />
                 </VerticalStackLayout>
                 <!--  short desc  -->
                 <VerticalStackLayout Grid.Row="2" Spacing="5">
@@ -40,12 +40,16 @@
                     <Editor
                         HorizontalOptions="Fill"
                         MaxLength="50"
-                        Style="{StaticResource editor-txt-edit}" />
+                        Style="{StaticResource editor-txt-edit}"
+                        Text="{Binding ShortDescription}" />
                 </VerticalStackLayout>
                 <!--  desc  -->
                 <VerticalStackLayout Grid.Row="3" Spacing="5">
                     <Label Style="{StaticResource entry-label}" Text="Description" />
-                    <Editor HorizontalOptions="Fill" Style="{StaticResource editor-txt-edit}" />
+                    <Editor
+                        HorizontalOptions="Fill"
+                        Style="{StaticResource editor-txt-edit}"
+                        Text="{Binding Description}" />
                 </VerticalStackLayout>
                 <Button
                     Grid.Row="4"

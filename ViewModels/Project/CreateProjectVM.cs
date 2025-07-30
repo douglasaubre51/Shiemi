@@ -37,6 +37,8 @@ namespace Shiemi.ViewModels
         public CreateProjectVM(ProjectService projectService)
         {
             _projectService = projectService;
+            PageTitle = "create new projects";
+            Debug.WriteLine(PageTitle);
         }
 
         [RelayCommand]
