@@ -22,6 +22,13 @@ namespace Shiemi.Services
             _connectivity = connectivity;
         }
 
+        // edit project
+        // POST: project/edit-profile
+        public async Task<bool> EditProfile(ProjectDto projectDto)
+        {
+            return false;
+        }
+
         // fetch all projects
         // GET projects/get-all
         public async Task<ObservableCollection<ProjectModel>?> GetAllProjects()
