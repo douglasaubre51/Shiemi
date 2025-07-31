@@ -26,7 +26,23 @@ namespace Shiemi.Services
         // POST: project/edit-profile
         public async Task<bool> EditProfile(ProjectDto projectDto)
         {
-            return false;
+            if (_connectivity.NetworkAccess != NetworkAccess.Internet)
+            {
+                Debug.WriteLine("offline!");
+                return false;
+            }
+
+            string url = "http://localhost:3000/project/edit-project";
+            HttpClient client = new();
+
+            HttpResponseMessage response = await client.PostAsJsonAsync(url, projectDto, _jsonCasing);
+
+            if (!response.IsSuccessStatusCode)
+            {
+                return false;
+            }
+
+            return true;
         }
 
         // fetch all projects
