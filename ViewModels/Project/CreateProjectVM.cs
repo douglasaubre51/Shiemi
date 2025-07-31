@@ -62,7 +62,7 @@ namespace Shiemi.ViewModels
                 {
                     UserId = userId,
                     Title = Title,
-                    Price = cost,
+                    Price = cost.ToString(),
                     ShortDescription = ShortDescription,
                     Description = Description
                 };

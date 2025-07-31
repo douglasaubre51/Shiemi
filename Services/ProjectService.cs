@@ -36,7 +36,6 @@ namespace Shiemi.Services
             HttpClient client = new();
 
             HttpResponseMessage response = await client.PostAsJsonAsync(url, projectDto, _jsonCasing);
-
             if (!response.IsSuccessStatusCode)
             {
                 return false;

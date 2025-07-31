@@ -52,8 +52,8 @@
                         Text="{Binding Description}" />
                 </VerticalStackLayout>
                 <Button
-                    Command="{Binding SaveEditedProfileCommand}"
                     Grid.Row="4"
+                    Command="{Binding SaveEditedProfileCommand}"
                     HorizontalOptions="Fill"
                     Style="{StaticResource primary-button}"
                     Text="save" />
