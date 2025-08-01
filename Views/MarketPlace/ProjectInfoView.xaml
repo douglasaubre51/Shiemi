@@ -19,12 +19,13 @@
                 Grid.Row="0"
                 Style="{StaticResource title-txt-details}"
                 Text="{Binding Project.Title}" />
-            <!--  desc  -->
-            <Label
-                Grid.Row="1"
-                Margin="0,15,0,0"
-                Style="{StaticResource description-txt-details}"
-                Text="{Binding Project.Description}" />
+            <!--  desc layout  -->
+            <VerticalStackLayout Grid.Row="1" Spacing="20">
+                <!--  desc title  -->
+                <Label Style="{StaticResource desc-title-txt-details}" Text="Description" />
+                <!--  desc  -->
+                <Label Style="{StaticResource description-txt-details}" Text="{Binding Project.Description}" />
+            </VerticalStackLayout>
             <!--  footer  -->
             <VerticalStackLayout
                 Grid.Row="2"

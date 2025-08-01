@@ -83,6 +83,9 @@
         <Setter Property="FontSize" Value="50" />
         <Setter Property="FontFamily" Value="PoppinsLight" />
     </Style>
+    <Style x:Key="desc-title-txt-details" TargetType="Label">
+        <Setter Property="FontSize" Value="24" />
+    </Style>
     <Style x:Key="description-txt-details" TargetType="Label">
         <Setter Property="FontSize" Value="18" />
         <Setter Property="FontFamily" Value="PoppinsLight" />
