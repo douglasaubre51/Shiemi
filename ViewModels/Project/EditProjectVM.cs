@@ -40,13 +40,16 @@ namespace Shiemi.ViewModels.Project
 
             try
             {
+                Debug.WriteLine($"project id for update : {Project.ProjectId}");
+
                 ProjectDto dto = new()
                 {
                     UserId = Project.UserId,
                     Title = Title,
                     ShortDescription = ShortDescription,
                     Description = Description,
-                    Price = Price
+                    Price = Price,
+                    ProjectId = Project.ProjectId
                 };
 
                 bool isSuccess = await _projectService.EditProfile(dto);

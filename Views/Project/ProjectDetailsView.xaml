@@ -35,7 +35,7 @@
                 HorizontalOptions="Fill"
                 VerticalOptions="Fill">
                 <!--  price  -->
-                <Label Style="{StaticResource price-txt-details}" Text="{Binding Project.Price, StringFormat='estimated cost: ${0}'}" />
+                <Label Style="{StaticResource price-txt-details}" Text="{Binding Project.Price, StringFormat='estimated cost: Rs {0}'}" />
                 <!--  date  -->
                 <Label Style="{StaticResource date-txt-details}" Text="{Binding Project.CreatedAt}" />
             </VerticalStackLayout>
