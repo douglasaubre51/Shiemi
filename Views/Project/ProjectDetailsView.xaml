@@ -10,17 +10,20 @@
         <!--  main grid  -->
         <Grid
             Margin="20"
+            ColumnDefinitions="*,*"
             HorizontalOptions="Fill"
             RowDefinitions="*,3*,Auto"
             VerticalOptions="Fill">
             <!--  title  -->
             <Label
                 Grid.Row="0"
+                Grid.ColumnSpan="2"
                 Style="{StaticResource title-txt-details}"
                 Text="{Binding Project.Title}" />
             <!--  desc layout  -->
             <VerticalStackLayout
                 Grid.Row="1"
+                Grid.Column="0"
                 HorizontalOptions="Fill"
                 Spacing="20"
                 VerticalOptions="Fill">
@@ -29,9 +32,10 @@
                 <!--  desc  -->
                 <Label Style="{StaticResource description-txt-details}" Text="{Binding Project.Description}" />
             </VerticalStackLayout>
-            <!--  footer  layout  -->
+            <!--  footer  left text group  -->
             <VerticalStackLayout
                 Grid.Row="2"
+                Grid.Column="0"
                 HorizontalOptions="Fill"
                 VerticalOptions="Fill">
                 <!--  price  -->
@@ -39,16 +43,21 @@
                 <!--  date  -->
                 <Label Style="{StaticResource date-txt-details}" Text="{Binding Project.CreatedAt}" />
             </VerticalStackLayout>
-            <!--  footer btn group  -->
+            <!--  footer right btn group  -->
             <HorizontalStackLayout
                 Grid.Row="2"
+                Grid.Column="1"
                 HorizontalOptions="End"
-                Spacing="10">
+                Spacing="10"
+                VerticalOptions="Fill">
+                <!--  chat btn  -->
                 <Button Style="{StaticResource primary-btn-details}" Text="chat" />
+                <!--  edit btn  -->
                 <Button
                     Command="{Binding GoToEditProjectViewCommand}"
                     Style="{StaticResource secondary-btn-details}"
                     Text="edit" />
+                <!--  delete btn  -->
                 <Button Style="{StaticResource tertiary-btn-details}" Text="delete" />
             </HorizontalStackLayout>
         </Grid>
