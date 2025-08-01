@@ -46,22 +46,24 @@
                     <DataTemplate x:DataType="model:ProjectModel">
                         <!--  item  -->
                         <Border
-                            Padding="10"
+                            Padding="20"
                             BackgroundColor="White"
                             HorizontalOptions="Fill"
+                            MinimumHeightRequest="200"
                             MinimumWidthRequest="300"
                             Style="{StaticResource primary-project-card}"
                             VerticalOptions="Fill">
-                            <VerticalStackLayout
-                                Padding="10"
+                            <Grid
                                 HorizontalOptions="Fill"
-                                Spacing="10"
+                                RowDefinitions="2*,*,Auto"
                                 VerticalOptions="Fill">
-                                <Label Style="{StaticResource secondary-title-txt}" Text="{Binding Title}" />
-                                <Label Text="{Binding ShortDescription}" />
-                                <Label Text="{Binding Price, StringFormat='$ {0}'}" />
-                                <Label Text="{Binding CreatedAt, StringFormat='created at: {0}'}" />
-                            </VerticalStackLayout>
+                                <Label
+                                    Grid.Row="0"
+                                    Style="{StaticResource secondary-title-txt}"
+                                    Text="{Binding Title}" />
+                                <Label Grid.Row="1" Text="{Binding ShortDescription}" />
+                                <Label Grid.Row="2" Text="{Binding Price, StringFormat='Rs {0}'}" />
+                            </Grid>
                             <Border.GestureRecognizers>
                                 <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:MarketPlaceVM}}, x:DataType=viewmodel:MarketPlaceVM, Path=GoToProjectInfoViewCommand}" CommandParameter="{Binding .}" />
                             </Border.GestureRecognizers>
