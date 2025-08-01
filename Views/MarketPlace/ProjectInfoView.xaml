@@ -7,36 +7,36 @@
     x:DataType="viewmodel:ProjectInfoVM"
     Shell.NavBarIsVisible="False">
     <!--  main layout  -->
-    <Grid
-        Margin="20,10,0,10"
-        HorizontalOptions="Fill"
-        RowDefinitions="*,Auto"
-        RowSpacing="10"
-        VerticalOptions="Fill">
-        <ScrollView Orientation="Both">
-            <VerticalStackLayout
-                Grid.Row="0"
-                HorizontalOptions="Fill"
-                Spacing="20"
-                VerticalOptions="Fill">
-                <!--  title  -->
-                <Label Style="{StaticResource primary-title-txt}" Text="{Binding Project.Title}" />
-                <!--  text details  -->
-                <Label
-                    Margin="0,15,0,0"
-                    Style="{StaticResource description-txt}"
-                    Text="{Binding Project.Description}" />
-            </VerticalStackLayout>
-        </ScrollView>
-        <!--  extras  -->
-        <VerticalStackLayout
-            Grid.Row="1"
-            Margin="0,20,0,10"
+    <ScrollView Orientation="Both">
+        <Grid
+            Margin="20,10,0,10"
             HorizontalOptions="Fill"
-            Spacing="10"
+            RowDefinitions="*,3*,Auto"
+            RowSpacing="10"
             VerticalOptions="Fill">
-            <Label Style="{StaticResource price-txt}" Text="{Binding Project.Price, StringFormat='estimated cost:  ${0}'}" />
-            <Label Style="{StaticResource date-txt}" Text="{Binding Project.CreatedAt, StringFormat='created at:  {0}'}" />
-        </VerticalStackLayout>
-    </Grid>
+            <!--  title  -->
+            <Label
+                Grid.Row="0"
+                Style="{StaticResource title-txt-details}"
+                Text="{Binding Project.Title}" />
+            <!--  desc  -->
+            <Label
+                Grid.Row="1"
+                Margin="0,15,0,0"
+                Style="{StaticResource description-txt-details}"
+                Text="{Binding Project.Description}" />
+            <!--  footer  -->
+            <VerticalStackLayout
+                Grid.Row="2"
+                Margin="0,20,0,10"
+                HorizontalOptions="Fill"
+                Spacing="10"
+                VerticalOptions="Fill">
+                <!--  price  -->
+                <Label Style="{StaticResource price-txt-details}" Text="{Binding Project.Price, StringFormat='estimated cost:  ${0}'}" />
+                <!--  created date  -->
+                <Label Style="{StaticResource date-txt-details}" Text="{Binding Project.CreatedAt, StringFormat='created at:  {0}'}" />
+            </VerticalStackLayout>
+        </Grid>
+    </ScrollView>
 </ContentPage>
