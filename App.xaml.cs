@@ -17,10 +17,10 @@ namespace Shiemi
             var displayInfo = DeviceDisplay.Current.MainDisplayInfo;
 
             // specify dimensions and positions
-            _window.Width = 1200;
+            _window.Width = 1280;
             _window.Height = 700;
-            _window.X = (displayInfo.Width / displayInfo.Density - 1200) / 2;
-            _window.Y = (displayInfo.Height / displayInfo.Density - 700) / 2;
+            _window.X = (displayInfo.Width / displayInfo.Density - _window.Width) / 2;
+            _window.Y = (displayInfo.Height / displayInfo.Density - _window.Height) / 2;
 
             _window.Page = new AppShell();
 
@@ -34,7 +34,7 @@ namespace Shiemi
             if (!isUserLoggedIn)
                 await Shell.Current.GoToAsync(nameof(SignInView), true);
             else
-                await Shell.Current.GoToAsync("///ProjectView", true);
+                await Shell.Current.GoToAsync("///MarketPlaceView", true);
 
             base.OnStart();
         }
