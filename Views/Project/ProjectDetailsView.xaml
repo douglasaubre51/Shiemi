@@ -6,12 +6,13 @@
     xmlns:viewmodel="clr-namespace:Shiemi.ViewModels.Project"
     Title="ProjectDetailsView"
     x:DataType="viewmodel:ProjectDetailsVM">
-    <ScrollView Orientation="Both">
-        <!--  main grid  -->
+    <!--  main grid  -->
+    <ScrollView Orientation="Vertical">
         <Grid
             Margin="20"
             ColumnDefinitions="*,*"
             HorizontalOptions="Fill"
+            MinimumWidthRequest="500"
             RowDefinitions="*,3*,Auto"
             VerticalOptions="Fill">
             <!--  title  -->
@@ -24,42 +25,46 @@
             <VerticalStackLayout
                 Grid.Row="1"
                 Grid.Column="0"
-                HorizontalOptions="Fill"
-                Spacing="20"
-                VerticalOptions="Fill">
+                Spacing="20">
                 <!--  desc title  -->
                 <Label FontSize="24" Text="Description" />
                 <!--  desc  -->
                 <Label Style="{StaticResource description-txt-details}" Text="{Binding Project.Description}" />
             </VerticalStackLayout>
             <!--  footer  left text group  -->
-            <VerticalStackLayout
+            <Grid
                 Grid.Row="2"
-                Grid.Column="0"
-                HorizontalOptions="Fill"
-                VerticalOptions="Fill">
-                <!--  price  -->
-                <Label Style="{StaticResource price-txt-details}" Text="{Binding Project.Price, StringFormat='estimated cost: Rs {0}'}" />
-                <!--  date  -->
-                <Label Style="{StaticResource date-txt-details}" Text="{Binding Project.CreatedAt}" />
-            </VerticalStackLayout>
-            <!--  footer right btn group  -->
-            <HorizontalStackLayout
-                Grid.Row="2"
-                Grid.Column="1"
-                HorizontalOptions="End"
-                Spacing="10"
-                VerticalOptions="Fill">
-                <!--  chat btn  -->
-                <Button Style="{StaticResource primary-btn-details}" Text="chat" />
-                <!--  edit btn  -->
-                <Button
-                    Command="{Binding GoToEditProjectViewCommand}"
-                    Style="{StaticResource secondary-btn-details}"
-                    Text="edit" />
-                <!--  delete btn  -->
-                <Button Style="{StaticResource tertiary-btn-details}" Text="delete" />
-            </HorizontalStackLayout>
+                Grid.ColumnSpan="2"
+                ColumnDefinitions="*,*"
+                RowDefinitions="*">
+                <VerticalStackLayout
+                    Grid.Row="0"
+                    Grid.Column="0"
+                    HorizontalOptions="Start"
+                    VerticalOptions="Fill">
+                    <!--  price  -->
+                    <Label Style="{StaticResource price-txt-details}" Text="{Binding Project.Price, StringFormat='estimated cost: Rs {0}'}" />
+                    <!--  date  -->
+                    <Label Style="{StaticResource date-txt-details}" Text="{Binding Project.CreatedAt}" />
+                </VerticalStackLayout>
+                <!--  footer right btn group  -->
+                <HorizontalStackLayout
+                    Grid.Row="0"
+                    Grid.Column="1"
+                    HorizontalOptions="End"
+                    Spacing="10"
+                    VerticalOptions="Fill">
+                    <!--  chat btn  -->
+                    <Button Style="{StaticResource primary-btn-details}" Text="chat" />
+                    <!--  edit btn  -->
+                    <Button
+                        Command="{Binding GoToEditProjectViewCommand}"
+                        Style="{StaticResource secondary-btn-details}"
+                        Text="edit" />
+                    <!--  delete btn  -->
+                    <Button Style="{StaticResource tertiary-btn-details}" Text="delete" />
+                </HorizontalStackLayout>
+            </Grid>
         </Grid>
     </ScrollView>
 </ContentPage>
