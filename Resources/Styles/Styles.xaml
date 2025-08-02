@@ -14,7 +14,29 @@
         <Setter Property="Shadow" Value="LightGrey 1 10" />
     </Style>
 
-    <!--  details btn  -->
+    <!--  btn  -->
+    <Style x:Key="secondary-btn-profile" TargetType="Button">
+        <Setter Property="VisualStateManager.VisualStateGroups">
+            <VisualStateGroupList>
+                <VisualStateGroup Name="CommonStates">
+                    <!--  on active  -->
+                    <VisualState Name="Normal">
+                        <VisualState.Setters>
+                            <Setter Property="BackgroundColor" Value="White" />
+                            <Setter Property="TextColor" Value="{StaticResource secondary-accent-clr}" />
+                            <Setter Property="BorderColor" Value="{StaticResource secondary-accent-clr}" />
+                        </VisualState.Setters>
+                    </VisualState>
+                    <VisualState Name="PointerOver">
+                        <VisualState.Setters>
+                            <Setter Property="BackgroundColor" Value="{StaticResource secondary-accent-clr}" />
+                            <Setter Property="TextColor" Value="White" />
+                        </VisualState.Setters>
+                    </VisualState>
+                </VisualStateGroup>
+            </VisualStateGroupList>
+        </Setter>
+    </Style>
     <Style x:Key="primary-btn-details" TargetType="Button">
         <Setter Property="WidthRequest" Value="200" />
         <Setter Property="VisualStateManager.VisualStateGroups">
@@ -57,6 +79,12 @@
                 </VisualStateGroup>
             </VisualStateGroupList>
         </Setter>
+    </Style>
+
+    <!--  settings text  -->
+    <Style x:Key="primary-text-setting" TargetType="Label">
+        <Setter Property="FontSize" Value="14" />
+        <Setter Property="FontFamily" Value="PoppinsLight" />
     </Style>
 
     <!--  card text  -->
@@ -174,7 +202,7 @@
     <Style x:Key="profile-card" TargetType="Border">
         <Setter Property="Stroke" Value="Transparent" />
         <Setter Property="StrokeShape" Value="RoundRectangle 10" />
-        <Setter Property="BackgroundColor" Value="{StaticResource secondary-background-clr}" />
+        <Setter Property="BackgroundColor" Value="White" />
     </Style>
 
     <!--  buttons  -->
