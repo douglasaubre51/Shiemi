@@ -7,20 +7,26 @@
     x:DataType="viewmodel:ProjectInfoVM"
     Shell.NavBarIsVisible="False">
     <!--  main layout  -->
-    <ScrollView Orientation="Both">
+    <ScrollView Orientation="Vertical">
         <Grid
             Margin="20,10,0,10"
+            ColumnDefinitions="*,*"
             HorizontalOptions="Fill"
+            MinimumWidthRequest="500"
             RowDefinitions="*,3*,Auto"
             RowSpacing="10"
             VerticalOptions="Fill">
             <!--  title  -->
             <Label
                 Grid.Row="0"
+                Grid.ColumnSpan="2"
                 Style="{StaticResource title-txt-details}"
                 Text="{Binding Project.Title}" />
             <!--  desc layout  -->
-            <VerticalStackLayout Grid.Row="1" Spacing="20">
+            <VerticalStackLayout
+                Grid.Row="1"
+                Grid.Column="0"
+                Spacing="20">
                 <!--  desc title  -->
                 <Label Style="{StaticResource desc-title-txt-details}" Text="Description" />
                 <!--  desc  -->
@@ -29,6 +35,7 @@
             <!--  footer  -->
             <VerticalStackLayout
                 Grid.Row="2"
+                Grid.Column="0"
                 Margin="0,20,0,10"
                 HorizontalOptions="Fill"
                 Spacing="10"
