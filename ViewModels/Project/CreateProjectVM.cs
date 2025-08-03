@@ -1,6 +1,7 @@
 ﻿using CommunityToolkit.Mvvm.Input;
 using Shiemi.Dto.Project;
 using Shiemi.Services;
+using Shiemi.Services.Storage;
 using System.Diagnostics;
 
 namespace Shiemi.ViewModels
@@ -57,7 +58,7 @@ namespace Shiemi.ViewModels
                 decimal cost = decimal.Parse(Price);
 
                 // validated, pack data
-                string userId = StorageService.GetUserId();
+                string userId = UserStorage.GetUserId();
                 ProjectDto project = new()
                 {
                     UserId = userId,

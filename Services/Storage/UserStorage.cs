@@ -1,8 +1,8 @@
 ﻿using Shiemi.Models;
 
-namespace Shiemi.Services
+namespace Shiemi.Services.Storage
 {
-    public static class StorageService
+    public static class UserStorage
     {
         public static void StoreUserDetails(DetailsModel details)
         {
@@ -38,7 +38,7 @@ namespace Shiemi.Services
 
         public static string GetUserId()
         {
-            return Preferences.Default.Get<String>("UserId", string.Empty);
+            return Preferences.Default.Get("UserId", string.Empty);
         }
     }
 }

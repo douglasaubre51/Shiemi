@@ -42,6 +42,7 @@ namespace Shiemi
             // REST
             builder.Services.AddSingleton<UserService>();
             builder.Services.AddSingleton<ProjectService>();
+            builder.Services.AddSingleton<SettingsService>();
 
 
             // titlebar window

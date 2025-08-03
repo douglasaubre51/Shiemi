@@ -3,6 +3,7 @@
     x:Class="Shiemi.Views.UserProfileView"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
     xmlns:viewmodel="clr-namespace:Shiemi.ViewModels"
     x:DataType="viewmodel:UserProfileVM"
     BackgroundColor="LightSlateGrey">
@@ -57,6 +58,7 @@
                 HorizontalOptions="Fill"
                 RowDefinitions="30"
                 VerticalOptions="Fill">
+                <!--  dev mode  -->
                 <Label
                     Grid.Row="0"
                     Grid.Column="0"
@@ -68,8 +70,10 @@
                     Grid.Row="0"
                     Grid.Column="1"
                     HorizontalOptions="End"
-                    IsToggled="False"
+                    IsEnabled="{Binding IsNotBusy}"
+                    IsToggled="{Binding IsDeveloper}"
                     OnColor="{StaticResource secondary-accent-clr}"
+                    Toggled="Switch_Toggled"
                     VerticalOptions="Start" />
             </Grid>
         </Grid>

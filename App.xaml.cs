@@ -29,6 +29,9 @@ namespace Shiemi
 
         protected override async void OnStart()
         {
+            // storage clearing done here!
+
+            // login redirection
             bool isUserLoggedIn = Preferences.Default.ContainsKey("UserId");
 
             if (!isUserLoggedIn)

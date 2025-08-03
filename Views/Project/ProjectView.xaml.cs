@@ -23,7 +23,7 @@ public partial class ProjectView : ContentPage
         }
         catch (Exception e)
         {
-            Debug.WriteLine("fillproject collection error!");
+            Debug.WriteLine($"fillproject collection error: {e}");
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using CommunityToolkit.Mvvm.Input;
 using Shiemi.Models;
 using Shiemi.Services;
+using Shiemi.Services.Storage;
 using Shiemi.Views.Project;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
@@ -19,7 +20,7 @@ namespace Shiemi.ViewModels
         public ProjectVM(ProjectService projectService)
         {
             // fetch userid
-            userId = StorageService.GetUserId();
+            userId = UserStorage.GetUserId();
             _projectService = projectService;
         }
 

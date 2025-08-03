@@ -3,6 +3,7 @@ using Shiemi.Dto.Authentication;
 using Shiemi.Helpers.Validators;
 using Shiemi.Models;
 using Shiemi.Services;
+using Shiemi.Services.Storage;
 using System.Diagnostics;
 
 namespace Shiemi.ViewModels;
@@ -69,13 +70,13 @@ public partial class SignInVM : BaseVM
             string userId = await _userService.RequestSignIn(model);
             if (userId is null) return;
 
-            StorageService.ClearUserData();
+            UserStorage.ClearUserData();
 
             // request user details
             DetailsModel details = await _userService.RequestUserDetails(userId);
 
             // save user details
-            StorageService.StoreUserDetails(details);
+            UserStorage.StoreUserDetails(details);
 
             await Shell.Current.GoToAsync("///UserProfileView");
         }
