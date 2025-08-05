@@ -55,8 +55,14 @@
                 <Grid
                     Margin="10"
                     HorizontalOptions="Fill"
-                    RowDefinitions="*,2*,Auto"
+                    RowDefinitions="70,2*,Auto"
                     VerticalOptions="Fill">
+                    <!-- title bar -->
+                    <Border Style="{StaticResource border-radius-card}" Grid.Row="0" HorizontalOptions="Fill" BackgroundColor="White">
+                        <HorizontalStackLayout Margin="20">
+                            <Label Text="John Smith" VerticalOptions="End" FontSize="20"/>
+                        </HorizontalStackLayout>
+                    </Border>
                     <!--  chat box  -->
                     <VerticalStackLayout
                         Grid.Row="2"
