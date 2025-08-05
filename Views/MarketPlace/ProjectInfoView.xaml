@@ -7,14 +7,14 @@
     x:DataType="viewmodel:ProjectInfoVM"
     Shell.NavBarIsVisible="False">
     <!--  main layout  -->
-    <ScrollView Orientation="Vertical">
+    <ScrollView Margin="20" Orientation="Vertical">
         <Grid
-            Margin="20,10,0,10"
-            ColumnDefinitions="*,*"
+            ColumnDefinitions="2*,1.2*"
+            ColumnSpacing="10"
             HorizontalOptions="Fill"
             MinimumWidthRequest="500"
             RowDefinitions="*,3*,Auto"
-            RowSpacing="10"
+            RowSpacing="20"
             VerticalOptions="Fill">
             <!--  title  -->
             <Label
@@ -36,7 +36,6 @@
             <VerticalStackLayout
                 Grid.Row="2"
                 Grid.Column="0"
-                Margin="0,20,0,10"
                 HorizontalOptions="Fill"
                 Spacing="10"
                 VerticalOptions="Fill">
@@ -45,6 +44,38 @@
                 <!--  created date  -->
                 <Label Style="{StaticResource date-txt-details}" Text="{Binding Project.CreatedAt, StringFormat='created at:  {0}'}" />
             </VerticalStackLayout>
+            <!--  message layout  -->
+            <Border
+                Grid.RowSpan="3"
+                Grid.Column="1"
+                BackgroundColor="LightGrey"
+                HorizontalOptions="Fill"
+                Style="{StaticResource border-radius-card}"
+                VerticalOptions="Fill">
+                <Grid
+                    Margin="10"
+                    HorizontalOptions="Fill"
+                    RowDefinitions="*,2*,Auto"
+                    VerticalOptions="Fill">
+                    <!--  chat box  -->
+                    <VerticalStackLayout
+                        Grid.Row="2"
+                        HorizontalOptions="Fill"
+                        Spacing="10"
+                        VerticalOptions="Fill">
+                        <!--  chat box  -->
+                        <Editor
+                            HorizontalOptions="Fill"
+                            Placeholder="send a request . . ."
+                            Style="{StaticResource message-box-chat}" />
+                        <!--  send message btn  -->
+                        <Button
+                            HorizontalOptions="Fill"
+                            Style="{StaticResource primary-button}"
+                            Text="send" />
+                    </VerticalStackLayout>
+                </Grid>
+            </Border>
         </Grid>
     </ScrollView>
 </ContentPage>
