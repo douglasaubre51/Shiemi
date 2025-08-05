@@ -41,7 +41,4 @@ Global
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {D366C5A5-8089-4889-89F2-B7E5F3F83F3E}
 	EndGlobalSection
-	GlobalSection(SharedMSBuildProjectFiles) = preSolution
-		..\Shiemi.Shared\Shiemi.Shared.projitems*{68dbdd4c-cfa2-4c8e-9972-f271de82dfc6}*SharedItemsImports = 13
-	EndGlobalSection
 EndGlobal
