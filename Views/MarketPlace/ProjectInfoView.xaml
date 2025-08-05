@@ -53,15 +53,37 @@
                 Style="{StaticResource border-radius-card}"
                 VerticalOptions="Fill">
                 <Grid
-                    Margin="10"
+                    Margin="14"
                     HorizontalOptions="Fill"
-                    RowDefinitions="70,2*,Auto"
+                    RowDefinitions="70,*,Auto"
                     VerticalOptions="Fill">
-                    <!-- title bar -->
-                    <Border Style="{StaticResource border-radius-card}" Grid.Row="0" HorizontalOptions="Fill" BackgroundColor="White">
-                        <HorizontalStackLayout Margin="20">
-                            <Label Text="John Smith" VerticalOptions="End" FontSize="20"/>
+                    <!--  title bar  -->
+                    <Border
+                        Grid.Row="0"
+                        HorizontalOptions="Fill"
+                        Style="{StaticResource border-radius-card}">
+                        <HorizontalStackLayout>
+                            <!--  user name  -->
+                            <Label
+                                FontSize="40"
+                                Text="John Smith"
+                                VerticalOptions="End" />
+                            <!--  profile pic circle  -->
+                            <!--<Border
+                                Padding="50"
+                                BackgroundColor="Green"
+                                HorizontalOptions="End"
+                                Scale="1"
+                                Style="{StaticResource profile-pic-circle}" />-->
                         </HorizontalStackLayout>
+                    </Border>
+                    <!--  chat area  -->
+                    <Border
+                        Grid.Row="1"
+                        Margin="0,14,0,14"
+                        BackgroundColor="White"
+                        Style="{StaticResource border-radius-card}">
+                        <VerticalStackLayout HorizontalOptions="Fill" VerticalOptions="Fill" />
                     </Border>
                     <!--  chat box  -->
                     <VerticalStackLayout
