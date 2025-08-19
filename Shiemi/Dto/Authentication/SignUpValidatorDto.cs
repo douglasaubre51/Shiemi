@@ -2,12 +2,12 @@ namespace Shiemi.Dto.Authentication;
 
 public class SignUpValidatorDto
 {
-    public string FirstNameMessage { get; set; }
-    public string LastNameMessage { get; set; }
-    public string EmailMessage { get; set; }
-    public string PhoneNoMessage { get; set; }
-    public string PasswordMessage { get; set; }
-    public string CheckPasswordMessage { get; set; }
+    public string? FirstNameMessage { get; set; }
+    public string? LastNameMessage { get; set; }
+    public string? EmailMessage { get; set; }
+    public string? PhoneNoMessage { get; set; }
+    public string? PasswordMessage { get; set; }
+    public string? CheckPasswordMessage { get; set; }
 
     public void Deconstruct(
         out string FirstNameMessage,
@@ -18,11 +18,11 @@ public class SignUpValidatorDto
         out string CheckPasswordMessage
         )
     {
-        FirstNameMessage = this.FirstNameMessage;
-        LastNameMessage = this.LastNameMessage;
-        EmailMessage = this.EmailMessage;
-        PhoneNoMessage = this.PhoneNoMessage;
-        PasswordMessage = this.PasswordMessage;
-        CheckPasswordMessage = this.CheckPasswordMessage;
+        FirstNameMessage = this.FirstNameMessage ?? string.Empty;
+        LastNameMessage = this.LastNameMessage ?? string.Empty;
+        EmailMessage = this.EmailMessage ?? string.Empty;
+        PhoneNoMessage = this.PhoneNoMessage ?? string.Empty;
+        PasswordMessage = this.PasswordMessage ?? string.Empty;
+        CheckPasswordMessage = this.CheckPasswordMessage ?? string.Empty;
     }
 }

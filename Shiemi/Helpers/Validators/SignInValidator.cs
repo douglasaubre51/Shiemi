@@ -1,6 +1,6 @@
+using Shiemi.Dto.Authentication;
 using System.ComponentModel.DataAnnotations;
 using System.Diagnostics;
-using Shiemi.Dto.Authentication;
 
 namespace Shiemi.Helpers.Validators;
 
@@ -13,8 +13,8 @@ public class SignInValidator
         passwordValidation = string.Empty;
 
         // validation
-        ValidationContext context = new ValidationContext(model);
-        List<ValidationResult> results = new List<ValidationResult>();
+        ValidationContext context = new(model);
+        List<ValidationResult> results = [];
 
         bool result = Validator.TryValidateObject(model, context, results, true);
 

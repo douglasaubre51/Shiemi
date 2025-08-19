@@ -44,7 +44,7 @@ public class UserService
         // fetch user id
         string responseJsonString = await response.Content.ReadAsStringAsync();
         UserIdDto? dto = JsonSerializer.Deserialize<UserIdDto>(responseJsonString, _jsonCasing);
-        string userId = dto.UserId;
+        string? userId = dto!.UserId;
 
         return userId;
     }
@@ -56,12 +56,14 @@ public class UserService
         HttpClient _client = new HttpClient();
 
         // create form
-        var form = new MultipartFormDataContent();
-        form.Add(new StringContent(signUpDto.FirstName), "firstName");
-        form.Add(new StringContent(signUpDto.LastName), "lastName");
-        form.Add(new StringContent(signUpDto.Email), "email");
-        form.Add(new StringContent(signUpDto.Password), "password");
-        form.Add(new StringContent(signUpDto.PhoneNo), "phoneNo");
+        var form = new MultipartFormDataContent
+        {
+            { new StringContent(signUpDto.FirstName), "firstName" },
+            { new StringContent(signUpDto.LastName), "lastName" },
+            { new StringContent(signUpDto.Email), "email" },
+            { new StringContent(signUpDto.Password), "password" },
+            { new StringContent(signUpDto.PhoneNo), "phoneNo" }
+        };
 
         var imageForm = new ByteArrayContent(await File.ReadAllBytesAsync(imageSource));
         var imageExtension = Path.GetExtension(imageSource);

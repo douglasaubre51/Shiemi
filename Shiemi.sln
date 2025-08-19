@@ -5,6 +5,10 @@ VisualStudioVersion = 17.14.36212.18
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shiemi", "Shiemi\Shiemi.csproj", "{6966F924-C403-450E-88F5-2498F4003EB4}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shiemi.ChatApi", "Shiemi.ChatApi\Shiemi.ChatApi.csproj", "{0772C0EA-95A4-4D23-B4E9-BC74EFB04FF4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shiemi.Shared", "Shiemi.Shared\Shiemi.Shared.csproj", "{74A5C20E-8C5E-4E09-8690-9F707FC02DAD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -23,6 +27,22 @@ Global
 		{6966F924-C403-450E-88F5-2498F4003EB4}.Release|Any CPU.Build.0 = Release|Any CPU
 		{6966F924-C403-450E-88F5-2498F4003EB4}.Release|x64.ActiveCfg = Release|x64
 		{6966F924-C403-450E-88F5-2498F4003EB4}.Release|x64.Build.0 = Release|x64
+		{0772C0EA-95A4-4D23-B4E9-BC74EFB04FF4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0772C0EA-95A4-4D23-B4E9-BC74EFB04FF4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0772C0EA-95A4-4D23-B4E9-BC74EFB04FF4}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{0772C0EA-95A4-4D23-B4E9-BC74EFB04FF4}.Debug|x64.Build.0 = Debug|Any CPU
+		{0772C0EA-95A4-4D23-B4E9-BC74EFB04FF4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0772C0EA-95A4-4D23-B4E9-BC74EFB04FF4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0772C0EA-95A4-4D23-B4E9-BC74EFB04FF4}.Release|x64.ActiveCfg = Release|Any CPU
+		{0772C0EA-95A4-4D23-B4E9-BC74EFB04FF4}.Release|x64.Build.0 = Release|Any CPU
+		{74A5C20E-8C5E-4E09-8690-9F707FC02DAD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{74A5C20E-8C5E-4E09-8690-9F707FC02DAD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{74A5C20E-8C5E-4E09-8690-9F707FC02DAD}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{74A5C20E-8C5E-4E09-8690-9F707FC02DAD}.Debug|x64.Build.0 = Debug|Any CPU
+		{74A5C20E-8C5E-4E09-8690-9F707FC02DAD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{74A5C20E-8C5E-4E09-8690-9F707FC02DAD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{74A5C20E-8C5E-4E09-8690-9F707FC02DAD}.Release|x64.ActiveCfg = Release|Any CPU
+		{74A5C20E-8C5E-4E09-8690-9F707FC02DAD}.Release|x64.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

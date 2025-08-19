@@ -108,6 +108,7 @@ namespace Shiemi.ViewModels
             }
             catch (Exception e)
             {
+                Debug.WriteLine("TriggerFilePicker error: " + e);
             }
             finally
             {

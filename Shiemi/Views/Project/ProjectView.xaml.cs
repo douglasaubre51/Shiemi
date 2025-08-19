@@ -19,7 +19,7 @@ public partial class ProjectView : ContentPage
 
         try
         {
-            await projectVM.FillProjectCollection();
+            await projectVM!.FillProjectCollection();
         }
         catch (Exception e)
         {

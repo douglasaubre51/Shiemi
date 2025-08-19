@@ -15,9 +15,9 @@ public partial class UserProfileView : ContentPage
     // is dev switch toggle event
     private async void Switch_Toggled(object sender, ToggledEventArgs e)
     {
-        UserProfileVM context = BindingContext as UserProfileVM;
+        UserProfileVM? context = BindingContext as UserProfileVM;
 
-        if (context.IsBusy)
+        if (context!.IsBusy)
         {
             return;
         }

@@ -4,6 +4,6 @@ namespace Shiemi.Dto.Project
 {
     public class ProjectsDto
     {
-        public List<ProjectModel>? projects { get; set; }
+        public List<ProjectModel>? Projects { get; set; }
     }
 }

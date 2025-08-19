@@ -67,13 +67,13 @@ public partial class SignInVM : BaseVM
             if (!isValid) return;
 
             // call signin service
-            string userId = await _userService.RequestSignIn(model);
+            string? userId = await _userService.RequestSignIn(model);
             if (userId is null) return;
 
             UserStorage.ClearUserData();
 
             // request user details
-            DetailsModel details = await _userService.RequestUserDetails(userId);
+            DetailsModel? details = await _userService.RequestUserDetails(userId);
 
             // save user details
             UserStorage.StoreUserDetails(details);

@@ -160,7 +160,7 @@ namespace Shiemi.ViewModels
             {
                 await Shell.Current.DisplayAlertAsync(
                     "signup error",
-                    "error creating account!\ntry again later",
+                    $"error creating account!\ntry again later\n{e}",
                     "ok"
                     );
                 return;

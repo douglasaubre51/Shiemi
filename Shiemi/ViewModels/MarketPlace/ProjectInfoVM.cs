@@ -9,8 +9,8 @@ namespace Shiemi.ViewModels
         [ObservableProperty]
         ProjectModel project;
 
-        public ProjectInfoVM()
-        {
-        }
+        //public ProjectInfoVM()
+        //{
+        //}
     }
 }
