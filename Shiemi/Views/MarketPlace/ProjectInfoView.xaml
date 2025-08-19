@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="Shiemi.Views.ProjectInfoView"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:viewmodel="clr-namespace:Shiemi.ViewModels"
+    x:DataType="viewmodel:ProjectInfoVM"
+    Shell.NavBarIsVisible="False">
+    <!--  main layout  -->
+    <ScrollView Margin="20" Orientation="Vertical">
+        <Grid
+            ColumnDefinitions="2*,1.2*"
+            ColumnSpacing="10"
+            HorizontalOptions="Fill"
+            MinimumWidthRequest="500"
+            RowDefinitions="*,3*,Auto"
+            RowSpacing="20"
+            VerticalOptions="Fill">
+            <!--  title  -->
+            <Label
+                Grid.Row="0"
+                Grid.ColumnSpan="2"
+                Style="{StaticResource title-txt-details}"
+                Text="{Binding Project.Title}" />
+            <!--  desc layout  -->
+            <VerticalStackLayout
+                Grid.Row="1"
+                Grid.Column="0"
+                Spacing="20">
+                <!--  desc title  -->
+                <Label Style="{StaticResource desc-title-txt-details}" Text="Description" />
+                <!--  desc  -->
+                <Label Style="{StaticResource description-txt-details}" Text="{Binding Project.Description}" />
+            </VerticalStackLayout>
+            <!--  footer  -->
+            <VerticalStackLayout
+                Grid.Row="2"
+                Grid.Column="0"
+                HorizontalOptions="Fill"
+                Spacing="10"
+                VerticalOptions="Fill">
+                <!--  price  -->
+                <Label Style="{StaticResource price-txt-details}" Text="{Binding Project.Price, StringFormat='estimated cost:  ${0}'}" />
+                <!--  created date  -->
+                <Label Style="{StaticResource date-txt-details}" Text="{Binding Project.CreatedAt, StringFormat='created at:  {0}'}" />
+            </VerticalStackLayout>
+            <!--  message layout  -->
+            <Border
+                Grid.RowSpan="3"
+                Grid.Column="1"
+                BackgroundColor="LightGrey"
+                HorizontalOptions="Fill"
+                Style="{StaticResource border-radius-card}"
+                VerticalOptions="Fill">
+                <Grid
+                    Margin="14"
+                    HorizontalOptions="Fill"
+                    RowDefinitions="70,*,Auto"
+                    VerticalOptions="Fill">
+                    <!--  title bar  -->
+                    <Border
+                        Grid.Row="0"
+                        HorizontalOptions="Fill"
+                        Style="{StaticResource border-radius-card}">
+                        <HorizontalStackLayout>
+                            <!--  user name  -->
+                            <Label
+                                FontSize="40"
+                                Text="John Smith"
+                                VerticalOptions="End" />
+                            <!--  profile pic circle  -->
+                            <!--<Border
+                                Padding="50"
+                                BackgroundColor="Green"
+                                HorizontalOptions="End"
+                                Scale="1"
+                                Style="{StaticResource profile-pic-circle}" />-->
+                        </HorizontalStackLayout>
+                    </Border>
+                    <!--  chat area  -->
+                    <Border
+                        Grid.Row="1"
+                        Margin="0,14,0,14"
+                        BackgroundColor="White"
+                        Style="{StaticResource border-radius-card}">
+                        <VerticalStackLayout HorizontalOptions="Fill" VerticalOptions="Fill" />
+                    </Border>
+                    <!--  chat box  -->
+                    <VerticalStackLayout
+                        Grid.Row="2"
+                        HorizontalOptions="Fill"
+                        Spacing="10"
+                        VerticalOptions="Fill">
+                        <!--  chat box  -->
+                        <Editor
+                            HorizontalOptions="Fill"
+                            Placeholder="send a request . . ."
+                            Style="{StaticResource message-box-chat}" />
+                        <!--  send message btn  -->
+                        <Button
+                            HorizontalOptions="Fill"
+                            Style="{StaticResource primary-button}"
+                            Text="send" />
+                    </VerticalStackLayout>
+                </Grid>
+            </Border>
+        </Grid>
+    </ScrollView>
+</ContentPage>

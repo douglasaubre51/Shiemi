@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="Shiemi.Views.ProjectView"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:model="clr-namespace:Shiemi.Models"
+    xmlns:viewmodel="clr-namespace:Shiemi.ViewModels"
+    x:DataType="viewmodel:ProjectVM"
+    BackgroundColor="{StaticResource primary-background-clr}"
+    Shell.BackgroundColor="{StaticResource primary-background-clr}"
+    Shell.NavBarIsVisible="True">
+    <!--  menu bar  -->
+    <ContentPage.MenuBarItems>
+        <MenuBarItem Text="File">
+            <MenuFlyoutItem Command="{Binding GoToCreateProjectViewCommand}" Text="new" />
+        </MenuBarItem>
+        <MenuBarItem Text="Edit">
+            <MenuFlyoutItem Text="remove selected items" />
+        </MenuBarItem>
+    </ContentPage.MenuBarItems>
+    <!--  refresh btn  -->
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Command="{Binding FillProjectCollectionCommand}" Text="Refresh" />
+    </ContentPage.ToolbarItems>
+    <!--  main grid  -->
+    <Grid
+        Margin="20"
+        ColumnDefinitions="*"
+        HorizontalOptions="Fill"
+        RowDefinitions="*"
+        VerticalOptions="Fill">
+        <!--  project grid  -->
+        <ScrollView
+            Grid.Row="0"
+            HorizontalOptions="Fill"
+            Orientation="Vertical"
+            VerticalOptions="Fill">
+            <CollectionView
+                HorizontalOptions="Fill"
+                ItemSizingStrategy="MeasureAllItems"
+                ItemsSource="{Binding Projects}"
+                VerticalOptions="Fill">
+                <!--  template  -->
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="model:ProjectModel">
+                        <!--  item  -->
+                        <Border
+                            BackgroundColor="{StaticResource fourth-background-clr}"
+                            HorizontalOptions="Fill"
+                            MinimumHeightRequest="200"
+                            MinimumWidthRequest="300"
+                            Style="{StaticResource primary-project-card}"
+                            VerticalOptions="Fill">
+                            <!--  tap event  -->
+                            <Border.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:ProjectVM}}, x:DataType=viewmodel:ProjectVM, Path=GoToProjectDetailsViewCommand}" CommandParameter="{Binding .}" />
+                            </Border.GestureRecognizers>
+                            <!--  item layout  -->
+                            <Grid
+                                Margin="20"
+                                HorizontalOptions="Fill"
+                                RowDefinitions="*,Auto"
+                                VerticalOptions="Fill">
+                                <Label
+                                    Grid.Row="0"
+                                    Style="{StaticResource title-txt-card}"
+                                    Text="{Binding Title}" />
+                                <Label
+                                    Grid.Row="1"
+                                    Style="{StaticResource shortDescription-txt-card}"
+                                    Text="{Binding ShortDescription}" />
+                            </Grid>
+                        </Border>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+                <!--  item spacing  -->
+                <CollectionView.ItemsLayout>
+                    <GridItemsLayout
+                        HorizontalItemSpacing="10"
+                        Orientation="Vertical"
+                        Span="2"
+                        VerticalItemSpacing="10" />
+                </CollectionView.ItemsLayout>
+            </CollectionView>
+        </ScrollView>
+        <!--  spinner  -->
+        <ActivityIndicator
+            Grid.Row="0"
+            HorizontalOptions="Center"
+            IsRunning="{Binding IsBusy}"
+            IsVisible="{Binding IsBusy}"
+            VerticalOptions="Center" />
+    </Grid>
+</ContentPage>

@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="Shiemi.Views.SignUpView"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:viewModel="clr-namespace:Shiemi.ViewModels"
+    x:DataType="viewModel:SignUpVM">
+    <Grid>
+        <!--  main layout  -->
+        <ScrollView Orientation="Both">
+            <VerticalStackLayout
+                HorizontalOptions="Fill"
+                Spacing="30"
+                VerticalOptions="Center">
+                <!--  forms layout card  -->
+                <Border
+                    Margin="20"
+                    Padding="50,20,50,50"
+                    BackgroundColor="{StaticResource secondary-background-clr}"
+                    HorizontalOptions="Center"
+                    Style="{StaticResource card-shadow}"
+                    VerticalOptions="Center">
+                    <VerticalStackLayout Spacing="40">
+                        <!--  header tag  -->
+                        <Label
+                            FontSize="50"
+                            HorizontalOptions="Start"
+                            Text="Sign up" />
+                        <!--  forms grid container  -->
+                        <Grid
+                            ColumnDefinitions="Auto,Auto,Auto"
+                            ColumnSpacing="40"
+                            HorizontalOptions="Center"
+                            RowDefinitions="*,*,*,*"
+                            RowSpacing="45"
+                            VerticalOptions="Center">
+                            <!--  first name  -->
+                            <VerticalStackLayout
+                                Grid.Row="0"
+                                Grid.Column="0"
+                                Style="{StaticResource form-group}">
+                                <Label Style="{StaticResource entry-label}" Text="firstname" />
+                                <Entry
+                                    ClearButtonVisibility="WhileEditing"
+                                    IsEnabled="{Binding IsNotBusy}"
+                                    Style="{StaticResource entry}"
+                                    Text="{Binding FirstName}" />
+                                <Label Style="{StaticResource validation-msg}" Text="{Binding FirstNameMessage}" />
+                            </VerticalStackLayout>
+                            <!--  last name  -->
+                            <VerticalStackLayout
+                                Grid.Row="0"
+                                Grid.Column="1"
+                                Style="{StaticResource form-group}">
+                                <Label Style="{StaticResource entry-label}" Text="lastname" />
+                                <Entry
+                                    ClearButtonVisibility="WhileEditing"
+                                    IsEnabled="{Binding IsNotBusy}"
+                                    Style="{StaticResource entry}"
+                                    Text="{Binding LastName}" />
+                                <Label Style="{StaticResource validation-msg}" Text="{Binding LastNameMessage}" />
+                            </VerticalStackLayout>
+                            <!--  email  -->
+                            <VerticalStackLayout
+                                Grid.Row="1"
+                                Grid.Column="0"
+                                Style="{StaticResource form-group}">
+                                <Label Style="{StaticResource entry-label}" Text="email" />
+                                <Entry
+                                    ClearButtonVisibility="WhileEditing"
+                                    IsEnabled="{Binding IsNotBusy}"
+                                    Keyboard="Email"
+                                    Style="{StaticResource entry}"
+                                    Text="{Binding Email}" />
+                                <Label Style="{StaticResource validation-msg}" Text="{Binding EmailMessage}" />
+                            </VerticalStackLayout>
+                            <!--  password  -->
+                            <VerticalStackLayout
+                                Grid.Row="1"
+                                Grid.Column="1"
+                                Style="{StaticResource form-group}">
+                                <Label Style="{StaticResource entry-label}" Text="password" />
+                                <Entry
+                                    ClearButtonVisibility="WhileEditing"
+                                    IsEnabled="{Binding IsNotBusy}"
+                                    IsPassword="true"
+                                    Style="{StaticResource entry}"
+                                    Text="{Binding Password}" />
+                                <Label Style="{StaticResource validation-msg}" Text="{Binding PasswordMessage}" />
+                            </VerticalStackLayout>
+                            <!--  phone no  -->
+                            <VerticalStackLayout
+                                Grid.Row="2"
+                                Grid.Column="0"
+                                Style="{StaticResource form-group}">
+                                <Label Style="{StaticResource entry-label}" Text="phoneno" />
+                                <Entry
+                                    x:Name="PhoneNo"
+                                    ClearButtonVisibility="WhileEditing"
+                                    IsEnabled="{Binding IsNotBusy}"
+                                    Style="{StaticResource entry}"
+                                    Text="{Binding PhoneNo}"
+                                    TextChanged="PhoneNo_TextChanged" />
+                                <Label Style="{StaticResource validation-msg}" Text="{Binding PhoneNoMessage}" />
+                            </VerticalStackLayout>
+                            <!--  check password  -->
+                            <VerticalStackLayout
+                                Grid.Row="2"
+                                Grid.Column="1"
+                                Style="{StaticResource form-group}">
+                                <Label Style="{StaticResource entry-label}" Text="check password" />
+                                <Entry
+                                    ClearButtonVisibility="WhileEditing"
+                                    IsEnabled="{Binding IsNotBusy}"
+                                    IsPassword="True"
+                                    Style="{StaticResource entry}"
+                                    Text="{Binding ConfirmPassword}" />
+                                <Label Style="{StaticResource validation-msg}" Text="{Binding CheckPasswordMessage}" />
+                            </VerticalStackLayout>
+                            <!--  Image upload button  -->
+                            <Button
+                                Grid.RowSpan="3"
+                                Grid.Column="2"
+                                Command="{Binding TriggerPhotoUploadCommand}"
+                                IsEnabled="{Binding IsNotBusy}"
+                                IsVisible="{Binding ImageUploadBtnVisibility}"
+                                Style="{StaticResource primary-button}"
+                                Text="add profile pic"
+                                WidthRequest="300" />
+                            <!--  image btn for image viewing and upload  -->
+                            <Border
+                                Grid.RowSpan="3"
+                                Grid.Column="2"
+                                HeightRequest="300"
+                                IsEnabled="{Binding IsNotBusy}"
+                                IsVisible="{Binding ImageBtnVisibility}"
+                                Style="{StaticResource card-shadow}"
+                                WidthRequest="300">
+                                <ImageButton
+                                    Aspect="AspectFill"
+                                    Command="{Binding TriggerPhotoUploadCommand}"
+                                    Source="{Binding ImageSource}" />
+                            </Border>
+                            <!--  submit button  -->
+                            <Button
+                                Grid.Row="3"
+                                Grid.ColumnSpan="3"
+                                Command="{Binding TriggerSignUpCommand}"
+                                IsEnabled="{Binding IsNotBusy}"
+                                IsVisible="{Binding IsNotBusy}"
+                                Style="{StaticResource primary-button}"
+                                Text="Continue" />
+                        </Grid>
+                    </VerticalStackLayout>
+                </Border>
+            </VerticalStackLayout>
+        </ScrollView>
+
+        <!--  spinner  -->
+        <ActivityIndicator
+            HeightRequest="50"
+            HorizontalOptions="Center"
+            IsEnabled="{Binding IsBusy}"
+            IsRunning="{Binding IsBusy}"
+            WidthRequest="50"
+            Color="{StaticResource secondary-accent-clr}" />
+    </Grid>
+</ContentPage>

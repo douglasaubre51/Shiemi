@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="Shiemi.Views.UserProfileView"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    xmlns:viewmodel="clr-namespace:Shiemi.ViewModels"
+    x:DataType="viewmodel:UserProfileVM"
+    BackgroundColor="LightSlateGrey">
+    <!--  main grid  -->
+    <ScrollView Orientation="Both">
+        <Grid
+            ColumnDefinitions="500,1,*"
+            HorizontalOptions="Fill"
+            RowDefinitions="*"
+            VerticalOptions="Fill">
+            <!--  profile section  -->
+            <Grid
+                x:Name="ProfileGrid"
+                Grid.Row="0"
+                Grid.Column="0"
+                BackgroundColor="White"
+                ColumnDefinitions="*"
+                HorizontalOptions="Fill"
+                RowDefinitions="3*,Auto,Auto"
+                VerticalOptions="Fill">
+                <!--  profile image  -->
+                <Image
+                    Grid.Row="0"
+                    Grid.Column="0"
+                    Aspect="AspectFill"
+                    HorizontalOptions="Fill"
+                    Source="{Binding Source={x:RelativeSource AncestorType={x:Type viewmodel:UserProfileVM}}, Path=ProfilePhoto, x:DataType=viewmodel:UserProfileVM}"
+                    VerticalOptions="Start" />
+                <!--  text details stack  -->
+                <VerticalStackLayout
+                    Grid.Row="1"
+                    Margin="10"
+                    HorizontalOptions="Fill"
+                    VerticalOptions="Start">
+                    <Label Style="{StaticResource user-name-header}" Text="{Binding Username}" />
+                    <Label Style="{StaticResource email-label}" Text="{Binding Email}" />
+                </VerticalStackLayout>
+                <!--  edit btn  -->
+                <Button
+                    Grid.Row="3"
+                    Margin="10"
+                    Style="{StaticResource secondary-btn-profile}"
+                    Text="edit" />
+            </Grid>
+            <!--  profile options grid  -->
+            <Grid
+                Grid.Column="2"
+                Padding="20"
+                BackgroundColor="White"
+                ColumnDefinitions="*,*"
+                ColumnSpacing="50"
+                HorizontalOptions="Fill"
+                RowDefinitions="30"
+                VerticalOptions="Fill">
+                <!--  dev mode  -->
+                <Label
+                    Grid.Row="0"
+                    Grid.Column="0"
+                    HorizontalOptions="Start"
+                    Style="{StaticResource primary-text-setting}"
+                    Text="Developer mode"
+                    VerticalOptions="End" />
+                <Switch
+                    Grid.Row="0"
+                    Grid.Column="1"
+                    HorizontalOptions="End"
+                    IsEnabled="{Binding IsNotBusy}"
+                    IsToggled="{Binding IsDeveloper}"
+                    OnColor="{StaticResource secondary-accent-clr}"
+                    Toggled="Switch_Toggled"
+                    VerticalOptions="Start" />
+            </Grid>
+        </Grid>
+    </ScrollView>
+</ContentPage>

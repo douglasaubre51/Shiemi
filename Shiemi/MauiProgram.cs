@@ -1,0 +1,70 @@
+﻿using CommunityToolkit.Maui;
+using Microsoft.Extensions.Logging;
+using Shiemi.Helpers.Validators;
+using Shiemi.Services;
+using Shiemi.ViewModels;
+using Shiemi.ViewModels.Project;
+using System.Text.Json;
+
+namespace Shiemi
+{
+    public static class MauiProgram
+    {
+        public static MauiApp CreateMauiApp()
+        {
+            var builder = MauiApp.CreateBuilder();
+            builder
+                .UseMauiApp<App>()
+                .UseMauiCommunityToolkit()
+                .ConfigureFonts(fonts =>
+                {
+                    fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
+                    fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
+                    fonts.AddFont("Poppins-Light.ttf", "PoppinsLight");
+                });
+
+#if DEBUG
+            builder.Logging.AddDebug();
+#endif
+            // helpers
+            builder.Services.AddTransient<SignInValidator>();
+            builder.Services.AddTransient<SignUpValidator>();
+
+            // services
+            builder.Services.AddSingleton<IConnectivity>(Connectivity.Current);
+            builder.Services.AddSingleton(
+                new JsonSerializerOptions
+                {
+                    PropertyNamingPolicy = JsonNamingPolicy.CamelCase
+                }
+            );
+
+            // REST
+            builder.Services.AddSingleton<UserService>();
+            builder.Services.AddSingleton<ProjectService>();
+            builder.Services.AddSingleton<SettingsService>();
+
+
+            // titlebar window
+            builder.Services.AddSingleton<TitleBarWindow>();
+
+
+            // view models
+            builder.Services.AddSingleton<BaseVM>();
+
+            builder.Services.AddTransient<SignInVM>();
+            builder.Services.AddTransient<SignUpVM>();
+            builder.Services.AddTransient<UserProfileVM>();
+            builder.Services.AddTransient<ProjectVM>();
+            builder.Services.AddTransient<CreateProjectVM>();
+            builder.Services.AddTransient<MarketPlaceVM>();
+            builder.Services.AddTransient<ProjectInfoVM>();
+            builder.Services.AddTransient<ProjectDetailsVM>();
+            builder.Services.AddTransient<EditProjectVM>();
+
+
+
+            return builder.Build();
+        }
+    }
+}

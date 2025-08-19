@@ -1,0 +1,294 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<?xaml-comp compile="true" ?>
+<ResourceDictionary xmlns="http://schemas.microsoft.com/dotnet/2021/maui" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+
+    <!--  profile pic circle  -->
+    <Style x:Key="profile-pic-circle" TargetType="Border">
+        <Setter Property="StrokeShape" Value="Ellipse 40" />
+    </Style>
+
+    <!--  message box  -->
+    <Style x:Key="message-box-chat" TargetType="Editor">
+        <Setter Property="HeightRequest" Value="80" />
+    </Style>
+
+    <!--  border radius 12  -->
+    <Style x:Key="border-radius-card" TargetType="Border">
+        <Setter Property="StrokeShape" Value="RoundRectangle 6" />
+        <Setter Property="Stroke" Value="Transparent" />
+    </Style>
+
+    <!--  card shadows  -->
+    <Style x:Key="primary-project-card" TargetType="Border">
+        <Setter Property="StrokeShape" Value="RoundRectangle 10" />
+        <Setter Property="Stroke" Value="Transparent" />
+    </Style>
+    <Style x:Key="card-shadow" TargetType="Border">
+        <Setter Property="Stroke" Value="Transparent" />
+        <Setter Property="StrokeShape" Value="RoundRectangle 15" />
+        <Setter Property="StrokeThickness" Value="1" />
+        <!--  brush,offset-x,offset-y,radius  -->
+        <Setter Property="Shadow" Value="LightGrey 1 10" />
+    </Style>
+
+    <!--  btn  -->
+    <Style x:Key="secondary-btn-profile" TargetType="Button">
+        <Setter Property="VisualStateManager.VisualStateGroups">
+            <VisualStateGroupList>
+                <VisualStateGroup Name="CommonStates">
+                    <!--  on active  -->
+                    <VisualState Name="Normal">
+                        <VisualState.Setters>
+                            <Setter Property="BackgroundColor" Value="White" />
+                            <Setter Property="TextColor" Value="{StaticResource secondary-accent-clr}" />
+                            <Setter Property="BorderColor" Value="{StaticResource secondary-accent-clr}" />
+                        </VisualState.Setters>
+                    </VisualState>
+                    <VisualState Name="PointerOver">
+                        <VisualState.Setters>
+                            <Setter Property="BackgroundColor" Value="{StaticResource secondary-accent-clr}" />
+                            <Setter Property="TextColor" Value="White" />
+                        </VisualState.Setters>
+                    </VisualState>
+                </VisualStateGroup>
+            </VisualStateGroupList>
+        </Setter>
+    </Style>
+    <Style x:Key="primary-btn-details" TargetType="Button">
+        <Setter Property="WidthRequest" Value="200" />
+        <Setter Property="VisualStateManager.VisualStateGroups">
+            <VisualStateGroupList>
+                <VisualStateGroup Name="CommonStates">
+                    <!--  on active  -->
+                    <VisualState Name="Normal">
+                        <VisualState.Setters>
+                            <Setter Property="BackgroundColor" Value="{StaticResource tertiary-accent-clr}" />
+                            <Setter Property="TextColor" Value="White" />
+                        </VisualState.Setters>
+                    </VisualState>
+                </VisualStateGroup>
+            </VisualStateGroupList>
+        </Setter>
+    </Style>
+    <Style x:Key="secondary-btn-details" TargetType="Button">
+        <Setter Property="WidthRequest" Value="100" />
+    </Style>
+    <Style x:Key="tertiary-btn-details" TargetType="Button">
+        <Setter Property="WidthRequest" Value="100" />
+        <Setter Property="VisualStateManager.VisualStateGroups">
+            <VisualStateGroupList>
+                <VisualStateGroup Name="CommonStates">
+                    <!--  on hover  -->
+                    <VisualState Name="PointerOver">
+                        <VisualState.Setters>
+                            <Setter Property="BackgroundColor" Value="Red" />
+                            <Setter Property="BorderWidth" Value="1" />
+                            <Setter Property="TextColor" Value="White" />
+                        </VisualState.Setters>
+                    </VisualState>
+                    <!--  on active  -->
+                    <VisualState Name="Normal">
+                        <VisualState.Setters>
+                            <Setter Property="BackgroundColor" Value="White" />
+                            <Setter Property="TextColor" Value="Black" />
+                        </VisualState.Setters>
+                    </VisualState>
+                </VisualStateGroup>
+            </VisualStateGroupList>
+        </Setter>
+    </Style>
+
+    <!--  settings text  -->
+    <Style x:Key="primary-text-setting" TargetType="Label">
+        <Setter Property="FontSize" Value="14" />
+        <Setter Property="FontFamily" Value="PoppinsLight" />
+    </Style>
+
+    <!--  card text  -->
+    <Style x:Key="title-txt-card" TargetType="Label">
+        <Setter Property="FontSize" Value="25" />
+        <Setter Property="FontFamily" Value="PoppinsLight" />
+    </Style>
+    <Style x:Key="shortDescription-txt-card" TargetType="Label">
+        <Setter Property="FontSize" Value="13" />
+        <Setter Property="FontFamily" Value="PoppinsLight" />
+    </Style>
+    <Style x:Key="user-txt-card" TargetType="Label">
+        <Setter Property="FontSize" Value="10" />
+        <Setter Property="FontFamily" Value="PoppinsLight" />
+        <Setter Property="TextColor" Value="LightGrey" />
+    </Style>
+    <Style x:Key="date-txt-card" TargetType="Label">
+        <Setter Property="FontSize" Value="10" />
+        <Setter Property="FontFamily" Value="PoppinsLight" />
+    </Style>
+
+    <!--  project details  -->
+    <Style x:Key="title-txt-details" TargetType="Label">
+        <Setter Property="FontSize" Value="50" />
+        <Setter Property="FontFamily" Value="PoppinsLight" />
+    </Style>
+    <Style x:Key="desc-title-txt-details" TargetType="Label">
+        <Setter Property="FontSize" Value="24" />
+    </Style>
+    <Style x:Key="description-txt-details" TargetType="Label">
+        <Setter Property="FontSize" Value="18" />
+        <Setter Property="FontFamily" Value="PoppinsLight" />
+    </Style>
+    <Style x:Key="date-txt-details" TargetType="Label">
+        <Setter Property="FontSize" Value="13" />
+        <Setter Property="FontFamily" Value="PoppinsLight" />
+        <Setter Property="TextColor" Value="Grey" />
+    </Style>
+    <Style x:Key="price-txt-details" TargetType="Label">
+        <Setter Property="FontSize" Value="16" />
+        <Setter Property="FontFamily" Value="PoppinsLight" />
+    </Style>
+
+    <!--  headers  -->
+    <Style x:Key="header-tag" TargetType="Label">
+        <Setter Property="FontSize" Value="50" />
+    </Style>
+    <Style x:Key="header-1" TargetType="Label">
+        <Setter Property="FontSize" Value="40" />
+        <Setter Property="TextColor" Value="{StaticResource primary-text-clr}" />
+    </Style>
+    <Style x:Key="primary-title-txt" TargetType="Label">
+        <Setter Property="FontFamily" Value="PoppinsLight" />
+        <Setter Property="FontSize" Value="60" />
+        <Setter Property="TextColor" Value="{StaticResource Gray500}" />
+    </Style>
+    <Style x:Key="secondary-title-txt" TargetType="Label">
+        <Setter Property="FontFamily" Value="PoppinsLight" />
+        <Setter Property="FontSize" Value="30" />
+        <Setter Property="TextColor" Value="{StaticResource Gray500}" />
+    </Style>
+    <Style x:Key="profile-header-tag" TargetType="Label">
+        <Setter Property="FontSize" Value="20" />
+        <Setter Property="FontFamily" Value="PoppinsLight" />
+    </Style>
+    <Style x:Key="description-txt" TargetType="Label">
+        <Setter Property="FontSize" Value="25" />
+        <Setter Property="FontFamily" Value="PoppinsLight" />
+    </Style>
+    <Style x:Key="shortDescription-txt" TargetType="Label">
+        <Setter Property="FontSize" Value="13" />
+        <Setter Property="FontFamily" Value="PoppinsLight" />
+    </Style>
+    <Style x:Key="price-txt" TargetType="Label">
+        <Setter Property="FontSize" Value="20" />
+        <Setter Property="FontFamily" Value="PoppinsLight" />
+    </Style>
+    <Style x:Key="date-txt" TargetType="Label">
+        <Setter Property="FontSize" Value="20" />
+        <Setter Property="FontFamily" Value="PoppinsLight" />
+    </Style>
+
+    <!--  labels  -->
+    <Style x:Key="entry-label" TargetType="Label">
+        <Setter Property="FontSize" Value="14" />
+    </Style>
+    <Style x:Key="entry" TargetType="Entry">
+        <Setter Property="WidthRequest" Value="250" />
+    </Style>
+    <Style x:Key="validation-msg" TargetType="Label">
+        <Setter Property="FontSize" Value="10" />
+        <Setter Property="TextColor" Value="Red" />
+    </Style>
+    <Style x:Key="user-name-header" TargetType="Label">
+        <Setter Property="FontSize" Value="30" />
+    </Style>
+    <Style x:Key="email-label" TargetType="Label">
+        <Setter Property="FontSize" Value="Caption" />
+    </Style>
+    <Style x:Key="phone-label" TargetType="Label">
+        <Setter Property="FontSize" Value="Caption" />
+    </Style>
+
+    <!--  editors  -->
+    <Style x:Key="editor-txt-edit" TargetType="Editor">
+        <Setter Property="HeightRequest" Value="50" />
+    </Style>
+
+    <!--  form-group  -->
+    <Style x:Key="form-group" TargetType="VerticalStackLayout">
+        <Setter Property="Spacing" Value="0" />
+    </Style>
+
+    <!--  profile view card  -->
+    <Style x:Key="profile-card" TargetType="Border">
+        <Setter Property="Stroke" Value="Transparent" />
+        <Setter Property="StrokeShape" Value="RoundRectangle 10" />
+        <Setter Property="BackgroundColor" Value="White" />
+    </Style>
+
+    <!--  buttons  -->
+    <Style x:Key="primary-button" TargetType="Button">
+        <!--  change color for active states  -->
+        <Setter Property="VisualStateManager.VisualStateGroups">
+            <VisualStateGroupList>
+                <VisualStateGroup Name="CommonStates">
+                    <!--  disabled btn color  -->
+                    <VisualState Name="Disabled">
+                        <VisualState.Setters>
+                            <Setter Property="BackgroundColor" Value="LightGrey" />
+                        </VisualState.Setters>
+                    </VisualState>
+                    <!--  active btn color  -->
+                    <VisualState Name="Normal">
+                        <VisualState.Setters>
+                            <Setter Property="BackgroundColor" Value="{StaticResource secondary-accent-clr}" />
+                            <Setter Property="TextColor" Value="White" />
+                        </VisualState.Setters>
+                    </VisualState>
+                </VisualStateGroup>
+            </VisualStateGroupList>
+        </Setter>
+    </Style>
+    <Style x:Key="secondary-button" TargetType="Button">
+        <!--  change color for active states  -->
+        <Setter Property="VisualStateManager.VisualStateGroups">
+            <VisualStateGroupList>
+                <VisualStateGroup Name="CommonStates">
+                    <!--  disabled btn color  -->
+                    <VisualState Name="Disabled">
+                        <VisualState.Setters>
+                            <Setter Property="BackgroundColor" Value="LightGrey" />
+                        </VisualState.Setters>
+                    </VisualState>
+                    <!--  active btn color  -->
+                    <VisualState Name="Normal">
+                        <VisualState.Setters>
+                            <Setter Property="TextColor" Value="White" />
+                            <Setter Property="BorderWidth" Value="1" />
+                            <Setter Property="BackgroundColor" Value="{StaticResource secondary-accent-clr}" />
+                        </VisualState.Setters>
+                    </VisualState>
+                </VisualStateGroup>
+            </VisualStateGroupList>
+        </Setter>
+    </Style>
+    <Style x:Key="tertiary-btn" TargetType="Button">
+        <Setter Property="VisualStateManager.VisualStateGroups">
+            <VisualStateGroupList>
+                <VisualStateGroup Name="CommonStates">
+                    <!--  on hover  -->
+                    <VisualState Name="PointerOver">
+                        <VisualState.Setters>
+                            <Setter Property="BackgroundColor" Value="White" />
+                            <Setter Property="BorderWidth" Value="1" />
+                            <Setter Property="TextColor" Value="{StaticResource secondary-accent-clr}" />
+                        </VisualState.Setters>
+                    </VisualState>
+                    <!--  on active  -->
+                    <VisualState Name="Normal">
+                        <VisualState.Setters>
+                            <Setter Property="BackgroundColor" Value="{StaticResource secondary-background-clr}" />
+                            <Setter Property="TextColor" Value="{StaticResource secondary-accent-clr}" />
+                        </VisualState.Setters>
+                    </VisualState>
+                </VisualStateGroup>
+            </VisualStateGroupList>
+        </Setter>
+    </Style>
+</ResourceDictionary>
