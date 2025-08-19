@@ -120,12 +120,12 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="CommunityToolkit.Maui" Version="12.1.0" />
+		<PackageReference Include="CommunityToolkit.Maui" Version="12.2.0" />
 		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.0" />
 		<PackageReference Include="Humanizer" Version="2.14.1" />
 		<PackageReference Include="Microsoft.Maui.Controls" Version="$(MauiVersion)" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="10.0.0-preview.5.25277.114" />
-		<PackageReference Include="MongoDB.Bson" Version="3.4.1" />
+		<PackageReference Include="MongoDB.Bson" Version="3.4.3" />
 	</ItemGroup>
 
 	<ItemGroup>
