@@ -1,3 +1,5 @@
+using Shiemi.ChatApi.Data;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -5,6 +7,12 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 
 builder.Services.AddSwaggerGen();
+
+// Add MSSQL server
+builder.Services.AddDbContext<ApplicationDbContext>(options =>
+{
+    options.UseSqlServer();
+});
 
 var app = builder.Build();
 
