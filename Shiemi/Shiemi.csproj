@@ -140,6 +140,9 @@
 	  <MauiXaml Update="TitleBarWindow.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="Views\Channel\ChannelView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Views\Project\CreateProjectView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>

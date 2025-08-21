@@ -3,11 +3,18 @@
     x:Class="Shiemi.AppShell"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:channel="clr-namespace:Shiemi.Views.Channel"
     xmlns:views="clr-namespace:Shiemi.Views"
     FlyoutBehavior="Flyout"
     Shell.NavBarIsVisible="False">
 
     <!--  flyout items  -->
+    <FlyoutItem Title="Channels">
+        <Tab>
+            <ShellContent ContentTemplate="{DataTemplate channel:ChannelView}" Route="ChannelView" />
+        </Tab>
+    </FlyoutItem>
+
     <FlyoutItem Title="Store">
         <Tab>
             <ShellContent ContentTemplate="{DataTemplate views:MarketPlaceView}" Route="MarketPlaceView" />
