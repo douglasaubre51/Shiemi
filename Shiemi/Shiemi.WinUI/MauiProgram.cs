@@ -6,6 +6,7 @@
         {
             var builder = MauiApp.CreateBuilder();
 
+
             builder
                 .UseSharedMauiApp();
 

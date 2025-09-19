@@ -1,4 +1,6 @@
 ﻿using Microsoft.Extensions.Logging;
+using Shiemi.PageModels;
+using Shiemi.Services;
 
 namespace Shiemi
 {
@@ -15,8 +17,19 @@ namespace Shiemi
                 });
 
 #if DEBUG
-    		builder.Logging.AddDebug();
+            builder.Logging.AddDebug();
 #endif
+
+            // Add Services.
+
+            builder.Services.AddTransient<AuthService>();
+
+            // Environment variables storage service
+            builder.Services.AddTransient<EnvironmentService>();
+
+            // Add Page Models.
+
+            builder.Services.AddSingleton<IndexPageModel>();
 
             return builder;
         }
