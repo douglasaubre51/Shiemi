@@ -1,5 +1,6 @@
 using Shiemi.PageModels;
 using Shiemi.Services;
+using Shiemi.Storage;
 using System.Diagnostics;
 
 namespace Shiemi.Pages;
@@ -7,30 +8,38 @@ namespace Shiemi.Pages;
 public partial class Index : ContentPage
 {
     private readonly AuthService _authService;
-    private readonly EnvironmentService _envService;
+    private readonly EnvironmentStorage _envStorage;
 
     public Index(
         IndexPageModel pageModel,
         AuthService authService,
-        EnvironmentService envService
+        EnvironmentStorage envStorage
         )
     {
         InitializeComponent();
         BindingContext = pageModel;
         _authService = authService;
-        _envService = envService;
+        _envStorage = envStorage;
     }
 
     private async void Button_Clicked(object sender, EventArgs e)
     {
         try
         {
-            var uri = new Uri(_envService.GetWAGURILoginUri());
+            // check if user logged in!
+            if (DataStorage.Get("UserId") is not "")
+            {
+                await Shell.Current.GoToAsync(nameof(Profile));
+                return;
+            }
+
+            // setup connection to WAGURI
+            var clientGuid = Guid.NewGuid().ToString();
+            var uri = new Uri(_envStorage.GetWAGURILoginUri() + $"/{clientGuid}");
             var status = await Browser.Default
                 .OpenAsync(uri, BrowserLaunchMode.SystemPreferred);
-            Debug.WriteLine($"Browser opened: {status}");
 
-            await _authService.ConnectToWAGURI();
+            await _authService.ConnectToWAGURI(clientGuid);
         }
         catch (Exception ex)
         {

@@ -1,25 +1,49 @@
 ﻿using Microsoft.AspNetCore.SignalR.Client;
+using Shiemi.Storage;
 using System.Diagnostics;
 
-namespace Shiemi.Services
+namespace Shiemi.Services;
+
+public class AuthService(
+    EnvironmentStorage envService,
+    UserStorage userStorage
+    )
 {
-    public class AuthService(EnvironmentService envService)
+    private readonly EnvironmentStorage _envService = envService;
+    private readonly UserStorage _userStorage = userStorage;
+
+    public async Task ConnectToWAGURI(string clientGuid)
     {
-        private readonly EnvironmentService _envService = envService;
+        var conn = new HubConnectionBuilder()
+            .WithUrl(_envService.GetWAGURIWebsocketUri())
+            .Build();
 
-        public async Task ConnectToWAGURI()
+        conn.Closed += async (error) =>
         {
-            var conn = new HubConnectionBuilder()
-                .WithUrl(_envService.GetWAGURIWebsocketUri())
-                .Build();
+            Debug.WriteLine("websocket disconnected!");
+        };
 
-            conn.Closed += async (error) =>
+        conn.On<string>(
+            "GetGreeting",
+            (message) => Debug.WriteLine(message)
+            );
+
+        conn.On<string>(
+            "LoginSuccess",
+            (userId) =>
             {
-                Debug.WriteLine("websocket disconnected!");
-            };
+                Debug.WriteLine($"userId: {userId}");
+                _userStorage.UserId = userId;
+                DataStorage.Store("UserId", userId);
+            });
 
-            Debug.WriteLine("connecting to WaGURI ... ");
-            await conn.StartAsync();
-        }
+        conn.On(
+            "GetClientGuid",
+            () => clientGuid
+            );
+
+        await conn.StartAsync();
+
+        await conn.InvokeAsync("CallGetClientGuid");
     }
 }

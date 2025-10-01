@@ -1,37 +1,39 @@
 ﻿using Microsoft.Extensions.Logging;
 using Shiemi.PageModels;
 using Shiemi.Services;
+using Shiemi.Storage;
 
-namespace Shiemi
+namespace Shiemi;
+
+public static class MauiProgramExtensions
 {
-    public static class MauiProgramExtensions
+    public static MauiAppBuilder UseSharedMauiApp(this MauiAppBuilder builder)
     {
-        public static MauiAppBuilder UseSharedMauiApp(this MauiAppBuilder builder)
-        {
-            builder
-                .UseMauiApp<App>()
-                .ConfigureFonts(fonts =>
-                {
-                    fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
-                    fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
-                });
+        builder
+            .UseMauiApp<App>()
+            .ConfigureFonts(fonts =>
+            {
+                fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
+                fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
+            });
 
 #if DEBUG
-            builder.Logging.AddDebug();
+        builder.Logging.AddDebug();
 #endif
 
-            // Add Services.
+        // Add Storage
 
-            builder.Services.AddTransient<AuthService>();
+        builder.Services.AddSingleton<UserStorage>();
+        builder.Services.AddTransient<EnvironmentStorage>();
 
-            // Environment variables storage service
-            builder.Services.AddTransient<EnvironmentService>();
+        // Add Services.
 
-            // Add Page Models.
+        builder.Services.AddTransient<AuthService>();
 
-            builder.Services.AddSingleton<IndexPageModel>();
+        // Add Page Models.
 
-            return builder;
-        }
+        builder.Services.AddTransient<IndexPageModel>();
+
+        return builder;
     }
 }
