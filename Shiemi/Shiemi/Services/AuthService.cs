@@ -30,7 +30,7 @@ public class AuthService(
 
         conn.On<string>(
             "LoginSuccess",
-            (userId) =>
+            async (userId) =>
             {
                 Debug.WriteLine($"userId: {userId}");
                 _userStorage.UserId = userId;

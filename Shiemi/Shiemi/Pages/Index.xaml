@@ -2,7 +2,10 @@
 <ContentPage
     x:Class="Shiemi.Pages.Index"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:pagemodel="clr-namespace:Shiemi.PageModels"
+    x:DataType="pagemodel:IndexPageModel">
+
     <Grid Margin="10" RowDefinitions="*,*">
         <Label
             Grid.Row="0"
@@ -11,9 +14,16 @@
             Text="Shiemi"
             VerticalOptions="Start" />
 
+        <ActivityIndicator
+            Grid.Row="1"
+            IsEnabled="{Binding IsBusy}"
+            IsRunning="{Binding IsBusy}"
+            IsVisible="{Binding IsBusy}" />
+
         <Button
             Grid.Row="1"
             Clicked="Button_Clicked"
+            IsVisible="{Binding IsNotBusy}"
             Text="Get started"
             VerticalOptions="End" />
     </Grid>

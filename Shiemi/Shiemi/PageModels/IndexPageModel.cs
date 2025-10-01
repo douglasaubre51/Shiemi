@@ -1,6 +1,6 @@
 ﻿namespace Shiemi.PageModels
 {
-    public class IndexPageModel
+    public class IndexPageModel : BasePageModel
     {
 
     }
