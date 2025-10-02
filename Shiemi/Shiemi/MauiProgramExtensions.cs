@@ -27,9 +27,9 @@ public static class MauiProgramExtensions
 
 
         // Add Services.
-        builder.Services.AddTransient<AuthService>();
         builder.Services.AddSingleton<RestClient>();
-        builder.Services.AddSingleton<UserService>();
+        builder.Services.AddTransient<UserService>();
+        builder.Services.AddTransient<AuthService>();
 
 
         // Add Page Models.

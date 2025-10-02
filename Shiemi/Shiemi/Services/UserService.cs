@@ -6,15 +6,17 @@ public class UserService
 {
     private readonly RestClient _restClient;
     private readonly HttpClient _httpClient;
+    private string userBaseUri;
 
     public UserService(RestClient restClient)
     {
         _restClient = restClient;
         _httpClient = _restClient.GetClient();
+        userBaseUri = $"{_httpClient.BaseAddress}/User";
     }
 
     public async Task<User?> Get(string userId)
         => await _httpClient.GetFromJsonAsync<User>(
-        $"/get-user/id/{userId}"
+        $"{userBaseUri}/id/{userId}"
         );
 }

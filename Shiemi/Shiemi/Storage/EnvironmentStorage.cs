@@ -15,7 +15,7 @@ public class EnvironmentStorage
 
         Preferences.Default.Set(
             "SHIEMI_BASE_URI",
-            "https://localhost:7268"
+            "https://localhost:7268/api"
             );
     }
 
