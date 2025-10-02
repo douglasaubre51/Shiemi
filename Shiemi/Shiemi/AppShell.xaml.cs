@@ -9,6 +9,9 @@ namespace Shiemi
             InitializeComponent();
 
             Routing.RegisterRoute(nameof(Profile), typeof(Profile));
+
+            // Startup commands
+            //Preferences.Default.Clear();
         }
     }
 }
