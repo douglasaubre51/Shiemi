@@ -39,6 +39,7 @@ public partial class Profile : ContentPage
             var pageModel = BindingContext as ProfilePageModel;
             pageModel!.FirstName = user.FirstName;
             pageModel!.LastName = user.LastName;
+            pageModel!.UserName = user.FirstName + "  " + user.LastName;
             pageModel!.Email = user.Email;
             pageModel!.UserId = user.Id;
         }

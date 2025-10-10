@@ -16,13 +16,7 @@
         <Label
             FontSize="30"
             HorizontalOptions="Start"
-            Text="{Binding FirstName}"
-            VerticalOptions="Start" />
-
-        <Label
-            FontSize="30"
-            HorizontalOptions="Start"
-            Text="{Binding LastName}"
+            Text="{Binding UserName}"
             VerticalOptions="Start" />
 
         <Label
