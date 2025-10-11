@@ -30,11 +30,14 @@ public static class MauiProgramExtensions
         builder.Services.AddSingleton<RestClient>();
         builder.Services.AddTransient<UserService>();
         builder.Services.AddTransient<AuthService>();
+        builder.Services.AddTransient<ProjectService>();
 
 
         // Add Page Models.
         builder.Services.AddTransient<IndexPageModel>();
         builder.Services.AddTransient<ProfilePageModel>();
+        builder.Services.AddTransient<ProjectsPageModel>();
+        builder.Services.AddTransient<CreateProjectPageModel>();
 
 
         return builder;

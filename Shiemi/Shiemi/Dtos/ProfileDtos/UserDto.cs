@@ -1,6 +1,6 @@
 ﻿namespace Shiemi.Dtos.ProfileDtos;
 
-public class User
+public class UserDto
 {
     public string Id { get; set; } = string.Empty;
     public string FirstName { get; set; } = string.Empty;

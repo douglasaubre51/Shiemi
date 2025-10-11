@@ -8,4 +8,7 @@ public partial class BasePageModel : ObservableObject
     [NotifyPropertyChangedFor(nameof(IsNotBusy))]
     private bool isBusy;
     public bool IsNotBusy => !IsBusy;
+
+    [ObservableProperty]
+    private string title = string.Empty;
 }

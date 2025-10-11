@@ -8,10 +8,11 @@ namespace Shiemi
         {
             InitializeComponent();
 
+            // Register routes
             Routing.RegisterRoute(nameof(Profile), typeof(Profile));
+            Routing.RegisterRoute(nameof(CreateProject), typeof(CreateProject));
 
             // Startup commands
-            //Preferences.Default.Clear();
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using Shiemi.Dtos.ProfileDtos;
+using Shiemi.Dtos.UserDtos;
 using System.Net.Http.Json;
 
 namespace Shiemi.Services;
@@ -15,8 +16,13 @@ public class UserService
         userBaseUri = $"{_httpClient.BaseAddress}/User";
     }
 
-    public async Task<User?> Get(string userId)
-        => await _httpClient.GetFromJsonAsync<User>(
+    public async Task<UserDto?> Get(string userId)
+        => await _httpClient.GetFromJsonAsync<UserDto>(
         $"{userBaseUri}/id/{userId}"
         );
+
+    public async Task<UserIdDto?> GetUserId(string userId)
+        => await _httpClient.GetFromJsonAsync<UserIdDto>(
+            $"{userBaseUri}/{userId}/id"
+            );
 }

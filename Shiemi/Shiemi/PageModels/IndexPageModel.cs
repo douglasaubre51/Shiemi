@@ -1,7 +1,10 @@
 ﻿namespace Shiemi.PageModels
 {
-    public class IndexPageModel : BasePageModel
+    public partial class IndexPageModel : BasePageModel
     {
-
+        public IndexPageModel()
+        {
+            Title = "Start";
+        }
     }
 }

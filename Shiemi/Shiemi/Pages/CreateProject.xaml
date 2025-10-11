@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="Shiemi.Pages.CreateProject"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:pagemodel="clr-namespace:Shiemi.PageModels"
+    Title="{Binding Title}"
+    x:DataType="pagemodel:CreateProjectPageModel">
+    <Grid
+        Margin="10"
+        RowDefinitions="*,*,2*,50"
+        RowSpacing="15">
+
+        <Entry
+            Grid.Row="0"
+            Placeholder="title"
+            Text="{Binding ProjectTitle}"
+            VerticalOptions="Center" />
+
+        <Entry
+            Grid.Row="1"
+            Placeholder="short description"
+            Text="{Binding ShortDesc}"
+            VerticalOptions="Center" />
+
+        <Editor
+            Grid.Row="2"
+            Placeholder="description"
+            Text="{Binding Description}" />
+
+        <Button
+            Grid.Row="3"
+            Command="{Binding CreateCommand}"
+            Text="continue" />
+
+    </Grid>
+</ContentPage>

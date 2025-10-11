@@ -29,7 +29,7 @@ public partial class Profile : ContentPage
             // load user data
             string userId = DataStorage.Get("UserId");
             Debug.WriteLine($"UserId: {userId}");
-            User? user = await _userService.Get(userId);
+            UserDto? user = await _userService.Get(userId);
             if (user is null)
             {
                 Debug.WriteLine("OnProfileAppearing status: empty user!");
