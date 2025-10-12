@@ -13,6 +13,7 @@ namespace Shiemi
             Routing.RegisterRoute(nameof(CreateProject), typeof(CreateProject));
 
             // Startup commands
+            Preferences.Default.Clear();
         }
     }
 }

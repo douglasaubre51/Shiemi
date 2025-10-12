@@ -3,10 +3,36 @@
     x:Class="Shiemi.Pages.Projects"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:models="clr-namespace:Shiemi.Models"
     xmlns:pagemodel="clr-namespace:Shiemi.PageModels"
     Title="{Binding Title}"
     x:DataType="pagemodel:ProjectsPageModel">
-    <Grid Margin="10" RowDefinitions="*,*,50">
+    <Grid Margin="10" RowDefinitions="*,50">
+        <!--  collection  -->
+        <CollectionView
+            Margin="10"
+            ItemsLayout="VerticalGrid,2"
+            ItemsSource="{Binding ProjectCollection}">
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="models:Project">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="50" />
+                            <RowDefinition Height="50" />
+                        </Grid.RowDefinitions>
+                        <Label
+                            Grid.Row="0"
+                            FontSize="Medium"
+                            Text="{Binding Title}" />
+                        <Label
+                            Grid.Row="1"
+                            FontSize="Micro"
+                            Text="{Binding ShortDesc}" />
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+        <!--  create project  -->
         <Button
             Grid.Row="2"
             Command="{Binding GoToCreateProjectCommand}"

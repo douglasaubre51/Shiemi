@@ -33,7 +33,6 @@ public class AuthService(
             async (userId) =>
             {
                 Debug.WriteLine($"userId: {userId}");
-                _userStorage.UserId = userId;
                 DataStorage.Store("UserId", userId);
             });
 

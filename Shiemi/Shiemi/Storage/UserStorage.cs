@@ -2,5 +2,5 @@
 
 public class UserStorage
 {
-    public string? UserId { get; set; }
+    public int UserId { get; set; }
 }

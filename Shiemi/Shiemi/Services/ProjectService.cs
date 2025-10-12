@@ -1,4 +1,6 @@
 ﻿using Shiemi.Dtos.ProjectsDtos;
+using Shiemi.Models;
+using Shiemi.Wrappers;
 using System.Diagnostics;
 using System.Net.Http.Json;
 
@@ -16,13 +18,24 @@ public class ProjectService
     }
 
 
+    // CREATE
     public async Task Create(ProjectDto dto)
-    {
-        HttpResponseMessage response = await _client.PostAsJsonAsync<ProjectDto>(
+        => await _client.PostAsJsonAsync<ProjectDto>(
             projectBaseUri,
             dto
             );
 
-        Debug.WriteLine("create project status code: " + response.StatusCode);
+
+    // READ
+    public async Task<List<Project>?> GetAll(int id)
+    {
+        HttpResponseMessage response = await _client.GetAsync(
+            $"{projectBaseUri}/all/{id}"
+            );
+
+        Debug.WriteLine($"GetAllProjects status: {response.StatusCode}");
+
+        var payload = await response.Content.ReadFromJsonAsync<ProjectsWrap>();
+        return payload!.Projects;
     }
 }

@@ -22,18 +22,19 @@ public static class MauiProgramExtensions
 #endif
 
         // Add Storage
-        builder.Services.AddTransient<EnvironmentStorage>();
+        builder.Services.AddSingleton<EnvironmentStorage>();
         builder.Services.AddSingleton<UserStorage>();
 
 
-        // Add Services.
+        // Add Services
         builder.Services.AddSingleton<RestClient>();
+
         builder.Services.AddTransient<UserService>();
         builder.Services.AddTransient<AuthService>();
         builder.Services.AddTransient<ProjectService>();
 
 
-        // Add Page Models.
+        // Add Page Models
         builder.Services.AddTransient<IndexPageModel>();
         builder.Services.AddTransient<ProfilePageModel>();
         builder.Services.AddTransient<ProjectsPageModel>();

@@ -15,6 +15,7 @@ public partial class ProfilePageModel : BasePageModel
     [ObservableProperty]
     private string userId = string.Empty;
 
+
     public ProfilePageModel()
     {
         Title = "Profile";
