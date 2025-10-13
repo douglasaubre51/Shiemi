@@ -3,22 +3,22 @@
     x:Class="Shiemi.AppShell"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:index="clr-namespace:Shiemi.Pages"
+    xmlns:pages="clr-namespace:Shiemi.Pages"
     Shell.FlyoutBehavior="Flyout">
 
     <Tab>
-        <ShellContent ContentTemplate="{DataTemplate index:Index}" Route="Index" />
+        <ShellContent ContentTemplate="{DataTemplate pages:Index}" Route="Index" />
     </Tab>
 
     <FlyoutItem Title="Profile">
         <Tab>
-            <ShellContent ContentTemplate="{DataTemplate index:Profile}" Route="Profile" />
+            <ShellContent ContentTemplate="{DataTemplate pages:Profile}" Route="Profile" />
         </Tab>
     </FlyoutItem>
 
     <FlyoutItem Title="Projects">
         <Tab>
-            <ShellContent ContentTemplate="{DataTemplate index:Projects}" Route="Projects" />
+            <ShellContent ContentTemplate="{DataTemplate pages:Projects}" Route="Projects" />
         </Tab>
     </FlyoutItem>
 

@@ -63,6 +63,7 @@ public partial class Index : ContentPage
             await _authService.ConnectToWAGURI(clientGuid);
 
             while (true)
+            {
                 // successful login logic
                 if (DataStorage.Get("UserId") is not "")
                 {
@@ -76,8 +77,10 @@ public partial class Index : ContentPage
                     IsBusy = false;
 
                     // navigate to profile view
-                    await Shell.Current.GoToAsync(nameof(Profile));
+                    await Shell.Current.GoToAsync("//Profile");
+                    return;
                 }
+            }
         }
         catch (Exception ex)
         {

@@ -25,6 +25,8 @@ public partial class Projects : ContentPage
 
     protected override async void OnAppearing()
     {
+        base.OnAppearing();
+
         var pageModel = BindingContext as ProjectsPageModel;
         var collection = pageModel!.ProjectCollection;
         collection.Clear();
@@ -44,7 +46,5 @@ public partial class Projects : ContentPage
         {
             Debug.WriteLine($"Loading UserProjectList error: {ex.Message}");
         }
-
-        base.OnAppearing();
     }
 }
