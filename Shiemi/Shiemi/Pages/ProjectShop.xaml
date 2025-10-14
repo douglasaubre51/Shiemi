@@ -1,21 +1,17 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage
-    x:Class="Shiemi.Pages.Projects"
+    x:Class="Shiemi.Pages.ProjectShop"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:models="clr-namespace:Shiemi.Models"
+    xmlns:model="clr-namespace:Shiemi.Models"
     xmlns:pagemodel="clr-namespace:Shiemi.PageModels"
     Title="{Binding Title}"
-    x:DataType="pagemodel:ProjectsPageModel">
-    <Grid Margin="10" RowDefinitions="*,50">
-        <!--  collection  -->
-        <CollectionView
-            Margin="10"
-            ItemsLayout="VerticalGrid,2"
-            ItemsSource="{Binding ProjectCollection}">
+    x:DataType="pagemodel:ProjectShopPageModel">
+    <Grid Margin="10" RowDefinitions="*">
+        <CollectionView ItemsLayout="VerticalGrid,2" ItemsSource="{Binding ProjectCollection}">
             <CollectionView.ItemTemplate>
-                <DataTemplate x:DataType="models:Project">
-                    <Grid Padding="10" RowSpacing="15">
+                <DataTemplate x:DataType="model:Project">
+                    <Grid Padding="20" RowSpacing="15">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="50" />
                             <RowDefinition Height="50" />
@@ -32,10 +28,5 @@
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>
-        <!--  create project  -->
-        <Button
-            Grid.Row="2"
-            Command="{Binding GoToCreateProjectCommand}"
-            Text="new" />
     </Grid>
 </ContentPage>

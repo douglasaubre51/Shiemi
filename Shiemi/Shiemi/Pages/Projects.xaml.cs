@@ -33,7 +33,7 @@ public partial class Projects : ContentPage
 
         try
         {
-            var projectList = await _projectService.GetAll(
+            var projectList = await _projectService.GetAllByUser(
                 _userStorage.UserId
                 );
             foreach (var project in projectList!)

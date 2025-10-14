@@ -16,9 +16,15 @@
         </Tab>
     </FlyoutItem>
 
-    <FlyoutItem Title="Projects">
+    <FlyoutItem Title="My Projects">
         <Tab>
             <ShellContent ContentTemplate="{DataTemplate pages:Projects}" Route="Projects" />
+        </Tab>
+    </FlyoutItem>
+
+    <FlyoutItem Title="Project Shop">
+        <Tab>
+            <ShellContent ContentTemplate="{DataTemplate pages:ProjectShop}" Route="ProjectShop" />
         </Tab>
     </FlyoutItem>
 

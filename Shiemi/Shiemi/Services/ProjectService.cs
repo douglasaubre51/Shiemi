@@ -27,13 +27,25 @@ public class ProjectService
 
 
     // READ
-    public async Task<List<Project>?> GetAll(int id)
+    public async Task<List<Project>?> GetAllByUser(int id)
     {
         HttpResponseMessage response = await _client.GetAsync(
             $"{projectBaseUri}/all/{id}"
             );
 
-        Debug.WriteLine($"GetAllProjects status: {response.StatusCode}");
+        Debug.WriteLine($"GetAllProjectsByUser status: {response.StatusCode}");
+
+        var payload = await response.Content.ReadFromJsonAsync<ProjectsWrap>();
+        return payload!.Projects;
+    }
+
+    public async Task<List<Project>?> GetAll()
+    {
+        HttpResponseMessage response = await _client.GetAsync(
+            $"{projectBaseUri}/all"
+            );
+
+        Debug.WriteLine($"GetAllProjects status: {response.StatusCode} ");
 
         var payload = await response.Content.ReadFromJsonAsync<ProjectsWrap>();
         return payload!.Projects;

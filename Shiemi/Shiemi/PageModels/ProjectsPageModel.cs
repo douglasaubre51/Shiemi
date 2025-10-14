@@ -11,7 +11,7 @@ public partial class ProjectsPageModel : BasePageModel
 
     public ProjectsPageModel()
     {
-        Title = "Projects";
+        Title = "My Projects";
     }
 
     [RelayCommand]

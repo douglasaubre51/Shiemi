@@ -49,7 +49,7 @@ public partial class Index : ContentPage
 
                 pageModel!.IsBusy = false;
 
-                await Shell.Current.GoToAsync(nameof(Profile));
+                await Shell.Current.GoToAsync("//Profile");
                 return;
             }
 
