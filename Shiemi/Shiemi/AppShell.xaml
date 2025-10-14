@@ -10,7 +10,7 @@
         <ShellContent ContentTemplate="{DataTemplate pages:Index}" Route="Index" />
     </Tab>
 
-    <FlyoutItem Title="Profile">
+    <FlyoutItem Title="Home">
         <Tab>
             <ShellContent ContentTemplate="{DataTemplate pages:Profile}" Route="Profile" />
         </Tab>

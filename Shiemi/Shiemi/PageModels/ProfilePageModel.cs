@@ -18,6 +18,6 @@ public partial class ProfilePageModel : BasePageModel
 
     public ProfilePageModel()
     {
-        Title = "Profile";
+        Title = "Home";
     }
 }
