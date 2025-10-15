@@ -9,6 +9,8 @@ public class Project
     public string Description { get; set; } = string.Empty;
     public DateOnly CreatedAt { get; set; }
 
+    public decimal Cost { get; set; }
+
     public int UserId { get; set; }
     public User? User { get; set; }
     public Room? Channel { get; set; }

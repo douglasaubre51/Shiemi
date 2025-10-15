@@ -1,4 +1,5 @@
-﻿using Shiemi.Pages;
+﻿using Shiemi.PageModels;
+using Shiemi.Pages;
 
 namespace Shiemi
 {
@@ -8,10 +9,13 @@ namespace Shiemi
         {
             InitializeComponent();
 
+            // Startup commands here
+
+
             // Register routes here
             Routing.RegisterRoute(nameof(CreateProject), typeof(CreateProject));
-
-            // Startup commands here
+            Routing.RegisterRoute(nameof(ProjectDetails), typeof(ProjectDetails));
+            Routing.RegisterRoute(nameof(PrivateRoom), typeof(PrivateRoom));
         }
     }
 }

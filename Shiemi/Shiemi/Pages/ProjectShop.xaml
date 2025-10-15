@@ -8,23 +8,31 @@
     Title="{Binding Title}"
     x:DataType="pagemodel:ProjectShopPageModel">
     <Grid Margin="10" RowDefinitions="*">
-        <CollectionView ItemsLayout="VerticalGrid,2" ItemsSource="{Binding ProjectCollection}">
+        <CollectionView
+            ItemsLayout="VerticalGrid,2"
+            ItemsSource="{Binding ProjectCollection}"
+            SelectionMode="Single">
             <CollectionView.ItemTemplate>
                 <DataTemplate x:DataType="model:Project">
-                    <Grid Padding="20" RowSpacing="15">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="50" />
-                            <RowDefinition Height="50" />
-                        </Grid.RowDefinitions>
-                        <Label
-                            Grid.Row="0"
-                            FontSize="Medium"
-                            Text="{Binding Title}" />
-                        <Label
-                            Grid.Row="1"
-                            FontSize="Micro"
-                            Text="{Binding ShortDesc}" />
-                    </Grid>
+                    <Border>
+                        <Border.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type pagemodel:ProjectShopPageModel}}, x:DataType=pagemodel:ProjectShopPageModel, Path=GoToProjectDetailsCommand}" CommandParameter="{Binding .}" />
+                        </Border.GestureRecognizers>
+                        <Grid Padding="20" RowSpacing="15">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="50" />
+                                <RowDefinition Height="50" />
+                            </Grid.RowDefinitions>
+                            <Label
+                                Grid.Row="0"
+                                FontSize="Medium"
+                                Text="{Binding Title}" />
+                            <Label
+                                Grid.Row="1"
+                                FontSize="Micro"
+                                Text="{Binding ShortDesc}" />
+                        </Grid>
+                    </Border>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="Shiemi.Pages.ProjectDetails"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:pagemodel="clr-namespace:Shiemi.PageModels"
+    Title="{Binding Project.Title}"
+    x:DataType="pagemodel:ProjectDetailsPageModel">
+    <Grid Margin="10" RowDefinitions="*,*,50">
+        <Label
+            Grid.Row="0"
+            FontSize="Micro"
+            Text="{Binding Project.Description}" />
+        <Label
+            Grid.Row="1"
+            FontSize="14"
+            Text="{Binding Project.Cost, StringFormat='Estimated Cost: ${0}'}" />
+
+        <Button Grid.Row="2" Text="Chat" />
+    </Grid>
+</ContentPage>
