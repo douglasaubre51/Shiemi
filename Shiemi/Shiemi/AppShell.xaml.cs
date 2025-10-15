@@ -1,5 +1,4 @@
-﻿using Shiemi.PageModels;
-using Shiemi.Pages;
+﻿using Shiemi.Pages;
 
 namespace Shiemi
 {
@@ -10,6 +9,7 @@ namespace Shiemi
             InitializeComponent();
 
             // Startup commands here
+            //Preferences.Default.Clear();
 
 
             // Register routes here

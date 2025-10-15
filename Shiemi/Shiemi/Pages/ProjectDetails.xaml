@@ -16,6 +16,9 @@
             FontSize="14"
             Text="{Binding Project.Cost, StringFormat='Estimated Cost: ${0}'}" />
 
-        <Button Grid.Row="2" Text="Chat" />
+        <Button
+            Grid.Row="2"
+            Command="{Binding GoToPrivateRoomCommand}"
+            Text="Chat" />
     </Grid>
 </ContentPage>

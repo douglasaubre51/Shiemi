@@ -36,7 +36,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <MauiXaml Update="PageModels\PrivateRoom.xaml">
+	  <MauiXaml Update="Pages\PrivateRoom.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Pages\CreateProject.xaml">
