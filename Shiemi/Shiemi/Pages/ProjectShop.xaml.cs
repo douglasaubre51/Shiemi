@@ -26,6 +26,7 @@ public partial class ProjectShop : ContentPage
 
         try
         {
+            pageModel!.ProjectCollection.Clear();
             var projects = await _projectService.GetAll();
 
             foreach (var p in projects!)
