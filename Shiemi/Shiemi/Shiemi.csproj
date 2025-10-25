@@ -30,31 +30,31 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Compile Update="Pages\ProjectShop.xaml.cs">
+	  <Compile Update="Pages\Market\ProjectShop.xaml.cs">
 	    <DependentUpon>ProjectShop.xaml</DependentUpon>
 	  </Compile>
 	</ItemGroup>
 
 	<ItemGroup>
-	  <MauiXaml Update="Pages\PrivateRoom.xaml">
+	  <MauiXaml Update="Pages\Market\PrivateRoom.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Pages\CreateProject.xaml">
+	  <MauiXaml Update="Pages\User\CreateProject.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Pages\Index.xaml">
+	  <MauiXaml Update="Pages\Start\Index.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Pages\Profile.xaml">
+	  <MauiXaml Update="Pages\User\Profile.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Pages\ProjectDetails.xaml">
+	  <MauiXaml Update="Pages\Market\ProjectDetails.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Pages\ProjectShop.xaml">
+	  <MauiXaml Update="Pages\Market\ProjectShop.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Pages\Projects.xaml">
+	  <MauiXaml Update="Pages\User\Projects.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	</ItemGroup>

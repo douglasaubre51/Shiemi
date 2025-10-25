@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="Shiemi.Pages.PrivateRoom"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:dtos="clr-namespace:Shiemi.Dtos.MessageDtos"
+    xmlns:models="clr-namespace:Shiemi.Models"
+    xmlns:pagemodel="clr-namespace:Shiemi.PageModels.Market"
+    Title="{Binding Title}"
+    x:DataType="pagemodel:PrivateRoomPageModel">
+    <Grid
+        Margin="20"
+        ColumnDefinitions="*,*"
+        ColumnSpacing="10"
+        RowDefinitions="*,60">
+
+        <CollectionView
+            Grid.Row="0"
+            Grid.Column="1"
+            ItemsSource="{Binding MessageCollection}">
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="dtos:MessageDto">
+                    <Label
+                        Padding="0,0,10,30"
+                        HorizontalTextAlignment="End"
+                        Text="{Binding Text}" />
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+        <Grid
+            Grid.Row="1"
+            Grid.ColumnSpan="2"
+            ColumnDefinitions="*,300"
+            ColumnSpacing="10">
+
+            <Editor
+                Grid.Row="1"
+                Grid.Column="0"
+                Text="{Binding ChatBox}" />
+            <Button
+                Grid.Row="1"
+                Grid.Column="1"
+                Command="{Binding SendChatCommand}"
+                Text="send" />
+        </Grid>
+
+    </Grid>
+</ContentPage>

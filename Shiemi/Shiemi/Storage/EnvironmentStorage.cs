@@ -17,6 +17,11 @@ public class EnvironmentStorage
             "SHIEMI_BASE_URI",
             "https://localhost:7268/api"
             );
+
+        Preferences.Default.Set(
+            "SHIEMI_HUB_URI",
+            "https://localhost:7268/hubs"
+            );
     }
 
     // WAGURI SCS env
@@ -25,7 +30,13 @@ public class EnvironmentStorage
     public string GetWAGURIWebsocketUri()
         => Preferences.Default.Get("WAGURI_WEBSOCKET_URI", "");
 
+
     // SHIEMI api env
     public string GetSHIEMIBaseUri()
         => Preferences.Default.Get("SHIEMI_BASE_URI", "");
+
+
+    // SHIEMI SignalR hub env
+    public string GetSHIEMIWebsocketUri()
+        => Preferences.Default.Get("SHIEMI_HUB_URI", "");
 }

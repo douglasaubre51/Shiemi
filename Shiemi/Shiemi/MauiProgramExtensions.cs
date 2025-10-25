@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.Logging;
 using Shiemi.PageModels;
+using Shiemi.PageModels.Market;
 using Shiemi.Services;
 using Shiemi.Storage;
 
@@ -21,27 +22,42 @@ public static class MauiProgramExtensions
         builder.Logging.AddDebug();
 #endif
 
-        // Add Storage
+
+        // Add Storage Services
         builder.Services.AddSingleton<EnvironmentStorage>();
         builder.Services.AddSingleton<UserStorage>();
 
 
-        // Add Services
+        // Add Rest Services
+        // singleton
         builder.Services.AddSingleton<RestClient>();
 
+        // transient
         builder.Services.AddTransient<UserService>();
         builder.Services.AddTransient<AuthService>();
         builder.Services.AddTransient<ProjectService>();
 
 
+        // Add Chat Services
+        // singleton
+        builder.Services.AddSingleton<MessageService>();
+        builder.Services.AddSingleton<RoomService>();
+
+
         // Add Page Models
+        // start
         builder.Services.AddTransient<IndexPageModel>();
+
+        // user
         builder.Services.AddTransient<ProfilePageModel>();
         builder.Services.AddTransient<ProjectsPageModel>();
         builder.Services.AddTransient<CreateProjectPageModel>();
+
+        // market
         builder.Services.AddTransient<ProjectShopPageModel>();
         builder.Services.AddTransient<ProjectDetailsPageModel>();
         builder.Services.AddTransient<PrivateRoomPageModel>();
+
 
 
         return builder;
