@@ -11,6 +11,9 @@ public partial class ProjectDetailsPageModel : BasePageModel
 {
     [ObservableProperty]
     private Project project;
+    [ObservableProperty]
+    private bool notOwner = true;
+
     public ProjectDetailsPageModel() => Title = "Project Details";
 
     [RelayCommand]

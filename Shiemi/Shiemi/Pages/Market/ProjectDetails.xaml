@@ -19,6 +19,7 @@
         <Button
             Grid.Row="2"
             Command="{Binding GoToPrivateRoomCommand}"
+            IsEnabled="{Binding NotOwner}"
             Text="Chat" />
     </Grid>
 </ContentPage>

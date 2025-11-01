@@ -3,12 +3,15 @@
     x:Class="Shiemi.AppShell"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:chatpages="clr-namespace:Shiemi.Pages.Chats"
     xmlns:pages="clr-namespace:Shiemi.Pages"
     Shell.FlyoutBehavior="Flyout">
 
-    <Tab>
-        <ShellContent ContentTemplate="{DataTemplate pages:Index}" Route="Index" />
-    </Tab>
+    <FlyoutItem Title="GetStarted" FlyoutItemIsVisible="False">
+        <Tab>
+            <ShellContent ContentTemplate="{DataTemplate pages:Index}" Route="Index" />
+        </Tab>
+    </FlyoutItem>
 
     <FlyoutItem Title="Home">
         <Tab>
@@ -27,5 +30,15 @@
             <ShellContent ContentTemplate="{DataTemplate pages:ProjectShop}" Route="ProjectShop" />
         </Tab>
     </FlyoutItem>
+
+    <FlyoutItem Title="Chats">
+        <Tab Title="Rooms">
+            <ShellContent ContentTemplate="{DataTemplate chatpages:Rooms}" Route="Rooms" />
+        </Tab>
+        <Tab Title="Channels">
+            <ShellContent ContentTemplate="{DataTemplate chatpages:Channels}" Route="Channels" />
+        </Tab>
+    </FlyoutItem>
+
 
 </Shell>

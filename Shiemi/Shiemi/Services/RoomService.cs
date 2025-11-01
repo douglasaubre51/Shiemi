@@ -45,7 +45,8 @@ public class RoomService
     // SignalR pipeline
     public async Task InitSignalR(
         ObservableCollection<MessageDto> dtoCollection,
-        int roomId
+        int roomId,
+        CollectionView messageCollectionView
         )
     {
         _hub = new HubConnectionBuilder()
@@ -61,7 +62,7 @@ public class RoomService
             "LoadChat",
             async (dtos) =>
             {
-                MainThread.BeginInvokeOnMainThread(() =>
+                MainThread.BeginInvokeOnMainThread(async () =>
                 {
                     foreach (var d in dtos) { dtoCollection.Add(d); }
                 });

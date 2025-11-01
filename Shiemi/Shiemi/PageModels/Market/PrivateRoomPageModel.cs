@@ -18,7 +18,7 @@ public partial class PrivateRoomPageModel : BasePageModel
     private readonly RoomService _roomService;
     private readonly UserStorage _userStorage;
 
-    public ObservableCollection<MessageDto> MessageCollection { get; set; } = new();
+    public ObservableCollection<MessageDto> MessageCollection { get; set; } = [];
 
     [ObservableProperty]
     private string chatBox;
@@ -45,7 +45,7 @@ public partial class PrivateRoomPageModel : BasePageModel
             {
                 Text = ChatBox,
                 UserId = _userStorage.UserId,
-                CreatedAt = DateTime.UtcNow,
+                CreatedAt = DateTime.Now.ToLocalTime(),
                 RoomId = await _roomService.GetPrivateRoom(
                     _userStorage.UserId,
                     Project.Id
@@ -58,6 +58,13 @@ public partial class PrivateRoomPageModel : BasePageModel
             ChatBox = string.Empty;
         }
         catch (Exception ex)
-        { Debug.WriteLine($"PrivateRoom SendChat error: {ex.Message}"); }
+        {
+            Debug.WriteLine($"PrivateRoom SendChat error: {ex.Message}");
+            await Shell.Current.DisplayAlertAsync(
+                "Something went wrong!",
+                "make sure u are connected to the internet!",
+                "Ok"
+                );
+        }
     }
 }

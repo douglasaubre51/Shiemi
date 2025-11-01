@@ -9,7 +9,7 @@ namespace Shiemi
             InitializeComponent();
 
             // Startup commands here
-            Preferences.Default.Clear();
+            // Preferences.Default.Clear();
 
 
             // Register routes here

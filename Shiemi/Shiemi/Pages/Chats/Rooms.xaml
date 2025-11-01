@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="Shiemi.Pages.Chats.Rooms"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:dtos="clr-namespace:Shiemi.Dtos.RoomDtos"
+    xmlns:pagemodel="clr-namespace:Shiemi.PageModels.Chat"
+    x:DataType="pagemodel:RoomsPageModel"
+    Shell.NavBarIsVisible="False">
+    <Grid ColumnDefinitions="*,1.8*" RowDefinitions="*">
+        <CollectionView ItemsLayout="VerticalList" ItemsSource="{Binding RoomCollection}">
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="dtos:RoomDto">
+                    <Grid
+                        Grid.Column="0"
+                        Padding="20,20,0,0"
+                        ColumnDefinitions="*"
+                        RowDefinitions="*">
+                        <Label Text="{Binding TenantId}" />
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </Grid>
+</ContentPage>

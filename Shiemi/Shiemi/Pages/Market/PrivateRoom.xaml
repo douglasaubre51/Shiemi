@@ -10,27 +10,33 @@
     x:DataType="pagemodel:PrivateRoomPageModel">
     <Grid
         Margin="20"
-        ColumnDefinitions="*,*"
+        ColumnDefinitions="*,*,*"
         ColumnSpacing="10"
         RowDefinitions="*,60">
 
         <CollectionView
+            x:Name="MessageCollectionView"
             Grid.Row="0"
-            Grid.Column="1"
-            ItemsSource="{Binding MessageCollection}">
+            Grid.Column="2"
+            ItemsSource="{Binding MessageCollection}"
+            ItemsUpdatingScrollMode="KeepLastItemInView">
             <CollectionView.ItemTemplate>
                 <DataTemplate x:DataType="dtos:MessageDto">
-                    <Label
-                        Padding="0,0,10,30"
-                        HorizontalTextAlignment="End"
-                        Text="{Binding Text}" />
+                    <Grid
+                        Padding="20"
+                        BackgroundColor="{StaticResource PrimaryDarkText}"
+                        RowDefinitions="*,*"
+                        RowSpacing="5">
+                        <Label Grid.Row="0" Text="{Binding Text}" />
+                        <Label Grid.Row="1" Text="{Binding CreatedAt}" />
+                    </Grid>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>
 
         <Grid
             Grid.Row="1"
-            Grid.ColumnSpan="2"
+            Grid.ColumnSpan="3"
             ColumnDefinitions="*,300"
             ColumnSpacing="10">
 

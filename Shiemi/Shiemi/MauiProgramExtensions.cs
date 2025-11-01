@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.Logging;
 using Shiemi.PageModels;
+using Shiemi.PageModels.Chat;
 using Shiemi.PageModels.Market;
 using Shiemi.Services;
 using Shiemi.Storage;
@@ -42,6 +43,7 @@ public static class MauiProgramExtensions
         // singleton
         builder.Services.AddSingleton<MessageService>();
         builder.Services.AddSingleton<RoomService>();
+        builder.Services.AddSingleton<ChatService>();
 
 
         // Add Page Models
@@ -58,7 +60,8 @@ public static class MauiProgramExtensions
         builder.Services.AddTransient<ProjectDetailsPageModel>();
         builder.Services.AddTransient<PrivateRoomPageModel>();
 
-
+        // chat
+        builder.Services.AddTransient<RoomsPageModel>();
 
         return builder;
     }

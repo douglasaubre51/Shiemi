@@ -32,7 +32,11 @@ public partial class PrivateRoom : ContentPage
                 pageModel!.Project.Id
                 );
             Debug.WriteLine("room id: " + roomId);
-            await _roomService.InitSignalR(pageModel!.MessageCollection, roomId);
+            await _roomService.InitSignalR(
+                pageModel!.MessageCollection,
+                roomId,
+                MessageCollectionView
+                );
         }
         catch (Exception ex) { Debug.WriteLine($"PrivateRoom init error: {ex.Message}"); }
 
