@@ -27,12 +27,15 @@ public partial class Index : ContentPage
         _envStorage = envStorage;
         _userService = userService;
         _userStorage = userStorage;
+
+        // test rest services
+        //AccountDto? account = userService.GetUserById(1).GetAwaiter().GetResult();
+        //Debug.WriteLine(account!.FirstName);
     }
 
     private async void Button_Clicked(object sender, EventArgs e)
     {
         var pageModel = BindingContext as IndexPageModel;
-
         try
         {
             pageModel!.IsBusy = true;
@@ -45,10 +48,13 @@ public partial class Index : ContentPage
                 var userIdDto = await _userService.GetUserId(
                     userIdString
                 );
+                if (userIdDto is null)
+                {
+                    DataStorage.Remove("UserId");
+                    return;
+                }
+
                 _userStorage.UserId = userIdDto!.Id;
-
-                pageModel!.IsBusy = false;
-
                 await Shell.Current.GoToAsync("//Profile");
                 return;
             }
@@ -73,18 +79,13 @@ public partial class Index : ContentPage
                         userIdString
                     );
                     _userStorage.UserId = userIdDto!.Id;
-
-                    IsBusy = false;
-
                     // navigate to profile view
                     await Shell.Current.GoToAsync("//Profile");
                     return;
                 }
             }
         }
-        catch (Exception ex)
-        {
-            Debug.WriteLine("GetStarted btn error: " + ex.Message);
-        }
+        catch (Exception ex) { Debug.WriteLine("GetStarted btn error: " + ex.Message); }
+        finally { pageModel!.IsBusy = false; }
     }
 }

@@ -32,7 +32,6 @@ public static class MauiProgramExtensions
         // Add Rest Services
         // singleton
         builder.Services.AddSingleton<RestClient>();
-
         // transient
         builder.Services.AddTransient<UserService>();
         builder.Services.AddTransient<AuthService>();
@@ -49,19 +48,17 @@ public static class MauiProgramExtensions
         // Add Page Models
         // start
         builder.Services.AddTransient<IndexPageModel>();
-
         // user
         builder.Services.AddTransient<ProfilePageModel>();
         builder.Services.AddTransient<ProjectsPageModel>();
         builder.Services.AddTransient<CreateProjectPageModel>();
-
         // market
         builder.Services.AddTransient<ProjectShopPageModel>();
         builder.Services.AddTransient<ProjectDetailsPageModel>();
         builder.Services.AddTransient<PrivateRoomPageModel>();
-
         // chat
         builder.Services.AddTransient<RoomsPageModel>();
+
 
         return builder;
     }

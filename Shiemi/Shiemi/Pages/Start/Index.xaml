@@ -7,10 +7,14 @@
     Title="{Binding Title}"
     x:DataType="pagemodel:IndexPageModel"
     Shell.FlyoutBehavior="Disabled">
-
-    <Grid Margin="10" RowDefinitions="*,*">
+    <Grid
+    ColumnSpacing="10"
+        Margin="10"
+        ColumnDefinitions="*,*"
+        RowDefinitions="*,*">
         <Label
             Grid.Row="0"
+            Grid.ColumnSpan="2"
             FontSize="100"
             HorizontalOptions="Start"
             Text="Shiemi"
@@ -18,15 +22,26 @@
 
         <ActivityIndicator
             Grid.Row="1"
+            Grid.ColumnSpan="2"
             IsEnabled="{Binding IsBusy}"
             IsRunning="{Binding IsBusy}"
             IsVisible="{Binding IsBusy}" />
 
         <Button
             Grid.Row="1"
+            Grid.Column="0"
             Clicked="Button_Clicked"
             IsVisible="{Binding IsNotBusy}"
             Text="Get started"
             VerticalOptions="End" />
+        <Button
+            Grid.Row="1"
+            Grid.Column="1"
+            BackgroundColor="Red"
+            Command="{Binding LogoutPressedCommand}"
+            IsVisible="{Binding IsNotBusy}"
+            Text="Logout"
+            VerticalOptions="End"
+            />
     </Grid>
 </ContentPage>

@@ -3,6 +3,7 @@ using Shiemi.Dtos.UserDtos;
 using System.Net.Http.Json;
 
 namespace Shiemi.Services;
+
 public class UserService
 {
     private readonly RestClient _restClient;
@@ -22,7 +23,24 @@ public class UserService
         );
 
     public async Task<UserIdDto?> GetUserId(string userId)
-        => await _httpClient.GetFromJsonAsync<UserIdDto>(
+    {
+        var response = await _httpClient.GetAsync(
             $"{userBaseUri}/{userId}/id"
             );
+        if (!response.IsSuccessStatusCode)
+            return null;
+
+        return await response.Content.ReadFromJsonAsync<UserIdDto>();
+    }
+
+    public async Task<AccountDto?> GetUserById(int id)
+    {
+        var response = await _httpClient.GetAsync(
+            $"{userBaseUri}/{id}"
+            );
+        if (!response.IsSuccessStatusCode)
+            return null!;
+
+        return await response.Content.ReadFromJsonAsync<AccountDto>();
+    }
 }

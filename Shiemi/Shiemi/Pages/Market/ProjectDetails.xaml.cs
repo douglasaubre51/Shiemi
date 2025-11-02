@@ -23,7 +23,7 @@ public partial class ProjectDetails : ContentPage
         var context = BindingContext as ProjectDetailsPageModel;
         Debug.WriteLine($"checking if owner: {context!.Project.Id}");
 
-        if (context!.Project.Id == _userStorage.UserId)
+        if (context!.Project.UserId == _userStorage.UserId)
         {
             Debug.WriteLine($"disabling btn: {context.Project.Id}");
             context.NotOwner = false;
