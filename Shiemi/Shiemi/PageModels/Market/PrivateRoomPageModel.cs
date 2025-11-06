@@ -1,10 +1,10 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using MvvmHelpers;
 using Shiemi.Dtos.MessageDtos;
 using Shiemi.Models;
 using Shiemi.Services;
 using Shiemi.Storage;
-using System.Collections.ObjectModel;
 using System.Diagnostics;
 
 namespace Shiemi.PageModels.Market;
@@ -17,7 +17,7 @@ public partial class PrivateRoomPageModel : BasePageModel
 
     private readonly RoomService _roomService;
 
-    public ObservableCollection<MessageDto> MessageCollection { get; set; } = [];
+    public ObservableRangeCollection<MessageDto> MessageCollection { get; set; } = [];
 
     [ObservableProperty]
     private string chatBox;

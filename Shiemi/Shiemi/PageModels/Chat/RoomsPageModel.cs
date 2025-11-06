@@ -1,17 +1,17 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
+using MvvmHelpers;
 using Shiemi.Dtos.ChatDtos;
 using Shiemi.Dtos.MessageDtos;
-using System.Collections.ObjectModel;
 
 namespace Shiemi.PageModels.Chat;
 
 public partial class RoomsPageModel : BasePageModel
 {
     [ObservableProperty]
-    private ObservableCollection<ChatDto> chatCollection = [];
+    private ObservableRangeCollection<ChatDto> chatCollection = [];
 
     [ObservableProperty]
-    private ObservableCollection<MessageDto> messageCollection = [];
+    private ObservableRangeCollection<MessageDto> messageCollection = [];
 
     [ObservableProperty]
     private string sender = "Sender Name";

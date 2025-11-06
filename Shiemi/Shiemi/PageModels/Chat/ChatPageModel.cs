@@ -1,5 +1,5 @@
-﻿using Shiemi.Dtos.MessageDtos;
-using System.Collections.ObjectModel;
+﻿using MvvmHelpers;
+using Shiemi.Dtos.MessageDtos;
 
 namespace Shiemi.PageModels.Chat;
 
@@ -9,5 +9,5 @@ public partial class ChatPageModel : BasePageModel
     public string SenderName { get; set; } = string.Empty;
     public string? Profile { get; set; }
 
-    public ObservableCollection<MessageDto> MessageCollection { get; set; } = [];
+    public ObservableRangeCollection<MessageDto> MessageCollection { get; set; } = [];
 }

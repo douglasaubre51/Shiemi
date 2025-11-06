@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.SignalR.Client;
+using MvvmHelpers;
 using Shiemi.Dtos.MessageDtos;
 using Shiemi.Storage;
-using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Net.Http.Json;
 
@@ -41,7 +41,7 @@ public class RoomService
 
     // SignalR pipeline
     public async Task InitSignalR(
-        ObservableCollection<MessageDto> dtoCollection,
+        ObservableRangeCollection<MessageDto> dtoCollection,
         int roomId
         )
     {
@@ -60,10 +60,7 @@ public class RoomService
             {
                 MainThread.BeginInvokeOnMainThread(async () =>
                 {
-                    foreach (var d in dtos)
-                    {
-                        dtoCollection.Add(d);
-                    }
+                    dtoCollection.AddRange(dtos);
                 });
             });
 

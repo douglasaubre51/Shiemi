@@ -1,8 +1,8 @@
+using MvvmHelpers;
 using Shiemi.Dtos.MessageDtos;
 using Shiemi.Services;
 using Shiemi.Storage;
 using Shiemi.Utilities.ServiceProviders;
-using System.Collections.ObjectModel;
 using System.Diagnostics;
 
 namespace Shiemi.Views;
@@ -12,16 +12,16 @@ public partial class ChatView : Grid
     public static readonly BindableProperty MessageCollectionProperty =
         BindableProperty.Create(
             nameof(MessageCollection),
-            typeof(ObservableCollection<MessageDto>),
+            typeof(ObservableRangeCollection<MessageDto>),
             typeof(ChatView),
-            new ObservableCollection<MessageDto>(),
+            new ObservableRangeCollection<MessageDto>(),
             propertyChanged: (bindable, oldValue, newValue) =>
             {
                 var context = (ChatView)bindable;
                 context.MessageCollectionView.ItemsSource =
-                (ObservableCollection<MessageDto>)newValue;
+                (ObservableRangeCollection<MessageDto>)newValue;
 
-                foreach (var d in (ObservableCollection<MessageDto>)newValue)
+                foreach (var d in (ObservableRangeCollection<MessageDto>)newValue)
                 {
                     Debug.WriteLine(d.Text);
                 }
@@ -46,9 +46,9 @@ public partial class ChatView : Grid
         _roomService = Provider.GetService<RoomService>();
     }
 
-    public ObservableCollection<MessageDto> MessageCollection
+    public ObservableRangeCollection<MessageDto> MessageCollection
     {
-        get => (ObservableCollection<MessageDto>)GetValue(MessageCollectionProperty);
+        get => (ObservableRangeCollection<MessageDto>)GetValue(MessageCollectionProperty);
         set => SetValue(MessageCollectionProperty, value);
     }
     public string SenderName
