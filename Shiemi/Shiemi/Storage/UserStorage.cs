@@ -1,6 +1,7 @@
 ﻿namespace Shiemi.Storage;
 
-public class UserStorage
+public static class UserStorage
 {
-    public int UserId { get; set; }
+    public static int UserId { get; set; } = 0;
+    public static int RoomId { get; set; } = 0;
 }

@@ -10,27 +10,19 @@ public partial class Index : ContentPage
     private readonly AuthService _authService;
     private readonly UserService _userService;
     private readonly EnvironmentStorage _envStorage;
-    private readonly UserStorage _userStorage;
 
     public Index(
         IndexPageModel pageModel,
         AuthService authService,
         EnvironmentStorage envStorage,
-        UserService userService,
-        UserStorage userStorage
+        UserService userService
         )
     {
         InitializeComponent();
         BindingContext = pageModel;
-
         _authService = authService;
         _envStorage = envStorage;
         _userService = userService;
-        _userStorage = userStorage;
-
-        // test rest services
-        //AccountDto? account = userService.GetUserById(1).GetAwaiter().GetResult();
-        //Debug.WriteLine(account!.FirstName);
     }
 
     private async void Button_Clicked(object sender, EventArgs e)
@@ -54,7 +46,7 @@ public partial class Index : ContentPage
                     return;
                 }
 
-                _userStorage.UserId = userIdDto!.Id;
+                UserStorage.UserId = userIdDto!.Id;
                 await Shell.Current.GoToAsync("//Profile");
                 return;
             }
@@ -78,7 +70,7 @@ public partial class Index : ContentPage
                     var userIdDto = await _userService.GetUserId(
                         userIdString
                     );
-                    _userStorage.UserId = userIdDto!.Id;
+                    UserStorage.UserId = userIdDto!.Id;
                     // navigate to profile view
                     await Shell.Current.GoToAsync("//Profile");
                     return;

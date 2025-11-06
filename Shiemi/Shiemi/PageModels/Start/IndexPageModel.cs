@@ -22,6 +22,11 @@ namespace Shiemi.PageModels
             Debug.WriteLine("removing UserId ...");
             DataStorage.Remove("UserId");
             IsBusy = false;
+            await Shell.Current.DisplayAlertAsync(
+                "Shiemi",
+                "Logged out current user!",
+                "Ok"
+                );
             return;
         }
     }

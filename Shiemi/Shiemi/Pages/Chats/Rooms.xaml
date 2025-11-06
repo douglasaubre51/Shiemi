@@ -5,9 +5,12 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:dtos="clr-namespace:Shiemi.Dtos.ChatDtos"
     xmlns:pagemodel="clr-namespace:Shiemi.PageModels.Chat"
+    xmlns:views="clr-namespace:Shiemi.Views"
     x:DataType="pagemodel:RoomsPageModel"
     Shell.NavBarIsVisible="False">
     <Grid ColumnDefinitions="*,1.8*" RowDefinitions="*">
+
+        <!--  chat list  -->
         <CollectionView
             Grid.Column="0"
             ItemsLayout="VerticalList"
@@ -26,8 +29,11 @@
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>
-        <CollectionView Grid.Column="1">
 
-        </CollectionView>
+        <!--  chat area  -->
+        <views:ChatView
+            Grid.Column="1"
+            MessageCollection="{Binding MessageCollection}"
+            SenderName="{Binding Sender}" />
     </Grid>
 </ContentPage>

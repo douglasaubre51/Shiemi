@@ -1,17 +1,18 @@
-﻿using CommunityToolkit.Mvvm.Input;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
 using Shiemi.Dtos.ChatDtos;
+using Shiemi.Dtos.MessageDtos;
 using System.Collections.ObjectModel;
-using System.Diagnostics;
 
 namespace Shiemi.PageModels.Chat;
 
 public partial class RoomsPageModel : BasePageModel
 {
-    public ObservableCollection<ChatDto> ChatCollection { get; set; } = [];
+    [ObservableProperty]
+    private ObservableCollection<ChatDto> chatCollection = [];
 
-    [RelayCommand]
-    async Task ChatSelected(ChatDto dto)
-    {
-        Debug.WriteLine($"selected chat: {dto.UserName}");
-    }
+    [ObservableProperty]
+    private ObservableCollection<MessageDto> messageCollection = [];
+
+    [ObservableProperty]
+    private string sender = "Sender Name";
 }

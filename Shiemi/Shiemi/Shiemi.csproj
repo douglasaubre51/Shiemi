@@ -43,6 +43,12 @@
 	  <MauiXaml Update="Pages\Chats\Channels.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="Views\ChatCardView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\ChatView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Pages\Chats\Rooms.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>

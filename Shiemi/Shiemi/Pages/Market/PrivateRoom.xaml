@@ -24,7 +24,6 @@
                 <DataTemplate x:DataType="dtos:MessageDto">
                     <Grid
                         Padding="20"
-                        BackgroundColor="{StaticResource PrimaryDarkText}"
                         RowDefinitions="*,*"
                         RowSpacing="5">
                         <Label Grid.Row="0" Text="{Binding Text}" />

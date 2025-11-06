@@ -4,13 +4,9 @@ using System.Diagnostics;
 
 namespace Shiemi.Services;
 
-public class AuthService(
-    EnvironmentStorage envService,
-    UserStorage userStorage
-    )
+public class AuthService(EnvironmentStorage envService)
 {
     private readonly EnvironmentStorage _envService = envService;
-    private readonly UserStorage _userStorage = userStorage;
 
     public async Task ConnectToWAGURI(string clientGuid)
     {

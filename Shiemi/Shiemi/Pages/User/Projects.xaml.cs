@@ -8,25 +8,19 @@ namespace Shiemi.Pages;
 public partial class Projects : ContentPage
 {
     private readonly ProjectService _projectService;
-    private readonly UserStorage _userStorage;
 
     public Projects(
         ProjectsPageModel pageModel,
-        ProjectService projectService,
-        UserStorage userStorage
+        ProjectService projectService
         )
     {
         InitializeComponent();
         BindingContext = pageModel;
-
         _projectService = projectService;
-        _userStorage = userStorage;
     }
 
     protected override async void OnAppearing()
     {
-        base.OnAppearing();
-
         var pageModel = BindingContext as ProjectsPageModel;
         var collection = pageModel!.ProjectCollection;
         collection.Clear();
@@ -34,7 +28,7 @@ public partial class Projects : ContentPage
         try
         {
             var projectList = await _projectService.GetAllByUser(
-                _userStorage.UserId
+                UserStorage.UserId
                 );
             foreach (var project in projectList!)
             {
@@ -45,6 +39,10 @@ public partial class Projects : ContentPage
         catch (Exception ex)
         {
             Debug.WriteLine($"Loading UserProjectList error: {ex.Message}");
+        }
+        finally
+        {
+            base.OnAppearing();
         }
     }
 }

@@ -16,21 +16,16 @@ public partial class PrivateRoomPageModel : BasePageModel
     private Project project;
 
     private readonly RoomService _roomService;
-    private readonly UserStorage _userStorage;
 
     public ObservableCollection<MessageDto> MessageCollection { get; set; } = [];
 
     [ObservableProperty]
     private string chatBox;
 
-    public PrivateRoomPageModel(
-        RoomService roomService,
-        UserStorage userStorage
-        )
+    public PrivateRoomPageModel(RoomService roomService)
     {
         Title = "Private Room";
         _roomService = roomService;
-        _userStorage = userStorage;
     }
 
     [RelayCommand]
@@ -44,15 +39,13 @@ public partial class PrivateRoomPageModel : BasePageModel
             MessageDto dto = new()
             {
                 Text = ChatBox,
-                UserId = _userStorage.UserId,
+                UserId = UserStorage.UserId,
                 CreatedAt = DateTime.Now.ToLocalTime(),
                 RoomId = await _roomService.GetPrivateRoom(
-                    _userStorage.UserId,
+                    UserStorage.UserId,
                     Project.Id
                     )
             };
-            Debug.WriteLine($"Text: {dto.Text}");
-            Debug.WriteLine($"CreatedAt: {dto.CreatedAt}");
             await _roomService.SendChat(dto);
 
             ChatBox = string.Empty;

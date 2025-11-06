@@ -2,6 +2,7 @@ using Shiemi.Dtos.ChatDtos;
 using Shiemi.Dtos.UserDtos;
 using Shiemi.PageModels.Chat;
 using Shiemi.Services;
+using Shiemi.Storage;
 using System.Diagnostics;
 
 namespace Shiemi.Pages.Chats;
@@ -10,17 +11,20 @@ public partial class Rooms : ContentPage
 {
     private readonly ChatService _chatService;
     private readonly UserService _userService;
+    private readonly RoomService _roomService;
 
     public Rooms(
         ChatService chatService,
         RoomsPageModel pageModel,
-        UserService userService
+        UserService userService,
+        RoomService roomService
         )
     {
         InitializeComponent();
         BindingContext = pageModel;
         _chatService = chatService;
         _userService = userService;
+        _roomService = roomService;
     }
 
     protected override async void OnAppearing()
@@ -59,12 +63,42 @@ public partial class Rooms : ContentPage
         finally { base.OnAppearing(); }
     }
 
-    private void CollectionView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+    private async void CollectionView_SelectionChanged(object sender, SelectionChangedEventArgs e)
     {
-        ChatDto selectedChat = (ChatDto)e.CurrentSelection.FirstOrDefault();
-        if (selectedChat is null)
-            return;
+        try
+        {
+            ChatDto selectedChat = (ChatDto)e.CurrentSelection.FirstOrDefault();
+            if (selectedChat is null)
+                return;
 
-        Debug.WriteLine(selectedChat!.UserName);
+            var context = BindingContext as RoomsPageModel;
+
+            ChatPageModel model = new()
+            {
+                RoomId = selectedChat.RoomId,
+                SenderName = selectedChat.UserName,
+                Profile = selectedChat.Profile,
+                MessageCollection = context!.MessageCollection
+            };
+
+
+            // set room id for messages
+            UserStorage.RoomId = model.RoomId;
+            // set senderName prop
+            context.Sender = model.SenderName;
+            // set messageCollection prop
+            context.MessageCollection.Clear();
+            context.MessageCollection = model.MessageCollection;
+
+            Debug.WriteLine($"sender name: {context.Sender}");
+
+            // remove existing socket conn!
+            if (_roomService._hub is not null)
+                await _roomService.DisconnectWebSocket();
+
+            await _roomService.InitSignalR(model.MessageCollection, model.RoomId);
+        }
+        catch (Exception ex)
+        { Debug.WriteLine($"CollectionView_SelectionChanged error: {ex.Message}"); }
     }
 }

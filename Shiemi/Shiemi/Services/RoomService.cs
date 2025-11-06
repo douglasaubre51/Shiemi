@@ -11,21 +11,18 @@ public class RoomService
 {
     private readonly HttpClient _httpClient;
     private readonly EnvironmentStorage _envStorage;
-    private readonly UserStorage _userStorage;
 
     private string roomBaseURI;
-    private HubConnection _hub;
+    public HubConnection _hub;
 
     public RoomService(
         RestClient restClient,
-        EnvironmentStorage envStorage,
-        UserStorage userStorage
+        EnvironmentStorage envStorage
         )
     {
         _httpClient = restClient.GetClient();
         roomBaseURI = $"{_httpClient.BaseAddress}/Room";
         _envStorage = envStorage;
-        _userStorage = userStorage;
     }
 
     public async Task<int> GetPrivateRoom(int userId, int projectId)
@@ -45,8 +42,7 @@ public class RoomService
     // SignalR pipeline
     public async Task InitSignalR(
         ObservableCollection<MessageDto> dtoCollection,
-        int roomId,
-        CollectionView messageCollectionView
+        int roomId
         )
     {
         _hub = new HubConnectionBuilder()
@@ -64,7 +60,10 @@ public class RoomService
             {
                 MainThread.BeginInvokeOnMainThread(async () =>
                 {
-                    foreach (var d in dtos) { dtoCollection.Add(d); }
+                    foreach (var d in dtos)
+                    {
+                        dtoCollection.Add(d);
+                    }
                 });
             });
 
@@ -83,7 +82,7 @@ public class RoomService
         // set userId and room at hub
         await _hub.InvokeAsync(
             "SetUserIdAndRoom",
-            _userStorage.UserId,
+            UserStorage.UserId,
             roomId
             );
     }
