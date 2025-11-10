@@ -1,4 +1,5 @@
-﻿using Shiemi.Dtos.RoomDtos;
+﻿using Shiemi.Dtos.MessageDtos;
+using Shiemi.Dtos.RoomDtos;
 using Shiemi.Storage;
 using Shiemi.Wrappers;
 using System.Net.Http.Json;
@@ -32,5 +33,16 @@ public class ChatService
 
         var wrap = await response.Content.ReadFromJsonAsync<RoomsWrap>();
         return wrap!.Rooms;
+    }
+
+    public async Task<List<MessageDto>?> GetAllByRoom(int id)
+    {
+        var response = await _httpClient.GetAsync(
+            $"{chatBaseURI}/Private/{id}/messages"
+            );
+        if (!response.IsSuccessStatusCode)
+            return null;
+
+        return await response.Content.ReadFromJsonAsync<List<MessageDto>>();
     }
 }

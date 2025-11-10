@@ -39,7 +39,6 @@ public static class MauiProgramExtensions
 
         // Add Chat Services
         // singleton
-        builder.Services.AddSingleton<MessageService>();
         builder.Services.AddSingleton<RoomService>();
         builder.Services.AddSingleton<ChatService>();
 

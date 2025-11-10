@@ -11,6 +11,8 @@ public class MessageDto
     public DateTime CreatedAt { get; set; }
 
     public int UserId { get; set; }
+    public bool IsOwner { get; set; }
+
     public int ChannelId { get; set; }
     public int RoomId { get; set; }
 }

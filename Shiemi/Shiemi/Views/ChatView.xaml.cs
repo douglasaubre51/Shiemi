@@ -40,12 +40,6 @@ public partial class ChatView : Grid
             }
             );
 
-    public ChatView()
-    {
-        InitializeComponent();
-        _roomService = Provider.GetService<RoomService>();
-    }
-
     public ObservableRangeCollection<MessageDto> MessageCollection
     {
         get => (ObservableRangeCollection<MessageDto>)GetValue(MessageCollectionProperty);
@@ -58,16 +52,40 @@ public partial class ChatView : Grid
     }
 
     private readonly RoomService? _roomService;
+    private readonly ChatService? _chatService;
 
+    public ChatView()
+    {
+        InitializeComponent();
+        _roomService = Provider.GetService<RoomService>();
+        _chatService = Provider.GetService<ChatService>();
+
+        // on pull to refresh!
+        //MessageRefreshView.Command = new Command(() =>
+        //{
+        //    List<MessageDto>? messages = _chatService!.GetAllByRoom(UserStorage.RoomId)
+        //        .GetAwaiter().GetResult();
+        //    if (messages is null)
+        //    {
+        //        MessageRefreshView.IsRefreshing = false;
+        //        return;
+        //    }
+
+        //    MessageCollection.ReplaceRange(messages);
+        //    MessageRefreshView.IsRefreshing = false;
+        //});
+    }
 
     private async void Send_Btn_Clicked(object sender, EventArgs e)
     {
         try
         {
-            Debug.WriteLine("clicked send message!");
-
             if (string.IsNullOrWhiteSpace(MessageBox.Text))
                 return;
+
+            Debug.WriteLine("clicked send message!");
+            Debug.WriteLine($"User Id: {UserStorage.UserId}");
+            Debug.WriteLine($"Room Id: {UserStorage.RoomId}");
 
             var dto = new MessageDto
             {

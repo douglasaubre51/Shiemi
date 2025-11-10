@@ -19,11 +19,50 @@
     <CollectionView
         x:Name="MessageCollectionView"
         Grid.Row="1"
-        ItemsLayout="VerticalList"
+        ItemSizingStrategy="MeasureFirstItem"
         ItemsUpdatingScrollMode="KeepLastItemInView">
         <CollectionView.ItemTemplate>
             <DataTemplate x:DataType="messagedtos:MessageDto">
-                <views:ChatCardView MessageText="{Binding Text}" MessageTime="{Binding CreatedAt}" />
+                <Grid>
+                    <Grid.Triggers>
+                        <DataTrigger
+                            Binding="{Binding IsOwner}"
+                            TargetType="Grid"
+                            Value="False">
+                            <Setter Property="ColumnDefinitions" Value="Auto,*" />
+                        </DataTrigger>
+                        <DataTrigger
+                            Binding="{Binding IsOwner}"
+                            TargetType="Grid"
+                            Value="True">
+                            <Setter Property="ColumnDefinitions" Value="*,Auto" />
+                        </DataTrigger>
+                    </Grid.Triggers>
+
+                    <!--  message card  -->
+                    <views:ChatCardView
+                        MaximumWidthRequest="600"
+                        MessageText="{Binding Text}"
+                        MessageTime="{Binding CreatedAt}">
+
+                        <!--  card position trigger  -->
+                        <views:ChatCardView.Triggers>
+                            <DataTrigger
+                                Binding="{Binding IsOwner}"
+                                TargetType="views:ChatCardView"
+                                Value="False">
+                                <Setter Property="Grid.Column" Value="0" />
+                            </DataTrigger>
+                            <DataTrigger
+                                Binding="{Binding IsOwner}"
+                                TargetType="views:ChatCardView"
+                                Value="True">
+                                <Setter Property="Grid.Column" Value="1" />
+                            </DataTrigger>
+                        </views:ChatCardView.Triggers>
+                    </views:ChatCardView>
+
+                </Grid>
             </DataTemplate>
         </CollectionView.ItemTemplate>
     </CollectionView>

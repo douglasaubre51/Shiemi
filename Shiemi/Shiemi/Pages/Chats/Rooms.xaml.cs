@@ -84,6 +84,7 @@ public partial class Rooms : ContentPage
 
             // set room id for messages
             UserStorage.RoomId = model.RoomId;
+            Debug.WriteLine($"RoomId: {model.RoomId}");
             // set senderName prop
             context.Sender = model.SenderName;
             // set messageCollection prop

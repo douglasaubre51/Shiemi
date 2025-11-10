@@ -1,3 +1,4 @@
+using Shiemi.Dtos.UserDtos;
 using Shiemi.PageModels.Market;
 using Shiemi.Services;
 using Shiemi.Storage;
@@ -8,15 +9,18 @@ namespace Shiemi.Pages;
 public partial class PrivateRoom : ContentPage
 {
     private readonly RoomService _roomService;
+    private readonly UserService _userService;
 
     public PrivateRoom(
         PrivateRoomPageModel pageModel,
-        RoomService roomService
+        RoomService roomService,
+        UserService userService
         )
     {
         InitializeComponent();
         BindingContext = pageModel;
         _roomService = roomService;
+        _userService = userService;
     }
 
     protected override async void OnAppearing()
@@ -28,11 +32,15 @@ public partial class PrivateRoom : ContentPage
                 UserStorage.UserId,
                 pageModel!.Project.Id
                 );
-            Debug.WriteLine("room id: " + roomId);
+            UserStorage.RoomId = roomId;
+
             await _roomService.InitSignalR(
                 pageModel!.MessageCollection,
                 roomId
                 );
+
+            AccountDto? user = await _userService.GetUserById(pageModel.Project.UserId);
+            pageModel.Sender = user!.FirstName + " " + user.LastName;
         }
         catch (Exception ex) { Debug.WriteLine($"PrivateRoom init error: {ex.Message}"); }
 

@@ -58,6 +58,12 @@ public class RoomService
             "LoadChat",
             async (dtos) =>
             {
+                Debug.WriteLine($"message collection:{dtos.Count}");
+                var ownerMessages = dtos.Where(c => c.UserId == UserStorage.UserId)
+                    .ToList();
+                foreach (var m in ownerMessages)
+                    m.IsOwner = true;
+
                 MainThread.BeginInvokeOnMainThread(async () =>
                 {
                     dtoCollection.AddRange(dtos);
@@ -68,7 +74,15 @@ public class RoomService
         _hub.On<MessageDto>(
             "UpdateChat",
             async (dto) =>
-                MainThread.BeginInvokeOnMainThread(() => dtoCollection.Add(dto))
+            {
+                if (dto.UserId == UserStorage.UserId)
+                {
+                    dto.IsOwner = true;
+                    MainThread.BeginInvokeOnMainThread(() => dtoCollection.Add(dto));
+                }
+                else
+                    MainThread.BeginInvokeOnMainThread(() => dtoCollection.Add(dto));
+            }
             );
 
         // start _hub

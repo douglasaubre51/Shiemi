@@ -1,25 +1,24 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<ContentView
+<VerticalStackLayout
     x:Class="Shiemi.Views.ChatCardView"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
-    <VerticalStackLayout
-        Margin="10"
-        Padding="10"
-        Background="White">
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Margin="10"
+    Padding="20"
+    Background="White">
 
-        <!--  main  -->
+    <!--  main  -->
+    <Label
+        x:Name="MessageTextLabel"
+        FontSize="16"
+        HorizontalTextAlignment="Justify" />
+
+    <!--  footer  -->
+    <VerticalStackLayout HorizontalOptions="Fill">
         <Label
-            x:Name="MessageTextLabel"
-            FontSize="16"
-            HorizontalOptions="End" />
-
-        <!--  footer  -->
-        <VerticalStackLayout HorizontalOptions="End">
-            <Label
-                x:Name="MessageTimeLabel"
-                FontSize="Caption"
-                TextColor="Grey" />
-        </VerticalStackLayout>
+            x:Name="MessageTimeLabel"
+            FontSize="Caption"
+            HorizontalTextAlignment="End"
+            TextColor="Grey" />
     </VerticalStackLayout>
-</ContentView>
+</VerticalStackLayout>

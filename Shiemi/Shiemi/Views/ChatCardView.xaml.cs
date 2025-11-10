@@ -1,6 +1,6 @@
 namespace Shiemi.Views;
 
-public partial class ChatCardView : ContentView
+public partial class ChatCardView : VerticalStackLayout
 {
     public static readonly BindableProperty MessageTextProperty =
         BindableProperty.Create(
