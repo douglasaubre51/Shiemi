@@ -1,5 +1,4 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
-using CommunityToolkit.Mvvm.Input;
+﻿using CommunityToolkit.Mvvm.Input;
 using Shiemi.Storage;
 using System.Diagnostics;
 
@@ -7,27 +6,38 @@ namespace Shiemi.PageModels
 {
     public partial class IndexPageModel : BasePageModel
     {
-        [ObservableProperty]
-        private bool isCanceled;
-
         public IndexPageModel()
-        {
-            Title = "Start";
-        }
+            => Title = "Start";
 
         [RelayCommand]
         async Task LogoutPressed()
         {
-            IsBusy = true;
-            Debug.WriteLine("removing UserId ...");
-            DataStorage.Remove("UserId");
-            IsBusy = false;
-            await Shell.Current.DisplayAlertAsync(
-                "Shiemi",
-                "Logged out current user!",
-                "Ok"
-                );
-            return;
+            try
+            {
+                IsBusy = true;
+
+                Debug.WriteLine("removing UserId ...");
+                DataStorage.Remove("UserId");
+
+                IsBusy = false;
+
+                await Shell.Current.DisplayAlertAsync(
+                    "Shiemi",
+                    "Logged out current user!",
+                    "Ok"
+                    );
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine($"LogoutError: {ex.Message}");
+                IsBusy = false;
+
+                await Shell.Current.DisplayAlertAsync(
+                    "Error",
+                    "Something went wrong!",
+                    "Ok"
+                    );
+            }
         }
     }
 }

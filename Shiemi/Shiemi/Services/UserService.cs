@@ -1,5 +1,5 @@
-﻿using Shiemi.Dtos.ProfileDtos;
-using Shiemi.Dtos.UserDtos;
+﻿using Shiemi.Dtos;
+using Shiemi.Utilities;
 using System.Net.Http.Json;
 
 namespace Shiemi.Services;

@@ -1,8 +1,9 @@
-using Shiemi.Dtos.ChatDtos;
-using Shiemi.Dtos.UserDtos;
+using Shiemi.Dtos;
 using Shiemi.PageModels.Chat;
 using Shiemi.Services;
+using Shiemi.Services.ChatServices;
 using Shiemi.Storage;
+using Shiemi.Utilities.HubClients;
 using System.Diagnostics;
 
 namespace Shiemi.Pages.Chats;
@@ -11,13 +12,13 @@ public partial class Rooms : ContentPage
 {
     private readonly ChatService _chatService;
     private readonly UserService _userService;
-    private readonly RoomService _roomService;
+    private readonly RoomClient _roomService;
 
     public Rooms(
         ChatService chatService,
         RoomsPageModel pageModel,
         UserService userService,
-        RoomService roomService
+        RoomClient roomService
         )
     {
         InitializeComponent();

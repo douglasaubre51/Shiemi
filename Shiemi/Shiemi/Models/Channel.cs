@@ -12,5 +12,4 @@ public class Channel
 
     public string? PinnedMessage { get; set; }
     public List<Message>? Messages { get; set; }
-
 }

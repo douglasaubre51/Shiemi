@@ -1,10 +1,10 @@
-﻿using Shiemi.Dtos.MessageDtos;
-using Shiemi.Dtos.RoomDtos;
+﻿using Shiemi.Dtos;
 using Shiemi.Storage;
+using Shiemi.Utilities;
 using Shiemi.Wrappers;
 using System.Net.Http.Json;
 
-namespace Shiemi.Services;
+namespace Shiemi.Services.ChatServices;
 
 public class ChatService
 {

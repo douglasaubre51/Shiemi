@@ -1,8 +1,8 @@
-﻿using Shiemi.Models;
+﻿using Shiemi.Dtos;
 
 namespace Shiemi.Wrappers;
 
 public class ProjectsWrap
 {
-    public List<Project>? Projects { get; set; }
+    public List<ProjectDto>? Projects { get; set; }
 }

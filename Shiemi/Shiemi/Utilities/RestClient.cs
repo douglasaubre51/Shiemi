@@ -1,6 +1,6 @@
 ﻿using Shiemi.Storage;
 
-namespace Shiemi.Services;
+namespace Shiemi.Utilities;
 
 public class RestClient
 {

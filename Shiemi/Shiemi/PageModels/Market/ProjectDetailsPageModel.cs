@@ -1,16 +1,16 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using Shiemi.Models;
 using Shiemi.Pages;
+using Shiemi.ViewModels;
 using System.Diagnostics;
 
 namespace Shiemi.PageModels;
 
-[QueryProperty(nameof(Project), "Project")]
+[QueryProperty(nameof(ProjectVM), nameof(ProjectVM))]
 public partial class ProjectDetailsPageModel : BasePageModel
 {
     [ObservableProperty]
-    private Project project;
+    private ProjectViewModel projectVM;
     [ObservableProperty]
     private bool notOwner = true;
 
@@ -25,7 +25,7 @@ public partial class ProjectDetailsPageModel : BasePageModel
                 nameof(PrivateRoom),
                 true,
                 new Dictionary<string, object>
-                { { "Project", Project } });
+                { { "Project", ProjectVM } });
         }
         catch (Exception ex) { Debug.WriteLine($"GoToPrivateRoom error: ${ex.Message}"); }
     }

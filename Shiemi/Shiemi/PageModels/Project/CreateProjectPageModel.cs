@@ -1,6 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using Shiemi.Dtos.ProjectsDtos;
+using Shiemi.Dtos;
 using Shiemi.Services;
 using Shiemi.Storage;
 using System.Diagnostics;
@@ -29,24 +29,17 @@ public partial class CreateProjectPageModel : BasePageModel
     [ObservableProperty]
     private string description;
 
-
     [RelayCommand]
     async Task Create()
     {
-        Debug.WriteLine("submitted form");
-
         try
         {
-            var user = await _userService.Get(DataStorage.Get("UserId"));
-            var userIdDto = await _userService.GetUserId(user!.Id);
-            int userId = userIdDto!.Id;
-            var dto = new ProjectDto
-            {
-                Title = ProjectTitle,
-                ShortDesc = ShortDesc,
-                Description = Description,
-                UserId = userId
-            };
+            var dto = new CreateProjectDto(
+                Title,
+                ShortDesc,
+                Description,
+                UserStorage.UserId
+                );
             await _projectService.Create(dto);
 
             await Shell.Current.GoToAsync("//Projects");
@@ -54,6 +47,11 @@ public partial class CreateProjectPageModel : BasePageModel
         catch (Exception ex)
         {
             Debug.WriteLine($"CreateProject error: {ex.Message}");
+            await Shell.Current.DisplayAlertAsync(
+                "Error",
+                "Failed to create project!",
+                "Ok"
+                );
         }
     }
 }

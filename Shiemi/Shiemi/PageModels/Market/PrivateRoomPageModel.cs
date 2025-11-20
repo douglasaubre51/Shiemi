@@ -1,17 +1,16 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using MvvmHelpers;
-using Shiemi.Dtos.MessageDtos;
-using Shiemi.Models;
+using Shiemi.ViewModels;
 
 namespace Shiemi.PageModels.Market;
 
-[QueryProperty(nameof(Project), nameof(Project))]
+[QueryProperty(nameof(ProjectVM), nameof(ProjectVM))]
 public partial class PrivateRoomPageModel : BasePageModel
 {
     [ObservableProperty]
-    private Project project;
+    private ProjectViewModel projectVM;
 
-    public ObservableRangeCollection<MessageDto> MessageCollection { get; set; } = [];
+    public ObservableRangeCollection<MessageViewModel> MessageCollection { get; set; } = [];
 
     [ObservableProperty]
     private string chatBox;
@@ -19,5 +18,4 @@ public partial class PrivateRoomPageModel : BasePageModel
     private string sender;
 
     public PrivateRoomPageModel() => Title = "Private Room";
-
 }

@@ -38,6 +38,9 @@
 	  <Compile Update="Pages\Market\ProjectShop.xaml.cs">
 	    <DependentUpon>ProjectShop.xaml</DependentUpon>
 	  </Compile>
+	  <Compile Update="Views\ProjectListView.xaml.cs">
+	    <DependentUpon>ProjectListView.xaml</DependentUpon>
+	  </Compile>
 	</ItemGroup>
 
 	<ItemGroup>
@@ -45,6 +48,12 @@
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\ChatCardView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\ProjectListView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\ChatListView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\ChatView.xaml">
@@ -56,7 +65,7 @@
 	  <MauiXaml Update="Pages\Market\PrivateRoom.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Pages\User\CreateProject.xaml">
+	  <MauiXaml Update="Pages\Project\CreateProject.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Pages\Start\Index.xaml">
@@ -71,7 +80,7 @@
 	  <MauiXaml Update="Pages\Market\ProjectShop.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Pages\User\Projects.xaml">
+	  <MauiXaml Update="Pages\Project\Projects.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	</ItemGroup>

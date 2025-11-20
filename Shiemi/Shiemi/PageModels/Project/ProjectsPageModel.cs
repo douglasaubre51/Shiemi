@@ -1,18 +1,16 @@
 ﻿using CommunityToolkit.Mvvm.Input;
-using Shiemi.Models;
+using MvvmHelpers;
 using Shiemi.Pages;
-using System.Collections.ObjectModel;
+using Shiemi.ViewModels;
 
 namespace Shiemi.PageModels;
 
 public partial class ProjectsPageModel : BasePageModel
 {
-    public ObservableCollection<Project> ProjectCollection { get; set; } = new();
+    public ObservableRangeCollection<ProjectViewModel> ProjectCollection { get; set; } = [];
 
     public ProjectsPageModel()
-    {
-        Title = "My Projects";
-    }
+        => Title = "My Projects";
 
     [RelayCommand]
     async Task GoToCreateProject()

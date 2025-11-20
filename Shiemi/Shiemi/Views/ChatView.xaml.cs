@@ -1,7 +1,8 @@
 using MvvmHelpers;
-using Shiemi.Dtos.MessageDtos;
-using Shiemi.Services;
+using Shiemi.Dtos;
+using Shiemi.Services.ChatServices;
 using Shiemi.Storage;
+using Shiemi.Utilities.HubClients;
 using Shiemi.Utilities.ServiceProviders;
 using System.Diagnostics;
 
@@ -51,13 +52,13 @@ public partial class ChatView : Grid
         set => SetValue(SenderNameProperty, value);
     }
 
-    private readonly RoomService? _roomService;
+    private readonly RoomClient? _roomService;
     private readonly ChatService? _chatService;
 
     public ChatView()
     {
         InitializeComponent();
-        _roomService = Provider.GetService<RoomService>();
+        _roomService = Provider.GetService<RoomClient>();
         _chatService = Provider.GetService<ChatService>();
 
         // on pull to refresh!

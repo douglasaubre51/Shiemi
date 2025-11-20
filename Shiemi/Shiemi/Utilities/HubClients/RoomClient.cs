@@ -1,13 +1,13 @@
 ﻿using Microsoft.AspNetCore.SignalR.Client;
 using MvvmHelpers;
-using Shiemi.Dtos.MessageDtos;
+using Shiemi.Dtos;
 using Shiemi.Storage;
 using System.Diagnostics;
 using System.Net.Http.Json;
 
-namespace Shiemi.Services;
+namespace Shiemi.Utilities.HubClients;
 
-public class RoomService
+public class RoomClient
 {
     private readonly HttpClient _httpClient;
     private readonly EnvironmentStorage _envStorage;
@@ -15,7 +15,7 @@ public class RoomService
     private string roomBaseURI;
     public HubConnection _hub;
 
-    public RoomService(
+    public RoomClient(
         RestClient restClient,
         EnvironmentStorage envStorage
         )

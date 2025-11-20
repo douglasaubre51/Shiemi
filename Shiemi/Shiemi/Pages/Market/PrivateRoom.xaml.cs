@@ -1,19 +1,20 @@
-using Shiemi.Dtos.UserDtos;
+using Shiemi.Dtos;
 using Shiemi.PageModels.Market;
 using Shiemi.Services;
 using Shiemi.Storage;
+using Shiemi.Utilities.HubClients;
 using System.Diagnostics;
 
 namespace Shiemi.Pages;
 
 public partial class PrivateRoom : ContentPage
 {
-    private readonly RoomService _roomService;
+    private readonly RoomClient _roomService;
     private readonly UserService _userService;
 
     public PrivateRoom(
         PrivateRoomPageModel pageModel,
-        RoomService roomService,
+        RoomClient roomService,
         UserService userService
         )
     {

@@ -1,4 +1,4 @@
-﻿using Shiemi.Dtos.RoomDtos;
+﻿using Shiemi.Dtos;
 
 namespace Shiemi.Wrappers;
 

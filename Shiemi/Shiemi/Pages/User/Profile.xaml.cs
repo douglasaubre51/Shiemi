@@ -1,4 +1,4 @@
-using Shiemi.Dtos.ProfileDtos;
+using Shiemi.Dtos;
 using Shiemi.PageModels;
 using Shiemi.Services;
 using Shiemi.Storage;

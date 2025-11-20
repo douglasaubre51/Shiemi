@@ -29,10 +29,7 @@ public partial class ProjectShop : ContentPage
             pageModel!.ProjectCollection.Clear();
             var projects = await _projectService.GetAll();
 
-            foreach (var p in projects!)
-            {
-                pageModel!.ProjectCollection.Add(p);
-            }
+            pageModel!.ProjectCollection.Add(projects);
         }
         catch (Exception ex)
         {

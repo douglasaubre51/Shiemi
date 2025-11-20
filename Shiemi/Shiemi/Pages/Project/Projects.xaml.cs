@@ -33,7 +33,7 @@ public partial class Projects : ContentPage
             foreach (var project in projectList!)
             {
                 Debug.WriteLine($"title: {project.Title}");
-                collection.Add(project);
+                //collection.Add(project);
             }
         }
         catch (Exception ex)

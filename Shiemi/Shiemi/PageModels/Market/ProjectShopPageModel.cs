@@ -1,6 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.Input;
-using Shiemi.Models;
 using Shiemi.Pages;
+using Shiemi.ViewModels;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 
@@ -8,12 +8,12 @@ namespace Shiemi.PageModels;
 
 public partial class ProjectShopPageModel : BasePageModel
 {
-    public ObservableCollection<Project> ProjectCollection { get; set; } = [];
+    public ObservableCollection<ProjectViewModel> ProjectCollection { get; set; } = [];
     public ProjectShopPageModel()
         => Title = "Project Shop";
 
     [RelayCommand]
-    async Task GoToProjectDetails(Project project)
+    async Task GoToProjectDetails(ProjectViewModel projectVM)
     {
         try
         {
@@ -21,7 +21,7 @@ public partial class ProjectShopPageModel : BasePageModel
                $"{nameof(ProjectDetails)}",
                true,
                new Dictionary<string, object>
-               { { "Project", project! }
+               { { "ProjectVM", projectVM! }
                });
         }
         catch (Exception ex) { Debug.WriteLine($"GoToProjectDetails error: {ex.Message}"); }
