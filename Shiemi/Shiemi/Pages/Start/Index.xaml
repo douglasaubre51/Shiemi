@@ -4,44 +4,85 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:pagemodel="clr-namespace:Shiemi.PageModels"
-    Title="{Binding Title}"
     x:DataType="pagemodel:IndexPageModel"
     Shell.FlyoutBehavior="Disabled">
+
     <Grid
-    ColumnSpacing="10"
         Margin="10"
-        ColumnDefinitions="*,*"
-        RowDefinitions="*,*">
+        ColumnSpacing="10"
+        RowDefinitions="*,*,*"
+        RowSpacing="20"
+        VerticalOptions="Center">
+
+        <Grid.Resources>
+            <!--  base btn  -->
+            <Style x:Key="BaseButtonStyle" TargetType="Button">
+                <Setter Property="WidthRequest" Value="300" />
+                <Setter Property="HeightRequest" Value="50" />
+                <Setter Property="VerticalOptions" Value="Center" />
+                <Setter Property="BorderWidth" Value="1" />
+                <Setter Property="FontFamily" Value="OpenSansSemibold" />
+            </Style>
+
+            <!--  default btn  -->
+            <Style BasedOn="{StaticResource BaseButtonStyle}" TargetType="Button" />
+
+            <!--  secondary btn  -->
+            <Style
+                x:Key="DangerBtnStyle"
+                BasedOn="{StaticResource BaseButtonStyle}"
+                TargetType="Button">
+                <Setter Property="VisualStateManager.VisualStateGroups">
+                    <VisualStateGroupList>
+                        <VisualStateGroup x:Name="CommonStates">
+                            <VisualState x:Name="Normal">
+                                <VisualState.Setters>
+                                    <Setter Property="BackgroundColor" Value="White" />
+                                </VisualState.Setters>
+                            </VisualState>
+                            <VisualState x:Name="PointerOver">
+                                <VisualState.Setters>
+                                    <Setter Property="BackgroundColor" Value="#232323" />
+                                </VisualState.Setters>
+                            </VisualState>
+                        </VisualStateGroup>
+                    </VisualStateGroupList>
+                </Setter>
+            </Style>
+
+        </Grid.Resources>
+
         <Label
             Grid.Row="0"
-            Grid.ColumnSpan="2"
-            FontSize="100"
-            HorizontalOptions="Start"
+            Padding="0,0,0,60"
+            FontSize="50"
+            HorizontalOptions="Center"
             Text="Shiemi"
             VerticalOptions="Start" />
 
         <ActivityIndicator
             Grid.Row="1"
-            Grid.ColumnSpan="2"
             IsEnabled="{Binding IsBusy}"
             IsRunning="{Binding IsBusy}"
             IsVisible="{Binding IsBusy}" />
 
         <Button
             Grid.Row="1"
-            Grid.Column="0"
+            BackgroundColor="{StaticResource Primary}"
             Clicked="Button_Clicked"
             IsVisible="{Binding IsNotBusy}"
             Text="Get started"
-            VerticalOptions="End" />
+            TextColor="White"
+            VerticalOptions="Center"
+            WidthRequest="300" />
+
         <Button
-            Grid.Row="1"
-            Grid.Column="1"
-            BackgroundColor="Red"
+            Grid.Row="2"
+            BorderColor="{StaticResource Primary}"
             Command="{Binding LogoutPressedCommand}"
             IsVisible="{Binding IsNotBusy}"
+            Style="{StaticResource DangerBtnStyle}"
             Text="Logout"
-            VerticalOptions="End"
-            />
+            TextColor="{StaticResource Primary}" />
     </Grid>
 </ContentPage>

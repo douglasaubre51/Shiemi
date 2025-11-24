@@ -7,8 +7,8 @@
     xmlns:models="clr-namespace:Shiemi.Models"
     xmlns:pagemodel="clr-namespace:Shiemi.PageModels.Market"
     xmlns:views="clr-namespace:Shiemi.Views"
-    Title="{Binding Title}"
     x:DataType="pagemodel:PrivateRoomPageModel">
+
     <Grid ColumnDefinitions="*" ColumnSpacing="10">
 
         <!--  chats view  -->

@@ -22,30 +22,35 @@ public partial class Profile : ContentPage
 
     protected override async void OnAppearing()
     {
-        base.OnAppearing();
-
         try
         {
-            // load user data
+            // fetch user data
             string userId = DataStorage.Get("UserId");
-            Debug.WriteLine($"UserId: {userId}");
-            UserDto? user = await _userService.Get(userId);
+            ProfilePageUserDto? user = await _userService.Get(userId);
             if (user is null)
             {
                 Debug.WriteLine("OnProfileAppearing status: empty user!");
                 return;
             }
-            // init user data
+
+            // set user data on profile
             var pageModel = BindingContext as ProfilePageModel;
-            pageModel!.FirstName = user.FirstName;
-            pageModel!.LastName = user.LastName;
-            pageModel!.UserName = user.FirstName + "  " + user.LastName;
-            pageModel!.Email = user.Email;
-            pageModel!.UserId = user.Id;
+            if (pageModel is null)
+            {
+                Debug.WriteLine("OnProfileAppearing status: binding context is null!");
+                return;
+            }
+
+            pageModel.FirstName = user.FirstName;
+            pageModel.LastName = user.LastName;
+            pageModel.UserName = user.FirstName + "  " + user.LastName;
+            pageModel.Email = user.Email;
+            pageModel.UserId = user.UserId;
         }
         catch (Exception ex)
         {
             Debug.WriteLine($"OnProfileAppearing error: {ex.Message}");
         }
+        base.OnAppearing();
     }
 }

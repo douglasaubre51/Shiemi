@@ -4,6 +4,7 @@ using Shiemi.Services;
 using Shiemi.Services.ChatServices;
 using Shiemi.Storage;
 using Shiemi.Utilities.HubClients;
+using Shiemi.ViewModels;
 using System.Diagnostics;
 
 namespace Shiemi.Pages.Chats;
@@ -30,9 +31,16 @@ public partial class Rooms : ContentPage
 
     protected override async void OnAppearing()
     {
-        var context = BindingContext as RoomsPageModel;
         try
         {
+            var context = BindingContext as RoomsPageModel;
+            if (context is null)
+            {
+                Debug.WriteLine($"RoomsPageModel context is null!");
+                return;
+            }
+
+            // fetch chatlist data
             var rooms = await _chatService.GetAllRooms();
             if (rooms is null)
             {
@@ -40,67 +48,67 @@ public partial class Rooms : ContentPage
                 return;
             }
 
-            // clear collection!
-            context!.ChatCollection.Clear();
+            // clear collection before flush!
+            context.ChatCollection.Clear();
+
+            // set sendername for each room!
             foreach (var r in rooms!)
             {
-                AccountDto? user = await _userService.GetUserById(r.TenantId);
+                UserDto? user = await _userService.GetUserById(r.TenantId);
                 if (user is null)
                 {
                     Debug.WriteLine($"User:{r.TenantId} is null!");
-                    return;
+                    continue;
                 }
-                // create chat
-                ChatDto chat = new ChatDto
-                {
-                    UserName = user.FirstName + " " + user.LastName,
-                    RoomId = r.Id,
-                    Profile = user.Profile
-                };
+
+                // create and add room
+                ChatViewModel chat = new(user.Id, user.FirstName + " " + user.LastName);
                 context.ChatCollection.Add(chat);
             }
         }
-        catch (Exception ex) { Debug.WriteLine(ex); }
-        finally { base.OnAppearing(); }
+        catch (Exception ex)
+        {
+            Debug.WriteLine("Rooms: OnAppearing error: " + ex);
+        }
     }
 
     private async void CollectionView_SelectionChanged(object sender, SelectionChangedEventArgs e)
     {
         try
         {
-            ChatDto selectedChat = (ChatDto)e.CurrentSelection.FirstOrDefault();
+            var selectedChat = (ChatViewModel)e.CurrentSelection.FirstOrDefault();
             if (selectedChat is null)
+            {
+                Debug.WriteLine($"selected chat is null!");
                 return;
+            }
 
             var context = BindingContext as RoomsPageModel;
-
-            ChatPageModel model = new()
+            if (context is null)
             {
-                RoomId = selectedChat.RoomId,
-                SenderName = selectedChat.UserName,
-                Profile = selectedChat.Profile,
-                MessageCollection = context!.MessageCollection
-            };
+                Debug.WriteLine($"RoomsPageModel context is null!");
+                return;
+            }
 
+            // set room id for loading messages!
+            UserStorage.RoomId = selectedChat.Id;
+            Debug.WriteLine($"RoomId: {selectedChat.Id}");
 
-            // set room id for messages
-            UserStorage.RoomId = model.RoomId;
-            Debug.WriteLine($"RoomId: {model.RoomId}");
-            // set senderName prop
-            context.Sender = model.SenderName;
-            // set messageCollection prop
-            context.MessageCollection.Clear();
-            context.MessageCollection = model.MessageCollection;
-
+            // set senderName in pagemodel
+            context.Sender = selectedChat.Title;
             Debug.WriteLine($"sender name: {context.Sender}");
 
-            // remove existing socket conn!
+            // clear messageCollection before flush
+            context.MessageCollection.Clear();
+
+            // remove existing socket conn before reconnection!
             if (_roomService._hub is not null)
                 await _roomService.DisconnectWebSocket();
-
-            await _roomService.InitSignalR(model.MessageCollection, model.RoomId);
+            await _roomService.InitSignalR(context.MessageCollection, UserStorage.RoomId);
         }
         catch (Exception ex)
-        { Debug.WriteLine($"CollectionView_SelectionChanged error: {ex.Message}"); }
+        {
+            Debug.WriteLine($"CollectionView_SelectionChanged error: {ex.Message}");
+        }
     }
 }

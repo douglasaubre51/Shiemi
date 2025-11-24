@@ -1,16 +1,16 @@
 namespace Shiemi.Views;
 
-public partial class ChatCardView : VerticalStackLayout
+public partial class MessageCardView : VerticalStackLayout
 {
     public static readonly BindableProperty MessageTextProperty =
         BindableProperty.Create(
             nameof(MessageText),
             typeof(string),
-            typeof(ChatCardView),
+            typeof(MessageCardView),
             "loading message!",
             propertyChanged: (bindable, oldValue, newValue) =>
             {
-                var context = (ChatCardView)bindable;
+                var context = (MessageCardView)bindable;
                 context.MessageTextLabel.Text = (string)newValue;
             }
             );
@@ -18,16 +18,16 @@ public partial class ChatCardView : VerticalStackLayout
         BindableProperty.Create(
             nameof(MessageTime),
             typeof(string),
-            typeof(ChatCardView),
+            typeof(MessageCardView),
             "loading time!",
             propertyChanged: (bindable, oldValue, newValue) =>
             {
-                var context = (ChatCardView)bindable;
+                var context = (MessageCardView)bindable;
                 context.MessageTimeLabel.Text = (string)newValue;
             }
             );
 
-    public ChatCardView()
+    public MessageCardView()
     {
         InitializeComponent();
     }

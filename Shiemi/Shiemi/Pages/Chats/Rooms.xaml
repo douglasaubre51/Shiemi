@@ -3,11 +3,12 @@
     x:Class="Shiemi.Pages.Chats.Rooms"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:dtos="clr-namespace:Shiemi.Dtos.ChatDtos"
     xmlns:pagemodel="clr-namespace:Shiemi.PageModels.Chat"
+    xmlns:viewmodels="clr-namespace:Shiemi.ViewModels"
     xmlns:views="clr-namespace:Shiemi.Views"
     x:DataType="pagemodel:RoomsPageModel"
     Shell.NavBarIsVisible="False">
+
     <Grid ColumnDefinitions="*,3*" RowDefinitions="*">
 
         <!--  chat list  -->
@@ -18,20 +19,20 @@
             SelectionChanged="CollectionView_SelectionChanged"
             SelectionMode="Single">
             <CollectionView.ItemTemplate>
-                <DataTemplate x:DataType="dtos:ChatDto">
+                <DataTemplate x:DataType="viewmodels:ChatViewModel">
                     <Grid
                         Grid.Column="0"
                         Padding="20"
                         ColumnDefinitions="*"
                         RowDefinitions="*">
-                        <Label LineBreakMode="TailTruncation" Text="{Binding UserName}" />
+                        <Label LineBreakMode="TailTruncation" Text="{Binding Title}" />
                     </Grid>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>
 
         <!--  chat area  -->
-        <views:ChatView
+        <views:MessageView
             Grid.Column="1"
             MessageCollection="{Binding MessageCollection}"
             SenderName="{Binding Sender}" />

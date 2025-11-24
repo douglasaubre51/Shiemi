@@ -4,8 +4,8 @@ public record MessageViewModel(
     int Id,
     string Text,
     DateTime CreatedAt,
-    int UserId,
     bool IsOwner,
+    int UserId,
     int ChannelId,
     int RoomId
 );

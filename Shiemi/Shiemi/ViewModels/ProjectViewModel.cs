@@ -14,7 +14,15 @@ public record ProjectViewModel(
     List<int> BlockList
 );
 
-public record ChatListProjectVM(
+public record ChatListProjectViewModel(
     int Id,
     string Title
+);
+public record ProjectsPageProjectViewModel(
+    int Id,
+    string Title,
+    string ShortDesc,
+    string Description,
+    string CreatedAt,
+    int UserId
 );

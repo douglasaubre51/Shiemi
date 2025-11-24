@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using CommunityToolkit.Maui;
+using Microsoft.Extensions.Logging;
 using Shiemi.PageModels;
 using Shiemi.PageModels.Chat;
 using Shiemi.PageModels.Market;
@@ -16,6 +17,10 @@ public static class MauiProgramExtensions
     {
         builder
             .UseMauiApp<App>()
+            .UseMauiCommunityToolkit(options =>
+            {
+                options.SetShouldEnableSnackbarOnWindows(true);
+            })
             .ConfigureFonts(fonts =>
             {
                 fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");

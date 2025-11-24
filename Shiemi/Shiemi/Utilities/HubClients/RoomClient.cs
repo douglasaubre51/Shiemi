@@ -1,7 +1,11 @@
-﻿using Microsoft.AspNetCore.SignalR.Client;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.SignalR.Client;
 using MvvmHelpers;
 using Shiemi.Dtos;
+using Shiemi.HubModels;
 using Shiemi.Storage;
+using Shiemi.Utilities.ServiceProviders;
+using Shiemi.ViewModels;
 using System.Diagnostics;
 using System.Net.Http.Json;
 
@@ -12,8 +16,9 @@ public class RoomClient
     private readonly HttpClient _httpClient;
     private readonly EnvironmentStorage _envStorage;
 
-    private string roomBaseURI;
-    public HubConnection _hub;
+    private readonly string roomBaseURI;
+
+    public HubConnection? _hub;
 
     public RoomClient(
         RestClient restClient,
@@ -39,9 +44,9 @@ public class RoomClient
         return await response.Content.ReadFromJsonAsync<int>();
     }
 
-    // SignalR pipeline
+    // SignalR pipeline initializer
     public async Task InitSignalR(
-        ObservableRangeCollection<MessageDto> dtoCollection,
+        ObservableRangeCollection<MessageViewModel> messageCollection,
         int roomId
         )
     {
@@ -54,41 +59,53 @@ public class RoomClient
             => Debug.WriteLine("websocket disconnected!");
 
         // load all previous chats
-        _hub.On<List<MessageDto>>(
+        _hub.On<List<RoomMessageHubModel>>(
             "LoadChat",
             async (dtos) =>
             {
-                Debug.WriteLine($"message collection:{dtos.Count}");
-                var ownerMessages = dtos.Where(c => c.UserId == UserStorage.UserId)
+                // set IsOwner for roomMessageHubModels
+                var ownerMessages = dtos.Where(c => c.Id == UserStorage.UserId)
                     .ToList();
                 foreach (var m in ownerMessages)
                     m.IsOwner = true;
 
-                MainThread.BeginInvokeOnMainThread(async () =>
+                Mapper? mapper = MapperProvider.GetMapper<RoomMessageHubModel, MessageViewModel>();
+                if (mapper is null)
                 {
-                    dtoCollection.AddRange(dtos);
-                });
+                    Debug.WriteLine("RoomClient: LoadChat: error: GetMapper returned null!");
+                    return;
+                }
+
+                // flush messageCollection on MessageView
+                var messageViewModels = mapper.Map<List<MessageViewModel>>(dtos);
+                await MainThread.InvokeOnMainThreadAsync(() =>
+                    messageCollection.AddRange(messageViewModels)
+                );
             });
 
         // update msg from hub
-        _hub.On<MessageDto>(
+        _hub.On<RoomMessageHubModel>(
             "UpdateChat",
             async (dto) =>
             {
+                // set IsOwner for Message
                 if (dto.UserId == UserStorage.UserId)
-                {
                     dto.IsOwner = true;
-                    MainThread.BeginInvokeOnMainThread(() => dtoCollection.Add(dto));
+
+                Mapper? mapper = MapperProvider.GetMapper<RoomMessageHubModel, MessageViewModel>();
+                if (mapper is null)
+                {
+                    Debug.WriteLine("RoomClient: LoadChat: error: GetMapper returned null!");
+                    return;
                 }
-                else
-                    MainThread.BeginInvokeOnMainThread(() => dtoCollection.Add(dto));
-            }
-            );
 
-        // start _hub
+                var messageViewModel = mapper.Map<MessageViewModel>(dto);
+                // flush to MessageCollection on MessageView
+                MainThread.BeginInvokeOnMainThread(() => messageCollection.Add(messageViewModel));
+            });
+
         await _hub.StartAsync();
-
-        Debug.WriteLine($"created websocket");
+        Debug.WriteLine($"RoomClient: websocket initialized!");
 
         // set userId and room at hub
         await _hub.InvokeAsync(
@@ -98,11 +115,11 @@ public class RoomClient
             );
     }
 
-    public async Task SendChat(MessageDto dto)
-        => await _hub.InvokeAsync("SendChat", dto);
-
-    public async Task ReconnectWebSocket()
-        => await _hub.StartAsync();
+    // SignalR actions
     public async Task DisconnectWebSocket()
-        => await _hub.StopAsync();
+        => await _hub!.StopAsync();
+    public async Task ReconnectWebSocket()
+        => await _hub!.StartAsync();
+    public async Task SendChat(SendMessageDto dto)
+        => await _hub!.InvokeAsync("SendChat", dto);
 }

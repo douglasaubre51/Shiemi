@@ -17,12 +17,12 @@ public class UserService
         userBaseUri = $"{_httpClient.BaseAddress}/User";
     }
 
-    public async Task<UserDto?> Get(string userId)
-        => await _httpClient.GetFromJsonAsync<UserDto>(
+    public async Task<ProfilePageUserDto?> Get(string userId)
+        => await _httpClient.GetFromJsonAsync<ProfilePageUserDto>(
         $"{userBaseUri}/id/{userId}"
         );
 
-    public async Task<UserIdDto?> GetUserId(string userId)
+    public async Task<UserDto?> GetUserId(string userId)
     {
         var response = await _httpClient.GetAsync(
             $"{userBaseUri}/{userId}/id"
@@ -30,10 +30,10 @@ public class UserService
         if (!response.IsSuccessStatusCode)
             return null;
 
-        return await response.Content.ReadFromJsonAsync<UserIdDto>();
+        return await response.Content.ReadFromJsonAsync<UserDto>();
     }
 
-    public async Task<AccountDto?> GetUserById(int id)
+    public async Task<UserDto?> GetUserById(int id)
     {
         var response = await _httpClient.GetAsync(
             $"{userBaseUri}/{id}"
@@ -41,6 +41,6 @@ public class UserService
         if (!response.IsSuccessStatusCode)
             return null!;
 
-        return await response.Content.ReadFromJsonAsync<AccountDto>();
+        return await response.Content.ReadFromJsonAsync<UserDto>();
     }
 }

@@ -1,7 +1,5 @@
-using Shiemi.Dtos;
 using Shiemi.PageModels.Market;
 using Shiemi.Services;
-using Shiemi.Storage;
 using Shiemi.Utilities.HubClients;
 using System.Diagnostics;
 
@@ -29,19 +27,19 @@ public partial class PrivateRoom : ContentPage
         var pageModel = BindingContext as PrivateRoomPageModel;
         try
         {
-            int roomId = await _roomService.GetPrivateRoom(
-                UserStorage.UserId,
-                pageModel!.Project.Id
-                );
-            UserStorage.RoomId = roomId;
+            //int roomId = await _roomService.GetPrivateRoom(
+            //    UserStorage.UserId,
+            //    pageModel!.Project.Id
+            //    );
+            //UserStorage.RoomId = roomId;
 
-            await _roomService.InitSignalR(
-                pageModel!.MessageCollection,
-                roomId
-                );
+            //await _roomService.InitSignalR(
+            //    pageModel!.MessageCollection,
+            //    roomId
+            //    );
 
-            AccountDto? user = await _userService.GetUserById(pageModel.Project.UserId);
-            pageModel.Sender = user!.FirstName + " " + user.LastName;
+            //AccountDto? user = await _userService.GetUserById(pageModel.Project.UserId);
+            //pageModel.Sender = user!.FirstName + " " + user.LastName;
         }
         catch (Exception ex) { Debug.WriteLine($"PrivateRoom init error: {ex.Message}"); }
 

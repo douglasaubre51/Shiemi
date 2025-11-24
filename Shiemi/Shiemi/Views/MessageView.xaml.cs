@@ -4,46 +4,46 @@ using Shiemi.Services.ChatServices;
 using Shiemi.Storage;
 using Shiemi.Utilities.HubClients;
 using Shiemi.Utilities.ServiceProviders;
+using Shiemi.ViewModels;
 using System.Diagnostics;
 
 namespace Shiemi.Views;
 
-public partial class ChatView : Grid
+public partial class MessageView : Grid
 {
     public static readonly BindableProperty MessageCollectionProperty =
         BindableProperty.Create(
             nameof(MessageCollection),
-            typeof(ObservableRangeCollection<MessageDto>),
-            typeof(ChatView),
-            new ObservableRangeCollection<MessageDto>(),
+            typeof(ObservableRangeCollection<MessageViewModel>),
+            typeof(MessageView),
+            new ObservableRangeCollection<MessageViewModel>(),
             propertyChanged: (bindable, oldValue, newValue) =>
             {
-                var context = (ChatView)bindable;
+                var context = (MessageView)bindable;
                 context.MessageCollectionView.ItemsSource =
-                (ObservableRangeCollection<MessageDto>)newValue;
+                (ObservableRangeCollection<MessageViewModel>)newValue;
 
-                foreach (var d in (ObservableRangeCollection<MessageDto>)newValue)
+                foreach (var d in (ObservableRangeCollection<MessageViewModel>)newValue)
                 {
                     Debug.WriteLine(d.Text);
                 }
-            }
-            );
+            });
+
     public static readonly BindableProperty SenderNameProperty =
         BindableProperty.Create(
             nameof(SenderName),
             typeof(string),
-            typeof(ChatView),
+            typeof(MessageView),
             "Sender Name",
             propertyChanged: (bindable, oldValue, newValue) =>
             {
-                var context = (ChatView)bindable;
+                var context = (MessageView)bindable;
                 context.SenderLabel.Text = (string)newValue;
-            }
-            );
+            });
 
-    public ObservableRangeCollection<MessageDto> MessageCollection
+    public ObservableRangeCollection<MessageViewModel> MessageCollection
     {
-        get => (ObservableRangeCollection<MessageDto>)GetValue(MessageCollectionProperty);
+        get => (ObservableRangeCollection<MessageViewModel>)GetValue(MessageCollectionProperty);
         set => SetValue(MessageCollectionProperty, value);
     }
     public string SenderName
@@ -55,26 +55,11 @@ public partial class ChatView : Grid
     private readonly RoomClient? _roomService;
     private readonly ChatService? _chatService;
 
-    public ChatView()
+    public MessageView()
     {
         InitializeComponent();
         _roomService = Provider.GetService<RoomClient>();
         _chatService = Provider.GetService<ChatService>();
-
-        // on pull to refresh!
-        //MessageRefreshView.Command = new Command(() =>
-        //{
-        //    List<MessageDto>? messages = _chatService!.GetAllByRoom(UserStorage.RoomId)
-        //        .GetAwaiter().GetResult();
-        //    if (messages is null)
-        //    {
-        //        MessageRefreshView.IsRefreshing = false;
-        //        return;
-        //    }
-
-        //    MessageCollection.ReplaceRange(messages);
-        //    MessageRefreshView.IsRefreshing = false;
-        //});
     }
 
     private async void Send_Btn_Clicked(object sender, EventArgs e)
@@ -88,13 +73,14 @@ public partial class ChatView : Grid
             Debug.WriteLine($"User Id: {UserStorage.UserId}");
             Debug.WriteLine($"Room Id: {UserStorage.RoomId}");
 
-            var dto = new MessageDto
-            {
-                Text = MessageBox.Text,
-                CreatedAt = DateTime.Now,
-                UserId = UserStorage.UserId,
-                RoomId = UserStorage.RoomId
-            };
+            // channelId set to 0 instead of null
+            var dto = new SendMessageDto(
+                Text: MessageBox.Text,
+                CreatedAt: DateTime.UtcNow,
+                UserId: UserStorage.UserId,
+                RoomId: UserStorage.RoomId,
+                ChannelId: 0
+                );
 
             await _roomService!.SendChat(dto);
 

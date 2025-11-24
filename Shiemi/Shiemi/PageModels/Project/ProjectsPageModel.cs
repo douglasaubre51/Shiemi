@@ -1,4 +1,5 @@
-﻿using CommunityToolkit.Mvvm.Input;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using MvvmHelpers;
 using Shiemi.Pages;
 using Shiemi.ViewModels;
@@ -7,7 +8,8 @@ namespace Shiemi.PageModels;
 
 public partial class ProjectsPageModel : BasePageModel
 {
-    public ObservableRangeCollection<ProjectViewModel> ProjectCollection { get; set; } = [];
+    [ObservableProperty]
+    public ObservableRangeCollection<ProjectsPageProjectViewModel> projectCollection = [];
 
     public ProjectsPageModel()
         => Title = "My Projects";

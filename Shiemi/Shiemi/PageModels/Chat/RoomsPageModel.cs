@@ -6,9 +6,9 @@ namespace Shiemi.PageModels.Chat;
 
 public partial class RoomsPageModel : BasePageModel
 {
-    public ObservableRangeCollection<ChatViewModel> chatCollection = [];
+    public ObservableRangeCollection<ChatViewModel> ChatCollection = [];
 
-    public ObservableRangeCollection<MessageViewModel> messageCollection = [];
+    public ObservableRangeCollection<MessageViewModel> MessageCollection = [];
 
     [ObservableProperty]
     private string sender = "Sender Name";

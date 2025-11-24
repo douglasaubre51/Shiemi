@@ -9,3 +9,11 @@ public record MessageDto(
     int ChannelId,
     int RoomId
 );
+
+public record SendMessageDto(
+    string Text,
+    DateTime CreatedAt,
+    int UserId,
+    int ChannelId,
+    int RoomId
+    );

@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Grid
-    x:Class="Shiemi.Views.ChatView"
+    x:Class="Shiemi.Views.MessageView"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:messagedtos="clr-namespace:Shiemi.Dtos.MessageDtos"
+    xmlns:viewmodels="clr-namespace:Shiemi.ViewModels"
     xmlns:views="clr-namespace:Shiemi.Views"
     Margin="0,0,10,10"
+    x:DataType="views:MessageView"
     BackgroundColor="LightBlue"
     ColumnDefinitions="*"
     RowDefinitions="50,*,60">
@@ -22,7 +23,7 @@
         ItemSizingStrategy="MeasureFirstItem"
         ItemsUpdatingScrollMode="KeepLastItemInView">
         <CollectionView.ItemTemplate>
-            <DataTemplate x:DataType="messagedtos:MessageDto">
+            <DataTemplate x:DataType="viewmodels:MessageViewModel">
                 <Grid>
                     <Grid.Triggers>
                         <DataTrigger
@@ -40,27 +41,27 @@
                     </Grid.Triggers>
 
                     <!--  message card  -->
-                    <views:ChatCardView
+                    <views:MessageCardView
                         MaximumWidthRequest="600"
                         MessageText="{Binding Text}"
                         MessageTime="{Binding CreatedAt}">
 
                         <!--  card position trigger  -->
-                        <views:ChatCardView.Triggers>
+                        <views:MessageCardView.Triggers>
                             <DataTrigger
                                 Binding="{Binding IsOwner}"
-                                TargetType="views:ChatCardView"
+                                TargetType="views:MessageCardView"
                                 Value="False">
                                 <Setter Property="Grid.Column" Value="0" />
                             </DataTrigger>
                             <DataTrigger
                                 Binding="{Binding IsOwner}"
-                                TargetType="views:ChatCardView"
+                                TargetType="views:MessageCardView"
                                 Value="True">
                                 <Setter Property="Grid.Column" Value="1" />
                             </DataTrigger>
-                        </views:ChatCardView.Triggers>
-                    </views:ChatCardView>
+                        </views:MessageCardView.Triggers>
+                    </views:MessageCardView>
 
                 </Grid>
             </DataTemplate>

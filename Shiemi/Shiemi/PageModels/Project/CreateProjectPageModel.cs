@@ -40,7 +40,7 @@ public partial class CreateProjectPageModel : BasePageModel
                 Description,
                 UserStorage.UserId
                 );
-            await _projectService.Create(dto);
+            //await _projectService.Create(dto);
 
             await Shell.Current.GoToAsync("//Projects");
         }

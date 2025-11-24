@@ -5,7 +5,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:chatpages="clr-namespace:Shiemi.Pages.Chats"
     xmlns:pages="clr-namespace:Shiemi.Pages"
-    Shell.FlyoutBehavior="Flyout">
+    Shell.FlyoutBehavior="Locked">
 
     <FlyoutItem Title="GetStarted" FlyoutItemIsVisible="False">
         <Tab>

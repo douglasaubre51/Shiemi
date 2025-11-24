@@ -22,11 +22,13 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<PackageReference Include="AutoMapper" Version="16.0.0-beta-1" />
+		<PackageReference Include="CommunityToolkit.Maui" Version="13.0.0" />
 		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.0" />
 		<PackageReference Include="DotNetEnv" Version="3.1.1" />
-		<PackageReference Include="Microsoft.AspNetCore.SignalR.Client" Version="9.0.10" />
-		<PackageReference Include="Microsoft.Maui.Controls" Version="$(MauiVersion)" />
-		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="10.0.0-preview.5.25277.114" />
+		<PackageReference Include="Microsoft.AspNetCore.SignalR.Client" Version="10.0.0" />
+		<PackageReference Include="Microsoft.Maui.Controls" Version="10.0.10" />
+		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="10.0.0" />
 		<PackageReference Include="Newtonsoft.Json" Version="13.0.4" />
 		<PackageReference Include="Refractored.MvvmHelpers" Version="1.6.2" />
 	</ItemGroup>
@@ -38,6 +40,12 @@
 	  <Compile Update="Pages\Market\ProjectShop.xaml.cs">
 	    <DependentUpon>ProjectShop.xaml</DependentUpon>
 	  </Compile>
+	  <Compile Update="Views\MessageCardView.xaml.cs">
+	    <DependentUpon>MessageCardView.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Views\MessageView.xaml.cs">
+	    <DependentUpon>MessageView.xaml</DependentUpon>
+	  </Compile>
 	  <Compile Update="Views\ProjectListView.xaml.cs">
 	    <DependentUpon>ProjectListView.xaml</DependentUpon>
 	  </Compile>
@@ -47,7 +55,7 @@
 	  <MauiXaml Update="Pages\Chats\Channels.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Views\ChatCardView.xaml">
+	  <MauiXaml Update="Views\MessageCardView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\ProjectListView.xaml">
@@ -56,7 +64,7 @@
 	  <MauiXaml Update="Views\ChatListView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Views\ChatView.xaml">
+	  <MauiXaml Update="Views\MessageView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Pages\Chats\Rooms.xaml">

@@ -6,15 +6,15 @@
     xmlns:chatmodel="clr-namespace:Shiemi.PageModels.Chat"
     xmlns:views="clr-namespace:Shiemi.Views"
     x:DataType="chatmodel:ChannelsPageModel"
-    Shell.NavBarIsVisible="False">
-    <Grid Margin="10" ColumnDefinitions="*,1.8*">
+    Shell.FlyoutBehavior="Disabled">
+
+    <Grid ColumnDefinitions="*,1.8*">
+
         <!--  chat list  -->
         <views:ProjectListView Grid.Column="0" ProjectCollection="{Binding ProjectCollection}" />
 
         <!--  chat area  -->
-        <views:ChatView
-            Grid.Column="1"
-            MessageCollection="{Binding MessageCollection}"
-            SenderName="" />
+        <views:MessageView Grid.Column="1" MessageCollection="{Binding MessageCollection}" />
+
     </Grid>
 </ContentPage>

@@ -1,10 +1,16 @@
-﻿using MvvmHelpers;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using MvvmHelpers;
 using Shiemi.ViewModels;
 
 namespace Shiemi.PageModels.Chat;
 
 public partial class ChannelsPageModel : BasePageModel
 {
-    public ObservableRangeCollection<ChatListProjectVM> ProjectCollection { get; set; } = [];
-    public ObservableRangeCollection<MessageViewModel> MessageCollection { get; set; } = [];
+    [ObservableProperty]
+    private ObservableRangeCollection<ChatListProjectViewModel> projectCollection = [];
+    [ObservableProperty]
+    private ObservableRangeCollection<MessageViewModel> messageCollection = [];
+
+    [ObservableProperty]
+    private string channelTitle = "Channel Title";
 }
