@@ -3,8 +3,8 @@
     x:Class="Shiemi.Pages.Projects"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:models="clr-namespace:Shiemi.Models"
     xmlns:pagemodel="clr-namespace:Shiemi.PageModels"
+    xmlns:viewmodels="clr-namespace:Shiemi.ViewModels"
     x:DataType="pagemodel:ProjectsPageModel">
 
     <Grid Margin="10" RowDefinitions="*,50">
@@ -14,7 +14,7 @@
             ItemsLayout="VerticalGrid,2"
             ItemsSource="{Binding ProjectCollection}">
             <CollectionView.ItemTemplate>
-                <DataTemplate x:DataType="models:Project">
+                <DataTemplate x:DataType="viewmodels:ProjectsPageProjectViewModel">
                     <Grid Padding="10" RowSpacing="15">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="50" />
