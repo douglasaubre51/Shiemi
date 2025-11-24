@@ -17,8 +17,8 @@ public class ProjectService
         projectBaseUri = $"{_client.BaseAddress}/Project";
     }
 
-    public async Task Create(ProjectDto dto)
-        => await _client.PostAsJsonAsync<ProjectDto>(
+    public async Task Create(CreateProjectDto dto)
+        => await _client.PostAsJsonAsync<CreateProjectDto>(
             projectBaseUri,
             dto
             );

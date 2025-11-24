@@ -12,7 +12,8 @@
         <CollectionView
             Margin="10"
             ItemsLayout="VerticalGrid,2"
-            ItemsSource="{Binding ProjectCollection}">
+            ItemsSource="{Binding ProjectCollection}"
+            SelectionMode="Single">
             <CollectionView.ItemTemplate>
                 <DataTemplate x:DataType="viewmodels:ProjectsPageProjectViewModel">
                     <Grid Padding="10" RowSpacing="15">
@@ -33,9 +34,14 @@
             </CollectionView.ItemTemplate>
         </CollectionView>
         <!--  create project  -->
-        <Button
+        <Border
             Grid.Row="2"
-            Command="{Binding GoToCreateProjectCommand}"
-            Text="new" />
+            HeightRequest="180"
+            WidthRequest="80">
+            <Button
+                Command="{Binding GoToCreateProjectCommand}"
+                FontSize="40"
+                Text="+" />
+        </Border>
     </Grid>
 </ContentPage>
