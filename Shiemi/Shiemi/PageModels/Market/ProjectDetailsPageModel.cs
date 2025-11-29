@@ -1,10 +1,10 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using Shiemi.Pages;
+using Shiemi.Pages.Market;
 using Shiemi.ViewModels;
 using System.Diagnostics;
 
-namespace Shiemi.PageModels;
+namespace Shiemi.PageModels.Market;
 
 [QueryProperty(nameof(ProjectVM), nameof(ProjectVM))]
 public partial class ProjectDetailsPageModel : BasePageModel

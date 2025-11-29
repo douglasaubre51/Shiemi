@@ -1,47 +1,103 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage
-    x:Class="Shiemi.Pages.Projects"
+    x:Class="Shiemi.Pages.Project.Projects"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:pagemodel="clr-namespace:Shiemi.PageModels"
+    xmlns:pagemodel="clr-namespace:Shiemi.PageModels.Project"
     xmlns:viewmodels="clr-namespace:Shiemi.ViewModels"
     x:DataType="pagemodel:ProjectsPageModel">
 
-    <Grid Margin="10" RowDefinitions="*,50">
-        <!--  collection  -->
+    <Grid Margin="10"
+          RowDefinitions="*,50">
+        <!-- grid styles  -->
+        <Grid.Resources>
+            <Style x:Key="AddBtn"
+                   TargetType="Button">
+                <Setter Property="BackgroundColor"
+                        Value="{StaticResource Primary}"/>
+                <Setter Property="CornerRadius"
+                        Value="50"/>
+                <Setter Property="WidthRequest"
+                        Value="50"/>
+                <Setter Property="FontSize"
+                        Value="30"/>
+                <Setter Property="VisualStateManager.VisualStateGroups">
+                    <VisualStateGroupList>
+                        <VisualStateGroup Name="CommonStates">
+                            <VisualState Name="PointerOver">
+                                <VisualState.Setters>
+                                    <Setter Property="BackgroundColor"
+                                            Value="{StaticResource PrimaryDark}"/>
+                                    <Setter Property="TranslationY"
+                                            Value="-4"/>
+                                </VisualState.Setters>
+                            </VisualState>
+                            <VisualState Name="Normal">
+                                <VisualState.Setters>
+                                    <Setter Property="BackgroundColor"
+                                            Value="{StaticResource Primary}"/>
+                                </VisualState.Setters>
+                            </VisualState>
+                        </VisualStateGroup>
+                    </VisualStateGroupList>
+                </Setter>
+            </Style>
+        </Grid.Resources>
+
+        <!-- project collection section  -->
         <CollectionView
-            Margin="10"
+            Margin="0,30,0,0"
             ItemsLayout="VerticalGrid,2"
             ItemsSource="{Binding ProjectCollection}"
-            SelectionMode="Single">
+            SelectionMode="Single"
+            SelectionChanged="Project_CollectionView_SelectionChanged">
             <CollectionView.ItemTemplate>
+                <!--data template-->
                 <DataTemplate x:DataType="viewmodels:ProjectsPageProjectViewModel">
-                    <Grid Padding="10" RowSpacing="15">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="50" />
-                            <RowDefinition Height="50" />
-                        </Grid.RowDefinitions>
+                    <Grid
+                        Padding="30"
+                        RowDefinitions="*,*"
+                        RowSpacing="40">
+                        <!-- grid styles -->
+                        <Grid.Resources>
+                            <Style TargetType="Grid">
+                                <Setter Property="VisualStateManager.VisualStateGroups">
+                                    <VisualStateGroupList>
+                                        <VisualStateGroup Name="CommonStates">
+                                            <VisualState Name="PointerOver">
+                                                <VisualState.Setters>
+                                                    <Setter Property="TranslationY"
+                                                            Value="-20"/>
+                                                    <Setter Property="BackgroundColor"
+                                                            Value="White"/>
+                                                </VisualState.Setters>
+                                            </VisualState>
+                                            <VisualState Name="Normal"/>
+                                        </VisualStateGroup>
+                                    </VisualStateGroupList>
+                                </Setter>
+                            </Style>
+                        </Grid.Resources>
+                        <!-- contents -->
                         <Label
                             Grid.Row="0"
                             FontSize="Medium"
-                            Text="{Binding Title}" />
+                            Text="{Binding Title}"/>
                         <Label
                             Grid.Row="1"
                             FontSize="Micro"
-                            Text="{Binding ShortDesc}" />
+                            Text="{Binding ShortDesc}"/>
                     </Grid>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>
-        <!--  create project  -->
-        <Border
+
+        <!--  create project section  -->
+        <Button
             Grid.Row="2"
-            HeightRequest="180"
-            WidthRequest="80">
-            <Button
-                Command="{Binding GoToCreateProjectCommand}"
-                FontSize="40"
-                Text="+" />
-        </Border>
+            Command="{Binding GoToCreateProjectCommand}"
+            HorizontalOptions="End"
+            Style="{StaticResource AddBtn}"
+            Text="+"/>
     </Grid>
 </ContentPage>

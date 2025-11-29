@@ -1,9 +1,9 @@
-using Shiemi.PageModels;
+using Shiemi.PageModels.Start;
 using Shiemi.Services;
 using Shiemi.Storage;
 using System.Diagnostics;
 
-namespace Shiemi.Pages;
+namespace Shiemi.Pages.Start;
 
 public partial class Index : ContentPage
 {

@@ -1,10 +1,10 @@
 using Shiemi.Dtos;
-using Shiemi.PageModels;
+using Shiemi.PageModels.User;
 using Shiemi.Services;
 using Shiemi.Storage;
 using System.Diagnostics;
 
-namespace Shiemi.Pages;
+namespace Shiemi.Pages.User;
 
 public partial class Profile : ContentPage
 {

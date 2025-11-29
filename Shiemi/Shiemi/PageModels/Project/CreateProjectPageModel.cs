@@ -5,7 +5,7 @@ using Shiemi.Services;
 using Shiemi.Storage;
 using System.Diagnostics;
 
-namespace Shiemi.PageModels;
+namespace Shiemi.PageModels.Project;
 
 public partial class CreateProjectPageModel : BasePageModel
 {

@@ -1,4 +1,5 @@
-﻿using Shiemi.Pages;
+﻿using Shiemi.Pages.Market;
+using Shiemi.Pages.Project;
 
 namespace Shiemi
 {

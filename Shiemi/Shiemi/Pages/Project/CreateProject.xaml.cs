@@ -1,6 +1,6 @@
-using Shiemi.PageModels;
+using Shiemi.PageModels.Project;
 
-namespace Shiemi.Pages;
+namespace Shiemi.Pages.Project;
 
 public partial class CreateProject : ContentPage
 {

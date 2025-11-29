@@ -3,7 +3,7 @@ using Shiemi.Services;
 using Shiemi.Utilities.HubClients;
 using System.Diagnostics;
 
-namespace Shiemi.Pages;
+namespace Shiemi.Pages.Market;
 
 public partial class PrivateRoom : ContentPage
 {

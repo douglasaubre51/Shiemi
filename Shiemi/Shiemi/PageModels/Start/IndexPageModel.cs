@@ -2,7 +2,7 @@
 using Shiemi.Storage;
 using System.Diagnostics;
 
-namespace Shiemi.PageModels
+namespace Shiemi.PageModels.Start
 {
     public partial class IndexPageModel : BasePageModel
     {

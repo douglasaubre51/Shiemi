@@ -1,8 +1,8 @@
-using Shiemi.PageModels;
+using Shiemi.PageModels.Market;
 using Shiemi.Services;
 using System.Diagnostics;
 
-namespace Shiemi.Pages;
+namespace Shiemi.Pages.Market;
 
 public partial class ProjectShop : ContentPage
 {

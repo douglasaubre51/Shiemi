@@ -1,6 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 
-namespace Shiemi.PageModels;
+namespace Shiemi.PageModels.User;
 
 public partial class ProfilePageModel : BasePageModel
 {

@@ -1,10 +1,10 @@
 ﻿using CommunityToolkit.Mvvm.Input;
-using Shiemi.Pages;
+using Shiemi.Pages.Market;
 using Shiemi.ViewModels;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 
-namespace Shiemi.PageModels;
+namespace Shiemi.PageModels.Market;
 
 public partial class ProjectShopPageModel : BasePageModel
 {

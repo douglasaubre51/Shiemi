@@ -4,39 +4,49 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:chatpages="clr-namespace:Shiemi.Pages.Chats"
-    xmlns:pages="clr-namespace:Shiemi.Pages"
+    xmlns:startpages="clr-namespace:Shiemi.Pages.Start"
+    xmlns:userpages="clr-namespace:Shiemi.Pages.User"
+    xmlns:projectpages="clr-namespace:Shiemi.Pages.Project"
+    xmlns:marketpages="clr-namespace:Shiemi.Pages.Market"
     Shell.FlyoutBehavior="Locked">
 
-    <FlyoutItem Title="GetStarted" FlyoutItemIsVisible="False">
+    <FlyoutItem Title="GetStarted"
+                FlyoutItemIsVisible="False">
         <Tab>
-            <ShellContent ContentTemplate="{DataTemplate pages:Index}" Route="Index" />
+            <ShellContent ContentTemplate="{DataTemplate startpages:Index}"
+                          Route="Index"/>
         </Tab>
     </FlyoutItem>
 
     <FlyoutItem Title="Home">
         <Tab>
-            <ShellContent ContentTemplate="{DataTemplate pages:Profile}" Route="Profile" />
+            <ShellContent ContentTemplate="{DataTemplate userpages:Profile}"
+                          Route="Profile"/>
         </Tab>
     </FlyoutItem>
 
     <FlyoutItem Title="My Projects">
         <Tab>
-            <ShellContent ContentTemplate="{DataTemplate pages:Projects}" Route="Projects" />
+            <ShellContent ContentTemplate="{DataTemplate projectpages:Projects}"
+                          Route="Projects"/>
         </Tab>
     </FlyoutItem>
 
     <FlyoutItem Title="Project Shop">
         <Tab>
-            <ShellContent ContentTemplate="{DataTemplate pages:ProjectShop}" Route="ProjectShop" />
+            <ShellContent ContentTemplate="{DataTemplate marketpages:ProjectShop}"
+                          Route="ProjectShop"/>
         </Tab>
     </FlyoutItem>
 
     <FlyoutItem Title="Chats">
         <Tab Title="Rooms">
-            <ShellContent ContentTemplate="{DataTemplate chatpages:Rooms}" Route="Rooms" />
+            <ShellContent ContentTemplate="{DataTemplate chatpages:Rooms}"
+                          Route="Rooms"/>
         </Tab>
         <Tab Title="Channels">
-            <ShellContent ContentTemplate="{DataTemplate chatpages:Channels}" Route="Channels" />
+            <ShellContent ContentTemplate="{DataTemplate chatpages:Channels}"
+                          Route="Channels"/>
         </Tab>
     </FlyoutItem>
 

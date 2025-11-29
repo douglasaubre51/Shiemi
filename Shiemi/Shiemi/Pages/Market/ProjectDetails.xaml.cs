@@ -1,6 +1,6 @@
-using Shiemi.PageModels;
+using Shiemi.PageModels.Market;
 
-namespace Shiemi.Pages;
+namespace Shiemi.Pages.Market;
 
 public partial class ProjectDetails : ContentPage
 {
