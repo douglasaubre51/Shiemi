@@ -9,8 +9,11 @@ namespace Shiemi
         {
             InitializeComponent();
 
-            // Register routes here
+            // Register routes
+            // Project
             Routing.RegisterRoute(nameof(CreateProject), typeof(CreateProject));
+            Routing.RegisterRoute(nameof(Details), typeof(Details));
+            // Market
             Routing.RegisterRoute(nameof(ProjectDetails), typeof(ProjectDetails));
             Routing.RegisterRoute(nameof(PrivateRoom), typeof(PrivateRoom));
         }

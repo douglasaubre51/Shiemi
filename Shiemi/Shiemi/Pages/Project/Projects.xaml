@@ -64,14 +64,6 @@
                                 <Setter Property="VisualStateManager.VisualStateGroups">
                                     <VisualStateGroupList>
                                         <VisualStateGroup Name="CommonStates">
-                                            <VisualState Name="PointerOver">
-                                                <VisualState.Setters>
-                                                    <Setter Property="TranslationY"
-                                                            Value="-20"/>
-                                                    <Setter Property="BackgroundColor"
-                                                            Value="White"/>
-                                                </VisualState.Setters>
-                                            </VisualState>
                                             <VisualState Name="Normal"/>
                                         </VisualStateGroup>
                                     </VisualStateGroupList>
@@ -82,10 +74,12 @@
                         <Label
                             Grid.Row="0"
                             FontSize="Medium"
+                            LineBreakMode="TailTruncation"
                             Text="{Binding Title}"/>
                         <Label
                             Grid.Row="1"
                             FontSize="Micro"
+                            LineBreakMode="TailTruncation"
                             Text="{Binding ShortDesc}"/>
                     </Grid>
                 </DataTemplate>

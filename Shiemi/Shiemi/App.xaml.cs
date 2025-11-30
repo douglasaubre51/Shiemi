@@ -18,14 +18,14 @@ public partial class App : Application
         var window = new Window(new AppShell())
         {
             // set window launch size
-            Width = 1100,
-            Height = 600
+            Width = 1050,
+            Height = 650
         };
 
         // center window launch position
         var displayInfo = DeviceDisplay.Current.MainDisplayInfo;
-        window.X = (displayInfo.Width / displayInfo.Density - window.Width);
-        window.X = (displayInfo.Height / displayInfo.Density - window.Height);
+        window.X = displayInfo.Width / displayInfo.Density - window.Width;
+        window.X = displayInfo.Height / displayInfo.Density - window.Height;
 
         return window;
     }

@@ -35,7 +35,7 @@ public partial class CreateProjectPageModel : BasePageModel
         try
         {
             var dto = new CreateProjectDto(
-                Title,
+                ProjectTitle,
                 ShortDesc,
                 Description,
                 UserStorage.UserId

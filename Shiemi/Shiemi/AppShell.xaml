@@ -8,6 +8,7 @@
     xmlns:userpages="clr-namespace:Shiemi.Pages.User"
     xmlns:projectpages="clr-namespace:Shiemi.Pages.Project"
     xmlns:marketpages="clr-namespace:Shiemi.Pages.Market"
+    FlyoutBackgroundColor="#f3f3f3"
     Shell.FlyoutBehavior="Locked">
 
     <FlyoutItem Title="GetStarted"

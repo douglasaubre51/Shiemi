@@ -57,6 +57,15 @@ public partial class Projects : ContentPage
             Debug.WriteLine("selected project is null!");
             return;
         }
-        Debug.WriteLine("selected project is null!");
+
+        // navigate to details page!
+        await Shell.Current.GoToAsync(
+            nameof(Details),
+            animate: true,
+            new Dictionary<string, object>()
+            {
+                { nameof(ProjectsPageProjectViewModel), project }
+            }
+            );
     }
 }

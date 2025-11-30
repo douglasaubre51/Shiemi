@@ -1,6 +1,6 @@
+using System.Diagnostics;
 using Shiemi.PageModels.Market;
 using Shiemi.Services;
-using System.Diagnostics;
 
 namespace Shiemi.Pages.Market;
 
@@ -29,7 +29,7 @@ public partial class ProjectShop : ContentPage
             pageModel!.ProjectCollection.Clear();
             var projects = await _projectService.GetAll();
 
-            //pageModel!.ProjectCollection.Add(projects);
+            // pageModel!.ProjectCollection.Add(projects);
         }
         catch (Exception ex)
         {
