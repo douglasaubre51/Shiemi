@@ -63,8 +63,10 @@ public partial class Rooms : ContentPage
 
                 // create and add room
                 ChatViewModel chat = new(user.Id, user.FirstName + " " + user.LastName);
-                context.ChatCollection.Add(chat);
+                context.ChatCollection.Replace(chat);
             }
+
+            Debug.WriteLine(context.ChatCollection.FirstOrDefault()!.Title);
         }
         catch (Exception ex)
         {
