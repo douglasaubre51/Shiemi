@@ -1,6 +1,9 @@
 using System.Diagnostics;
+using Shiemi.Dtos;
 using Shiemi.PageModels.Market;
 using Shiemi.Services;
+using Shiemi.Utilities.ServiceProviders;
+using Shiemi.ViewModels;
 
 namespace Shiemi.Pages.Market;
 
@@ -29,7 +32,10 @@ public partial class ProjectShop : ContentPage
             pageModel!.ProjectCollection.Clear();
             var projects = await _projectService.GetAll();
 
-            // pageModel!.ProjectCollection.Add(projects);
+            var mapper = MapperProvider.GetMapper<ProjectDto, ProjectViewModel>();
+            List<ProjectViewModel> projectViewModels = mapper!.Map<List<ProjectViewModel>>(projects);
+
+            pageModel!.ProjectCollection.AddRange(projectViewModels);
         }
         catch (Exception ex)
         {

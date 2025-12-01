@@ -64,10 +64,14 @@ public class RoomClient
             async (dtos) =>
             {
                 // set IsOwner for roomMessageHubModels
-                var ownerMessages = dtos.Where(c => c.Id == UserStorage.UserId)
+                var ownerMessages = dtos.Where(c => c.UserId == UserStorage.UserId)
                     .ToList();
                 foreach (var m in ownerMessages)
+                {
+                    Debug.WriteLine("id: " + m.Id);
+                    Debug.WriteLine("userid: " + UserStorage.UserId);
                     m.IsOwner = true;
+                }
 
                 Mapper? mapper = MapperProvider.GetMapper<RoomMessageHubModel, MessageViewModel>();
                 if (mapper is null)
@@ -79,7 +83,7 @@ public class RoomClient
                 // flush messageCollection on MessageView
                 var messageViewModels = mapper.Map<List<MessageViewModel>>(dtos);
                 await MainThread.InvokeOnMainThreadAsync(() =>
-                    messageCollection.AddRange(messageViewModels)
+                    messageCollection.ReplaceRange(messageViewModels)
                 );
             });
 

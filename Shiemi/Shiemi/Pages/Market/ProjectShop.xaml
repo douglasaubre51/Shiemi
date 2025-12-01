@@ -3,37 +3,49 @@
     x:Class="Shiemi.Pages.Market.ProjectShop"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:model="clr-namespace:Shiemi.Models"
     xmlns:pagemodel="clr-namespace:Shiemi.PageModels.Market"
+    xmlns:viewmodel="clr-namespace:Shiemi.ViewModels"
+    Title="Project market"
     x:DataType="pagemodel:ProjectShopPageModel">
 
-    <Grid Margin="10"
-            RowDefinitions="*">
+    <Grid Margin="10" RowDefinitions="*">
+
         <CollectionView
-            ItemsLayout="VerticalGrid,2"
+            ItemSizingStrategy="MeasureAllItems"
             ItemsSource="{Binding ProjectCollection}"
             SelectionMode="Single">
+            <CollectionView.ItemsLayout>
+                <GridItemsLayout
+                    HorizontalItemSpacing="4"
+                    Orientation="Vertical"
+                    Span="3"
+                    VerticalItemSpacing="4" />
+            </CollectionView.ItemsLayout>
             <CollectionView.ItemTemplate>
-                <DataTemplate x:DataType="model:Project">
+                <DataTemplate x:DataType="viewmodel:ProjectViewModel">
+
                     <Border>
                         <Border.GestureRecognizers>
-                            <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type pagemodel:ProjectShopPageModel}}, x:DataType=pagemodel:ProjectShopPageModel, Path=GoToProjectDetailsCommand}"
-                                    CommandParameter="{Binding .}"/>
+                            <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type pagemodel:ProjectShopPageModel}}, x:DataType=pagemodel:ProjectShopPageModel, Path=GoToProjectDetailsCommand}" CommandParameter="{Binding .}" />
                         </Border.GestureRecognizers>
-                        <Grid Padding="20"
-                                RowSpacing="15">
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="50"/>
-                                <RowDefinition Height="50"/>
-                            </Grid.RowDefinitions>
+
+                        <Grid
+                            Margin="20"
+                            RowDefinitions="30,30"
+                            VerticalOptions="Fill">
+
                             <Label
                                 Grid.Row="0"
-                                FontSize="Medium"
-                                Text="{Binding Title}"/>
+                                FontSize="20"
+                                LineBreakMode="TailTruncation"
+                                Text="{Binding Title}" />
+
                             <Label
                                 Grid.Row="1"
-                                FontSize="Micro"
-                                Text="{Binding ShortDesc}"/>
+                                FontSize="10"
+                                LineBreakMode="WordWrap"
+                                Text="{Binding ShortDesc}"
+                                TextColor="Gray" />
                         </Grid>
                     </Border>
                 </DataTemplate>

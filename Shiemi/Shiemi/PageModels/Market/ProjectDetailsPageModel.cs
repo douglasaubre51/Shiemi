@@ -11,6 +11,7 @@ public partial class ProjectDetailsPageModel : BasePageModel
 {
     [ObservableProperty]
     private ProjectViewModel projectVM;
+
     [ObservableProperty]
     private bool notOwner = true;
 
@@ -25,8 +26,13 @@ public partial class ProjectDetailsPageModel : BasePageModel
                 nameof(PrivateRoom),
                 true,
                 new Dictionary<string, object>
-                { { "Project", ProjectVM } });
+                {
+                    { "ProjectVM", ProjectVM }
+                });
         }
-        catch (Exception ex) { Debug.WriteLine($"GoToPrivateRoom error: ${ex.Message}"); }
+        catch (Exception ex)
+        {
+            Debug.WriteLine($"GoToPrivateRoom error: ${ex.Message}");
+        }
     }
 }

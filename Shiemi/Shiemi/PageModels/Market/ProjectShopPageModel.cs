@@ -1,14 +1,15 @@
 ﻿using CommunityToolkit.Mvvm.Input;
+using MvvmHelpers;
 using Shiemi.Pages.Market;
 using Shiemi.ViewModels;
-using System.Collections.ObjectModel;
 using System.Diagnostics;
 
 namespace Shiemi.PageModels.Market;
 
 public partial class ProjectShopPageModel : BasePageModel
 {
-    public ObservableCollection<ProjectViewModel> ProjectCollection { get; set; } = [];
+    public ObservableRangeCollection<ProjectViewModel> ProjectCollection { get; set; } = [];
+
     public ProjectShopPageModel()
         => Title = "Project Shop";
 
@@ -24,6 +25,9 @@ public partial class ProjectShopPageModel : BasePageModel
                { { "ProjectVM", projectVM! }
                });
         }
-        catch (Exception ex) { Debug.WriteLine($"GoToProjectDetails error: {ex.Message}"); }
+        catch (Exception ex)
+        {
+            Debug.WriteLine($"GoToProjectDetails error: {ex.Message}");
+        }
     }
 }

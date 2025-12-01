@@ -1,7 +1,7 @@
-using System.Diagnostics;
 using Shiemi.PageModels.Start;
 using Shiemi.Services;
 using Shiemi.Storage;
+using System.Diagnostics;
 
 namespace Shiemi.Pages.Start;
 
@@ -27,27 +27,38 @@ public partial class Index : ContentPage
 
     protected override async void OnAppearing()
     {
-        base.OnAppearing();
 
-        // check if user logged in!
-        if (DataStorage.Get("UserId") is not "")
+        try
         {
-            // store userId<string> in temp data storage
-            string userIdString = DataStorage.Get("UserId");
-            var userIdDto = await _userService.GetUserId(
-                userIdString
-            );
-            if (userIdDto is null)
+            // check if user logged in!
+            if (DataStorage.Get("UserId") is not "")
             {
-                DataStorage.Remove("UserId");
+                // store userId<string> in temp data storage
+                string userIdString = DataStorage.Get("UserId");
+                var userIdDto = await _userService.GetUserId(
+                    userIdString
+                );
+                if (userIdDto is null)
+                {
+                    DataStorage.Remove("UserId");
+                    return;
+                }
+
+                UserStorage.UserId = userIdDto!.Id;
+                await Shell.Current.GoToAsync("//Profile");
                 return;
             }
-
-            UserStorage.UserId = userIdDto!.Id;
-            await Shell.Current.GoToAsync("//Profile");
-            return;
+        }
+        catch (Exception ex)
+        {
+            Debug.WriteLine("SHIEMI Login Session Failed!");
+            await Shell.Current.DisplayAlertAsync(
+                "Login error",
+                "Error Logging in to SHIEMI Api",
+                "Ok");
         }
 
+        base.OnAppearing();
     }
 
     private async void Button_Clicked(object sender, EventArgs e)

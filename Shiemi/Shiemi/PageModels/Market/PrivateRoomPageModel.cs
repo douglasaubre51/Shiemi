@@ -4,11 +4,11 @@ using Shiemi.ViewModels;
 
 namespace Shiemi.PageModels.Market;
 
-[QueryProperty(nameof(ProjectVM), nameof(ProjectVM))]
+[QueryProperty(nameof(CurrentProjectVM), "ProjectVM")]
 public partial class PrivateRoomPageModel : BasePageModel
 {
     [ObservableProperty]
-    private ProjectViewModel projectVM;
+    private ProjectViewModel currentProjectVM;
 
     public ObservableRangeCollection<MessageViewModel> MessageCollection { get; set; } = [];
 

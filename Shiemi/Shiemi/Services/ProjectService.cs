@@ -6,6 +6,8 @@ using System.Net.Http.Json;
 
 namespace Shiemi.Services;
 
+record ProjectWrapper(List<ProjectDto> Projects);
+
 public class ProjectService
 {
     private readonly HttpClient _client;
@@ -41,6 +43,7 @@ public class ProjectService
 
         Debug.WriteLine($"GetAllProjects status: {response.StatusCode} ");
 
-        return await response.Content.ReadFromJsonAsync<List<ProjectDto>>();
+        var wrapper = await response.Content.ReadFromJsonAsync<ProjectWrapper>();
+        return wrapper!.Projects;
     }
 }

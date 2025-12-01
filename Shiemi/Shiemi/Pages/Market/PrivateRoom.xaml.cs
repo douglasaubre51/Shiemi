@@ -1,7 +1,9 @@
+using System.Diagnostics;
+using Shiemi.Dtos;
 using Shiemi.PageModels.Market;
 using Shiemi.Services;
+using Shiemi.Storage;
 using Shiemi.Utilities.HubClients;
-using System.Diagnostics;
 
 namespace Shiemi.Pages.Market;
 
@@ -25,23 +27,32 @@ public partial class PrivateRoom : ContentPage
     protected override async void OnAppearing()
     {
         var pageModel = BindingContext as PrivateRoomPageModel;
+        if (pageModel is null)
+        {
+            Debug.WriteLine("PrivateRoomPageModel BindingContext is null!");
+            return;
+        }
+
         try
         {
-            //int roomId = await _roomService.GetPrivateRoom(
-            //    UserStorage.UserId,
-            //    pageModel!.Project.Id
-            //    );
-            //UserStorage.RoomId = roomId;
+            int roomId = await _roomService.GetPrivateRoom(
+               UserStorage.UserId,
+               pageModel.CurrentProjectVM.Id
+               );
+            UserStorage.RoomId = roomId;
 
-            //await _roomService.InitSignalR(
-            //    pageModel!.MessageCollection,
-            //    roomId
-            //    );
+            await _roomService.InitSignalR(
+               pageModel!.MessageCollection,
+               roomId
+               );
 
-            //AccountDto? user = await _userService.GetUserById(pageModel.Project.UserId);
-            //pageModel.Sender = user!.FirstName + " " + user.LastName;
+            UserDto? user = await _userService.GetUserById(pageModel.CurrentProjectVM.UserId);
+            pageModel.Sender = user!.FirstName + " " + user.LastName;
         }
-        catch (Exception ex) { Debug.WriteLine($"PrivateRoom init error: {ex.Message}"); }
+        catch (Exception ex)
+        {
+            Debug.WriteLine($"PrivateRoom init error: {ex.Message}");
+        }
 
         base.OnAppearing();
     }
@@ -53,7 +64,10 @@ public partial class PrivateRoom : ContentPage
             Debug.WriteLine("closing websocket!");
             await _roomService.DisconnectWebSocket();
         }
-        catch (Exception ex) { Debug.WriteLine($"SignalR Dispose error: {ex}"); }
+        catch (Exception ex)
+        {
+            Debug.WriteLine($"SignalR Dispose error: {ex}");
+        }
 
         base.OnDisappearing();
     }

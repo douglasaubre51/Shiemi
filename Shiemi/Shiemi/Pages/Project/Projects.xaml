@@ -47,7 +47,7 @@
         <!-- project collection section  -->
         <CollectionView
             Margin="0,30,0,0"
-            ItemsLayout="VerticalGrid,2"
+            ItemsLayout="VerticalList"
             ItemsSource="{Binding ProjectCollection}"
             SelectionMode="Single"
             SelectionChanged="Project_CollectionView_SelectionChanged">

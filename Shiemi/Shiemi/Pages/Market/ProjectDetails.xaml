@@ -6,21 +6,44 @@
     xmlns:pagemodel="clr-namespace:Shiemi.PageModels.Market"
     x:DataType="pagemodel:ProjectDetailsPageModel">
 
-    <Grid Margin="10"
-          RowDefinitions="*,*,50">
+    <Grid Margin="20"
+          RowSpacing="4"
+          RowDefinitions="Auto,Auto,*,Auto">
         <Label
             Grid.Row="0"
-            FontSize="Micro"
-            Text="{Binding Project.Description}"/>
+            FontSize="40"
+            Text="{Binding ProjectVM.Title}"/>
+
         <Label
             Grid.Row="1"
-            FontSize="14"
-            Text="{Binding Project.Cost, StringFormat='Estimated Cost: ${0}'}"/>
+            FontSize="16"
+            TextColor="Gray"
+            Text="Description"/>
 
-        <Button
-            Grid.Row="2"
-            Command="{Binding GoToPrivateRoomCommand}"
-            IsEnabled="{Binding NotOwner}"
-            Text="Chat"/>
+        <ScrollView Orientation="Vertical"
+                    Grid.Row="2">
+            <Label
+                FontSize="20"
+                LineBreakMode="WordWrap"
+                Text="{Binding ProjectVM.Description}"/>
+        </ScrollView>
+
+        <Grid Grid.Row="3"
+              Margin="0,4,0,0">
+            <Label
+                VerticalOptions="End"
+                HorizontalOptions="Start"
+                FontSize="16"
+                TextColor="Gray"
+                Text="{Binding ProjectVM.Cost, StringFormat='Estimated Cost: ${0}'}"/>
+
+            <Button
+                VerticalOptions="End"
+                WidthRequest="250"
+                HorizontalOptions="End"
+                Command="{Binding GoToPrivateRoomCommand}"
+                IsEnabled="{Binding NotOwner}"
+                Text="Chat"/>
+        </Grid>
     </Grid>
 </ContentPage>

@@ -18,6 +18,7 @@ public record ChatListProjectViewModel(
     int Id,
     string Title
 );
+
 public record ProjectsPageProjectViewModel(
     int Id,
     string Title,
