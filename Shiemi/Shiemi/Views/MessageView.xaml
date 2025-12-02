@@ -14,7 +14,7 @@
 
     <!--  header  -->
 
-    <VerticalStackLayout Grid.Row="0" BackgroundColor="#333333">
+    <VerticalStackLayout Grid.Row="0" BackgroundColor="White">
         <Label x:Name="SenderLabel" Margin="20" />
     </VerticalStackLayout>
 
@@ -95,7 +95,7 @@
         <Editor
             x:Name="MessageBox"
             Grid.Column="0"
-            BackgroundColor="#000000" />
+            BackgroundColor="#eeeeee" />
 
         <Button
             Grid.Column="1"
