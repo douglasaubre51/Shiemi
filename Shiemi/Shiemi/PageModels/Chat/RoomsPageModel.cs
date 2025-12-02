@@ -10,7 +10,6 @@ public partial class RoomsPageModel : BasePageModel
     private ObservableRangeCollection<ChatViewModel> chatCollection = [];
 
     [ObservableProperty]
-
     private ObservableRangeCollection<MessageViewModel> messageCollection = [];
 
     [ObservableProperty]

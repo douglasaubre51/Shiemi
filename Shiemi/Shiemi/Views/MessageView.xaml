@@ -7,16 +7,20 @@
     xmlns:views="clr-namespace:Shiemi.Views"
     Margin="0,0,10,10"
     x:DataType="views:MessageView"
-    BackgroundColor="LightBlue"
+    BackgroundColor="LightSlateGrey"
     ColumnDefinitions="*"
     RowDefinitions="50,*,60">
 
+
     <!--  header  -->
-    <VerticalStackLayout Grid.Row="0" BackgroundColor="White">
+
+    <VerticalStackLayout Grid.Row="0" BackgroundColor="#333333">
         <Label x:Name="SenderLabel" Margin="20" />
     </VerticalStackLayout>
 
+
     <!--  body  -->
+
     <CollectionView
         x:Name="MessageCollectionView"
         Grid.Row="1"
@@ -26,40 +30,51 @@
             <DataTemplate x:DataType="viewmodels:MessageViewModel">
                 <Grid>
                     <Grid.Triggers>
+
+                        <!--  is not owner  -->
                         <DataTrigger
                             Binding="{Binding IsOwner}"
                             TargetType="Grid"
                             Value="False">
                             <Setter Property="ColumnDefinitions" Value="Auto,*" />
                         </DataTrigger>
+
+                        <!--  is owner  -->
                         <DataTrigger
                             Binding="{Binding IsOwner}"
                             TargetType="Grid"
                             Value="True">
                             <Setter Property="ColumnDefinitions" Value="*,Auto" />
                         </DataTrigger>
+
                     </Grid.Triggers>
 
-                    <!--  message card  -->
                     <views:MessageCardView
                         MaximumWidthRequest="600"
                         MessageText="{Binding Text}"
                         MessageTime="{Binding CreatedAt}">
 
+
                         <!--  card position trigger  -->
+
                         <views:MessageCardView.Triggers>
+
+                            <!--  is not owner  -->
                             <DataTrigger
                                 Binding="{Binding IsOwner}"
                                 TargetType="views:MessageCardView"
                                 Value="False">
                                 <Setter Property="Grid.Column" Value="0" />
                             </DataTrigger>
+
+                            <!--  is owner  -->
                             <DataTrigger
                                 Binding="{Binding IsOwner}"
                                 TargetType="views:MessageCardView"
                                 Value="True">
                                 <Setter Property="Grid.Column" Value="1" />
                             </DataTrigger>
+
                         </views:MessageCardView.Triggers>
                     </views:MessageCardView>
 
@@ -68,19 +83,24 @@
         </CollectionView.ItemTemplate>
     </CollectionView>
 
+
     <!--  send chat area  -->
+
     <Grid
         Grid.Row="2"
         Margin="10,5,10,0"
         ColumnDefinitions="*,80"
         ColumnSpacing="10">
+
         <Editor
             x:Name="MessageBox"
             Grid.Column="0"
-            BackgroundColor="White" />
+            BackgroundColor="#000000" />
+
         <Button
             Grid.Column="1"
             Clicked="Send_Btn_Clicked"
             Text="send" />
+
     </Grid>
 </Grid>

@@ -11,7 +11,9 @@
 
     <Grid ColumnDefinitions="*,3*" RowDefinitions="*">
 
+
         <!--  chat list  -->
+
         <CollectionView
             Grid.Column="0"
             ItemsLayout="VerticalList"
@@ -20,6 +22,9 @@
             SelectionMode="Single">
             <CollectionView.ItemTemplate>
                 <DataTemplate x:DataType="viewmodels:ChatViewModel">
+
+                    <!--  chat  -->
+
                     <Grid
                         Grid.Column="0"
                         Padding="20"
@@ -27,11 +32,14 @@
                         RowDefinitions="*">
                         <Label LineBreakMode="TailTruncation" Text="{Binding Title}" />
                     </Grid>
+
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>
 
+
         <!--  chat area  -->
+
         <views:MessageView
             Grid.Column="1"
             MessageCollection="{Binding MessageCollection}"

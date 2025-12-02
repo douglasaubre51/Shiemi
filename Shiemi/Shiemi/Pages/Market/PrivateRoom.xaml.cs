@@ -1,9 +1,9 @@
-using System.Diagnostics;
 using Shiemi.Dtos;
 using Shiemi.PageModels.Market;
 using Shiemi.Services;
 using Shiemi.Storage;
 using Shiemi.Utilities.HubClients;
+using System.Diagnostics;
 
 namespace Shiemi.Pages.Market;
 
@@ -23,6 +23,9 @@ public partial class PrivateRoom : ContentPage
         _roomService = roomService;
         _userService = userService;
     }
+
+
+    // init SignalR on page load!
 
     protected override async void OnAppearing()
     {
@@ -56,6 +59,9 @@ public partial class PrivateRoom : ContentPage
 
         base.OnAppearing();
     }
+
+
+    // destroy signalR on page exit!
 
     protected override async void OnDisappearing()
     {

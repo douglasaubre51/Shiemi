@@ -30,6 +30,9 @@ public class RoomClient
         _envStorage = envStorage;
     }
 
+
+    // fetch room id
+
     public async Task<int> GetPrivateRoom(int userId, int projectId)
     {
         var response = await _httpClient.GetAsync(
@@ -37,18 +40,17 @@ public class RoomClient
             );
         if (!response.IsSuccessStatusCode)
         {
-            Console.WriteLine($"FAIL: GetPrivateRoom status: {response.StatusCode}");
-            return await Task.FromResult<int>(0);
+            Console.WriteLine($"GetPrivateRoom status: {response.StatusCode}");
+            return await Task.FromResult<int>(0);  // for safety !
         }
 
         return await response.Content.ReadFromJsonAsync<int>();
     }
 
-    // SignalR pipeline initializer
+
     public async Task InitSignalR(
         ObservableRangeCollection<MessageViewModel> messageCollection,
-        int roomId
-        )
+        int roomId)
     {
         _hub = new HubConnectionBuilder()
             .WithUrl(_envStorage.GetSHIEMIWebsocketUri() + "/room")
@@ -58,72 +60,59 @@ public class RoomClient
         _hub.Closed += async (error)
             => Debug.WriteLine("websocket disconnected!");
 
-        // load all previous chats
         _hub.On<List<RoomMessageHubModel>>(
             "LoadChat",
             async (dtos) =>
             {
-                // set IsOwner for roomMessageHubModels
                 var ownerMessages = dtos.Where(c => c.UserId == UserStorage.UserId)
                     .ToList();
                 foreach (var m in ownerMessages)
-                {
-                    Debug.WriteLine("id: " + m.Id);
-                    Debug.WriteLine("userid: " + UserStorage.UserId);
                     m.IsOwner = true;
-                }
 
                 Mapper? mapper = MapperProvider.GetMapper<RoomMessageHubModel, MessageViewModel>();
                 if (mapper is null)
-                {
-                    Debug.WriteLine("RoomClient: LoadChat: error: GetMapper returned null!");
                     return;
-                }
 
-                // flush messageCollection on MessageView
                 var messageViewModels = mapper.Map<List<MessageViewModel>>(dtos);
                 await MainThread.InvokeOnMainThreadAsync(() =>
                     messageCollection.ReplaceRange(messageViewModels)
                 );
             });
 
-        // update msg from hub
+
+        // message notification from hub !
+
         _hub.On<RoomMessageHubModel>(
             "UpdateChat",
             async (dto) =>
             {
-                // set IsOwner for Message
                 if (dto.UserId == UserStorage.UserId)
                     dto.IsOwner = true;
 
                 Mapper? mapper = MapperProvider.GetMapper<RoomMessageHubModel, MessageViewModel>();
                 if (mapper is null)
-                {
-                    Debug.WriteLine("RoomClient: LoadChat: error: GetMapper returned null!");
                     return;
-                }
 
                 var messageViewModel = mapper.Map<MessageViewModel>(dto);
-                // flush to MessageCollection on MessageView
                 MainThread.BeginInvokeOnMainThread(() => messageCollection.Add(messageViewModel));
             });
 
         await _hub.StartAsync();
         Debug.WriteLine($"RoomClient: websocket initialized!");
 
-        // set userId and room at hub
         await _hub.InvokeAsync(
             "SetUserIdAndRoom",
             UserStorage.UserId,
-            roomId
-            );
+            roomId);
     }
 
+
     // SignalR actions
+
+    public async Task SendChat(SendMessageDto dto)
+        => await _hub!.InvokeAsync("SendChat", dto);
     public async Task DisconnectWebSocket()
         => await _hub!.StopAsync();
     public async Task ReconnectWebSocket()
         => await _hub!.StartAsync();
-    public async Task SendChat(SendMessageDto dto)
-        => await _hub!.InvokeAsync("SendChat", dto);
 }

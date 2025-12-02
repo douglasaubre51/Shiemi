@@ -29,83 +29,65 @@ public partial class Rooms : ContentPage
         _roomService = roomService;
     }
 
+
+    // init signalR on page load !
+
     protected override async void OnAppearing()
     {
         try
         {
             var context = BindingContext as RoomsPageModel;
             if (context is null)
-            {
-                Debug.WriteLine($"RoomsPageModel context is null!");
                 return;
-            }
 
-            // fetch chatlist data
             var rooms = await _chatService.GetAllRooms();
             if (rooms is null)
             {
-                Debug.WriteLine("GetAllRooms: null!");
+                Debug.WriteLine("Fetching Rooms: null");
                 return;
             }
 
-            // clear collection before flush!
             context.ChatCollection.Clear();
-
-            // set sendername for each room!
-            foreach (var r in rooms!)
+            foreach (var r in rooms!)  // set sender name for every chat !
             {
                 UserDto? user = await _userService.GetUserById(r.TenantId);
                 if (user is null)
-                {
-                    Debug.WriteLine($"User:{r.TenantId} is null!");
                     continue;
-                }
 
-                // create and add room
-                ChatViewModel chat = new(user.Id, user.FirstName + " " + user.LastName);
+                ChatViewModel chat = new(user.Id, user.FirstName + " " + user.LastName);  // create new chat model
                 context.ChatCollection.Replace(chat);
             }
-
-            Debug.WriteLine(context.ChatCollection.FirstOrDefault()!.Title);
         }
         catch (Exception ex)
         {
-            Debug.WriteLine("Rooms: OnAppearing error: " + ex);
+            Debug.WriteLine("Rooms: OnAppearing error: " + ex.Message);
         }
     }
 
-    private async void CollectionView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+
+    // user clicks chat!
+
+    private async void CollectionView_SelectionChanged(
+        object sender,
+        SelectionChangedEventArgs e)
     {
         try
         {
-            var selectedChat = (ChatViewModel)e.CurrentSelection.FirstOrDefault();
-            if (selectedChat is null)
-            {
-                Debug.WriteLine($"selected chat is null!");
-                return;
-            }
-
             var context = BindingContext as RoomsPageModel;
             if (context is null)
-            {
-                Debug.WriteLine($"RoomsPageModel context is null!");
                 return;
-            }
 
-            // set room id for loading messages!
-            UserStorage.RoomId = selectedChat.Id;
-            Debug.WriteLine($"RoomId: {selectedChat.Id}");
+            var selectedChat = e.CurrentSelection.FirstOrDefault() as ChatViewModel;
+            if (selectedChat is null)
+                return;
 
-            // set senderName in pagemodel
+            UserStorage.RoomId = selectedChat.Id;  // store RoomId for later use !
             context.Sender = selectedChat.Title;
-            Debug.WriteLine($"sender name: {context.Sender}");
-
-            // clear messageCollection before flush
             context.MessageCollection.Clear();
 
-            // remove existing socket conn before reconnection!
-            if (_roomService._hub is not null)
+            if (_roomService._hub is not null)  // for page reloads
                 await _roomService.DisconnectWebSocket();
+
             await _roomService.InitSignalR(context.MessageCollection, UserStorage.RoomId);
         }
         catch (Exception ex)

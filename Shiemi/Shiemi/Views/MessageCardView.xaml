@@ -5,20 +5,26 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     Margin="10"
     Padding="20"
-    Background="White">
+    Background="DarkGreen">
+
 
     <!--  main  -->
+
     <Label
         x:Name="MessageTextLabel"
         FontSize="16"
-        HorizontalTextAlignment="Justify" />
+        HorizontalTextAlignment="Justify"
+        TextColor="White" />
+
 
     <!--  footer  -->
+
     <VerticalStackLayout HorizontalOptions="Fill">
         <Label
             x:Name="MessageTimeLabel"
             FontSize="Caption"
             HorizontalTextAlignment="End"
-            TextColor="Grey" />
+            TextColor="LightGrey" />
     </VerticalStackLayout>
+
 </VerticalStackLayout>

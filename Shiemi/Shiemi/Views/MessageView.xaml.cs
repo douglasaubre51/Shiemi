@@ -1,6 +1,5 @@
 using MvvmHelpers;
 using Shiemi.Dtos;
-using Shiemi.Services.ChatServices;
 using Shiemi.Storage;
 using Shiemi.Utilities.HubClients;
 using Shiemi.Utilities.ServiceProviders;
@@ -11,6 +10,9 @@ namespace Shiemi.Views;
 
 public partial class MessageView : Grid
 {
+
+    // Messages Collection bindable prop
+
     public static readonly BindableProperty MessageCollectionProperty =
         BindableProperty.Create(
             nameof(MessageCollection),
@@ -28,6 +30,14 @@ public partial class MessageView : Grid
                     Debug.WriteLine(d.Text);
                 }
             });
+    public ObservableRangeCollection<MessageViewModel> MessageCollection
+    {
+        get => (ObservableRangeCollection<MessageViewModel>)GetValue(MessageCollectionProperty);
+        set => SetValue(MessageCollectionProperty, value);
+    }
+
+
+    // sender name bindable prop
 
     public static readonly BindableProperty SenderNameProperty =
         BindableProperty.Create(
@@ -40,27 +50,23 @@ public partial class MessageView : Grid
                 var context = (MessageView)bindable;
                 context.SenderLabel.Text = (string)newValue;
             });
-
-    public ObservableRangeCollection<MessageViewModel> MessageCollection
-    {
-        get => (ObservableRangeCollection<MessageViewModel>)GetValue(MessageCollectionProperty);
-        set => SetValue(MessageCollectionProperty, value);
-    }
     public string SenderName
     {
         get => (string)GetValue(SenderNameProperty);
         set => SetValue(SenderNameProperty, value);
     }
 
+
     private readonly RoomClient? _roomService;
-    private readonly ChatService? _chatService;
 
     public MessageView()
     {
         InitializeComponent();
         _roomService = Provider.GetService<RoomClient>();
-        _chatService = Provider.GetService<ChatService>();
     }
+
+
+    // user clicks send btn !
 
     private async void Send_Btn_Clicked(object sender, EventArgs e)
     {
@@ -69,23 +75,16 @@ public partial class MessageView : Grid
             if (string.IsNullOrWhiteSpace(MessageBox.Text))
                 return;
 
-            Debug.WriteLine("clicked send message!");
-            Debug.WriteLine($"User Id: {UserStorage.UserId}");
-            Debug.WriteLine($"Room Id: {UserStorage.RoomId}");
-
-            // channelId set to 0 instead of null
             var dto = new SendMessageDto(
                 Text: MessageBox.Text,
                 CreatedAt: DateTime.UtcNow,
                 UserId: UserStorage.UserId,
                 RoomId: UserStorage.RoomId,
-                ChannelId: 0
+                ChannelId: 0  // channel id 0 since message is in room !
                 );
-
             await _roomService!.SendChat(dto);
 
-            // clear box
-            MessageBox.Text = string.Empty;
+            MessageBox.Text = string.Empty;  // clear Entry field !
         }
         catch (Exception ex)
         {

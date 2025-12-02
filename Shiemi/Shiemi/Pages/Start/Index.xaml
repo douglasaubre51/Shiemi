@@ -16,23 +16,16 @@
 
         <Grid.Resources>
             <!--  base btn  -->
-            <Style x:Key="BaseButtonStyle"
-                   TargetType="Button">
-                <Setter Property="WidthRequest"
-                        Value="300"/>
-                <Setter Property="HeightRequest"
-                        Value="50"/>
-                <Setter Property="VerticalOptions"
-                        Value="Center"/>
-                <Setter Property="BorderWidth"
-                        Value="1"/>
-                <Setter Property="FontFamily"
-                        Value="OpenSansSemibold"/>
+            <Style x:Key="BaseButtonStyle" TargetType="Button">
+                <Setter Property="WidthRequest" Value="300" />
+                <Setter Property="HeightRequest" Value="50" />
+                <Setter Property="VerticalOptions" Value="Center" />
+                <Setter Property="BorderWidth" Value="1" />
+                <Setter Property="FontFamily" Value="OpenSansSemibold" />
             </Style>
 
             <!--  default btn  -->
-            <Style BasedOn="{StaticResource BaseButtonStyle}"
-                   TargetType="Button"/>
+            <Style BasedOn="{StaticResource BaseButtonStyle}" TargetType="Button" />
 
             <!--  secondary btn  -->
             <Style
@@ -44,14 +37,12 @@
                         <VisualStateGroup x:Name="CommonStates">
                             <VisualState x:Name="Normal">
                                 <VisualState.Setters>
-                                    <Setter Property="BackgroundColor"
-                                            Value="White"/>
+                                    <Setter Property="BackgroundColor" Value="White" />
                                 </VisualState.Setters>
                             </VisualState>
                             <VisualState x:Name="PointerOver">
                                 <VisualState.Setters>
-                                    <Setter Property="BackgroundColor"
-                                            Value="#232323"/>
+                                    <Setter Property="BackgroundColor" Value="#232323" />
                                 </VisualState.Setters>
                             </VisualState>
                         </VisualStateGroup>
@@ -67,13 +58,13 @@
             FontSize="50"
             HorizontalOptions="Center"
             Text="Shiemi"
-            VerticalOptions="Start"/>
+            VerticalOptions="Start" />
 
         <ActivityIndicator
             Grid.Row="1"
             IsEnabled="{Binding IsBusy}"
             IsRunning="{Binding IsBusy}"
-            IsVisible="{Binding IsBusy}"/>
+            IsVisible="{Binding IsBusy}" />
 
         <Button
             Grid.Row="1"
@@ -83,7 +74,7 @@
             Text="Get started"
             TextColor="White"
             VerticalOptions="Center"
-            WidthRequest="300"/>
+            WidthRequest="300" />
 
         <Button
             Grid.Row="2"
@@ -92,6 +83,6 @@
             IsVisible="{Binding IsNotBusy}"
             Style="{StaticResource DangerBtnStyle}"
             Text="Logout"
-            TextColor="{StaticResource Primary}"/>
+            TextColor="{StaticResource Primary}" />
     </Grid>
 </ContentPage>
