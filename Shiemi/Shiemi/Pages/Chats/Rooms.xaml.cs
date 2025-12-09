@@ -1,3 +1,4 @@
+using System.Diagnostics;
 using Shiemi.Dtos;
 using Shiemi.PageModels.Chat;
 using Shiemi.Services;
@@ -5,7 +6,6 @@ using Shiemi.Services.ChatServices;
 using Shiemi.Storage;
 using Shiemi.Utilities.HubClients;
 using Shiemi.ViewModels;
-using System.Diagnostics;
 
 namespace Shiemi.Pages.Chats;
 
@@ -54,7 +54,7 @@ public partial class Rooms : ContentPage
                 if (user is null)
                     continue;
 
-                ChatViewModel chat = new(user.Id, user.FirstName + " " + user.LastName);  // create new chat model
+                ChatRoomViewModel chat = new(r.Id, user.Id, user.FirstName + " " + user.LastName);  // create new chat model
                 context.ChatCollection.Replace(chat);
             }
         }
@@ -77,11 +77,13 @@ public partial class Rooms : ContentPage
             if (context is null)
                 return;
 
-            var selectedChat = e.CurrentSelection.FirstOrDefault() as ChatViewModel;
+            var selectedChat = e.CurrentSelection.FirstOrDefault() as ChatRoomViewModel;
             if (selectedChat is null)
                 return;
 
-            UserStorage.RoomId = selectedChat.Id;  // store RoomId for later use !
+            Debug.WriteLine($"room id: {selectedChat.RoomId}");
+
+            UserStorage.RoomId = selectedChat.RoomId;  // store RoomId for later use !
             context.Sender = selectedChat.Title;
             context.MessageCollection.Clear();
 
