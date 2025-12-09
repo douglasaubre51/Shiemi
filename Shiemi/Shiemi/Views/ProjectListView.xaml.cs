@@ -28,7 +28,7 @@ public partial class ProjectListView : VerticalStackLayout
         => InitializeComponent();
 
     // project chatlist selection changed event handler
-    private async Task ProjectCollectionView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+    public async void ProjectCollectionView_SelectionChanged(object sender, SelectionChangedEventArgs e)
     {
         ChatListProjectViewModel chat = (ChatListProjectViewModel)e.CurrentSelection.SingleOrDefault();
         if (chat is null)
