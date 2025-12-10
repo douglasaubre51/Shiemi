@@ -1,30 +1,29 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<VerticalStackLayout
+<Border
     x:Class="Shiemi.Views.MessageCardView"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    Margin="10"
-    Padding="20"
-    Background="DarkGreen">
+    Margin="10,5"
+    BackgroundColor="Green">
+    <Border.StrokeShape>
+        <RoundRectangle CornerRadius="4" />
+    </Border.StrokeShape>
 
-
-    <!--  main  -->
-
-    <Label
-        x:Name="MessageTextLabel"
-        FontSize="16"
-        HorizontalTextAlignment="Justify"
-        TextColor="White" />
-
-
-    <!--  footer  -->
-
-    <VerticalStackLayout HorizontalOptions="Fill">
+    <VerticalStackLayout Padding="10">
+        <!--  main  -->
         <Label
-            x:Name="MessageTimeLabel"
-            FontSize="Caption"
-            HorizontalTextAlignment="End"
-            TextColor="LightGrey" />
-    </VerticalStackLayout>
+            x:Name="MessageTextLabel"
+            FontSize="16"
+            HorizontalTextAlignment="Justify"
+            TextColor="White" />
 
-</VerticalStackLayout>
+        <!--  footer  -->
+        <VerticalStackLayout HorizontalOptions="Fill">
+            <Label
+                x:Name="MessageTimeLabel"
+                FontSize="10"
+                HorizontalTextAlignment="End"
+                TextColor="LightGray" />
+        </VerticalStackLayout>
+    </VerticalStackLayout>
+</Border>

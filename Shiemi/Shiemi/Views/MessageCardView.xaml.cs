@@ -1,9 +1,8 @@
 namespace Shiemi.Views;
 
-public partial class MessageCardView : VerticalStackLayout
+public partial class MessageCardView : Border
 {
-    public static readonly BindableProperty MessageTextProperty =
-        BindableProperty.Create(
+    public static readonly BindableProperty MessageTextProperty = BindableProperty.Create(
             nameof(MessageText),
             typeof(string),
             typeof(MessageCardView),
@@ -14,8 +13,12 @@ public partial class MessageCardView : VerticalStackLayout
                 context.MessageTextLabel.Text = (string)newValue;
             }
             );
-    public static readonly BindableProperty MessageTimeProperty =
-        BindableProperty.Create(
+    public string MessageText
+    {
+        get => (string)GetValue(MessageTextProperty);
+        set => SetValue(MessageTextProperty, value);
+    }
+    public static readonly BindableProperty MessageTimeProperty = BindableProperty.Create(
             nameof(MessageTime),
             typeof(string),
             typeof(MessageCardView),
@@ -26,20 +29,12 @@ public partial class MessageCardView : VerticalStackLayout
                 context.MessageTimeLabel.Text = (string)newValue;
             }
             );
-
-    public MessageCardView()
-    {
-        InitializeComponent();
-    }
-
-    public string MessageText
-    {
-        get => (string)GetValue(MessageTextProperty);
-        set => SetValue(MessageTextProperty, value);
-    }
     public string MessageTime
     {
         get => (string)GetValue(MessageTimeProperty);
         set => SetValue(MessageTimeProperty, value);
     }
+
+    public MessageCardView()
+        => InitializeComponent();
 }

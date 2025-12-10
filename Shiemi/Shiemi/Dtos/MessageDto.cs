@@ -16,4 +16,4 @@ public record SendMessageDto(
     int UserId,
     int ChannelId,
     int RoomId
-    );
+);

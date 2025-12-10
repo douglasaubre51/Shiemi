@@ -11,10 +11,12 @@
     <Grid ColumnDefinitions="*,1.8*">
 
         <!--  chat list  -->
-        <views:ProjectListView Grid.Column="0" ProjectCollection="{Binding ProjectCollection}" />
+        <views:ProjectListView Grid.Column="0"
+                ProjectCollection="{Binding ProjectCollection}"/>
 
         <!--  chat area  -->
-        <views:MessageView Grid.Column="1" MessageCollection="{Binding MessageCollection}" />
+        <views:ChannelMessageView Grid.Column="1"
+                MessageCollection="{Binding MessageCollection}"/>
 
     </Grid>
 </ContentPage>

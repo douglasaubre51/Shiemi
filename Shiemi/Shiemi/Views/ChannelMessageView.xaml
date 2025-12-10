@@ -1,22 +1,24 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Grid
-    x:Class="Shiemi.Views.MessageView"
+    x:Class="Shiemi.Views.ChannelMessageView"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:viewmodels="clr-namespace:Shiemi.ViewModels"
     xmlns:views="clr-namespace:Shiemi.Views"
     Margin="0,0,10,10"
-    x:DataType="views:MessageView"
+    x:DataType="views:ChannelMessageView"
     BackgroundColor="LightSlateGray"
     ColumnDefinitions="*"
     RowDefinitions="50,*,60">
 
-    <!--  header  -->
-    <VerticalStackLayout Grid.Row="0" BackgroundColor="White">
-        <Label x:Name="SenderLabel" Margin="20" />
+    <VerticalStackLayout Grid.Row="0"
+                         BackgroundColor="White">
+
+        <Label x:Name="SenderLabel"
+               Margin="20"/>
+
     </VerticalStackLayout>
 
-    <!--  body  -->
     <CollectionView
         x:Name="MessageCollectionView"
         Grid.Row="1"
@@ -32,16 +34,18 @@
                             Binding="{Binding IsOwner}"
                             TargetType="Grid"
                             Value="False">
-                            <Setter Property="ColumnDefinitions" Value="Auto,*" />
+                            <Setter Property="ColumnDefinitions"
+                                    Value="Auto,*"/>
                         </DataTrigger>
+
                         <!--  is owner  -->
                         <DataTrigger
                             Binding="{Binding IsOwner}"
                             TargetType="Grid"
                             Value="True">
-                            <Setter Property="ColumnDefinitions" Value="*,Auto" />
+                            <Setter Property="ColumnDefinitions"
+                                    Value="*,Auto"/>
                         </DataTrigger>
-
                     </Grid.Triggers>
 
                     <views:MessageCardView
@@ -51,22 +55,25 @@
 
                         <!--  card position trigger  -->
                         <views:MessageCardView.Triggers>
+
                             <!--  is not owner  -->
                             <DataTrigger
                                 Binding="{Binding IsOwner}"
                                 TargetType="views:MessageCardView"
                                 Value="False">
-                                <Setter Property="Grid.Column" Value="0" />
+                                <Setter Property="Grid.Column"
+                                        Value="0"/>
                             </DataTrigger>
+
                             <!--  is owner  -->
                             <DataTrigger
                                 Binding="{Binding IsOwner}"
                                 TargetType="views:MessageCardView"
                                 Value="True">
-                                <Setter Property="Grid.Column" Value="1" />
+                                <Setter Property="Grid.Column"
+                                        Value="1"/>
                             </DataTrigger>
                         </views:MessageCardView.Triggers>
-
                     </views:MessageCardView>
                 </Grid>
             </DataTemplate>
@@ -81,14 +88,14 @@
         ColumnSpacing="10">
 
         <Editor
-            x:Name="MessageBox"
+            x:Name="ChannelMessageBox"
             Grid.Column="0"
-            BackgroundColor="#eeeeee" />
+            BackgroundColor="#eeeeee"/>
 
         <Button
             Grid.Column="1"
             Clicked="Send_Btn_Clicked"
-            Text="send" />
+            Text="send"/>
 
     </Grid>
 </Grid>

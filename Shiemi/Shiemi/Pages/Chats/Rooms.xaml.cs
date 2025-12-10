@@ -29,9 +29,7 @@ public partial class Rooms : ContentPage
         _roomService = roomService;
     }
 
-
     // init signalR on page load !
-
     protected override async void OnAppearing()
     {
         try
@@ -54,7 +52,11 @@ public partial class Rooms : ContentPage
                 if (user is null)
                     continue;
 
-                ChatRoomViewModel chat = new(r.Id, user.Id, user.FirstName + " " + user.LastName);  // create new chat model
+                ChatRoomViewModel chat = new(
+                    r.Id,
+                    user.Id,
+                    user.FirstName + " " + user.LastName
+                );  // create new chat model
                 context.ChatCollection.Replace(chat);
             }
         }
@@ -64,9 +66,7 @@ public partial class Rooms : ContentPage
         }
     }
 
-
     // user clicks chat!
-
     private async void CollectionView_SelectionChanged(
         object sender,
         SelectionChangedEventArgs e)

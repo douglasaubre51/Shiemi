@@ -1,4 +1,6 @@
-﻿using AutoMapper;
+﻿using System.Diagnostics;
+using System.Net.Http.Json;
+using AutoMapper;
 using Microsoft.AspNetCore.SignalR.Client;
 using MvvmHelpers;
 using Shiemi.Dtos;
@@ -6,8 +8,6 @@ using Shiemi.HubModels;
 using Shiemi.Storage;
 using Shiemi.Utilities.ServiceProviders;
 using Shiemi.ViewModels;
-using System.Diagnostics;
-using System.Net.Http.Json;
 
 namespace Shiemi.Utilities.HubClients;
 
@@ -17,7 +17,6 @@ public class RoomClient
     private readonly EnvironmentStorage _envStorage;
 
     private readonly string roomBaseURI;
-
     public HubConnection? _hub;
 
     public RoomClient(
@@ -32,7 +31,6 @@ public class RoomClient
 
 
     // fetch room id
-
     public async Task<int> GetPrivateRoom(int userId, int projectId)
     {
         var response = await _httpClient.GetAsync(
@@ -46,7 +44,6 @@ public class RoomClient
 
         return await response.Content.ReadFromJsonAsync<int>();
     }
-
 
     public async Task InitSignalR(
         ObservableRangeCollection<MessageViewModel> messageCollection,

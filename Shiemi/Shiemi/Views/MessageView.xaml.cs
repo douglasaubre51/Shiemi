@@ -1,10 +1,10 @@
+using System.Diagnostics;
 using MvvmHelpers;
 using Shiemi.Dtos;
 using Shiemi.Storage;
 using Shiemi.Utilities.HubClients;
 using Shiemi.Utilities.ServiceProviders;
 using Shiemi.ViewModels;
-using System.Diagnostics;
 
 namespace Shiemi.Views;
 
@@ -77,7 +77,7 @@ public partial class MessageView : Grid
 
             var dto = new SendMessageDto(
                 Text: MessageBox.Text,
-                CreatedAt: DateTime.UtcNow,
+                CreatedAt: DateTime.UtcNow.ToLocalTime(),
                 UserId: UserStorage.UserId,
                 RoomId: UserStorage.RoomId,
                 ChannelId: 0  // channel id 0 since message is in room !
@@ -88,7 +88,7 @@ public partial class MessageView : Grid
         }
         catch (Exception ex)
         {
-            Debug.WriteLine($"SendMessage error: {ex.Message}");
+            Debug.WriteLine($"Room: SendMessage error: {ex.Message}");
             await Shell.Current.DisplayAlertAsync(
                 "Something went wrong!",
                 "Couldnot send the message!",
