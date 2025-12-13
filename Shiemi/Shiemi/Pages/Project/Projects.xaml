@@ -24,7 +24,6 @@
                             <VisualState Name="PointerOver">
                                 <VisualState.Setters>
                                     <Setter Property="BackgroundColor" Value="{StaticResource PrimaryDark}" />
-                                    <Setter Property="TranslationY" Value="-4" />
                                 </VisualState.Setters>
                             </VisualState>
                             <VisualState Name="Normal">

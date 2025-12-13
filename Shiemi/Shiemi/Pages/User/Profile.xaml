@@ -10,7 +10,7 @@
     Shell.FlyoutBehavior="Flyout"
     Shell.NavBarIsVisible="True">
 
-    <Grid Margin="20" RowDefinitions="Auto,*,Auto">
+    <Grid Margin="10" RowDefinitions="Auto">
         <Grid.Resources>
             <Style x:Key="WarningBtnStyle" TargetType="Button">
                 <Setter Property="HeightRequest" Value="20" />
@@ -41,7 +41,7 @@
 
         <Border
             Grid.Row="0"
-            Padding="20,20,40,100"
+            Padding="24"
             BackgroundColor="White"
             HorizontalOptions="Start">
             <Border.Style>
@@ -50,22 +50,24 @@
                     <Setter Property="StrokeShape" Value="RoundRectangle 20" />
                 </Style>
             </Border.Style>
-
-
-            <VerticalStackLayout>
-                <Label FontSize="42" Text="{Binding UserName}" />
+            <Grid RowDefinitions="Auto,Auto,100">
                 <Label
+                    Grid.Row="0"
+                    FontSize="42"
+                    Text="{Binding UserName}" />
+                <Label
+                    Grid.Row="1"
                     FontSize="15"
                     Text="{Binding Email}"
                     TextColor="Grey" />
-            </VerticalStackLayout>
-        </Border>
 
-        <Button
-            Grid.Row="2"
-            Command="{Binding LogoutCommand}"
-            Style="{StaticResource WarningBtnStyle}"
-            Text="Logout"
-            VerticalOptions="End" />
+                <Button
+                    Grid.Row="2"
+                    Command="{Binding LogoutCommand}"
+                    Style="{StaticResource WarningBtnStyle}"
+                    Text="Logout"
+                    VerticalOptions="End" />
+            </Grid>
+        </Border>
     </Grid>
 </ContentPage>

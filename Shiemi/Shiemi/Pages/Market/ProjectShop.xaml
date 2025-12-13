@@ -13,6 +13,7 @@
     <Grid Margin="10" RowDefinitions="*">
 
         <CollectionView
+            Margin="0,30,0,0"
             ItemSizingStrategy="MeasureFirstItem"
             ItemsSource="{Binding ProjectCollection}"
             SelectionMode="Single">
@@ -28,7 +29,6 @@
                     <Border>
                         <Border.Style>
                             <Style TargetType="Border">
-                                <Setter Property="Stroke" Value="Transparent" />
                                 <Setter Property="BackgroundColor" Value="White" />
                                 <Setter Property="VisualStateManager.VisualStateGroups">
                                     <VisualStateGroupList>
@@ -41,6 +41,7 @@
                                             <VisualState Name="PointerOver">
                                                 <VisualState.Setters>
                                                     <Setter Property="BackgroundColor" Value="WhiteSmoke" />
+                                                    <Setter Property="Stroke" Value="LightBlue" />
                                                 </VisualState.Setters>
                                             </VisualState>
                                         </VisualStateGroup>

@@ -5,13 +5,12 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:viewmodels="clr-namespace:Shiemi.ViewModels"
     xmlns:views="clr-namespace:Shiemi.Views"
-    Margin="0,0,10,10"
     x:DataType="views:ChannelMessageView"
     BackgroundColor="LightSlateGray"
     ColumnDefinitions="*"
     RowDefinitions="50,*,60">
 
-    <VerticalStackLayout Grid.Row="0" BackgroundColor="LightGrey">
+    <VerticalStackLayout Grid.Row="0" BackgroundColor="#f9f9f9">
         <Label
             x:Name="SenderLabel"
             Margin="20"
@@ -78,9 +77,9 @@
     <!--  send chat area  -->
     <Grid
         Grid.Row="2"
-        Margin="10,5,10,0"
+        Margin="10,5,10,10"
         ColumnDefinitions="*,80"
-        ColumnSpacing="10">
+        ColumnSpacing="4">
 
         <Editor
             x:Name="ChannelMessageBox"
@@ -90,7 +89,8 @@
         <Button
             Grid.Column="1"
             Clicked="Send_Btn_Clicked"
-            Text="send" />
+            CornerRadius="4"
+            Text="Send" />
 
     </Grid>
 </Grid>

@@ -5,43 +5,41 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:pagemodel="clr-namespace:Shiemi.PageModels.Market"
     xmlns:views="clr-namespace:Shiemi.Views"
+    Title="{Binding ProjectVM.Title}"
     x:DataType="pagemodel:ProjectDetailsPageModel"
     Shell.FlyoutBehavior="Flyout"
-    Shell.NavBarIsVisible="False">
+    Shell.NavBarIsVisible="True">
     <Grid
-        Margin="20"
-        ColumnDefinitions="*,100"
-        RowDefinitions="Auto,Auto,*,Auto"
-        RowSpacing="4">
+        Margin="10"
+        ColumnDefinitions="2*,Auto,*"
+        ColumnSpacing="16"
+        RowDefinitions="Auto,*,100">
+
         <Label
             Grid.Row="0"
             Grid.Column="0"
-            FontSize="40"
-            Text="{Binding ProjectVM.Title}" />
-
-        <Label
-            Grid.Row="1"
-            Grid.Column="0"
-            FontSize="16"
+            FontSize="14"
             Text="Description"
             TextColor="Gray" />
 
         <ScrollView
-            Grid.Row="2"
+            Grid.Row="1"
             Grid.Column="0"
             Orientation="Vertical">
             <Label
-                FontSize="20"
+                Padding="0,0,8,0"
+                FontSize="16"
                 LineBreakMode="WordWrap"
                 Text="{Binding ProjectVM.Description}" />
         </ScrollView>
 
         <Grid
-            Grid.Row="3"
+            Grid.Row="2"
             Grid.Column="0"
-            Margin="0,4,0,0">
+            Margin="0,4,0,0"
+            VerticalOptions="Start">
             <Label
-                FontSize="16"
+                FontSize="14"
                 HorizontalOptions="Start"
                 Text="{Binding ProjectVM.Cost, StringFormat='Estimated Cost: ${0}'}"
                 TextColor="Gray"
@@ -56,7 +54,19 @@
                 WidthRequest="250" />
         </Grid>
 
+        <!--  vertical line  -->
+        <Line
+            Grid.RowSpan="3"
+            Grid.Column="1"
+            Aspect="UniformToFill"
+            Stroke="LightGrey"
+            X1="0"
+            X2="0"
+            Y1="0"
+            Y2="180" />
+
+
         <!--  review card  -->
-        <views:ReviewCard />
+        <views:ReviewCard Grid.Column="2" />
     </Grid>
 </ContentPage>

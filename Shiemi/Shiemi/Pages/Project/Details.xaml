@@ -4,25 +4,20 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:pagemodel="clr-namespace:Shiemi.PageModels.Project"
-    Title="Details"
+    Title="{Binding CurrentProject.Title}"
     x:DataType="pagemodel:DetailsPageModel"
     Shell.FlyoutBehavior="Flyout">
+    <ScrollView Margin="10" Orientation="Vertical">
+        <VerticalStackLayout Spacing="4">
+            <Label
+                FontSize="14"
+                Text="Description"
+                TextColor="Gray" />
 
-    <ScrollView Orientation="Vertical">
-        <VerticalStackLayout Margin="20" Spacing="15">
-            <Label FontSize="40" Text="{Binding CurrentProject.Title}" />
-
-            <VerticalStackLayout Spacing="2">
-                <Label
-                    FontSize="15"
-                    Text="Description"
-                    TextColor="Gray" />
-
-                <Label
-                    FontSize="20"
-                    LineBreakMode="WordWrap"
-                    Text="{Binding CurrentProject.Description}" />
-            </VerticalStackLayout>
+            <Label
+                FontSize="16"
+                LineBreakMode="WordWrap"
+                Text="{Binding CurrentProject.Description}" />
         </VerticalStackLayout>
     </ScrollView>
 </ContentPage>
