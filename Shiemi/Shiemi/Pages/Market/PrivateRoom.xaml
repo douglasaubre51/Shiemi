@@ -7,7 +7,8 @@
     xmlns:pagemodel="clr-namespace:Shiemi.PageModels.Market"
     xmlns:views="clr-namespace:Shiemi.Views"
     x:DataType="pagemodel:PrivateRoomPageModel"
-    Shell.FlyoutBehavior="Flyout">
+    Shell.FlyoutBehavior="Flyout"
+    Shell.NavBarIsVisible="False">
 
     <Grid ColumnDefinitions="*" ColumnSpacing="10">
 

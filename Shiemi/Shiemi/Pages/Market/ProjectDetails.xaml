@@ -4,33 +4,42 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:pagemodel="clr-namespace:Shiemi.PageModels.Market"
+    xmlns:views="clr-namespace:Shiemi.Views"
     x:DataType="pagemodel:ProjectDetailsPageModel"
     Shell.FlyoutBehavior="Flyout"
     Shell.NavBarIsVisible="False">
-
     <Grid
         Margin="20"
+        ColumnDefinitions="*,100"
         RowDefinitions="Auto,Auto,*,Auto"
         RowSpacing="4">
         <Label
             Grid.Row="0"
+            Grid.Column="0"
             FontSize="40"
             Text="{Binding ProjectVM.Title}" />
 
         <Label
             Grid.Row="1"
+            Grid.Column="0"
             FontSize="16"
             Text="Description"
             TextColor="Gray" />
 
-        <ScrollView Grid.Row="2" Orientation="Vertical">
+        <ScrollView
+            Grid.Row="2"
+            Grid.Column="0"
+            Orientation="Vertical">
             <Label
                 FontSize="20"
                 LineBreakMode="WordWrap"
                 Text="{Binding ProjectVM.Description}" />
         </ScrollView>
 
-        <Grid Grid.Row="3" Margin="0,4,0,0">
+        <Grid
+            Grid.Row="3"
+            Grid.Column="0"
+            Margin="0,4,0,0">
             <Label
                 FontSize="16"
                 HorizontalOptions="Start"
@@ -46,5 +55,8 @@
                 VerticalOptions="End"
                 WidthRequest="250" />
         </Grid>
+
+        <!--  review card  -->
+        <views:ReviewCard />
     </Grid>
 </ContentPage>

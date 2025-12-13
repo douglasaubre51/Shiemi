@@ -48,34 +48,38 @@
             <CollectionView.ItemTemplate>
                 <!--  data template  -->
                 <DataTemplate x:DataType="viewmodels:ProjectsPageProjectViewModel">
-                    <Grid
-                        Padding="30"
-                        RowDefinitions="*,*"
-                        RowSpacing="10">
+                    <Grid ColumnSpacing="20">
                         <!--  grid styles  -->
                         <Grid.Resources>
-                            <Style TargetType="Grid">
+                            <Style TargetType="Border">
                                 <Setter Property="VisualStateManager.VisualStateGroups">
                                     <VisualStateGroupList>
                                         <VisualStateGroup Name="CommonStates">
-                                            <VisualState Name="Normal" />
+                                            <VisualState Name="Normal">
+                                                <VisualState.Setters>
+                                                    <Setter Property="BackgroundColor" Value="White" />
+                                                </VisualState.Setters>
+                                            </VisualState>
                                         </VisualStateGroup>
                                     </VisualStateGroupList>
                                 </Setter>
                             </Style>
                         </Grid.Resources>
                         <!--  contents  -->
-                        <Label
-                            Grid.Row="0"
-                            FontSize="16"
-                            LineBreakMode="WordWrap"
-                            Text="{Binding Title}" />
-                        <Label
-                            Grid.Row="1"
-                            FontSize="10"
-                            LineBreakMode="WordWrap"
-                            Text="{Binding ShortDesc}"
-                            TextColor="Grey" />
+                        <Border Padding="16">
+                            <VerticalStackLayout Spacing="8">
+                                <Label
+                                    FontSize="16"
+                                    LineBreakMode="WordWrap"
+                                    Text="{Binding Title}" />
+
+                                <Label
+                                    FontSize="10"
+                                    LineBreakMode="WordWrap"
+                                    Text="{Binding ShortDesc}"
+                                    TextColor="Grey" />
+                            </VerticalStackLayout>
+                        </Border>
                     </Grid>
                 </DataTemplate>
             </CollectionView.ItemTemplate>

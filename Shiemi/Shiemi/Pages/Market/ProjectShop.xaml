@@ -13,7 +13,7 @@
     <Grid Margin="10" RowDefinitions="*">
 
         <CollectionView
-            ItemSizingStrategy="MeasureAllItems"
+            ItemSizingStrategy="MeasureFirstItem"
             ItemsSource="{Binding ProjectCollection}"
             SelectionMode="Single">
             <CollectionView.ItemsLayout>
@@ -25,39 +25,44 @@
             </CollectionView.ItemsLayout>
             <CollectionView.ItemTemplate>
                 <DataTemplate x:DataType="viewmodel:ProjectViewModel">
-
                     <Border>
                         <Border.Style>
-                            <Style x:Name="CardBorder" TargetType="Border">
+                            <Style TargetType="Border">
                                 <Setter Property="Stroke" Value="Transparent" />
+                                <Setter Property="BackgroundColor" Value="White" />
+                                <Setter Property="VisualStateManager.VisualStateGroups">
+                                    <VisualStateGroupList>
+                                        <VisualStateGroup Name="CommonStates">
+                                            <VisualState Name="Normal">
+                                                <VisualState.Setters>
+                                                    <Setter Property="BackgroundColor" Value="White" />
+                                                </VisualState.Setters>
+                                            </VisualState>
+                                            <VisualState Name="PointerOver">
+                                                <VisualState.Setters>
+                                                    <Setter Property="BackgroundColor" Value="WhiteSmoke" />
+                                                </VisualState.Setters>
+                                            </VisualState>
+                                        </VisualStateGroup>
+                                    </VisualStateGroupList>
+                                </Setter>
                             </Style>
                         </Border.Style>
                         <Border.GestureRecognizers>
                             <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type pagemodel:ProjectShopPageModel}}, x:DataType=pagemodel:ProjectShopPageModel, Path=GoToProjectDetailsCommand}" CommandParameter="{Binding .}" />
                         </Border.GestureRecognizers>
-
-                        <Grid
-                            Margin="20"
-                            RowSpacing="30"
-                            VerticalOptions="Fill">
-                            <Grid.RowDefinitions>
-                                <RowDefinition />
-                                <RowDefinition />
-                            </Grid.RowDefinitions>
-
+                        <VerticalStackLayout Padding="10,10,10,30" Spacing="8">
                             <Label
-                                Grid.Row="0"
                                 FontSize="16"
                                 LineBreakMode="WordWrap"
                                 Text="{Binding Title}" />
 
                             <Label
-                                Grid.Row="1"
                                 FontSize="10"
                                 LineBreakMode="WordWrap"
                                 Text="{Binding ShortDesc}"
                                 TextColor="Gray" />
-                        </Grid>
+                        </VerticalStackLayout>
                     </Border>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
