@@ -4,34 +4,42 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:pagemodel="clr-namespace:Shiemi.PageModels.Project"
-    x:DataType="pagemodel:CreateProjectPageModel">
+    Title="Create new Project"
+    x:DataType="pagemodel:CreateProjectPageModel"
+    Shell.FlyoutBehavior="Flyout"
+    Shell.NavBarIsVisible="False">
 
-    <Grid
+    <ScrollView
         Margin="10"
-        RowDefinitions="*,*,2*,50"
-        RowSpacing="15">
+        Padding="20"
+        Orientation="Vertical">
+        <Grid RowDefinitions="20,Auto,20,Auto,20,Auto,*" RowSpacing="16">
 
-        <Entry
-            Grid.Row="0"
-            Placeholder="title"
-            Text="{Binding ProjectTitle}"
-            VerticalOptions="Center"/>
+            <Label Grid.Row="0" Text="Title" />
+            <Entry
+                Grid.Row="1"
+                Text="{Binding ProjectTitle}"
+                VerticalOptions="Start" />
 
-        <Entry
-            Grid.Row="1"
-            Placeholder="short description"
-            Text="{Binding ShortDesc}"
-            VerticalOptions="Center"/>
+            <Label Grid.Row="2" Text="Cover Details" />
+            <Editor
+                Grid.Row="3"
+                HeightRequest="100"
+                Text="{Binding ShortDesc}"
+                VerticalOptions="Start" />
 
-        <Editor
-            Grid.Row="2"
-            Placeholder="description"
-            Text="{Binding Description}"/>
+            <Label Grid.Row="4" Text="Description" />
+            <Editor
+                Grid.Row="5"
+                HeightRequest="400"
+                Text="{Binding Description}"
+                VerticalOptions="Center" />
 
-        <Button
-            Grid.Row="3"
-            Command="{Binding CreateCommand}"
-            Text="continue"/>
+            <Button
+                Grid.Row="6"
+                Command="{Binding CreateCommand}"
+                Text="continue" />
+        </Grid>
 
-    </Grid>
+    </ScrollView>
 </ContentPage>

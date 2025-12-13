@@ -1,27 +1,27 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Shiemi.Pages.Project.Details"
-             xmlns:pagemodel="clr-namespace:Shiemi.PageModels.Project"
-             x:DataType="pagemodel:DetailsPageModel"
-             Title="Details">
+<ContentPage
+    x:Class="Shiemi.Pages.Project.Details"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:pagemodel="clr-namespace:Shiemi.PageModels.Project"
+    Title="Details"
+    x:DataType="pagemodel:DetailsPageModel"
+    Shell.FlyoutBehavior="Flyout">
 
     <ScrollView Orientation="Vertical">
-        <VerticalStackLayout Spacing="15"
-                             Margin="20">
-            <Label
-                FontSize="40"
-                Text="{Binding CurrentProject.Title}"/>
+        <VerticalStackLayout Margin="20" Spacing="15">
+            <Label FontSize="40" Text="{Binding CurrentProject.Title}" />
 
             <VerticalStackLayout Spacing="2">
-                <Label Text="Description"
-                       TextColor="Gray"
-                       FontSize="15"/>
+                <Label
+                    FontSize="15"
+                    Text="Description"
+                    TextColor="Gray" />
 
                 <Label
                     FontSize="20"
                     LineBreakMode="WordWrap"
-                    Text="{Binding CurrentProject.Description}"/>
+                    Text="{Binding CurrentProject.Description}" />
             </VerticalStackLayout>
         </VerticalStackLayout>
     </ScrollView>

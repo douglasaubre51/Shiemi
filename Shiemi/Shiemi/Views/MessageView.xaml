@@ -12,7 +12,7 @@
     RowDefinitions="50,*,60">
 
     <!--  header  -->
-    <VerticalStackLayout Grid.Row="0" BackgroundColor="White">
+    <VerticalStackLayout Grid.Row="0" BackgroundColor="LightGray">
         <Label x:Name="SenderLabel" Margin="20" />
     </VerticalStackLayout>
 

@@ -11,12 +11,11 @@
     ColumnDefinitions="*"
     RowDefinitions="50,*,60">
 
-    <VerticalStackLayout Grid.Row="0"
-                         BackgroundColor="White">
-
-        <Label x:Name="SenderLabel"
-               Margin="20"/>
-
+    <VerticalStackLayout Grid.Row="0" BackgroundColor="LightGrey">
+        <Label
+            x:Name="SenderLabel"
+            Margin="20"
+            Text="{Binding SenderName}" />
     </VerticalStackLayout>
 
     <CollectionView
@@ -34,8 +33,7 @@
                             Binding="{Binding IsOwner}"
                             TargetType="Grid"
                             Value="False">
-                            <Setter Property="ColumnDefinitions"
-                                    Value="Auto,*"/>
+                            <Setter Property="ColumnDefinitions" Value="Auto,*" />
                         </DataTrigger>
 
                         <!--  is owner  -->
@@ -43,8 +41,7 @@
                             Binding="{Binding IsOwner}"
                             TargetType="Grid"
                             Value="True">
-                            <Setter Property="ColumnDefinitions"
-                                    Value="*,Auto"/>
+                            <Setter Property="ColumnDefinitions" Value="*,Auto" />
                         </DataTrigger>
                     </Grid.Triggers>
 
@@ -61,8 +58,7 @@
                                 Binding="{Binding IsOwner}"
                                 TargetType="views:MessageCardView"
                                 Value="False">
-                                <Setter Property="Grid.Column"
-                                        Value="0"/>
+                                <Setter Property="Grid.Column" Value="0" />
                             </DataTrigger>
 
                             <!--  is owner  -->
@@ -70,8 +66,7 @@
                                 Binding="{Binding IsOwner}"
                                 TargetType="views:MessageCardView"
                                 Value="True">
-                                <Setter Property="Grid.Column"
-                                        Value="1"/>
+                                <Setter Property="Grid.Column" Value="1" />
                             </DataTrigger>
                         </views:MessageCardView.Triggers>
                     </views:MessageCardView>
@@ -90,12 +85,12 @@
         <Editor
             x:Name="ChannelMessageBox"
             Grid.Column="0"
-            BackgroundColor="#eeeeee"/>
+            BackgroundColor="#eeeeee" />
 
         <Button
             Grid.Column="1"
             Clicked="Send_Btn_Clicked"
-            Text="send"/>
+            Text="send" />
 
     </Grid>
 </Grid>

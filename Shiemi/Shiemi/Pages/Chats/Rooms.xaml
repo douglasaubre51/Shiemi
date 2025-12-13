@@ -7,10 +7,10 @@
     xmlns:viewmodels="clr-namespace:Shiemi.ViewModels"
     xmlns:views="clr-namespace:Shiemi.Views"
     x:DataType="pagemodel:RoomsPageModel"
+    Shell.FlyoutBehavior="Flyout"
     Shell.NavBarIsVisible="False">
 
-    <Grid ColumnDefinitions="*,3*"
-            RowDefinitions="*">
+    <Grid ColumnDefinitions="*,2*" RowDefinitions="*">
 
 
         <!--  chat list  -->
@@ -31,8 +31,7 @@
                         Padding="20"
                         ColumnDefinitions="*"
                         RowDefinitions="*">
-                        <Label LineBreakMode="TailTruncation"
-                                Text="{Binding Title}"/>
+                        <Label LineBreakMode="TailTruncation" Text="{Binding Title}" />
                     </Grid>
 
                 </DataTemplate>
@@ -45,6 +44,6 @@
         <views:MessageView
             Grid.Column="1"
             MessageCollection="{Binding MessageCollection}"
-            SenderName="{Binding Sender}"/>
+            SenderName="{Binding Sender}" />
     </Grid>
 </ContentPage>

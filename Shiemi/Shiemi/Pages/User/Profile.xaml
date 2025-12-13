@@ -6,7 +6,9 @@
     xmlns:pagemodel="clr-namespace:Shiemi.PageModels.User"
     Title="Profile"
     x:DataType="pagemodel:ProfilePageModel"
-    Shell.NavBarIsVisible="false">
+    BackgroundColor="Lavender"
+    Shell.FlyoutBehavior="Flyout"
+    Shell.NavBarIsVisible="True">
 
     <Grid Margin="20" RowDefinitions="Auto,Auto,*">
         <Grid.Resources>

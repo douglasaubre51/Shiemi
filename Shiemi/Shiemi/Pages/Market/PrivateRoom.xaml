@@ -6,7 +6,8 @@
     xmlns:models="clr-namespace:Shiemi.Models"
     xmlns:pagemodel="clr-namespace:Shiemi.PageModels.Market"
     xmlns:views="clr-namespace:Shiemi.Views"
-    x:DataType="pagemodel:PrivateRoomPageModel">
+    x:DataType="pagemodel:PrivateRoomPageModel"
+    Shell.FlyoutBehavior="Flyout">
 
     <Grid ColumnDefinitions="*" ColumnSpacing="10">
 
