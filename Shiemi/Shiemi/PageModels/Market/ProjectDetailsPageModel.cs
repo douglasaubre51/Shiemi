@@ -20,7 +20,7 @@ public partial class ProjectDetailsPageModel : BasePageModel
     [ObservableProperty]
     private bool notOwner = true;
     [ObservableProperty]
-    private bool allowedToWriteReview = false;
+    private bool notAllowedToReview = false;
 
     public ProjectDetailsPageModel() => Title = "Project Details";
 

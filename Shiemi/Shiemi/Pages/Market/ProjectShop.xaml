@@ -9,9 +9,8 @@
     x:DataType="pagemodel:ProjectShopPageModel"
     BackgroundColor="LightBlue"
     Shell.FlyoutBehavior="Flyout">
-
     <Grid Margin="10" RowDefinitions="*">
-
+        <!--  Projects  -->
         <CollectionView
             Margin="0,30,0,0"
             ItemSizingStrategy="MeasureFirstItem"
@@ -24,6 +23,7 @@
                     Span="3"
                     VerticalItemSpacing="4" />
             </CollectionView.ItemsLayout>
+
             <CollectionView.ItemTemplate>
                 <DataTemplate x:DataType="viewmodel:ProjectViewModel">
                     <Border>
@@ -36,12 +36,16 @@
                                             <VisualState Name="Normal">
                                                 <VisualState.Setters>
                                                     <Setter Property="BackgroundColor" Value="White" />
+                                                    <Setter Property="Stroke" Value="White" />
+                                                    <Setter Property="StrokeShape" Value="RoundRectangle 8" />
                                                 </VisualState.Setters>
                                             </VisualState>
+
                                             <VisualState Name="PointerOver">
                                                 <VisualState.Setters>
                                                     <Setter Property="BackgroundColor" Value="WhiteSmoke" />
-                                                    <Setter Property="Stroke" Value="LightBlue" />
+                                                    <Setter Property="Stroke" Value="White" />
+                                                    <Setter Property="StrokeShape" Value="RoundRectangle 8" />
                                                 </VisualState.Setters>
                                             </VisualState>
                                         </VisualStateGroup>
@@ -49,9 +53,11 @@
                                 </Setter>
                             </Style>
                         </Border.Style>
+
                         <Border.GestureRecognizers>
                             <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type pagemodel:ProjectShopPageModel}}, x:DataType=pagemodel:ProjectShopPageModel, Path=GoToProjectDetailsCommand}" CommandParameter="{Binding .}" />
                         </Border.GestureRecognizers>
+                        <!--  Project card  -->
                         <VerticalStackLayout Padding="10,10,10,30" Spacing="8">
                             <Label
                                 FontSize="16"

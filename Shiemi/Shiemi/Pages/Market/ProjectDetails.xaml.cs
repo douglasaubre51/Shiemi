@@ -36,10 +36,7 @@ public partial class ProjectDetails : ContentPage
             // flush reviews to review cards collection !
             context.ReviewList.Clear();
             await foreach (var r in reviews)
-            {
-                context.ReviewList.Add(r);
-                Debug.WriteLine("review: " + r.Text);
-            }
+                context.ReviewList.Add(r!);
         }
         catch (Exception ex)
         {

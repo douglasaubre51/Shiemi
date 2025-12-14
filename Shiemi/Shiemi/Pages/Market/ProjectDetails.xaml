@@ -7,31 +7,37 @@
     xmlns:views="clr-namespace:Shiemi.Views"
     Title="{Binding ProjectVM.Title}"
     x:DataType="pagemodel:ProjectDetailsPageModel"
+    BackgroundColor="#abcff2"
     Shell.FlyoutBehavior="Flyout"
     Shell.NavBarIsVisible="True">
     <Grid
         Margin="10"
         ColumnDefinitions="2*,Auto,*"
         ColumnSpacing="16"
-        RowDefinitions="Auto,*,70">
-
+        RowDefinitions="Auto,*,70"
+        RowSpacing="8">
         <Label
             Grid.Row="0"
             Grid.Column="0"
             FontSize="14"
             Text="Description"
-            TextColor="Gray" />
+            TextColor="Black" />
 
-        <ScrollView
-            Grid.Row="1"
-            Grid.Column="0"
-            Orientation="Vertical">
-            <Label
-                Padding="0,0,8,0"
-                FontSize="16"
-                LineBreakMode="WordWrap"
-                Text="{Binding ProjectVM.Description}" />
-        </ScrollView>
+        <Border Grid.Row="1" Grid.Column="0">
+            <Border.StrokeShape>
+                <RoundRectangle BackgroundColor="#ffffff" CornerRadius="8" />
+            </Border.StrokeShape>
+            <ScrollView
+                Padding="10"
+                BackgroundColor="#ffffff"
+                Orientation="Vertical">
+                <Label
+                    Padding="0,0,8,0"
+                    FontSize="16"
+                    LineBreakMode="WordWrap"
+                    Text="{Binding ProjectVM.Description}" />
+            </ScrollView>
+        </Border>
 
         <Grid
             Grid.Row="2"
@@ -42,16 +48,17 @@
                 FontSize="14"
                 HorizontalOptions="Start"
                 Text="{Binding ProjectVM.Cost, StringFormat='Estimated Cost: ${0}'}"
-                TextColor="Gray"
+                TextColor="Black"
                 VerticalOptions="End" />
 
             <Button
+                BackgroundColor="DodgerBlue"
                 Command="{Binding GoToPrivateRoomCommand}"
                 HorizontalOptions="End"
                 IsEnabled="{Binding NotOwner}"
                 Text="Chat"
                 VerticalOptions="End"
-                WidthRequest="250" />
+                WidthRequest="100" />
         </Grid>
 
         <!--  vertical line  -->
@@ -59,7 +66,7 @@
             Grid.RowSpan="3"
             Grid.Column="1"
             Aspect="UniformToFill"
-            Stroke="LightGrey"
+            Stroke="#ffffff"
             X1="0"
             X2="0"
             Y1="0"
@@ -69,7 +76,8 @@
         <views:ReviewCard
             Grid.RowSpan="3"
             Grid.Column="2"
-            AllowedToWrite="{Binding AllowedToWriteReview}"
+            CurrentProjectId="{Binding ProjectVM.Id}"
+            NotAllowedToWrite="{Binding NotAllowedToReview}"
             ReviewCollection="{Binding ReviewList}" />
     </Grid>
 </ContentPage>

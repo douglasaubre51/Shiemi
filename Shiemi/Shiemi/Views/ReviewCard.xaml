@@ -5,8 +5,14 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:models="clr-namespace:Shiemi.Models"
     xmlns:views="clr-namespace:Shiemi.Views"
-    x:DataType="views:ReviewCard">
-    <Grid Margin="4" RowDefinitions="50,*,60">
+    Margin="0,0,0,20"
+    Padding="10"
+    x:DataType="views:ReviewCard"
+    BackgroundColor="#ffffff">
+    <Border.StrokeShape>
+        <RoundRectangle CornerRadius="8" />
+    </Border.StrokeShape>
+    <Grid Margin="4" RowDefinitions="50,*,100,50">
         <!--  title  -->
         <Label
             Grid.Row="0"
@@ -22,11 +28,23 @@
             <CollectionView.ItemTemplate>
                 <DataTemplate x:DataType="models:Review">
                     <!--  review card  -->
-                    <VerticalStackLayout Spacing="4">
-                        <Label Text="{Binding Text}" />
-                        <Label Text="{Binding CreatedAt}" />
-                        <Label Text="{Binding UserName}" />
-                    </VerticalStackLayout>
+                    <Border Stroke="LightGrey" StrokeThickness="1">
+                        <Border.StrokeShape>
+                            <RoundRectangle CornerRadius="4" />
+                        </Border.StrokeShape>
+                        <VerticalStackLayout Padding="4" Spacing="4">
+                            <Label FontSize="16" Text="{Binding Text}" />
+                            <Label
+                                FontSize="10"
+                                Text="{Binding CreatedAt}"
+                                TextColor="Grey" />
+                            <Label
+                                FontSize="12"
+                                HorizontalOptions="End"
+                                Text="{Binding UserName}"
+                                TextColor="Grey" />
+                        </VerticalStackLayout>
+                    </Border>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
 
@@ -42,11 +60,22 @@
             </CollectionView.EmptyView>
         </CollectionView>
 
+        <!--  review editor  -->
+        <Editor
+            x:Name="ReviewEditorView"
+            Grid.Row="2"
+            Margin="0,4,0,0" />
+
         <!--  add review btn  -->
         <Button
             x:Name="CreateReviewButton"
-            Grid.Row="2"
+            Grid.Row="3"
+            BackgroundColor="Transparent"
+            BorderColor="DodgerBlue"
+            BorderWidth="1"
+            Clicked="CreateReviewButton_Clicked"
             Text="Add a review"
-            VerticalOptions="Start" />
+            TextColor="DodgerBlue"
+            VerticalOptions="End" />
     </Grid>
 </Border>
