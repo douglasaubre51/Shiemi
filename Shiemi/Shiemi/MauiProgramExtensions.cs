@@ -7,7 +7,6 @@ using Shiemi.PageModels.Project;
 using Shiemi.PageModels.Start;
 using Shiemi.PageModels.User;
 using Shiemi.Services;
-using Shiemi.Services.ChatServices;
 using Shiemi.Storage;
 using Shiemi.Utilities;
 using Shiemi.Utilities.HubClients;
@@ -39,21 +38,16 @@ public static class MauiProgramExtensions
 
 
         // Add Rest Services
-        // singleton
         builder.Services.AddSingleton<RestClient>();
-        // transient
+
         builder.Services.AddTransient<UserService>();
         builder.Services.AddTransient<AuthService>();
         builder.Services.AddTransient<ProjectService>();
+        builder.Services.AddTransient<ChatService>();
+        builder.Services.AddTransient<ReviewService>();
 
 
-        // Add Chat Services
-        // singleton
-        builder.Services.AddSingleton<ChatService>();
-
-
-        // Add Utilites
-        // Hub Clients
+        // Add HubClients
         builder.Services.AddSingleton<ChannelClient>();
         builder.Services.AddSingleton<RoomClient>();
         builder.Services.AddSingleton<ProjectClient>();

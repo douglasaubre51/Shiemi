@@ -13,7 +13,7 @@
         Margin="10"
         ColumnDefinitions="2*,Auto,*"
         ColumnSpacing="16"
-        RowDefinitions="Auto,*,100">
+        RowDefinitions="Auto,*,70">
 
         <Label
             Grid.Row="0"
@@ -65,8 +65,11 @@
             Y1="0"
             Y2="180" />
 
-
         <!--  review card  -->
-        <views:ReviewCard Grid.Column="2" />
+        <views:ReviewCard
+            Grid.RowSpan="3"
+            Grid.Column="2"
+            AllowedToWrite="{Binding AllowedToWriteReview}"
+            ReviewCollection="{Binding ReviewList}" />
     </Grid>
 </ContentPage>

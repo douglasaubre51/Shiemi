@@ -1,28 +1,49 @@
-using System.Diagnostics;
+using Shiemi.Models;
 using Shiemi.PageModels.Market;
+using Shiemi.Services;
 using Shiemi.Storage;
+using System.Diagnostics;
 
 namespace Shiemi.Pages.Market;
 
 public partial class ProjectDetails : ContentPage
 {
-    public ProjectDetails(ProjectDetailsPageModel pageModel)
+    private readonly ReviewService _reviewService;
+
+    public ProjectDetails(
+        ProjectDetailsPageModel pageModel,
+        ReviewService reviewService
+        )
     {
         InitializeComponent();
         BindingContext = pageModel;
+        _reviewService = reviewService;
     }
 
-    protected override void OnAppearing()
+    protected override async void OnAppearing()
     {
         var context = BindingContext as ProjectDetailsPageModel;
-        Debug.WriteLine($"checking if owner: {context!.ProjectVM.Id}");
 
+        // disable btn for non owners !
         if (context!.ProjectVM.UserId == UserStorage.UserId)
-        {
-            Debug.WriteLine($"disabling btn: {context.ProjectVM.Id}");
             context.NotOwner = false;
-        }
 
-        base.OnAppearing();
+        try
+        {
+            IAsyncEnumerable<Review?> reviews = _reviewService.GetReviewsByProject(context.ProjectVM.Id);
+            if (reviews is null)
+                return;
+            // flush reviews to review cards collection !
+            context.ReviewList.Clear();
+            await foreach (var r in reviews)
+            {
+                context.ReviewList.Add(r);
+                Debug.WriteLine("review: " + r.Text);
+            }
+        }
+        catch (Exception ex)
+        {
+            Debug.WriteLine($"ProjectDetails: OnAppearing: error: {ex.Message}");
+        }
     }
 }

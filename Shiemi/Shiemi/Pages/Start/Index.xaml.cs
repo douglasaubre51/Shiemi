@@ -51,7 +51,7 @@ public partial class Index : ContentPage
         }
         catch (Exception ex)
         {
-            Debug.WriteLine("SHIEMI Login Session Failed!");
+            Debug.WriteLine($"SHIEMI Login Session Failed: {ex.Message}");
             await Shell.Current.DisplayAlertAsync(
                 "Login error",
                 "Error Logging in to SHIEMI Api",

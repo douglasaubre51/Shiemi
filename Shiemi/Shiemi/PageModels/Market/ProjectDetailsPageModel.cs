@@ -1,5 +1,7 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using MvvmHelpers;
+using Shiemi.Models;
 using Shiemi.Pages.Market;
 using Shiemi.ViewModels;
 using System.Diagnostics;
@@ -13,7 +15,12 @@ public partial class ProjectDetailsPageModel : BasePageModel
     private ProjectViewModel projectVM;
 
     [ObservableProperty]
+    private ObservableRangeCollection<Review> reviewList = [];
+
+    [ObservableProperty]
     private bool notOwner = true;
+    [ObservableProperty]
+    private bool allowedToWriteReview = false;
 
     public ProjectDetailsPageModel() => Title = "Project Details";
 

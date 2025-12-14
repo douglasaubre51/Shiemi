@@ -2,10 +2,51 @@
 <Border
     x:Class="Shiemi.Views.ReviewCard"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
-    <VerticalStackLayout Margin="4">
-        <Label FontSize="24" Text="Reviews" />
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:models="clr-namespace:Shiemi.Models"
+    xmlns:views="clr-namespace:Shiemi.Views"
+    x:DataType="views:ReviewCard">
+    <Grid Margin="4" RowDefinitions="50,*,60">
+        <!--  title  -->
+        <Label
+            Grid.Row="0"
+            FontSize="24"
+            Text="Reviews" />
 
-        <CollectionView x:Name="ReviewCollectionView" />
-    </VerticalStackLayout>
+        <!--  review collection  -->
+        <CollectionView x:Name="ReviewCollectionView" Grid.Row="1">
+            <CollectionView.ItemsLayout>
+                <LinearItemsLayout ItemSpacing="8" Orientation="Vertical" />
+            </CollectionView.ItemsLayout>
+
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="models:Review">
+                    <!--  review card  -->
+                    <VerticalStackLayout Spacing="4">
+                        <Label Text="{Binding Text}" />
+                        <Label Text="{Binding CreatedAt}" />
+                        <Label Text="{Binding UserName}" />
+                    </VerticalStackLayout>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+
+            <CollectionView.EmptyView>
+                <VerticalStackLayout>
+                    <Label
+                        FontSize="16"
+                        HorizontalOptions="Start"
+                        Text="Soo empty !, wanna leave a review ?"
+                        TextColor="LightGrey"
+                        VerticalOptions="Start" />
+                </VerticalStackLayout>
+            </CollectionView.EmptyView>
+        </CollectionView>
+
+        <!--  add review btn  -->
+        <Button
+            x:Name="CreateReviewButton"
+            Grid.Row="2"
+            Text="Add a review"
+            VerticalOptions="Start" />
+    </Grid>
 </Border>

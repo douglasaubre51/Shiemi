@@ -4,7 +4,7 @@ using Shiemi.Utilities;
 using Shiemi.Wrappers;
 using System.Net.Http.Json;
 
-namespace Shiemi.Services.ChatServices;
+namespace Shiemi.Services;
 
 public class ChatService
 {

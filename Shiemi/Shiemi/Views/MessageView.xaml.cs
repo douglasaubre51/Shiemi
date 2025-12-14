@@ -1,10 +1,10 @@
-using System.Diagnostics;
 using MvvmHelpers;
 using Shiemi.Dtos;
 using Shiemi.Storage;
 using Shiemi.Utilities.HubClients;
 using Shiemi.Utilities.ServiceProviders;
 using Shiemi.ViewModels;
+using System.Diagnostics;
 
 namespace Shiemi.Views;
 
@@ -24,11 +24,6 @@ public partial class MessageView : Grid
                 var context = (MessageView)bindable;
                 context.MessageCollectionView.ItemsSource =
                 (ObservableRangeCollection<MessageViewModel>)newValue;
-
-                foreach (var d in (ObservableRangeCollection<MessageViewModel>)newValue)
-                {
-                    Debug.WriteLine(d.Text);
-                }
             });
     public ObservableRangeCollection<MessageViewModel> MessageCollection
     {
