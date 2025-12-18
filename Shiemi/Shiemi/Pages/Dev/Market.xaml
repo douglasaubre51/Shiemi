@@ -21,24 +21,46 @@
                 <!--  dev card  -->
                 <DataTemplate x:DataType="models:DevModel">
                     <Grid
+                        Padding="8"
                         BackgroundColor="White"
                         ColumnDefinitions="*,*"
                         RowDefinitions="*,Auto"
-                        RowSpacing="4">
+                        RowSpacing="16">
                         <Label
                             Grid.Row="0"
                             Grid.ColumnSpan="2"
+                            FontSize="16"
                             Text="{Binding ShortDesc}" />
 
-                        <Label
+                        <VerticalStackLayout
                             Grid.Row="1"
                             Grid.Column="0"
-                            Text="{Binding StartingPrice}" />
+                            Spacing="2"
+                            VerticalOptions="Start">
+                            <Label
+                                FontSize="10"
+                                Text="Starts at"
+                                TextColor="Grey" />
 
-                        <Label
+                            <Label FontSize="16" Text="{Binding StartingPrice, StringFormat='₹{0}'}" />
+                        </VerticalStackLayout>
+
+                        <VerticalStackLayout
                             Grid.Row="1"
                             Grid.Column="1"
-                            Text="{Binding UserName}" />
+                            HorizontalOptions="End"
+                            Spacing="2"
+                            VerticalOptions="Start">
+
+                            <Label
+                                FontSize="10"
+                                Text="Developer"
+                                TextColor="Grey" />
+                            <Label Text="{Binding Username}" />
+
+                        </VerticalStackLayout>
+
+
                     </Grid>
                 </DataTemplate>
             </CollectionView.ItemTemplate>

@@ -91,11 +91,11 @@
                 <Label
                     FontSize="24"
                     Text="Dev Profile"
-                    TextColor="Grey" />
+                    TextColor="Black" />
 
                 <Label Text="Become a dev and get hired !" />
 
-                <Button Command="{Binding MakeDeveloperCommand}" Text="Start now" />
+                <Button Command="{Binding GoToEditPageCommand}" Text="Start now" />
             </VerticalStackLayout>
         </Border>
     </Grid>

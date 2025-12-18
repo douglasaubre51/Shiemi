@@ -19,11 +19,11 @@ public class DevService
         devBaseUri = $"{_httpClient.BaseAddress}/Dev";
     }
 
-    public async Task<bool> Create(DevModel model)
+    public async Task<bool> Create(DevDto dto)
     {
-        HttpResponseMessage response = await _httpClient.PostAsJsonAsync<DevModel>(
+        HttpResponseMessage response = await _httpClient.PostAsJsonAsync(
             $"{devBaseUri}",
-            model
+            dto
         );
         if (response.IsSuccessStatusCode is false)
             return false;

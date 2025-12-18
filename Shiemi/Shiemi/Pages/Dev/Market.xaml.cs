@@ -1,7 +1,10 @@
 using System.Diagnostics;
+using AutoMapper;
+using Microsoft.Maui.Platform;
 using Shiemi.Dtos;
 using Shiemi.Models;
 using Shiemi.Services;
+using Shiemi.Utilities.ServiceProviders;
 
 namespace Shiemi.Pages.Dev;
 
@@ -23,17 +26,10 @@ public partial class Market : ContentPage
 			if (devDtos is null)
 				return;
 
-			List<DevModel> devModels = [];
-			foreach (var d in devDtos)
-			{
-				DevModel dev = new()
-				{
-					Profile = d.Profile,
-					UserName = d.FirstName + " " + d.LastName
-				};
-
-				devModels.Add(dev);
-			}
+			Mapper mapper = MapperProvider.GetMapper<DevDto, DevModel>()!;
+			List<DevModel> devModels = mapper.Map<List<DevModel>>(devDtos);
+			for (int i = 0; i < devModels.Count; i++)
+				devModels[i].StartingPrice = Math.Round(devModels[i].StartingPrice);
 
 			DevCollectionView.ItemsSource = devModels;
 		}

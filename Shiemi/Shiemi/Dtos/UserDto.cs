@@ -15,13 +15,3 @@ public record ProfilePageUserDto(
     string UserId,
     bool IsDeveloper
 );
-
-public record DevDto(
-    int Id,
-    string FirstName,
-    string LastName,
-    string Email,
-    string Profile,
-    long Phone,
-    bool IsDeveloper
-);

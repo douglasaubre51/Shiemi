@@ -6,27 +6,29 @@
     xmlns:devpagemodels="clr-namespace:Shiemi.PageModels.Dev"
     Title="Edit"
     x:DataType="devpagemodels:EditPageModel">
-    <ScrollView
-        Margin="10"
-        Padding="20"
-        Orientation="Vertical">
-        <Grid RowDefinitions="20,Auto,20,Auto,20,Auto,*" RowSpacing="16">
-            <Label Grid.Row="0" Text="ShortDesc" />
-            <Entry
-                Grid.Row="1"
+    <Grid
+        Margin="20"
+        RowDefinitions="Auto,Auto,*"
+        RowSpacing="16">
+        <VerticalStackLayout Grid.Row="0" Spacing="4">
+            <Label Text="ShortDesc" TextColor="Grey" />
+            <Editor
+                HeightRequest="80"
                 Text="{Binding ShortDesc}"
                 VerticalOptions="Start" />
+        </VerticalStackLayout>
 
-            <Label Grid.Row="2" Text="Starting Price" />
-            <Entry
-                Grid.Row="3"
-                Text="{Binding StartingPrice}"
-                VerticalOptions="Start" />
+        <VerticalStackLayout Grid.Row="1" Spacing="8">
+            <Label Text="Starting Price" TextColor="Grey" />
+            <Entry Text="{Binding StartingPrice}" VerticalOptions="Start" />
+        </VerticalStackLayout>
 
-            <Button
-                Grid.Row="6"
-                Command="{Binding CreateCommand}"
-                Text="continue" />
-        </Grid>
-    </ScrollView>
+        <Button
+            Grid.Row="2"
+            Command="{Binding CreateCommand}"
+            HorizontalOptions="End"
+            Text="continue"
+            VerticalOptions="End"
+            WidthRequest="150" />
+    </Grid>
 </ContentPage>
