@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ResourceDictionary
+    x:Class="Shiemi.Resources.Data.DevResource"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:models="clr-namespace:Shiemi.Models">
+    <x:Array x:Key="Temp_Devs" x:Type="{x:Type models:Dev}">
+        <models:Dev
+            ShortDesc="Expert at DevOps pipelines, backend apis, and more"
+            StartingPrice="10000"
+            UserName="Akeno Himejima" />
+
+        <models:Dev
+            ShortDesc="React Js expert, extreme PHP skills and database expert"
+            StartingPrice="50000"
+            UserName="Riaz Gremory" />
+
+        <models:Dev
+            ShortDesc="Master at C, network specialist and driver developer"
+            StartingPrice="100000"
+            UserName="Xenovia Quarta" />
+    </x:Array>
+</ResourceDictionary>

@@ -1,9 +1,9 @@
+using System.Diagnostics;
 using MvvmHelpers;
 using Shiemi.Models;
 using Shiemi.Services;
 using Shiemi.Storage;
 using Shiemi.Utilities.ServiceProviders;
-using System.Diagnostics;
 
 namespace Shiemi.Views;
 
@@ -85,6 +85,7 @@ public partial class ReviewCard : Border
                     "Ok");
 
             ReviewEditorView.Text = string.Empty;
+            ReviewCollection.Add(review);
         }
         catch (Exception ex)
         {

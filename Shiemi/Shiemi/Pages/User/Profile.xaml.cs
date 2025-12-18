@@ -1,8 +1,8 @@
+using System.Diagnostics;
 using Shiemi.Dtos;
 using Shiemi.PageModels.User;
 using Shiemi.Services;
 using Shiemi.Storage;
-using System.Diagnostics;
 
 namespace Shiemi.Pages.User;
 
@@ -24,28 +24,29 @@ public partial class Profile : ContentPage
     {
         try
         {
+            ProfilePageModel pageModel = (ProfilePageModel)BindingContext;
+            if (pageModel is null)
+                return;
+
             // fetch user data
             string userId = DataStorage.Get("UserId");
             ProfilePageUserDto? user = await _userService.Get(userId);
             if (user is null)
-            {
-                Debug.WriteLine("OnProfileAppearing status: empty user!");
                 return;
-            }
-
-            // set user data on profile
-            var pageModel = BindingContext as ProfilePageModel;
-            if (pageModel is null)
-            {
-                Debug.WriteLine("OnProfileAppearing status: binding context is null!");
-                return;
-            }
 
             pageModel.FirstName = user.FirstName;
             pageModel.LastName = user.LastName;
             pageModel.UserName = user.FirstName + "  " + user.LastName;
             pageModel.Email = user.Email;
             pageModel.UserId = user.UserId;
+
+            if (user.IsDeveloper is true)
+            {
+                pageModel.DevModeActive = true;
+                return;
+            }
+
+            pageModel.DevModeActive = false;
         }
         catch (Exception ex)
         {

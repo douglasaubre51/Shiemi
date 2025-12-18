@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="Shiemi.Pages.Dev.Market"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:models="clr-namespace:Shiemi.Models"
+    Title="Dev Market"
+    BackgroundColor="#f5f7fb">
+    <!--  dev cards  -->
+    <VerticalStackLayout Margin="10">
+        <CollectionView x:Name="DevCollectionView">
+            <CollectionView.ItemsLayout>
+                <GridItemsLayout
+                    HorizontalItemSpacing="8"
+                    Orientation="Vertical"
+                    Span="3"
+                    VerticalItemSpacing="8" />
+            </CollectionView.ItemsLayout>
+
+            <CollectionView.ItemTemplate>
+                <!--  dev card  -->
+                <DataTemplate x:DataType="models:DevModel">
+                    <Grid
+                        BackgroundColor="White"
+                        ColumnDefinitions="*,*"
+                        RowDefinitions="*,Auto"
+                        RowSpacing="4">
+                        <Label
+                            Grid.Row="0"
+                            Grid.ColumnSpan="2"
+                            Text="{Binding ShortDesc}" />
+
+                        <Label
+                            Grid.Row="1"
+                            Grid.Column="0"
+                            Text="{Binding StartingPrice}" />
+
+                        <Label
+                            Grid.Row="1"
+                            Grid.Column="1"
+                            Text="{Binding UserName}" />
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </VerticalStackLayout>
+</ContentPage>

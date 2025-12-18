@@ -1,11 +1,14 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
+﻿using System.Diagnostics;
+using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using Shiemi.Services;
 using Shiemi.Storage;
-using System.Diagnostics;
 
 namespace Shiemi.PageModels.User;
 
-public partial class ProfilePageModel : BasePageModel
+public partial class ProfilePageModel(
+    DevService devServ
+) : BasePageModel
 {
     [ObservableProperty]
     private string firstName = string.Empty;
@@ -17,6 +20,44 @@ public partial class ProfilePageModel : BasePageModel
     private string email = string.Empty;
     [ObservableProperty]
     private string userId = string.Empty;
+    [ObservableProperty]
+    [NotifyPropertyChangedFor(nameof(ShowDevCard_NotJoined))]
+    private bool devModeActive;
+    public bool ShowDevCard_NotJoined => !DevModeActive;
+
+    private readonly DevService _devServ = devServ;
+
+    [RelayCommand]
+    async Task MakeDeveloper()
+    {
+        if (IsBusy is true)
+            return;
+
+        try
+        {
+            IsBusy = true;
+            bool result = await _devServ.SetDeveloper(UserStorage.UserId);
+            if (result is false)
+            {
+                await Shell.Current.DisplayAlertAsync(
+                    "Dev mode error",
+                    "Error enabling Dev Mode !",
+                    "Ok"
+                );
+                return;
+            }
+
+            DevModeActive = true;
+        }
+        catch (Exception ex)
+        {
+            Debug.WriteLine("ProfilePageModel MakeDeveloper: error: " + ex.Message);
+        }
+        finally
+        {
+            IsBusy = false;
+        }
+    }
 
     [RelayCommand]
     async Task Logout()
@@ -25,13 +66,9 @@ public partial class ProfilePageModel : BasePageModel
             return;
 
         IsBusy = true;
-
         try
         {
-            // clear userid string
             DataStorage.Remove("UserId");
-
-            // go to auth page!
             await Shell.Current.GoToAsync("//Index");
         }
         catch (Exception ex)
@@ -43,5 +80,4 @@ public partial class ProfilePageModel : BasePageModel
             IsBusy = false;
         }
     }
-
 }

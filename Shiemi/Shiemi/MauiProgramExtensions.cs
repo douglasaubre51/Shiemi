@@ -2,6 +2,7 @@
 using Microsoft.Extensions.Logging;
 using Shiemi.PageModels;
 using Shiemi.PageModels.Chat;
+using Shiemi.PageModels.Dev;
 using Shiemi.PageModels.Market;
 using Shiemi.PageModels.Project;
 using Shiemi.PageModels.Start;
@@ -45,6 +46,7 @@ public static class MauiProgramExtensions
         builder.Services.AddTransient<ProjectService>();
         builder.Services.AddTransient<ChatService>();
         builder.Services.AddTransient<ReviewService>();
+        builder.Services.AddTransient<DevService>();
 
 
         // Add HubClients
@@ -62,7 +64,7 @@ public static class MauiProgramExtensions
         // project
         builder.Services.AddTransient<ProjectsPageModel>();
         builder.Services.AddTransient<CreateProjectPageModel>();
-        builder.Services.AddTransient<DetailsPageModel>();
+        builder.Services.AddTransient<PageModels.Project.DetailsPageModel>();
         // market
         builder.Services.AddTransient<ProjectShopPageModel>();
         builder.Services.AddTransient<ProjectDetailsPageModel>();
@@ -70,6 +72,8 @@ public static class MauiProgramExtensions
         // chat
         builder.Services.AddTransient<RoomsPageModel>();
         builder.Services.AddTransient<ChannelsPageModel>();
+        // Dev
+        builder.Services.AddTransient<EditPageModel>();
 
 
         return builder;

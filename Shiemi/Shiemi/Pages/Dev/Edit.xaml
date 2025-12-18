@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="Shiemi.Pages.Dev.Edit"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:devpagemodels="clr-namespace:Shiemi.PageModels.Dev"
+    Title="Edit"
+    x:DataType="devpagemodels:EditPageModel">
+    <ScrollView
+        Margin="10"
+        Padding="20"
+        Orientation="Vertical">
+        <Grid RowDefinitions="20,Auto,20,Auto,20,Auto,*" RowSpacing="16">
+            <Label Grid.Row="0" Text="ShortDesc" />
+            <Entry
+                Grid.Row="1"
+                Text="{Binding ShortDesc}"
+                VerticalOptions="Start" />
+
+            <Label Grid.Row="2" Text="Starting Price" />
+            <Entry
+                Grid.Row="3"
+                Text="{Binding StartingPrice}"
+                VerticalOptions="Start" />
+
+            <Button
+                Grid.Row="6"
+                Command="{Binding CreateCommand}"
+                Text="continue" />
+        </Grid>
+    </ScrollView>
+</ContentPage>

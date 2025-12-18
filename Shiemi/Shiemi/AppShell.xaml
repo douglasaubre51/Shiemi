@@ -4,12 +4,13 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:chatpages="clr-namespace:Shiemi.Pages.Chats"
+    xmlns:devpages="clr-namespace:Shiemi.Pages.Dev"
     xmlns:marketpages="clr-namespace:Shiemi.Pages.Market"
     xmlns:projectpages="clr-namespace:Shiemi.Pages.Project"
     xmlns:startpages="clr-namespace:Shiemi.Pages.Start"
     xmlns:userpages="clr-namespace:Shiemi.Pages.User"
     FlyoutBackgroundColor="#f3f3f3"
-    Shell.FlyoutBehavior="Locked">
+    Shell.FlyoutBehavior="Flyout">
 
     <FlyoutItem Title="GetStarted" FlyoutItemIsVisible="False">
         <Tab>
@@ -34,6 +35,13 @@
             <ShellContent ContentTemplate="{DataTemplate marketpages:ProjectShop}" Route="ProjectShop" />
         </Tab>
     </FlyoutItem>
+
+    <FlyoutItem Title="Dev Market">
+        <Tab>
+            <ShellContent ContentTemplate="{DataTemplate devpages:Market}" Route="DevMarket" />
+        </Tab>
+    </FlyoutItem>
+
 
     <FlyoutItem Title="Chats">
         <Tab Title="Rooms">

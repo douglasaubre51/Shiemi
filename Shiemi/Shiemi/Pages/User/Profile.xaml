@@ -9,8 +9,10 @@
     BackgroundColor="Lavender"
     Shell.FlyoutBehavior="Flyout"
     Shell.NavBarIsVisible="True">
-
-    <Grid Margin="10" RowDefinitions="Auto">
+    <Grid
+        Margin="16"
+        ColumnDefinitions="Auto,Auto"
+        ColumnSpacing="16">
         <Grid.Resources>
             <Style x:Key="WarningBtnStyle" TargetType="Button">
                 <Setter Property="HeightRequest" Value="20" />
@@ -27,6 +29,7 @@
                                     <Setter Property="TextColor" Value="Red" />
                                 </VisualState.Setters>
                             </VisualState>
+
                             <VisualState x:Name="PointerOver">
                                 <VisualState.Setters>
                                     <Setter Property="BackgroundColor" Value="Red" />
@@ -39,22 +42,26 @@
             </Style>
         </Grid.Resources>
 
+        <!--  user details card  -->
         <Border
-            Grid.Row="0"
-            Padding="24"
+            Grid.Column="0"
+            Padding="20"
             BackgroundColor="White"
-            HorizontalOptions="Start">
+            HorizontalOptions="Start"
+            VerticalOptions="Start">
             <Border.Style>
                 <Style TargetType="Border">
                     <Setter Property="StrokeThickness" Value="0" />
-                    <Setter Property="StrokeShape" Value="RoundRectangle 20" />
+                    <Setter Property="StrokeShape" Value="RoundRectangle 16" />
                 </Style>
             </Border.Style>
+            <!--  user details  -->
             <Grid RowDefinitions="Auto,Auto,100">
                 <Label
                     Grid.Row="0"
                     FontSize="42"
                     Text="{Binding UserName}" />
+
                 <Label
                     Grid.Row="1"
                     FontSize="15"
@@ -68,6 +75,28 @@
                     Text="Logout"
                     VerticalOptions="End" />
             </Grid>
+        </Border>
+
+        <!--  dev profile  -->
+        <Border
+            x:Name="DevProfileCard_NotJoined"
+            Grid.Column="1"
+            Padding="16"
+            BackgroundColor="#ffffff"
+            IsVisible="{Binding ShowDevCard_NotJoined}"
+            Stroke="Transparent"
+            StrokeShape="RoundRectangle 16"
+            VerticalOptions="Start">
+            <VerticalStackLayout Spacing="16">
+                <Label
+                    FontSize="24"
+                    Text="Dev Profile"
+                    TextColor="Grey" />
+
+                <Label Text="Become a dev and get hired !" />
+
+                <Button Command="{Binding MakeDeveloperCommand}" Text="Start now" />
+            </VerticalStackLayout>
         </Border>
     </Grid>
 </ContentPage>
