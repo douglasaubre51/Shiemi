@@ -15,3 +15,4 @@ public record ProfilePageUserDto(
     string UserId,
     bool IsDeveloper
 );
+

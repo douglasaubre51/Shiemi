@@ -12,68 +12,50 @@
     <Grid
         Margin="16"
         ColumnDefinitions="Auto,Auto"
-        ColumnSpacing="16">
-        <Grid.Resources>
-            <Style x:Key="WarningBtnStyle" TargetType="Button">
-                <Setter Property="HeightRequest" Value="20" />
-                <Setter Property="BorderColor" Value="Red" />
-                <Setter Property="BackgroundColor" Value="Transparent" />
-                <Setter Property="BorderWidth" Value="1" />
-                <Setter Property="TextColor" Value="Red" />
-                <Setter Property="VisualStateManager.VisualStateGroups">
-                    <VisualStateGroupList>
-                        <VisualStateGroup x:Name="CommonStates">
-                            <VisualState x:Name="Normal">
-                                <VisualState.Setters>
-                                    <Setter Property="BackgroundColor" Value="Transparent" />
-                                    <Setter Property="TextColor" Value="Red" />
-                                </VisualState.Setters>
-                            </VisualState>
-
-                            <VisualState x:Name="PointerOver">
-                                <VisualState.Setters>
-                                    <Setter Property="BackgroundColor" Value="Red" />
-                                    <Setter Property="TextColor" Value="White" />
-                                </VisualState.Setters>
-                            </VisualState>
-                        </VisualStateGroup>
-                    </VisualStateGroupList>
-                </Setter>
-            </Style>
-        </Grid.Resources>
+        ColumnSpacing="16"
+        IsClippedToBounds="False">
 
         <!--  user details card  -->
         <Border
             Grid.Column="0"
-            Padding="20"
-            BackgroundColor="White"
             HorizontalOptions="Start"
+            Style="{StaticResource CardBorderStyle}"
             VerticalOptions="Start">
-            <Border.Style>
-                <Style TargetType="Border">
-                    <Setter Property="StrokeThickness" Value="0" />
-                    <Setter Property="StrokeShape" Value="RoundRectangle 16" />
-                </Style>
-            </Border.Style>
-            <!--  user details  -->
-            <Grid RowDefinitions="Auto,Auto,100">
+            <Grid
+                ColumnDefinitions="*"
+                ColumnSpacing="4"
+                IsClippedToBounds="False"
+                RowDefinitions="Auto,Auto,*">
                 <Label
                     Grid.Row="0"
+                    Grid.ColumnSpan="2"
                     FontSize="42"
                     Text="{Binding UserName}" />
 
                 <Label
                     Grid.Row="1"
+                    Grid.ColumnSpan="2"
+                    Margin="0,0,0,40"
                     FontSize="15"
                     Text="{Binding Email}"
                     TextColor="Grey" />
 
-                <Button
-                    Grid.Row="2"
-                    Command="{Binding LogoutCommand}"
-                    Style="{StaticResource WarningBtnStyle}"
-                    Text="Logout"
-                    VerticalOptions="End" />
+                <HorizontalStackLayout Grid.Row="2" Spacing="8">
+                    <Button
+                        Command="{Binding LogoutCommand}"
+                        HorizontalOptions="Start"
+                        ImageSource="ic_fluent_sign_out_24_regular.png"
+                        Style="{StaticResource WarningIconStyle}" />
+
+                    <!--  separator  -->
+                    <BoxView Style="{StaticResource VerticalSeperator}" />
+
+                    <Button
+                        Command="{Binding GoToProfileEditPageCommand}"
+                        HorizontalOptions="End"
+                        ImageSource="ic_fluent_edit_person_24_regular.png"
+                        Style="{StaticResource IconStyle}" />
+                </HorizontalStackLayout>
             </Grid>
         </Border>
 
@@ -82,19 +64,12 @@
             x:Name="DevProfileCard_NotJoined"
             Grid.Column="1"
             Padding="16"
-            BackgroundColor="#ffffff"
             IsVisible="{Binding ShowDevCard_NotJoined}"
-            Stroke="Transparent"
-            StrokeShape="RoundRectangle 16"
+            Style="{StaticResource CardBorderStyle}"
             VerticalOptions="Start">
             <VerticalStackLayout Spacing="16">
-                <Label
-                    FontSize="24"
-                    Text="Dev Profile"
-                    TextColor="Black" />
-
+                <Label Style="{StaticResource TitleLabel}" Text="Dev Profile" />
                 <Label Text="Become a dev and get hired !" />
-
                 <Button Command="{Binding GoToEditPageCommand}" Text="Start now" />
             </VerticalStackLayout>
         </Border>

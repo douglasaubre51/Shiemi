@@ -28,6 +28,9 @@ public static class MauiProgramExtensions
             {
                 fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
                 fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
+                fonts.AddFont("Poppins-Regular.ttf", "PoppinsRegular");
+                fonts.AddFont("Poppins-Medium.ttf", "PoppinsMedium");
+
             });
 
 #if DEBUG
@@ -57,23 +60,31 @@ public static class MauiProgramExtensions
 
         // Add Page Models
         builder.Services.AddSingleton<BasePageModel>();
+
         // start
         builder.Services.AddTransient<IndexPageModel>();
+
         // user
         builder.Services.AddTransient<ProfilePageModel>();
+        builder.Services.AddTransient<PageModels.User.EditPageModel>();
+
         // project
         builder.Services.AddTransient<ProjectsPageModel>();
         builder.Services.AddTransient<CreateProjectPageModel>();
         builder.Services.AddTransient<PageModels.Project.DetailsPageModel>();
+
         // market
         builder.Services.AddTransient<ProjectShopPageModel>();
         builder.Services.AddTransient<ProjectDetailsPageModel>();
         builder.Services.AddTransient<PrivateRoomPageModel>();
+
         // chat
         builder.Services.AddTransient<RoomsPageModel>();
         builder.Services.AddTransient<ChannelsPageModel>();
+
         // Dev
-        builder.Services.AddTransient<EditPageModel>();
+        builder.Services.AddTransient<PageModels.Dev.EditPageModel>();
+
 
 
         return builder;

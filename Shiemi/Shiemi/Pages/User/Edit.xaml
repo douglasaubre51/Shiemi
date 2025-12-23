@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="Shiemi.Pages.User.Edit"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:profilepagemodels="clr-namespace:Shiemi.PageModels.User"
+    Title="Edit Profile"
+    x:DataType="profilepagemodels:EditPageModel">
+    <Grid
+        Margin="20"
+        RowDefinitions="Auto,Auto,Auto,*"
+        RowSpacing="16">
+        <VerticalStackLayout Grid.Row="0" Spacing="4">
+            <Label Text="First name" TextColor="Gray" />
+            <Entry
+                IsEnabled="{Binding IsNotBusy}"
+                Text="{Binding FirstName}"
+                VerticalOptions="Start" />
+        </VerticalStackLayout>
+
+        <VerticalStackLayout Grid.Row="1" Spacing="4">
+            <Label Text="Last name" TextColor="Gray" />
+            <Entry
+                IsEnabled="{Binding IsNotBusy}"
+                Text="{Binding LastName}"
+                VerticalOptions="Start" />
+        </VerticalStackLayout>
+
+        <Button
+            Grid.Row="2"
+            Command="{Binding ChooseProfilePhotoCommand}"
+            HorizontalOptions="Start"
+            ImageSource="ic_fluent_image_add_28_regular.png"
+            Style="{StaticResource IconStyle}"
+            Text="Add profile" />
+
+        <Button
+            Grid.Row="3"
+            Command="{Binding GoBackCommand}"
+            HorizontalOptions="Start"
+            IsEnabled="{Binding IsNotBusy}"
+            IsVisible="{Binding IsNotBusy}"
+            Style="{StaticResource SecondaryBtnStyle}"
+            VerticalOptions="End" />
+        <Button
+            Grid.Row="3"
+            Command="{Binding EditProfileCommand}"
+            HorizontalOptions="End"
+            IsEnabled="{Binding IsNotBusy}"
+            IsVisible="{Binding IsNotBusy}"
+            Text="continue"
+            VerticalOptions="End"
+            WidthRequest="150" />
+
+        <!--  loading  -->
+        <ProgressBar
+            x:Name="ProgressView"
+            Grid.Row="3"
+            BackgroundColor="Lavender"
+            HorizontalOptions="Fill"
+            IsEnabled="{Binding IsBusy}"
+            IsVisible="{Binding IsBusy}"
+            ProgressColor="MediumPurple"
+            VerticalOptions="End" />
+    </Grid>
+</ContentPage>

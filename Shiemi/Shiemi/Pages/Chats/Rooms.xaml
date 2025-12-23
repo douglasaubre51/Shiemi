@@ -6,9 +6,9 @@
     xmlns:pagemodel="clr-namespace:Shiemi.PageModels.Chat"
     xmlns:viewmodels="clr-namespace:Shiemi.ViewModels"
     xmlns:views="clr-namespace:Shiemi.Views"
+    Title="Chats"
     x:DataType="pagemodel:RoomsPageModel"
-    Shell.FlyoutBehavior="Flyout"
-    Shell.NavBarIsVisible="False">
+    Shell.FlyoutBehavior="Flyout">
 
     <Grid ColumnDefinitions="*,2*" RowDefinitions="*">
 

@@ -7,13 +7,12 @@ public class User
 
     public string FirstName { get; set; } = string.Empty;
     public string LastName { get; set; } = string.Empty;
-    public string? Profile { get; set; }
     public string Email { get; set; } = string.Empty;
     public long? Phone { get; set; }
 
     public bool IsDeveloper { get; set; }
     public bool IsAdmin { get; set; }
 
+    public Photo? ProfilePhoto { get; set; }
     public List<Project>? Projects { get; set; }
-
 }

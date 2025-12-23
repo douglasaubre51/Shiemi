@@ -65,6 +65,7 @@
                                 Text="{Binding Title}" />
 
                             <Label
+                                FontFamily="PoppinsRegular"
                                 FontSize="10"
                                 LineBreakMode="WordWrap"
                                 Text="{Binding ShortDesc}"

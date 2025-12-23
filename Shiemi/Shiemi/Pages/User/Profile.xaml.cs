@@ -24,6 +24,7 @@ public partial class Profile : ContentPage
     {
         try
         {
+            
             ProfilePageModel pageModel = (ProfilePageModel)BindingContext;
             if (pageModel is null)
                 return;

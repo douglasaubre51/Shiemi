@@ -5,9 +5,9 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:chatmodel="clr-namespace:Shiemi.PageModels.Chat"
     xmlns:views="clr-namespace:Shiemi.Views"
+    Title="Chats"
     x:DataType="chatmodel:ChannelsPageModel"
-    Shell.FlyoutBehavior="Flyout"
-    Shell.NavBarIsVisible="False">
+    Shell.FlyoutBehavior="Flyout">
 
     <Grid ColumnDefinitions="*,2*">
 
