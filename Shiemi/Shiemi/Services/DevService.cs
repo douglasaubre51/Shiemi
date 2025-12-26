@@ -1,8 +1,7 @@
-using System.Net.Http.Json;
-using System.Resources;
 using Shiemi.Dtos;
-using Shiemi.Models;
 using Shiemi.Utilities;
+using System.Diagnostics;
+using System.Net.Http.Json;
 
 namespace Shiemi.Services;
 
@@ -19,14 +18,29 @@ public class DevService
         devBaseUri = $"{_httpClient.BaseAddress}/Dev";
     }
 
-    public async Task<bool> Create(DevDto dto)
+    public async Task<bool> Create(DevDto dto, string advertPhotoPath)
     {
-        HttpResponseMessage response = await _httpClient.PostAsJsonAsync(
+        var advertContent = new ByteArrayContent(
+            await File.ReadAllBytesAsync(advertPhotoPath));
+        using var form = new MultipartFormDataContent
+        {
+            { new StringContent(dto.UserId.ToString()),"id" },
+            { new StringContent(dto.ShortDesc),"shortDesc" },
+            { new StringContent(dto.Description),"description" },
+            { new StringContent(dto.StartingPrice.ToString()),"startingPrice" },
+            { advertContent,"advertPhoto",Path.GetFileName(advertPhotoPath) }
+        };
+        HttpResponseMessage response = await _httpClient.PostAsync(
             $"{devBaseUri}",
-            dto
+            form
         );
         if (response.IsSuccessStatusCode is false)
+        {
+            var statusDto = await response.Content.ReadFromJsonAsync<StatusMessageDto>();
+            Debug.WriteLine(response.StatusCode);
+            Debug.WriteLine(statusDto!.Message);
             return false;
+        }
 
         return true;
     }

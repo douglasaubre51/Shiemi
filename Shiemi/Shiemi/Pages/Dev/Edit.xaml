@@ -6,29 +6,88 @@
     xmlns:devpagemodels="clr-namespace:Shiemi.PageModels.Dev"
     Title="Edit"
     x:DataType="devpagemodels:EditPageModel">
-    <Grid
-        Margin="20"
-        RowDefinitions="Auto,Auto,*"
-        RowSpacing="16">
-        <VerticalStackLayout Grid.Row="0" Spacing="4">
-            <Label Text="ShortDesc" TextColor="Grey" />
-            <Editor
-                HeightRequest="80"
-                Text="{Binding ShortDesc}"
-                VerticalOptions="Start" />
-        </VerticalStackLayout>
+    <ScrollView Orientation="Vertical">
+        <Grid
+            Margin="20"
+            ColumnDefinitions="*,*"
+            RowDefinitions="Auto,Auto,Auto,Auto,*"
+            RowSpacing="16">
+            <VerticalStackLayout
+                Grid.Row="0"
+                Grid.ColumnSpan="2"
+                HorizontalOptions="Fill"
+                Spacing="4"
+                VerticalOptions="Start">
+                <Label Style="{StaticResource SubTitleLabel}" Text="Advert" />
 
-        <VerticalStackLayout Grid.Row="1" Spacing="8">
-            <Label Text="Starting Price" TextColor="Grey" />
-            <Entry Text="{Binding StartingPrice}" VerticalOptions="Start" />
-        </VerticalStackLayout>
+                <Border
+                    BackgroundColor="Transparent"
+                    HeightRequest="400"
+                    HorizontalOptions="Fill"
+                    StrokeThickness="0"
+                    VerticalOptions="Start">
+                    <Border.StrokeShape>
+                        <RoundRectangle CornerRadius="4" />
+                    </Border.StrokeShape>
 
-        <Button
-            Grid.Row="2"
-            Command="{Binding CreateCommand}"
-            HorizontalOptions="End"
-            Text="continue"
-            VerticalOptions="End"
-            WidthRequest="150" />
-    </Grid>
+                    <ImageButton
+                        Aspect="AspectFill"
+                        Command="{Binding ChoosePhotoCommand}"
+                        Source="{Binding AdvertPhotoURI}"
+                        Style="{StaticResource ImageIconBtnStyle}" />
+                </Border>
+            </VerticalStackLayout>
+
+            <VerticalStackLayout
+                Grid.Row="1"
+                Grid.ColumnSpan="2"
+                Spacing="4">
+                <Label Text="ShortDesc" TextColor="Grey" />
+
+                <Editor
+                    HeightRequest="80"
+                    Text="{Binding ShortDesc}"
+                    VerticalOptions="Start" />
+            </VerticalStackLayout>
+
+            <VerticalStackLayout
+                Grid.Row="2"
+                Grid.ColumnSpan="2"
+                Spacing="4">
+                <Label Text="Description" TextColor="Grey" />
+
+                <Editor
+                    HeightRequest="140"
+                    Text="{Binding Description}"
+                    VerticalOptions="Start" />
+            </VerticalStackLayout>
+
+            <VerticalStackLayout
+                Grid.Row="3"
+                Grid.ColumnSpan="2"
+                Spacing="8">
+                <Label Text="Starting Price" TextColor="Grey" />
+
+                <Entry Text="{Binding StartingPrice}" VerticalOptions="Start" />
+            </VerticalStackLayout>
+
+            <!--  footer btns  -->
+            <Button
+                Grid.Row="4"
+                Grid.Column="0"
+                Command="{Binding GoBackCommand}"
+                HorizontalOptions="Start"
+                Style="{StaticResource SecondaryBtnStyle}"
+                VerticalOptions="End" />
+
+            <Button
+                Grid.Row="4"
+                Grid.Column="1"
+                Command="{Binding CreateCommand}"
+                HorizontalOptions="End"
+                Text="continue"
+                VerticalOptions="End"
+                WidthRequest="150" />
+        </Grid>
+    </ScrollView>
 </ContentPage>

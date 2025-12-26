@@ -40,6 +40,8 @@ public partial class Profile : ContentPage
             pageModel.UserName = user.FirstName + "  " + user.LastName;
             pageModel.Email = user.Email;
             pageModel.UserId = user.UserId;
+            pageModel.ProfileURL = user.ProfilePhotoURL;
+            Debug.WriteLine("profile url: "+pageModel.ProfileURL);
 
             if (user.IsDeveloper is true)
             {

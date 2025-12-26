@@ -8,6 +8,8 @@ namespace Shiemi.PageModels.User;
 public partial class ProfilePageModel : BasePageModel
 {
     [ObservableProperty]
+    private string profileURL = string.Empty;
+    [ObservableProperty]
     private string firstName = string.Empty;
     [ObservableProperty]
     private string lastName = string.Empty;

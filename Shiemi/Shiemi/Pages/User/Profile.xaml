@@ -7,14 +7,14 @@
     Title="Profile"
     x:DataType="pagemodel:ProfilePageModel"
     BackgroundColor="Lavender"
+    SafeAreaEdges="Default"
     Shell.FlyoutBehavior="Flyout"
     Shell.NavBarIsVisible="True">
     <Grid
-        Margin="16"
+        Padding="10"
         ColumnDefinitions="Auto,Auto"
         ColumnSpacing="16"
         IsClippedToBounds="False">
-
         <!--  user details card  -->
         <Border
             Grid.Column="0"
@@ -25,22 +25,42 @@
                 ColumnDefinitions="*"
                 ColumnSpacing="4"
                 IsClippedToBounds="False"
-                RowDefinitions="Auto,Auto,*">
-                <Label
+                RowDefinitions="Auto,Auto,Auto,*">
+                <Border
                     Grid.Row="0"
+                    BackgroundColor="Transparent"
+                    StrokeThickness="0">
+                    <Border.Shadow>
+                        <Shadow
+                            Opacity="0.4"
+                            Radius="10"
+                            Offset="1,1" />
+                    </Border.Shadow>
+                    <Border.StrokeShape>
+                        <RoundRectangle CornerRadius="4" />
+                    </Border.StrokeShape>
+                    <Image
+                        Aspect="AspectFill"
+                        HeightRequest="250"
+                        Source="{Binding ProfileURL}"
+                        WidthRequest="360" />
+                </Border>
+
+                <Label
+                    Grid.Row="1"
                     Grid.ColumnSpan="2"
                     FontSize="42"
                     Text="{Binding UserName}" />
 
                 <Label
-                    Grid.Row="1"
+                    Grid.Row="2"
                     Grid.ColumnSpan="2"
                     Margin="0,0,0,40"
                     FontSize="15"
                     Text="{Binding Email}"
                     TextColor="Grey" />
 
-                <HorizontalStackLayout Grid.Row="2" Spacing="8">
+                <HorizontalStackLayout Grid.Row="3" Spacing="8">
                     <Button
                         Command="{Binding LogoutCommand}"
                         HorizontalOptions="Start"
@@ -69,8 +89,10 @@
             VerticalOptions="Start">
             <VerticalStackLayout Spacing="16">
                 <Label Style="{StaticResource TitleLabel}" Text="Dev Profile" />
+
                 <Label Text="Become a dev and get hired !" />
-                <Button Command="{Binding GoToEditPageCommand}" Text="Start now" />
+
+                <Button Command="{Binding GoToDevEditPageCommand}" Text="Start now" />
             </VerticalStackLayout>
         </Border>
     </Grid>

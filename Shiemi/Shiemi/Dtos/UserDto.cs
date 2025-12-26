@@ -13,6 +13,7 @@ public record ProfilePageUserDto(
     string LastName,
     string Email,
     string UserId,
-    bool IsDeveloper
+    bool IsDeveloper,
+    string ProfilePhotoURL
 );
 

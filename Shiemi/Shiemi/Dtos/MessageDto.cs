@@ -17,3 +17,7 @@ public record SendMessageDto(
     int ChannelId,
     int RoomId
 );
+
+public record StatusMessageDto(
+    string Message
+);

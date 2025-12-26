@@ -24,19 +24,31 @@
                         Padding="8"
                         BackgroundColor="White"
                         ColumnDefinitions="*,*"
-                        RowDefinitions="*,Auto"
-                        RowSpacing="16">
-                        <Label
+                        RowDefinitions="Auto,*,Auto"
+                        RowSpacing="10">
+                        <Border
                             Grid.Row="0"
                             Grid.ColumnSpan="2"
-                            FontSize="16"
+                            Style="{StaticResource ImageCardBorderStyle}">
+                            <Image
+                                Aspect="AspectFill"
+                                HeightRequest="200"
+                                HorizontalOptions="Fill"
+                                Source="{Binding Profile}" />
+                        </Border>
+
+                        <Label
+                            Grid.Row="1"
+                            Grid.ColumnSpan="2"
+                            FontSize="13"
+                            LineBreakMode="WordWrap"
                             Text="{Binding ShortDesc}" />
 
                         <VerticalStackLayout
-                            Grid.Row="1"
+                            Grid.Row="2"
                             Grid.Column="0"
                             Spacing="2"
-                            VerticalOptions="Start">
+                            VerticalOptions="End">
                             <Label
                                 FontSize="10"
                                 Text="Starts at"
@@ -46,21 +58,18 @@
                         </VerticalStackLayout>
 
                         <VerticalStackLayout
-                            Grid.Row="1"
+                            Grid.Row="2"
                             Grid.Column="1"
                             HorizontalOptions="End"
                             Spacing="2"
-                            VerticalOptions="Start">
-
+                            VerticalOptions="End">
                             <Label
                                 FontSize="10"
                                 Text="Developer"
                                 TextColor="Grey" />
+
                             <Label Text="{Binding Username}" />
-
                         </VerticalStackLayout>
-
-
                     </Grid>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
