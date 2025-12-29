@@ -3,11 +3,44 @@
     x:Class="Shiemi.Pages.Dev.Details"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    Title="Details">
-    <VerticalStackLayout>
-        <Label
-            HorizontalOptions="Center"
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" />
-    </VerticalStackLayout>
+    xmlns:devpagemodels="clr-namespace:Shiemi.PageModels.Dev"
+    xmlns:devviews="clr-namespace:Shiemi.Views.DevViews"
+    Title="{Binding CurrentDev.Username}"
+    x:DataType="devpagemodels:DetailsPageModel"
+    Shell.TabBarIsVisible="False">
+    <Grid
+        ColumnDefinitions="*,1,*">
+        <ScrollView
+            Margin="10"
+            Padding="10"
+            Orientation="Vertical">
+            <VerticalStackLayout
+                Spacing="8">
+                <Border
+                    Style="{StaticResource ImageCardBorderStyle}">
+                    <Image
+                        Aspect="Fill"
+                        HeightRequest="500"
+                        Source="{Binding CurrentDev.Profile}" />
+                </Border>
+
+                <Label
+                    Text="Description:" />
+
+                <Label
+                    Text="{Binding CurrentDev.ShortDesc}" />
+                <Label
+                    Text="{Binding CurrentDev.StartingPrice, StringFormat='Starting At: ₹{0}'}" />
+            </VerticalStackLayout>
+        </ScrollView>
+
+        <BoxView
+            Grid.Column="1"
+            Style="{StaticResource VerticalSeperator}" />
+
+        <devviews:ChatWidget
+            Grid.Column="2"
+            Margin="0,0,0,10"
+            ChatTitle="{Binding CurrentDev.Username}" />
+    </Grid>
 </ContentPage>

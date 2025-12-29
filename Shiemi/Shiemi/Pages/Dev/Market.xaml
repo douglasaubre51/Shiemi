@@ -3,12 +3,16 @@
     x:Class="Shiemi.Pages.Dev.Market"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:devpagemodels="clr-namespace:Shiemi.PageModels.Dev"
     xmlns:models="clr-namespace:Shiemi.Models"
     Title="Dev Market"
+    x:DataType="devpagemodels:MarketpageModel"
     BackgroundColor="#f5f7fb">
     <!--  dev cards  -->
-    <VerticalStackLayout Margin="10">
-        <CollectionView x:Name="DevCollectionView">
+    <VerticalStackLayout
+        Margin="10">
+        <CollectionView
+            x:Name="DevCollectionView">
             <CollectionView.ItemsLayout>
                 <GridItemsLayout
                     HorizontalItemSpacing="8"
@@ -19,13 +23,21 @@
 
             <CollectionView.ItemTemplate>
                 <!--  dev card  -->
-                <DataTemplate x:DataType="models:DevModel">
+                <DataTemplate
+                    x:DataType="models:DevModel">
                     <Grid
                         Padding="8"
                         BackgroundColor="White"
                         ColumnDefinitions="*,*"
                         RowDefinitions="Auto,*,Auto"
                         RowSpacing="10">
+                        <!--  touch  -->
+                        <Grid.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Command="{Binding Source={RelativeSource AncestorType={x:Type devpagemodels:MarketpageModel}}, x:DataType=devpagemodels:MarketpageModel, Path=GoToDetailsPageCommand}"
+                                CommandParameter="{Binding .}" />
+                        </Grid.GestureRecognizers>
+
                         <Border
                             Grid.Row="0"
                             Grid.ColumnSpan="2"
@@ -54,7 +66,9 @@
                                 Text="Starts at"
                                 TextColor="Grey" />
 
-                            <Label FontSize="16" Text="{Binding StartingPrice, StringFormat='₹{0}'}" />
+                            <Label
+                                FontSize="16"
+                                Text="{Binding StartingPrice, StringFormat='₹{0}'}" />
                         </VerticalStackLayout>
 
                         <VerticalStackLayout
@@ -68,7 +82,8 @@
                                 Text="Developer"
                                 TextColor="Grey" />
 
-                            <Label Text="{Binding Username}" />
+                            <Label
+                                Text="{Binding Username}" />
                         </VerticalStackLayout>
                     </Grid>
                 </DataTemplate>

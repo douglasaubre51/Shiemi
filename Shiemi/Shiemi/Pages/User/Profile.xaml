@@ -37,7 +37,8 @@
                             Offset="1,1" />
                     </Border.Shadow>
                     <Border.StrokeShape>
-                        <RoundRectangle CornerRadius="4" />
+                        <RoundRectangle
+                            CornerRadius="4" />
                     </Border.StrokeShape>
                     <Image
                         Aspect="AspectFill"
@@ -60,7 +61,9 @@
                     Text="{Binding Email}"
                     TextColor="Grey" />
 
-                <HorizontalStackLayout Grid.Row="3" Spacing="8">
+                <HorizontalStackLayout
+                    Grid.Row="3"
+                    Spacing="8">
                     <Button
                         Command="{Binding LogoutCommand}"
                         HorizontalOptions="Start"
@@ -68,7 +71,8 @@
                         Style="{StaticResource WarningIconStyle}" />
 
                     <!--  separator  -->
-                    <BoxView Style="{StaticResource VerticalSeperator}" />
+                    <BoxView
+                        Style="{StaticResource VerticalSeperator}" />
 
                     <Button
                         Command="{Binding GoToProfileEditPageCommand}"
@@ -87,12 +91,18 @@
             IsVisible="{Binding ShowDevCard_NotJoined}"
             Style="{StaticResource CardBorderStyle}"
             VerticalOptions="Start">
-            <VerticalStackLayout Spacing="16">
-                <Label Style="{StaticResource TitleLabel}" Text="Dev Profile" />
+            <VerticalStackLayout
+                Spacing="16">
+                <Label
+                    Style="{StaticResource TitleLabel}"
+                    Text="Dev Profile" />
 
-                <Label Text="Become a dev and get hired !" />
+                <Label
+                    Text="Become a dev and get hired !" />
 
-                <Button Command="{Binding GoToDevEditPageCommand}" Text="Start now" />
+                <Button
+                    Command="{Binding GoToDevEditPageCommand}"
+                    Text="Start now" />
             </VerticalStackLayout>
         </Border>
     </Grid>

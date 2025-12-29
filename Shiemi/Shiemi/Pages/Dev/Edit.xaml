@@ -6,7 +6,8 @@
     xmlns:devpagemodels="clr-namespace:Shiemi.PageModels.Dev"
     Title="Edit"
     x:DataType="devpagemodels:EditPageModel">
-    <ScrollView Orientation="Vertical">
+    <ScrollView
+        Orientation="Vertical">
         <Grid
             Margin="20"
             ColumnDefinitions="*,*"
@@ -18,7 +19,9 @@
                 HorizontalOptions="Fill"
                 Spacing="4"
                 VerticalOptions="Start">
-                <Label Style="{StaticResource SubTitleLabel}" Text="Advert" />
+                <Label
+                    Style="{StaticResource SubTitleLabel}"
+                    Text="Advert" />
 
                 <Border
                     BackgroundColor="Transparent"
@@ -27,7 +30,8 @@
                     StrokeThickness="0"
                     VerticalOptions="Start">
                     <Border.StrokeShape>
-                        <RoundRectangle CornerRadius="4" />
+                        <RoundRectangle
+                            CornerRadius="4" />
                     </Border.StrokeShape>
 
                     <ImageButton
@@ -42,7 +46,9 @@
                 Grid.Row="1"
                 Grid.ColumnSpan="2"
                 Spacing="4">
-                <Label Text="ShortDesc" TextColor="Grey" />
+                <Label
+                    Text="ShortDesc"
+                    TextColor="Grey" />
 
                 <Editor
                     HeightRequest="80"
@@ -54,7 +60,9 @@
                 Grid.Row="2"
                 Grid.ColumnSpan="2"
                 Spacing="4">
-                <Label Text="Description" TextColor="Grey" />
+                <Label
+                    Text="Description"
+                    TextColor="Grey" />
 
                 <Editor
                     HeightRequest="140"
@@ -66,9 +74,13 @@
                 Grid.Row="3"
                 Grid.ColumnSpan="2"
                 Spacing="8">
-                <Label Text="Starting Price" TextColor="Grey" />
+                <Label
+                    Text="Starting Price"
+                    TextColor="Grey" />
 
-                <Entry Text="{Binding StartingPrice}" VerticalOptions="Start" />
+                <Entry
+                    Text="{Binding StartingPrice}"
+                    VerticalOptions="Start" />
             </VerticalStackLayout>
 
             <!--  footer btns  -->

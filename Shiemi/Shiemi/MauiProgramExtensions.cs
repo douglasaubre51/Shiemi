@@ -2,7 +2,6 @@
 using Microsoft.Extensions.Logging;
 using Shiemi.PageModels;
 using Shiemi.PageModels.Chat;
-using Shiemi.PageModels.Dev;
 using Shiemi.PageModels.Market;
 using Shiemi.PageModels.Project;
 using Shiemi.PageModels.Start;
@@ -20,6 +19,7 @@ public static class MauiProgramExtensions
     {
         builder
             .UseMauiApp<App>()
+			.UseMauiCommunityToolkitMarkup()
             .UseMauiCommunityToolkit(options =>
             {
                 options.SetShouldEnableSnackbarOnWindows(true);
@@ -84,6 +84,8 @@ public static class MauiProgramExtensions
 
         // Dev
         builder.Services.AddTransient<PageModels.Dev.EditPageModel>();
+        builder.Services.AddTransient<PageModels.Dev.MarketpageModel>();
+        builder.Services.AddTransient<PageModels.Dev.DetailsPageModel>();
 
 
 

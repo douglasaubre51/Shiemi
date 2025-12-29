@@ -20,6 +20,7 @@ public partial class AppShell : Shell
 
         // Dev
         Routing.RegisterRoute("EditDev", typeof(Pages.Dev.Edit));
+        Routing.RegisterRoute("DetailsDev", typeof(Pages.Dev.Details));
 
         // User
         Routing.RegisterRoute("EditProfile", typeof(Pages.User.Edit));

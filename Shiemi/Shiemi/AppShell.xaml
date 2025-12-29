@@ -12,14 +12,21 @@
     FlyoutBackgroundColor="#f3f3f3"
     Shell.FlyoutBehavior="Flyout">
 
-    <FlyoutItem Title="GetStarted" FlyoutItemIsVisible="False">
+    <FlyoutItem
+        Title="GetStarted"
+        FlyoutItemIsVisible="False">
         <Tab>
-            <ShellContent ContentTemplate="{DataTemplate startpages:Index}" Route="Index" />
+            <ShellContent
+                ContentTemplate="{DataTemplate startpages:Index}"
+                Route="Index" />
         </Tab>
     </FlyoutItem>
 
-    <FlyoutItem Title="Home" FlyoutIcon="ic_fluent_home_28_regular.png">
-        <Tab FlyoutIcon="ic_fluent_home_28_regular.png">
+    <FlyoutItem
+        Title="Home"
+        FlyoutIcon="ic_fluent_home_28_regular.png">
+        <Tab
+            FlyoutIcon="ic_fluent_home_28_regular.png">
             <ShellContent
                 ContentTemplate="{DataTemplate userpages:Profile}"
                 FlyoutIcon="ic_fluent_home_28_regular.png"
@@ -27,30 +34,50 @@
         </Tab>
     </FlyoutItem>
 
-    <FlyoutItem Title="Projects" FlyoutIcon="ic_fluent_grid_28_regular.png">
+    <FlyoutItem
+        Title="Projects"
+        FlyoutIcon="ic_fluent_grid_28_regular.png">
         <Tab>
-            <ShellContent ContentTemplate="{DataTemplate projectpages:Projects}" Route="Projects" />
+            <ShellContent
+                ContentTemplate="{DataTemplate projectpages:Projects}"
+                Route="Projects" />
         </Tab>
     </FlyoutItem>
 
-    <FlyoutItem Title="Shop" FlyoutIcon="ic_fluent_shopping_bag_28_regular.png">
-        <Tab Title="Projects">
-            <ShellContent ContentTemplate="{DataTemplate marketpages:ProjectShop}" Route="ProjectShop" />
+    <FlyoutItem
+        Title="Shop"
+        FlyoutIcon="ic_fluent_shopping_bag_28_regular.png">
+        <Tab
+            Title="Projects">
+            <ShellContent
+                ContentTemplate="{DataTemplate marketpages:ProjectShop}"
+                Route="ProjectShop" />
         </Tab>
 
-        <Tab Title="Devs">
-            <ShellContent ContentTemplate="{DataTemplate devpages:Market}" Route="DevMarket" />
+        <Tab
+            Title="Devs">
+            <ShellContent
+                ContentTemplate="{DataTemplate devpages:Market}"
+                Route="DevMarket" />
         </Tab>
     </FlyoutItem>
 
 
-    <FlyoutItem Title="Chats" Icon="ic_fluent_chat_28_regular.png">
-        <Tab Title="Rooms">
-            <ShellContent ContentTemplate="{DataTemplate chatpages:Rooms}" Route="Rooms" />
+    <FlyoutItem
+        Title="Chats"
+        Icon="ic_fluent_chat_28_regular.png">
+        <Tab
+            Title="Rooms">
+            <ShellContent
+                ContentTemplate="{DataTemplate chatpages:Rooms}"
+                Route="Rooms" />
         </Tab>
 
-        <Tab Title="Channels">
-            <ShellContent ContentTemplate="{DataTemplate chatpages:Channels}" Route="Channels" />
+        <Tab
+            Title="Channels">
+            <ShellContent
+                ContentTemplate="{DataTemplate chatpages:Channels}"
+                Route="Channels" />
         </Tab>
     </FlyoutItem>
 
