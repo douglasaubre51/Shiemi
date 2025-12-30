@@ -7,9 +7,9 @@
     xmlns:views="clr-namespace:Shiemi.Views"
     Title="{Binding ProjectVM.Title}"
     x:DataType="pagemodel:ProjectDetailsPageModel"
-    BackgroundColor="#abcff2"
     Shell.FlyoutBehavior="Flyout"
-    Shell.NavBarIsVisible="True">
+    Shell.NavBarIsVisible="True"
+    Shell.TabBarIsVisible="False">
     <Grid
         Margin="10"
         ColumnDefinitions="2*,Auto,*"
@@ -19,25 +19,21 @@
         <Label
             Grid.Row="0"
             Grid.Column="0"
-            FontSize="14"
+            FontSize="16"
             Text="Description"
-            TextColor="Black" />
+            TextColor="LightGrey" />
 
-        <Border Grid.Row="1" Grid.Column="0">
-            <Border.StrokeShape>
-                <RoundRectangle BackgroundColor="#ffffff" CornerRadius="8" />
-            </Border.StrokeShape>
-            <ScrollView
-                Padding="10"
-                BackgroundColor="#ffffff"
-                Orientation="Vertical">
-                <Label
-                    Padding="0,0,8,0"
-                    FontSize="16"
-                    LineBreakMode="WordWrap"
-                    Text="{Binding ProjectVM.Description}" />
-            </ScrollView>
-        </Border>
+        <ScrollView
+            Grid.Row="1"
+            Grid.Column="0"
+            BackgroundColor="#ffffff"
+            Orientation="Vertical">
+            <Label
+                Padding="0,0,8,0"
+                FontSize="18"
+                LineBreakMode="WordWrap"
+                Text="{Binding ProjectVM.Description}" />
+        </ScrollView>
 
         <Grid
             Grid.Row="2"
@@ -52,10 +48,10 @@
                 VerticalOptions="End" />
 
             <Button
-                BackgroundColor="DodgerBlue"
                 Command="{Binding GoToPrivateRoomCommand}"
                 HorizontalOptions="End"
                 IsEnabled="{Binding NotOwner}"
+                Style="{StaticResource PrimaryBtnStyle}"
                 Text="Chat"
                 VerticalOptions="End"
                 WidthRequest="100" />
@@ -78,6 +74,7 @@
             Grid.Column="2"
             CurrentProjectId="{Binding ProjectVM.Id}"
             NotAllowedToWrite="{Binding NotAllowedToReview}"
-            ReviewCollection="{Binding ReviewList}" />
+            ReviewCollection="{Binding ReviewList}"
+            VerticalOptions="Start" />
     </Grid>
 </ContentPage>

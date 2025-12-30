@@ -5,14 +5,16 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:models="clr-namespace:Shiemi.Models"
     xmlns:views="clr-namespace:Shiemi.Views"
-    Margin="0,0,0,20"
-    Padding="10"
+    Margin="0,0,0,0"
     x:DataType="views:ReviewCard"
     BackgroundColor="#ffffff">
     <Border.StrokeShape>
-        <RoundRectangle CornerRadius="8" />
+        <RoundRectangle
+            CornerRadius="8" />
     </Border.StrokeShape>
-    <Grid Margin="4" RowDefinitions="50,*,100,50">
+    <Grid
+        Margin="4"
+        RowDefinitions="50,*,100,50">
         <!--  title  -->
         <Label
             Grid.Row="0"
@@ -20,20 +22,33 @@
             Text="Reviews" />
 
         <!--  review collection  -->
-        <CollectionView x:Name="ReviewCollectionView" Grid.Row="1">
+        <CollectionView
+            x:Name="ReviewCollectionView"
+            Grid.Row="1">
             <CollectionView.ItemsLayout>
-                <LinearItemsLayout ItemSpacing="8" Orientation="Vertical" />
+                <LinearItemsLayout
+                    ItemSpacing="8"
+                    Orientation="Vertical" />
             </CollectionView.ItemsLayout>
 
             <CollectionView.ItemTemplate>
-                <DataTemplate x:DataType="models:Review">
+                <DataTemplate
+                    x:DataType="models:Review">
                     <!--  review card  -->
-                    <Border Stroke="LightGrey" StrokeThickness="1">
+                    <Border
+                        Stroke="Black"
+                        StrokeThickness="0"
+                        Style="{StaticResource HoverCardBorderStyle}">
                         <Border.StrokeShape>
-                            <RoundRectangle CornerRadius="4" />
+                            <RoundRectangle
+                                CornerRadius="4" />
                         </Border.StrokeShape>
-                        <VerticalStackLayout Padding="4" Spacing="4">
-                            <Label FontSize="16" Text="{Binding Text}" />
+                        <VerticalStackLayout
+                            Padding="8"
+                            Spacing="4">
+                            <Label
+                                FontSize="16"
+                                Text="{Binding Text}" />
                             <Label
                                 FontSize="10"
                                 Text="{Binding CreatedAt}"
@@ -70,12 +85,9 @@
         <Button
             x:Name="CreateReviewButton"
             Grid.Row="3"
-            BackgroundColor="Transparent"
-            BorderColor="DodgerBlue"
-            BorderWidth="1"
             Clicked="CreateReviewButton_Clicked"
+            Style="{StaticResource PrimaryBtnStyle}"
             Text="Add a review"
-            TextColor="DodgerBlue"
             VerticalOptions="End" />
     </Grid>
 </Border>

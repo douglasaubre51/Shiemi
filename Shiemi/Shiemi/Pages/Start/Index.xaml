@@ -16,7 +16,9 @@
 
         <Grid.Resources>
             <!--  base btn  -->
-            <Style x:Key="BaseButtonStyle" TargetType="Button">
+            <Style
+                x:Key="BaseButtonStyle"
+                TargetType="Button">
                 <Setter Property="WidthRequest" Value="300" />
                 <Setter Property="HeightRequest" Value="50" />
                 <Setter Property="VerticalOptions" Value="Center" />
@@ -25,7 +27,9 @@
             </Style>
 
             <!--  default btn  -->
-            <Style BasedOn="{StaticResource BaseButtonStyle}" TargetType="Button" />
+            <Style
+                BasedOn="{StaticResource BaseButtonStyle}"
+                TargetType="Button" />
 
             <!--  secondary btn  -->
             <Style
@@ -34,13 +38,16 @@
                 TargetType="Button">
                 <Setter Property="VisualStateManager.VisualStateGroups">
                     <VisualStateGroupList>
-                        <VisualStateGroup x:Name="CommonStates">
-                            <VisualState x:Name="Normal">
+                        <VisualStateGroup
+                            x:Name="CommonStates">
+                            <VisualState
+                                x:Name="Normal">
                                 <VisualState.Setters>
                                     <Setter Property="BackgroundColor" Value="White" />
                                 </VisualState.Setters>
                             </VisualState>
-                            <VisualState x:Name="PointerOver">
+                            <VisualState
+                                x:Name="PointerOver">
                                 <VisualState.Setters>
                                     <Setter Property="BackgroundColor" Value="#232323" />
                                 </VisualState.Setters>

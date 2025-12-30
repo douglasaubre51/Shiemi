@@ -9,10 +9,13 @@
     x:DataType="chatmodel:ChannelsPageModel"
     Shell.FlyoutBehavior="Flyout">
 
-    <Grid ColumnDefinitions="*,2*">
+    <Grid
+        ColumnDefinitions="*,2*">
 
         <!--  chat list  -->
-        <views:ProjectListView Grid.Column="0" ProjectCollection="{Binding ProjectCollection}" />
+        <views:ProjectListView
+            Grid.Column="0"
+            ProjectCollection="{Binding ProjectCollection}" />
 
         <!--  chat area  -->
         <views:ChannelMessageView

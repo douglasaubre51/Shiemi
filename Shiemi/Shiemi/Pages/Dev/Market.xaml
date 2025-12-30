@@ -24,67 +24,96 @@
                 <!--  dev card  -->
                 <DataTemplate
                     x:DataType="models:DevModel">
-                    <Grid
-                        Padding="8"
-                        BackgroundColor="White"
-                        ColumnDefinitions="*,*"
-                        RowDefinitions="Auto,*,Auto"
-                        RowSpacing="10">
-                        <!--  touch  -->
-                        <Grid.GestureRecognizers>
-                            <TapGestureRecognizer
-                                Command="{Binding Source={RelativeSource AncestorType={x:Type devpagemodels:MarketpageModel}}, x:DataType=devpagemodels:MarketpageModel, Path=GoToDetailsPageCommand}"
-                                CommandParameter="{Binding .}" />
-                        </Grid.GestureRecognizers>
+                    <Border
+                        StrokeThickness="0">
+                        <Border.Style>
+                            <Style
+                                TargetType="Border">
+                                <Setter Property="VisualStateManager.VisualStateGroups">
+                                    <VisualStateGroupList>
+                                        <VisualStateGroup
+                                            x:Name="CommonStates">
+                                            <VisualState
+                                                x:Name="Normal">
+                                                <VisualState.Setters>
+                                                    <Setter Property="BackgroundColor" Value="White" />
+                                                </VisualState.Setters>
+                                            </VisualState>
 
-                        <Border
-                            Grid.Row="0"
-                            Grid.ColumnSpan="2"
-                            Style="{StaticResource ImageCardBorderStyle}">
-                            <Image
-                                Aspect="AspectFill"
-                                HeightRequest="200"
-                                HorizontalOptions="Fill"
-                                Source="{Binding Profile}" />
-                        </Border>
+                                            <VisualState
+                                                x:Name="PointerOver">
+                                                <VisualState.Setters>
+                                                    <Setter Property="BackgroundColor" Value="LightGray" />
+                                                </VisualState.Setters>
+                                            </VisualState>
+                                        </VisualStateGroup>
+                                    </VisualStateGroupList>
+                                </Setter>
+                            </Style>
+                        </Border.Style>
+                        <Grid
+                            ColumnDefinitions="*,*"
+                            RowDefinitions="Auto,*,Auto"
+                            RowSpacing="10">
+                            <!--  touch  -->
+                            <Grid.GestureRecognizers>
+                                <TapGestureRecognizer
+                                    Command="{Binding Source={RelativeSource AncestorType={x:Type devpagemodels:MarketpageModel}}, x:DataType=devpagemodels:MarketpageModel, Path=GoToDetailsPageCommand}"
+                                    CommandParameter="{Binding .}" />
+                            </Grid.GestureRecognizers>
 
-                        <Label
-                            Grid.Row="1"
-                            Grid.ColumnSpan="2"
-                            FontSize="13"
-                            LineBreakMode="WordWrap"
-                            Text="{Binding ShortDesc}" />
-
-                        <VerticalStackLayout
-                            Grid.Row="2"
-                            Grid.Column="0"
-                            Spacing="2"
-                            VerticalOptions="End">
-                            <Label
-                                FontSize="10"
-                                Text="Starts at"
-                                TextColor="Grey" />
-
-                            <Label
-                                FontSize="16"
-                                Text="{Binding StartingPrice, StringFormat='₹{0}'}" />
-                        </VerticalStackLayout>
-
-                        <VerticalStackLayout
-                            Grid.Row="2"
-                            Grid.Column="1"
-                            HorizontalOptions="End"
-                            Spacing="2"
-                            VerticalOptions="End">
-                            <Label
-                                FontSize="10"
-                                Text="Developer"
-                                TextColor="Grey" />
+                            <Border
+                                Grid.Row="0"
+                                Grid.ColumnSpan="2"
+                                Style="{StaticResource ImageCardBorderStyle}">
+                                <Image
+                                    Aspect="AspectFill"
+                                    HeightRequest="200"
+                                    HorizontalOptions="Fill"
+                                    Source="{Binding Profile}" />
+                            </Border>
 
                             <Label
-                                Text="{Binding Username}" />
-                        </VerticalStackLayout>
-                    </Grid>
+                                Grid.Row="1"
+                                Grid.ColumnSpan="2"
+                                Margin="4,0,0,0"
+                                FontSize="13"
+                                LineBreakMode="WordWrap"
+                                Text="{Binding ShortDesc}" />
+
+                            <VerticalStackLayout
+                                Grid.Row="2"
+                                Grid.Column="0"
+                                Padding="4"
+                                Spacing="2"
+                                VerticalOptions="End">
+                                <Label
+                                    FontSize="10"
+                                    Text="Starts at"
+                                    TextColor="Grey" />
+
+                                <Label
+                                    FontSize="16"
+                                    Text="{Binding StartingPrice, StringFormat='₹{0}'}" />
+                            </VerticalStackLayout>
+
+                            <VerticalStackLayout
+                                Grid.Row="2"
+                                Grid.Column="1"
+                                Padding="4"
+                                HorizontalOptions="End"
+                                Spacing="2"
+                                VerticalOptions="End">
+                                <Label
+                                    FontSize="10"
+                                    Text="Developer"
+                                    TextColor="Grey" />
+
+                                <Label
+                                    Text="{Binding Username}" />
+                            </VerticalStackLayout>
+                        </Grid>
+                    </Border>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>

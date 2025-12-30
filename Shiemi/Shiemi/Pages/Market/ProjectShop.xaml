@@ -5,11 +5,12 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:pagemodel="clr-namespace:Shiemi.PageModels.Market"
     xmlns:viewmodel="clr-namespace:Shiemi.ViewModels"
-    Title="Project market"
+    Title="Project Market"
     x:DataType="pagemodel:ProjectShopPageModel"
-    BackgroundColor="LightBlue"
     Shell.FlyoutBehavior="Flyout">
-    <Grid Margin="10" RowDefinitions="*">
+    <Grid
+        Margin="10"
+        RowDefinitions="*">
         <!--  Projects  -->
         <CollectionView
             Margin="0,30,0,0"
@@ -25,15 +26,20 @@
             </CollectionView.ItemsLayout>
 
             <CollectionView.ItemTemplate>
-                <DataTemplate x:DataType="viewmodel:ProjectViewModel">
-                    <Border>
+                <DataTemplate
+                    x:DataType="viewmodel:ProjectViewModel">
+                    <Border
+                        MinimumHeightRequest="120">
                         <Border.Style>
-                            <Style TargetType="Border">
+                            <Style
+                                TargetType="Border">
                                 <Setter Property="BackgroundColor" Value="White" />
                                 <Setter Property="VisualStateManager.VisualStateGroups">
                                     <VisualStateGroupList>
-                                        <VisualStateGroup Name="CommonStates">
-                                            <VisualState Name="Normal">
+                                        <VisualStateGroup
+                                            Name="CommonStates">
+                                            <VisualState
+                                                Name="Normal">
                                                 <VisualState.Setters>
                                                     <Setter Property="BackgroundColor" Value="White" />
                                                     <Setter Property="Stroke" Value="White" />
@@ -41,7 +47,8 @@
                                                 </VisualState.Setters>
                                             </VisualState>
 
-                                            <VisualState Name="PointerOver">
+                                            <VisualState
+                                                Name="PointerOver">
                                                 <VisualState.Setters>
                                                     <Setter Property="BackgroundColor" Value="WhiteSmoke" />
                                                     <Setter Property="Stroke" Value="White" />
@@ -55,10 +62,14 @@
                         </Border.Style>
 
                         <Border.GestureRecognizers>
-                            <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type pagemodel:ProjectShopPageModel}}, x:DataType=pagemodel:ProjectShopPageModel, Path=GoToProjectDetailsCommand}" CommandParameter="{Binding .}" />
+                            <TapGestureRecognizer
+                                Command="{Binding Source={RelativeSource AncestorType={x:Type pagemodel:ProjectShopPageModel}}, x:DataType=pagemodel:ProjectShopPageModel, Path=GoToProjectDetailsCommand}"
+                                CommandParameter="{Binding .}" />
                         </Border.GestureRecognizers>
                         <!--  Project card  -->
-                        <VerticalStackLayout Padding="10,10,10,30" Spacing="8">
+                        <VerticalStackLayout
+                            Padding="10,10,10,30"
+                            Spacing="8">
                             <Label
                                 FontSize="16"
                                 LineBreakMode="WordWrap"

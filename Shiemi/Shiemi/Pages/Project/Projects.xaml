@@ -10,23 +10,30 @@
     BackgroundColor="FloralWhite"
     Shell.FlyoutBehavior="Flyout">
 
-    <Grid Margin="10" RowDefinitions="*,50">
+    <Grid
+        Margin="10"
+        RowDefinitions="*,50">
         <!--  grid styles  -->
         <Grid.Resources>
-            <Style x:Key="AddBtn" TargetType="Button">
+            <Style
+                x:Key="AddBtn"
+                TargetType="Button">
                 <Setter Property="BackgroundColor" Value="{StaticResource Primary}" />
                 <Setter Property="CornerRadius" Value="50" />
                 <Setter Property="WidthRequest" Value="50" />
                 <Setter Property="FontSize" Value="30" />
                 <Setter Property="VisualStateManager.VisualStateGroups">
                     <VisualStateGroupList>
-                        <VisualStateGroup Name="CommonStates">
-                            <VisualState Name="PointerOver">
+                        <VisualStateGroup
+                            Name="CommonStates">
+                            <VisualState
+                                Name="PointerOver">
                                 <VisualState.Setters>
                                     <Setter Property="BackgroundColor" Value="{StaticResource PrimaryDark}" />
                                 </VisualState.Setters>
                             </VisualState>
-                            <VisualState Name="Normal">
+                            <VisualState
+                                Name="Normal">
                                 <VisualState.Setters>
                                     <Setter Property="BackgroundColor" Value="{StaticResource Primary}" />
                                 </VisualState.Setters>
@@ -40,21 +47,32 @@
         <!--  project collection section  -->
         <CollectionView
             Margin="0,30,0,0"
-            ItemsLayout="VerticalGrid,3"
             ItemsSource="{Binding ProjectCollection}"
             SelectionChanged="Project_CollectionView_SelectionChanged"
             SelectionMode="Single">
+            <CollectionView.ItemsLayout>
+                <GridItemsLayout
+                    HorizontalItemSpacing="4"
+                    Orientation="Vertical"
+                    Span="3"
+                    VerticalItemSpacing="4" />
+            </CollectionView.ItemsLayout>
             <CollectionView.ItemTemplate>
                 <!--  data template  -->
-                <DataTemplate x:DataType="viewmodels:ProjectsPageProjectViewModel">
-                    <Grid ColumnSpacing="20">
+                <DataTemplate
+                    x:DataType="viewmodels:ProjectsPageProjectViewModel">
+                    <Grid
+                        ColumnSpacing="20">
                         <!--  grid styles  -->
                         <Grid.Resources>
-                            <Style TargetType="Border">
+                            <Style
+                                TargetType="Border">
                                 <Setter Property="VisualStateManager.VisualStateGroups">
                                     <VisualStateGroupList>
-                                        <VisualStateGroup Name="CommonStates">
-                                            <VisualState Name="Normal">
+                                        <VisualStateGroup
+                                            Name="CommonStates">
+                                            <VisualState
+                                                Name="Normal">
                                                 <VisualState.Setters>
                                                     <Setter Property="BackgroundColor" Value="White" />
                                                 </VisualState.Setters>
@@ -65,8 +83,12 @@
                             </Style>
                         </Grid.Resources>
                         <!--  contents  -->
-                        <Border Padding="16">
-                            <VerticalStackLayout Spacing="8">
+                        <Border
+                            Padding="16"
+                            MinimumHeightRequest="120"
+                            Style="{StaticResource CardBorderStyle}">
+                            <VerticalStackLayout
+                                Spacing="8">
                                 <Label
                                     FontSize="16"
                                     LineBreakMode="WordWrap"

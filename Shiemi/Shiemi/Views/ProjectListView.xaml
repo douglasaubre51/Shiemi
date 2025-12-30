@@ -15,7 +15,8 @@
         SelectionMode="Single">
 
         <CollectionView.ItemTemplate>
-            <DataTemplate x:DataType="viewmodels:ChatListProjectViewModel">
+            <DataTemplate
+                x:DataType="viewmodels:ChatListProjectViewModel">
                 <Grid
                     ColumnDefinitions="*"
                     RowDefinitions="*,*"
