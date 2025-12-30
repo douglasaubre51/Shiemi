@@ -6,8 +6,7 @@
     xmlns:devpagemodels="clr-namespace:Shiemi.PageModels.Dev"
     xmlns:models="clr-namespace:Shiemi.Models"
     Title="Dev Market"
-    x:DataType="devpagemodels:MarketpageModel"
-    BackgroundColor="#f5f7fb">
+    x:DataType="devpagemodels:MarketpageModel">
     <!--  dev cards  -->
     <VerticalStackLayout
         Margin="10">

@@ -10,3 +10,10 @@ public record ChatRoomViewModel(
     int SenderId,
     string Title
 );
+
+public record ChatMessageViewModel(
+		string Text,
+		DateTime SentAt,
+		bool IsOwner = false
+);
+	

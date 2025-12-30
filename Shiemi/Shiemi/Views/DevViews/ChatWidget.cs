@@ -1,3 +1,4 @@
+using Shiemi.ViewModels;
 using Microsoft.Maui.Controls.Shapes;
 using MvvmHelpers;
 using static CommunityToolkit.Maui.Markup.GridRowsColumns;
@@ -42,17 +43,18 @@ public class ChatWidget : ContentView
 				Label text = new ();
 				text.FontSize = 16;
 				text.TextColor = Colors.White;
-				text.SetBinding(Label.TextProperty,static (Chat chat) => chat.Text);
+				text.SetBinding(Label.TextProperty,static (ChatMessageViewModel chat) => chat.Text);
 
 				Label dateTime = new ();
 				dateTime.FontSize = 10;
 				dateTime.TextColor = Colors.WhiteSmoke;
-				dateTime.SetBinding(Label.TextProperty,static (Chat chat) => chat.SentAt);
+				dateTime.SetBinding(Label.TextProperty,static (ChatMessageViewModel chat) => chat.SentAt);
 
 				VerticalStackLayout cardLayout = new ();
 				cardLayout.Padding(4,8); 
 				cardLayout.Add(text);
 				cardLayout.Add(dateTime);
+
 
 				Border border = new ();
 				border.HorizontalOptions = LayoutOptions.End;
@@ -77,6 +79,8 @@ public class ChatWidget : ContentView
 						  MinimumWidthRequest = 300,
 						  HorizontalOptions = LayoutOptions.Center
 		};
+		chatBox.SetBinding(Editor.TextProperty, new Binding(nameof(ChatText), source: this));
+
 		sendBtn = new()
 		{
 			Text = "send",
@@ -116,11 +120,22 @@ public class ChatWidget : ContentView
 	{
 		if(string.IsNullOrWhiteSpace(chatBox.Text)) return;
 
-		Chat chat = new (chatBox.Text,DateTime.UtcNow.ToLocalTime());
+		ChatMessageViewModel chat = new (chatBox.Text,DateTime.UtcNow.ToLocalTime());
 		ChatCollection.Add(chat);
 
 		DidSendChat = true;
 		chatBox.Text = string.Empty;
+	}
+
+	public static BindableProperty ChatTextProperty = BindableProperty.Create(
+			nameof(ChatText),
+			typeof(string),
+			typeof(ChatWidget),
+			string.Empty);
+	public string ChatText
+	{
+		get => (string) GetValue(ChatTextProperty);
+		set => SetValue(ChatTextProperty,value);
 	}
 
 	public static BindableProperty DidSendChatProperty = BindableProperty.Create(
@@ -147,18 +162,13 @@ public class ChatWidget : ContentView
 
 	public static BindableProperty ChatCollectionProperty = BindableProperty.Create(
 			nameof(ChatCollection),
-			typeof(ObservableRangeCollection<Chat>),
+			typeof(ObservableRangeCollection<ChatMessageViewModel>),
 			typeof(ChatWidget),
-			new ObservableRangeCollection<Chat>());
-	public ObservableRangeCollection<Chat> ChatCollection
+			new ObservableRangeCollection<ChatMessageViewModel>());
+	public ObservableRangeCollection<ChatMessageViewModel> ChatCollection
 	{
-		get => (ObservableRangeCollection<Chat>)GetValue(ChatCollectionProperty);
+		get => (ObservableRangeCollection<ChatMessageViewModel>)GetValue(ChatCollectionProperty);
 		set => SetValue(ChatCollectionProperty, value);
 	}
 
 }
-
-public record Chat(
-		string Text,
-		DateTime SentAt
-		);
