@@ -8,9 +8,12 @@
     xmlns:views="clr-namespace:Shiemi.Views"
     x:DataType="pagemodel:PrivateRoomPageModel"
     Shell.FlyoutBehavior="Flyout"
-    Shell.NavBarIsVisible="False">
+    Shell.NavBarIsVisible="False"
+    Shell.TabBarIsVisible="False">
 
-    <Grid ColumnDefinitions="*" ColumnSpacing="10">
+    <Grid
+        ColumnDefinitions="*"
+        ColumnSpacing="10">
 
         <!--  chats view  -->
         <views:MessageView
