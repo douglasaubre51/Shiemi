@@ -1,5 +1,7 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
+using MvvmHelpers;
 using Shiemi.Models;
+using Shiemi.ViewModels;
 
 namespace Shiemi.PageModels.Dev;
 
@@ -13,6 +15,8 @@ public partial class DetailsPageModel : BasePageModel
 		private bool isSendingChat;
 	[ObservableProperty]
 		private string sendChatText = string.Empty;
+	[ObservableProperty]
+		private ObservableRangeCollection<ChatMessageViewModel> messages = [];
 
 	async partial void OnIsSendingChatChanged(bool value)
 		=> await SendingChat();

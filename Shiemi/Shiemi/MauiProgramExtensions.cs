@@ -10,6 +10,7 @@ using Shiemi.Services;
 using Shiemi.Storage;
 using Shiemi.Utilities;
 using Shiemi.Utilities.HubClients;
+using Shiemi.Views.DevViews;
 
 namespace Shiemi;
 
@@ -39,6 +40,9 @@ public static class MauiProgramExtensions
 
         // Add Storage Services
         builder.Services.AddSingleton<EnvironmentStorage>();
+
+		// Add Widgets
+		builder.Services.AddTransient<ChatWidget>();
 
 
         // Add Rest Services
@@ -86,8 +90,6 @@ public static class MauiProgramExtensions
         builder.Services.AddTransient<PageModels.Dev.EditPageModel>();
         builder.Services.AddTransient<PageModels.Dev.MarketpageModel>();
         builder.Services.AddTransient<PageModels.Dev.DetailsPageModel>();
-
-
 
         return builder;
     }
