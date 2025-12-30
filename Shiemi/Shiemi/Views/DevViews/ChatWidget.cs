@@ -55,9 +55,15 @@ public class ChatWidget : ContentView
 				cardLayout.Add(text);
 				cardLayout.Add(dateTime);
 
+				Border border = new();
+				border.SetBinding(
+					Border.HorizontalOptionsProperty,
+					new Binding(nameof(ChatMessageViewModel.IsOwner))
+					{
+						Converter = new FuncConverter<bool,LayoutOptions>(isOwner =>
+							isOwner ? LayoutOptions.End : LayoutOptions.Start)
+					});
 
-				Border border = new ();
-				border.HorizontalOptions = LayoutOptions.End;
 				border.BackgroundColor = Colors.LightGreen;
 				border.StrokeShape = new RoundRectangle { CornerRadius = new CornerRadius(4,4,4,0) };
 				border.StrokeThickness = 0;
@@ -120,7 +126,7 @@ public class ChatWidget : ContentView
 	{
 		if(string.IsNullOrWhiteSpace(chatBox.Text)) return;
 
-		ChatMessageViewModel chat = new (chatBox.Text,DateTime.UtcNow.ToLocalTime());
+		ChatMessageViewModel chat = new (chatBox.Text,DateTime.UtcNow.ToLocalTime(),true);
 		ChatCollection.Add(chat);
 
 		DidSendChat = true;
