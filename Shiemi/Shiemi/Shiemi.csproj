@@ -8,6 +8,7 @@
 		<UseMaui>true</UseMaui>
 		<Nullable>enable</Nullable>
 	  <UserSecretsId>e77b56dd-6c1c-4794-897b-2429a12440eb</UserSecretsId>
+	  <Platforms>AnyCPU;x64</Platforms>
   </PropertyGroup>
 
 	<ItemGroup>
