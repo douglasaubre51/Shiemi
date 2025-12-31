@@ -10,10 +10,16 @@ public partial class Details : ContentPage
         BindingContext = pageModel;
     }
 
+	protected override void OnAppearing()
+	{
+		var context = BindingContext as DetailsPageModel;
+		context.IsPageLoading = true;
+	}
+
 	protected override void OnDisappearing()
 	{
 		var context = BindingContext as DetailsPageModel;
-		context.Messages.Clear();
+		context.IsPageExiting = true;
 
 		base.OnDisappearing();
 	}

@@ -44,6 +44,7 @@
             ChatCollection="{Binding Messages, Mode=TwoWay}"
             ChatText="{Binding SendChatText, Mode=TwoWay}"
             ChatTitle="{Binding CurrentDev.Username}"
-            DidSendChat="{Binding IsSendingChat, Mode=TwoWay}" />
+            DidSendChat="{Binding IsSendingChat, Mode=TwoWay}"
+            IsNotLoggedInUser="{Binding IsNotLoggedInUser, Mode=TwoWay}" />
     </Grid>
 </ContentPage>

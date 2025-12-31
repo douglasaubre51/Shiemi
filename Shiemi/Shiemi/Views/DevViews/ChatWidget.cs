@@ -43,12 +43,12 @@ public class ChatWidget : ContentView
 				Label text = new ();
 				text.FontSize = 16;
 				text.TextColor = Colors.White;
-				text.SetBinding(Label.TextProperty,static (ChatMessageViewModel chat) => chat.Text);
+				text.SetBinding(Label.TextProperty,static (MessageViewModel chat) => chat.Text);
 
 				Label dateTime = new ();
 				dateTime.FontSize = 10;
 				dateTime.TextColor = Colors.WhiteSmoke;
-				dateTime.SetBinding(Label.TextProperty,static (ChatMessageViewModel chat) => chat.SentAt);
+				dateTime.SetBinding(Label.TextProperty,static (MessageViewModel chat) => chat.CreatedAt);
 
 				VerticalStackLayout cardLayout = new ();
 				cardLayout.Padding(4,8); 
@@ -58,7 +58,7 @@ public class ChatWidget : ContentView
 				Border border = new();
 				border.SetBinding(
 					Border.HorizontalOptionsProperty,
-					new Binding(nameof(ChatMessageViewModel.IsOwner))
+					new Binding(nameof(MessageViewModel.IsOwner))
 					{
 						Converter = new FuncConverter<bool,LayoutOptions>(isOwner =>
 							isOwner ? LayoutOptions.End : LayoutOptions.Start)
@@ -86,6 +86,7 @@ public class ChatWidget : ContentView
 						  HorizontalOptions = LayoutOptions.Center
 		};
 		chatBox.SetBinding(Editor.TextProperty, new Binding(nameof(ChatText), source: this));
+		chatBox.SetBinding(Editor.IsEnabledProperty, new Binding(nameof(IsNotLoggedInUser), source: this));
 
 		sendBtn = new()
 		{
@@ -93,6 +94,7 @@ public class ChatWidget : ContentView
 				 HorizontalOptions = LayoutOptions.End
 		};
 		sendBtn.Clicked += SendBtn_Clicked!;
+		sendBtn.SetBinding(Button.IsEnabledProperty, new Binding(nameof(IsNotLoggedInUser), source: this));
 
 		var bottomBar = new HorizontalStackLayout
 		{
@@ -126,11 +128,19 @@ public class ChatWidget : ContentView
 	{
 		if(string.IsNullOrWhiteSpace(chatBox.Text)) return;
 
-		ChatMessageViewModel chat = new (chatBox.Text,DateTime.UtcNow.ToLocalTime(),true);
-		ChatCollection.Add(chat);
-
 		DidSendChat = true;
 		chatBox.Text = string.Empty;
+	}
+
+	public static BindableProperty IsNotLoggedInUserProperty = BindableProperty.Create(
+			nameof(IsNotLoggedInUser),
+			typeof(bool),
+			typeof(ChatWidget),
+			false);
+	public bool IsNotLoggedInUser
+	{
+		get => (bool) GetValue(IsNotLoggedInUserProperty);
+		set => SetValue(IsNotLoggedInUserProperty,value);
 	}
 
 	public static BindableProperty ChatTextProperty = BindableProperty.Create(
@@ -168,13 +178,12 @@ public class ChatWidget : ContentView
 
 	public static BindableProperty ChatCollectionProperty = BindableProperty.Create(
 			nameof(ChatCollection),
-			typeof(ObservableRangeCollection<ChatMessageViewModel>),
+			typeof(ObservableRangeCollection<MessageViewModel>),
 			typeof(ChatWidget),
-			new ObservableRangeCollection<ChatMessageViewModel>());
-	public ObservableRangeCollection<ChatMessageViewModel> ChatCollection
+			new ObservableRangeCollection<MessageViewModel>());
+	public ObservableRangeCollection<MessageViewModel> ChatCollection
 	{
-		get => (ObservableRangeCollection<ChatMessageViewModel>)GetValue(ChatCollectionProperty);
+		get => (ObservableRangeCollection<MessageViewModel>)GetValue(ChatCollectionProperty);
 		set => SetValue(ChatCollectionProperty, value);
 	}
-
 }

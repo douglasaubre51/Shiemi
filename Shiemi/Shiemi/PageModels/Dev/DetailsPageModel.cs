@@ -2,12 +2,22 @@
 using MvvmHelpers;
 using Shiemi.Models;
 using Shiemi.ViewModels;
+using Shiemi.Dtos;
+using Shiemi.Utilities.HubClients;
+using Shiemi.Storage;
+using Shiemi.Services;
 
 namespace Shiemi.PageModels.Dev;
 
 [QueryProperty(nameof(CurrentDev), "CurrentDev")]
-public partial class DetailsPageModel : BasePageModel
+public partial class DetailsPageModel(
+		RoomClient roomServ,
+		DevService devServ
+		) : BasePageModel
 {
+	private readonly RoomClient _roomServ = roomServ;
+	private readonly DevService _devServ = devServ;
+
 	[ObservableProperty]
 		private DevModel? currentDev;
 
@@ -16,18 +26,91 @@ public partial class DetailsPageModel : BasePageModel
 	[ObservableProperty]
 		private string sendChatText = string.Empty;
 	[ObservableProperty]
-		private ObservableRangeCollection<ChatMessageViewModel> messages = [];
+		private bool isPageLoading;
+	[ObservableProperty]
+		private bool isPageExiting;
+	[ObservableProperty]
+		private bool isNotLoggedInUser;
+
+	[ObservableProperty]
+		private ObservableRangeCollection<MessageViewModel> messages = [];
+
+	async partial void OnIsPageExitingChanged(bool value)
+		=> await PageIsExiting(value);
+	async Task PageIsExiting(bool value)
+	{
+		if(value is false) return;
+		try
+		{
+			Messages.Clear();
+			if(_roomServ._hub is null) return;
+
+			await _roomServ.DisconnectWebSocket();
+		}
+		catch(Exception ex)
+		{
+			Debug.WriteLine(ex.Message);
+		}
+		finally
+		{
+			IsPageExiting = false;
+		}
+	}
+
+	async partial void OnIsPageLoadingChanged(bool value)
+		=> await PageIsLoading(value);
+	async Task PageIsLoading(bool value)
+	{
+		if(value is false) return;
+
+		try
+		{
+			int roomId = await _roomServ.GetPrivateRoom(UserStorage.UserId, CurrentDev.Id);
+			if(roomId is 0)
+			{
+				await Shell.Current.DisplayAlertAsync(
+						"Live Room failure",
+						"Couldnot create live chat room",
+						"Ok");
+				await Shell.Current.GoToAsync("..");
+				return;
+			}
+			UserStorage.RoomId = roomId;
+			DevDto loggedInUserDevDto = await _devServ.GetByUserId(UserStorage.UserId);
+			if(loggedInUserDevDto.Id == CurrentDev.Id)
+			{
+				Debug.WriteLine("users own dev profile!");
+				IsNotLoggedInUser = false;
+				return;
+			}
+				
+			await _roomServ.InitSignalR(Messages, roomId);
+			IsNotLoggedInUser = true;
+		}
+		catch(Exception ex)
+		{
+			Debug.WriteLine(ex.Message);
+		}
+		finally
+		{
+			IsPageLoading = false;
+		}
+	}
 
 	async partial void OnIsSendingChatChanged(bool value)
-		=> await SendingChat();
-
-	async Task SendingChat()
+		=> await SendingChat(value);
+	async Task SendingChat(bool value)
 	{
+		if(value is false) return;
 		try
-		{	if(IsSendingChat is false) return;
-
-			Debug.WriteLine("is sending chat...");
-			Debug.WriteLine(SendChatText);
+		{
+			await _roomServ.SendChat(new SendMessageDto(
+				SendChatText,
+				DateTime.UtcNow.ToLocalTime(),
+				UserStorage.UserId,
+				0,
+				UserStorage.RoomId
+			));
 		}
 		catch(Exception ex)
 		{

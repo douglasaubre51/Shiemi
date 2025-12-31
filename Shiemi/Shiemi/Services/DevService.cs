@@ -72,4 +72,8 @@ public class DevService
         => await _httpClient.GetFromJsonAsync<List<DevDto>>(
             $"{devBaseUri}/all"
         );
+	public async Task<DevDto?> GetByUserId(int userId)
+		=> await _httpClient.GetFromJsonAsync<DevDto>(
+            $"{devBaseUri}/{userId}/userId/dev"
+		);
 }
