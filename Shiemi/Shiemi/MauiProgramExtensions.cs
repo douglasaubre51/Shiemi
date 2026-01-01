@@ -20,7 +20,7 @@ public static class MauiProgramExtensions
     {
         builder
             .UseMauiApp<App>()
-			.UseMauiCommunityToolkitMarkup()
+            .UseMauiCommunityToolkitMarkup()
             .UseMauiCommunityToolkit(options =>
             {
                 options.SetShouldEnableSnackbarOnWindows(true);
@@ -45,8 +45,8 @@ public static class MauiProgramExtensions
         // Add Storage Services
         builder.Services.AddSingleton<EnvironmentStorage>();
 
-		// Add Widgets
-		builder.Services.AddTransient<ChatWidget>();
+        // Add Widgets
+        builder.Services.AddTransient<ChatWidget>();
 
 
         // Add Rest Services

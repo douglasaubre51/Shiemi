@@ -9,3 +9,10 @@ public record RoomDto(
     int ProjectId,
     List<Message>? Messages
 );
+
+public record GetPrivateRoomDto(
+    int UserId,
+    int ProjectId,
+	int DevId,
+    RoomTypes RoomType
+);

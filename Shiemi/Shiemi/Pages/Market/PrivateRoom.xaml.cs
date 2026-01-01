@@ -13,19 +13,16 @@ public partial class PrivateRoom : ContentPage
     private readonly UserService _userService;
 
     public PrivateRoom(
-        PrivateRoomPageModel pageModel,
-        RoomClient roomService,
-        UserService userService
-        )
+            PrivateRoomPageModel pageModel,
+            RoomClient roomService,
+            UserService userService
+            )
     {
         InitializeComponent();
         BindingContext = pageModel;
         _roomService = roomService;
         _userService = userService;
     }
-
-
-    // init SignalR on page load!
 
     protected override async void OnAppearing()
     {
@@ -39,15 +36,17 @@ public partial class PrivateRoom : ContentPage
         try
         {
             int roomId = await _roomService.GetPrivateRoom(
-               UserStorage.UserId,
-               pageModel.CurrentProjectVM.Id
-               );
+                    UserStorage.UserId,
+                    pageModel.CurrentProjectVM.Id,
+					0,
+                    RoomTypes.PRIVATE
+                    );
             UserStorage.RoomId = roomId;
 
             await _roomService.InitSignalR(
-               pageModel!.MessageCollection,
-               roomId
-               );
+                    pageModel!.MessageCollection,
+                    roomId
+                    );
 
             UserDto? user = await _userService.GetUserById(pageModel.CurrentProjectVM.UserId);
             pageModel.Sender = user!.FirstName + " " + user.LastName;
@@ -60,9 +59,7 @@ public partial class PrivateRoom : ContentPage
         base.OnAppearing();
     }
 
-
     // destroy signalR on page exit!
-
     protected override async void OnDisappearing()
     {
         try

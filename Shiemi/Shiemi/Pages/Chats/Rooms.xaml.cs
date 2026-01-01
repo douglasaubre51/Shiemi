@@ -15,11 +15,11 @@ public partial class Rooms : ContentPage
     private readonly RoomClient _roomService;
 
     public Rooms(
-        ChatService chatService,
-        RoomsPageModel pageModel,
-        UserService userService,
-        RoomClient roomService
-        )
+            ChatService chatService,
+            RoomsPageModel pageModel,
+            UserService userService,
+            RoomClient roomService
+            )
     {
         InitializeComponent();
         BindingContext = pageModel;
@@ -52,10 +52,10 @@ public partial class Rooms : ContentPage
                     continue;
 
                 ChatRoomViewModel chat = new(
-                    r.Id,
-                    user.Id,
-                    user.FirstName + " " + user.LastName
-                );  // create new chat model
+                        r.Id,
+                        user.Id,
+                        user.FirstName + " " + user.LastName
+                        );  // create new chat model
                 context.ChatCollection.Replace(chat);
             }
         }
@@ -67,8 +67,8 @@ public partial class Rooms : ContentPage
 
     // user clicks chat!
     private async void CollectionView_SelectionChanged(
-        object sender,
-        SelectionChangedEventArgs e)
+            object sender,
+            SelectionChangedEventArgs e)
     {
         try
         {

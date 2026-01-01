@@ -4,9 +4,9 @@ namespace Shiemi.Pages.Dev;
 
 public partial class Edit : ContentPage
 {
-	public Edit(EditPageModel pageModel)
-	{
-		InitializeComponent();
-		BindingContext = pageModel;
-	}
+    public Edit(EditPageModel pageModel)
+    {
+        InitializeComponent();
+        BindingContext = pageModel;
+    }
 }

@@ -20,9 +20,9 @@ public class RoomClient
     public HubConnection? _hub;
 
     public RoomClient(
-        RestClient restClient,
-        EnvironmentStorage envStorage
-        )
+            RestClient restClient,
+            EnvironmentStorage envStorage
+            )
     {
         _httpClient = restClient.GetClient();
         roomBaseURI = $"{_httpClient.BaseAddress}/Room";
@@ -31,11 +31,22 @@ public class RoomClient
 
 
     // fetch room id
-    public async Task<int> GetPrivateRoom(int userId, int projectId)
+    public async Task<int> GetPrivateRoom(
+            int userId,
+            int projectId,
+			int devId,
+            RoomTypes roomType
+            )
     {
-        var response = await _httpClient.GetAsync(
-              $"{roomBaseURI}/Private/{userId}/{projectId}"
-            );
+        var dto = new GetPrivateRoomDto(
+                userId,
+                projectId,
+				devId,
+                roomType);
+        var response = await _httpClient.PostAsJsonAsync<GetPrivateRoomDto>(
+                $"{roomBaseURI}/Private",
+                dto
+                );
         if (!response.IsSuccessStatusCode)
         {
             Console.WriteLine($"GetPrivateRoom status: {response.StatusCode}");
@@ -46,8 +57,8 @@ public class RoomClient
     }
 
     public async Task InitSignalR(
-        ObservableRangeCollection<MessageViewModel> messageCollection,
-        int roomId)
+            ObservableRangeCollection<MessageViewModel> messageCollection,
+            int roomId)
     {
         _hub = new HubConnectionBuilder()
             .WithUrl(_envStorage.GetSHIEMIWebsocketUri() + "/room")
@@ -58,49 +69,49 @@ public class RoomClient
             => Debug.WriteLine("websocket disconnected!");
 
         _hub.On<List<RoomMessageHubModel>>(
-            "LoadChat",
-            async (dtos) =>
-            {
-                var ownerMessages = dtos.Where(c => c.UserId == UserStorage.UserId)
+                "LoadChat",
+                async (dtos) =>
+                {
+                    var ownerMessages = dtos.Where(c => c.UserId == UserStorage.UserId)
                     .ToList();
-                foreach (var m in ownerMessages)
-                    m.IsOwner = true;
+                    foreach (var m in ownerMessages)
+                        m.IsOwner = true;
 
-                Mapper? mapper = MapperProvider.GetMapper<RoomMessageHubModel, MessageViewModel>();
-                if (mapper is null)
-                    return;
+                    Mapper? mapper = MapperProvider.GetMapper<RoomMessageHubModel, MessageViewModel>();
+                    if (mapper is null)
+                        return;
 
-                var messageViewModels = mapper.Map<List<MessageViewModel>>(dtos);
-                await MainThread.InvokeOnMainThreadAsync(() =>
-                    messageCollection.ReplaceRange(messageViewModels)
-                );
-            });
+                    var messageViewModels = mapper.Map<List<MessageViewModel>>(dtos);
+                    await MainThread.InvokeOnMainThreadAsync(() =>
+                            messageCollection.ReplaceRange(messageViewModels)
+                            );
+                });
 
 
         // message notification from hub !
 
         _hub.On<RoomMessageHubModel>(
-            "UpdateChat",
-            async (dto) =>
-            {
-                if (dto.UserId == UserStorage.UserId)
-                    dto.IsOwner = true;
+                "UpdateChat",
+                async (dto) =>
+                {
+                    if (dto.UserId == UserStorage.UserId)
+                        dto.IsOwner = true;
 
-                Mapper? mapper = MapperProvider.GetMapper<RoomMessageHubModel, MessageViewModel>();
-                if (mapper is null)
-                    return;
+                    Mapper? mapper = MapperProvider.GetMapper<RoomMessageHubModel, MessageViewModel>();
+                    if (mapper is null)
+                        return;
 
-                var messageViewModel = mapper.Map<MessageViewModel>(dto);
-                MainThread.BeginInvokeOnMainThread(() => messageCollection.Add(messageViewModel));
-            });
+                    var messageViewModel = mapper.Map<MessageViewModel>(dto);
+                    MainThread.BeginInvokeOnMainThread(() => messageCollection.Add(messageViewModel));
+                });
 
         await _hub.StartAsync();
         Debug.WriteLine($"RoomClient: websocket initialized!");
 
         await _hub.InvokeAsync(
-            "SetUserIdAndRoom",
-            UserStorage.UserId,
-            roomId);
+                "SetUserIdAndRoom",
+                UserStorage.UserId,
+                roomId);
     }
 
 

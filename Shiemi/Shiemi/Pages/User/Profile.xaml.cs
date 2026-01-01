@@ -24,7 +24,7 @@ public partial class Profile : ContentPage
     {
         try
         {
-            
+
             ProfilePageModel pageModel = (ProfilePageModel)BindingContext;
             if (pageModel is null)
                 return;
@@ -41,7 +41,7 @@ public partial class Profile : ContentPage
             pageModel.Email = user.Email;
             pageModel.UserId = user.UserId;
             pageModel.ProfileURL = user.ProfilePhotoURL;
-            Debug.WriteLine("profile url: "+pageModel.ProfileURL);
+            Debug.WriteLine("profile url: " + pageModel.ProfileURL);
 
             if (user.IsDeveloper is true)
             {

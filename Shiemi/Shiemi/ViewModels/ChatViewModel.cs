@@ -12,8 +12,8 @@ public record ChatRoomViewModel(
 );
 
 public record ChatMessageViewModel(
-		string Text,
-		DateTime SentAt,
-		bool IsOwner = false
+        string Text,
+        DateTime SentAt,
+        bool IsOwner = false
 );
-	
+
