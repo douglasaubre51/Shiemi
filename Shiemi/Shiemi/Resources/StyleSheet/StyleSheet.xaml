@@ -1,4 +1,5 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+﻿<?xml version="1.0" encoding="utf-8"?>
+
 <ResourceDictionary
     x:Class="Shiemi.Resources.StyleSheet.StyleSheet"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
@@ -57,7 +58,7 @@
         x:Key="TitleLabel"
         TargetType="Label">
         <Setter Property="FontSize" Value="24" />
-        <Setter Property="FontFamily" Value="PoppinsBold" />
+        <Setter Property="FontFamily" Value="PoppinsSemiBold" />
     </Style>
 
     <Style

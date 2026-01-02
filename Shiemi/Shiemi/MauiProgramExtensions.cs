@@ -2,6 +2,7 @@
 using Microsoft.Extensions.Logging;
 using Shiemi.PageModels;
 using Shiemi.PageModels.Chat;
+using Shiemi.PageModels.Dev;
 using Shiemi.PageModels.Market;
 using Shiemi.PageModels.Project;
 using Shiemi.PageModels.Start;
@@ -11,6 +12,8 @@ using Shiemi.Storage;
 using Shiemi.Utilities;
 using Shiemi.Utilities.HubClients;
 using Shiemi.Views.DevViews;
+using DetailsPageModel = Shiemi.PageModels.Project.DetailsPageModel;
+using EditPageModel = Shiemi.PageModels.User.EditPageModel;
 
 namespace Shiemi;
 
@@ -21,10 +24,7 @@ public static class MauiProgramExtensions
         builder
             .UseMauiApp<App>()
             .UseMauiCommunityToolkitMarkup()
-            .UseMauiCommunityToolkit(options =>
-            {
-                options.SetShouldEnableSnackbarOnWindows(true);
-            })
+            .UseMauiCommunityToolkit(options => { options.SetShouldEnableSnackbarOnWindows(true); })
             .ConfigureFonts(fonts =>
             {
                 fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
@@ -74,12 +74,13 @@ public static class MauiProgramExtensions
 
         // user
         builder.Services.AddTransient<ProfilePageModel>();
-        builder.Services.AddTransient<PageModels.User.EditPageModel>();
+        builder.Services.AddTransient<EditPageModel>();
+        builder.Services.AddTransient<HomePageModel>();
 
         // project
         builder.Services.AddTransient<ProjectsPageModel>();
         builder.Services.AddTransient<CreateProjectPageModel>();
-        builder.Services.AddTransient<PageModels.Project.DetailsPageModel>();
+        builder.Services.AddTransient<DetailsPageModel>();
 
         // market
         builder.Services.AddTransient<ProjectShopPageModel>();
@@ -92,7 +93,7 @@ public static class MauiProgramExtensions
 
         // Dev
         builder.Services.AddTransient<PageModels.Dev.EditPageModel>();
-        builder.Services.AddTransient<PageModels.Dev.MarketpageModel>();
+        builder.Services.AddTransient<MarketpageModel>();
         builder.Services.AddTransient<PageModels.Dev.DetailsPageModel>();
 
         return builder;

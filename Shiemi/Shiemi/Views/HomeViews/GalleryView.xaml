@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<CollectionView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                x:Name="GalleryCollectionView"
+                xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                xmlns:homeviews="clr-namespace:Shiemi.Views.HomeViews"
+                x:DataType="homeviews:GalleryView"
+                x:Class="Shiemi.Views.HomeViews.GalleryView">
+    <CollectionView.Header>
+        <Label x:Name="GalleryTitleLabel"
+               Style="{StaticResource TitleLabel}"
+               VerticalOptions="Start"
+               HorizontalOptions="Start" />
+    </CollectionView.Header>
+</CollectionView>

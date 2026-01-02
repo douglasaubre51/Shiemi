@@ -1,13 +1,12 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8"?>
+
 <ContentPage
     x:Class="Shiemi.Pages.Market.PrivateRoom"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:models="clr-namespace:Shiemi.Models"
     xmlns:pagemodel="clr-namespace:Shiemi.PageModels.Market"
     xmlns:views="clr-namespace:Shiemi.Views"
     x:DataType="pagemodel:PrivateRoomPageModel"
-    Shell.FlyoutBehavior="Flyout"
     Shell.NavBarIsVisible="False"
     Shell.TabBarIsVisible="False">
 

@@ -1,4 +1,5 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8"?>
+
 <ContentPage
     x:Class="Shiemi.Pages.Market.ProjectDetails"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
@@ -7,7 +8,6 @@
     xmlns:views="clr-namespace:Shiemi.Views"
     Title="{Binding ProjectVM.Title}"
     x:DataType="pagemodel:ProjectDetailsPageModel"
-    Shell.FlyoutBehavior="Flyout"
     Shell.NavBarIsVisible="True"
     Shell.TabBarIsVisible="False">
     <Grid

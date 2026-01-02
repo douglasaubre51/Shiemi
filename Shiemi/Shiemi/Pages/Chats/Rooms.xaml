@@ -1,4 +1,5 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8"?>
+
 <ContentPage
     x:Class="Shiemi.Pages.Chats.Rooms"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
@@ -7,8 +8,7 @@
     xmlns:viewmodels="clr-namespace:Shiemi.ViewModels"
     xmlns:views="clr-namespace:Shiemi.Views"
     Title="Chats"
-    x:DataType="pagemodel:RoomsPageModel"
-    Shell.FlyoutBehavior="Flyout">
+    x:DataType="pagemodel:RoomsPageModel">
 
     <Grid
         ColumnDefinitions="*,2*"
@@ -30,7 +30,6 @@
                     <!--  chat  -->
 
                     <Grid
-                        Grid.Column="0"
                         Padding="20"
                         ColumnDefinitions="*"
                         RowDefinitions="*">
