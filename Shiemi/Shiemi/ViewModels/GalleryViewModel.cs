@@ -2,7 +2,7 @@
 
 public record GalleryViewModel(
     int ItemId,
-    string ThumbnailUrl,
     string CoverTitle,
-    string CoverBlurb
+    string CoverBlurb,
+    string CoverPhoto = ""
 );

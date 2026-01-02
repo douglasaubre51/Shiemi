@@ -5,17 +5,6 @@ namespace Shiemi.Views.HomeViews;
 
 public partial class GalleryView : CollectionView
 {
-    public static BindableProperty TitleProperty = BindableProperty.Create(
-        nameof(Title),
-        typeof(string),
-        typeof(GalleryView),
-        propertyChanged: (context, oldvalue, newvalue) =>
-        {
-            var view = context as GalleryView;
-            view!.GalleryTitleLabel.Text = (string)newvalue;
-        }
-    );
-
     public static BindableProperty StoreProperty = BindableProperty.Create(
         nameof(Store),
         typeof(ObservableRangeCollection<GalleryViewModel>),
@@ -38,11 +27,5 @@ public partial class GalleryView : CollectionView
     {
         get => (ObservableRangeCollection<GalleryViewModel>)GetValue(StoreProperty);
         set => SetValue(StoreProperty, value);
-    }
-
-    public string Title
-    {
-        get => (string)GetValue(TitleProperty);
-        set => SetValue(TitleProperty, value);
     }
 }

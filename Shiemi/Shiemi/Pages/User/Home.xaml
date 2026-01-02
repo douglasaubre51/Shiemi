@@ -8,13 +8,17 @@
              x:DataType="userpagemodels:HomePageModel"
              Shell.NavBarIsVisible="True"
              x:Class="Shiemi.Pages.User.Home">
-    <VerticalStackLayout Spacing="8" Margin="16">
-        <homeviews:GalleryView
-            Title="My Projects >"
-            Store="{Binding MyProjectCollection }" />
+    <VerticalStackLayout Spacing="24" Margin="16,0,10,0">
+        <VerticalStackLayout Spacing="8">
+            <Label Text="My Projects >" Style="{StaticResource TitleLabel}" />
+            <homeviews:GalleryView
+                Store="{Binding MyProjectCollection }" />
+        </VerticalStackLayout>
 
-        <homeviews:GalleryView
-            Title="Joined Projects >"
-            Store="{Binding JoinedProjectCollection}" />
+        <VerticalStackLayout Spacing="8">
+            <Label Text="Joined Projects >" Style="{StaticResource TitleLabel}" />
+            <homeviews:GalleryView
+                Store="{Binding JoinedProjectCollection}" />
+        </VerticalStackLayout>
     </VerticalStackLayout>
 </ContentPage>

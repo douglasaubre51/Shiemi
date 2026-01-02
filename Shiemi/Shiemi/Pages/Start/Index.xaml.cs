@@ -46,7 +46,6 @@ public partial class Index : ContentPage
 
                 UserStorage.UserId = userIdDto!.Id;
                 await Shell.Current.GoToAsync("//Profile");
-                return;
             }
         }
         catch (Exception ex)

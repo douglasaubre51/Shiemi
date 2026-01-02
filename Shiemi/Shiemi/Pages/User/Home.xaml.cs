@@ -9,4 +9,18 @@ public partial class Home : ContentPage
         InitializeComponent();
         BindingContext = pageModel;
     }
+
+    protected override void OnAppearing()
+    {
+        var context = BindingContext as HomePageModel;
+        context!.IsPageLoading = true;
+        base.OnAppearing();
+    }
+
+    protected override void OnDisappearing()
+    {
+        var context = BindingContext as HomePageModel;
+        context!.IsPageExiting = true;
+        base.OnDisappearing();
+    }
 }

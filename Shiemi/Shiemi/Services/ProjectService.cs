@@ -1,17 +1,16 @@
-﻿using Shiemi.Dtos;
+﻿using System.Net.Http.Json;
+using Shiemi.Dtos;
 using Shiemi.Utilities;
 using Shiemi.Wrappers;
-using System.Diagnostics;
-using System.Net.Http.Json;
 
 namespace Shiemi.Services;
 
-record ProjectWrapper(List<ProjectDto> Projects);
+internal record ProjectWrapper(List<ProjectDto> Projects);
 
 public class ProjectService
 {
     private readonly HttpClient _client;
-    private string projectBaseUri;
+    private readonly string projectBaseUri;
 
     public ProjectService(RestClient restClient)
     {
@@ -20,26 +19,40 @@ public class ProjectService
     }
 
     public async Task Create(CreateProjectDto dto)
-        => await _client.PostAsJsonAsync<CreateProjectDto>(
+    {
+        await _client.PostAsJsonAsync<CreateProjectDto>(
             projectBaseUri,
             dto
-            );
+        );
+    }
 
     public async Task<List<ProjectDto>?> GetAllByUser(int id)
     {
-        HttpResponseMessage response = await _client.GetAsync(
+        var response = await _client.GetAsync(
             $"{projectBaseUri}/all/{id}"
-            );
+        );
         Debug.WriteLine($"GetAllProjectsByUser status: {response.StatusCode}");
 
         var wrap = await response.Content.ReadFromJsonAsync<ProjectsWrap>();
         return wrap!.Projects;
     }
+
+    public async Task<List<ProjectDto>?> GetUserJoinedProjects(int id)
+    {
+        var response = await _client.GetAsync(
+            $"{projectBaseUri}/all/{id}/user-joined"
+        );
+        Debug.WriteLine($"GetAllProjectsByUser status: {response.StatusCode}");
+
+        var wrap = await response.Content.ReadFromJsonAsync<ProjectsWrap>();
+        return wrap!.Projects;
+    }
+
     public async Task<List<ProjectDto>?> GetAll()
     {
-        HttpResponseMessage response = await _client.GetAsync(
+        var response = await _client.GetAsync(
             $"{projectBaseUri}/all"
-            );
+        );
 
         Debug.WriteLine($"GetAllProjects status: {response.StatusCode} ");
 

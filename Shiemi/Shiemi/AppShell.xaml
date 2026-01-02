@@ -7,16 +7,17 @@
     xmlns:chatpages="clr-namespace:Shiemi.Pages.Chats"
     xmlns:devpages="clr-namespace:Shiemi.Pages.Dev"
     xmlns:marketpages="clr-namespace:Shiemi.Pages.Market"
-    xmlns:projectpages="clr-namespace:Shiemi.Pages.Project"
     xmlns:startpages="clr-namespace:Shiemi.Pages.Start"
-    NavBarHasShadow="True"
     xmlns:userpages="clr-namespace:Shiemi.Pages.User"
     FlyoutBackgroundColor="Transparent"
     Shell.FlyoutWidth="200"
     Shell.FlyoutBehavior="Locked">
     <FlyoutItem Title="Home" FlyoutIcon="ic_fluent_home_28_regular.png">
-        <Tab>
-            <ShellContent ContentTemplate="{DataTemplate userpages:Home}" Route="Home" />
+        <Tab Title="Projects" Icon="ic_fluent_grid_28_filled.png">
+            <ShellContent ContentTemplate="{DataTemplate userpages:Home}" Route="HomeProjects" />
+        </Tab>
+        <Tab Title="DevHub" Icon="ic_fluent_people_28_filled.png">
+            <ShellContent Title="Manage Clients" ContentTemplate="{DataTemplate userpages:DevHub}" Route="DevHub" />
         </Tab>
     </FlyoutItem>
 
@@ -39,16 +40,6 @@
                 ContentTemplate="{DataTemplate userpages:Profile}"
                 FlyoutIcon="ic_fluent_home_28_regular.png"
                 Route="Profile" />
-        </Tab>
-    </FlyoutItem>
-
-    <FlyoutItem
-        Title="Projects"
-        FlyoutIcon="ic_fluent_grid_28_regular.png">
-        <Tab>
-            <ShellContent
-                ContentTemplate="{DataTemplate projectpages:Projects}"
-                Route="Projects" />
         </Tab>
     </FlyoutItem>
 
