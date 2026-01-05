@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:views="clr-namespace:Shiemi.Views"
+             x:DataType="views:ProfileCard"
+             x:Class="Shiemi.Views.ProfileCard">
+    <Border Style="{StaticResource CardBorderStyle}"
+            MinimumWidthRequest="300"
+            HeightRequest="150"
+            BackgroundColor="#f4f4f4">
+        <Grid ColumnDefinitions="Auto,*"
+              ColumnSpacing="8"
+              RowDefinitions="Auto">
+            <Border
+                Grid.Column="0"
+                StrokeShape="RoundRectangle 50">
+                <Image x:Name="ProfileImage"
+                       Source="dotnet_bot.png"
+                       Aspect="AspectFit"
+                       HeightRequest="100"
+                       WidthRequest="100"/>
+            </Border>
+
+            <Label
+                Style="{StaticResource CardTitleLabel}"
+                x:Name="UsernameLabel"
+                LineBreakMode="WordWrap"
+                Grid.Column="1"/>
+        </Grid>
+    </Border>
+</ContentView>

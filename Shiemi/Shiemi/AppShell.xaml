@@ -9,7 +9,7 @@
     xmlns:marketpages="clr-namespace:Shiemi.Pages.Market"
     xmlns:startpages="clr-namespace:Shiemi.Pages.Start"
     xmlns:userpages="clr-namespace:Shiemi.Pages.User"
-    FlyoutBackgroundColor="Transparent"
+    FlyoutBackground="White"
     Shell.FlyoutWidth="200"
     Shell.FlyoutBehavior="Locked">
     <FlyoutItem Title="Home" FlyoutIcon="ic_fluent_home_28_regular.png">

@@ -1,5 +1,4 @@
-﻿using System.Diagnostics;
-using System.Net.Http.Json;
+﻿using System.Net.Http.Json;
 using AutoMapper;
 using Microsoft.AspNetCore.SignalR.Client;
 using MvvmHelpers;
@@ -29,19 +28,23 @@ public class RoomClient
         _envStorage = envStorage;
     }
 
-
+    // fetch all dev rooms of a Dev
+    public async Task<List<GetDevRoomDto>?> GetAllDevRoomDtos(int userId)
+             => await _httpClient.GetFromJsonAsync<List<GetDevRoomDto>>(
+                $"{roomBaseURI}/Dev/{userId}/all"
+            );
     // fetch room id
     public async Task<int> GetPrivateRoom(
             int userId,
             int projectId,
-			int devId,
+            int devId,
             RoomTypes roomType
             )
     {
         var dto = new GetPrivateRoomDto(
                 userId,
                 projectId,
-				devId,
+                devId,
                 roomType);
         var response = await _httpClient.PostAsJsonAsync<GetPrivateRoomDto>(
                 $"{roomBaseURI}/Private",
@@ -87,9 +90,7 @@ public class RoomClient
                             );
                 });
 
-
         // message notification from hub !
-
         _hub.On<RoomMessageHubModel>(
                 "UpdateChat",
                 async (dto) =>
@@ -113,10 +114,7 @@ public class RoomClient
                 UserStorage.UserId,
                 roomId);
     }
-
-
     // SignalR actions
-
     public async Task SendChat(SendMessageDto dto)
         => await _hub!.InvokeAsync("SendChat", dto);
     public async Task DisconnectWebSocket()

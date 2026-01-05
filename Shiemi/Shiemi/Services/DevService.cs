@@ -1,7 +1,6 @@
+using System.Net.Http.Json;
 using Shiemi.Dtos;
 using Shiemi.Utilities;
-using System.Diagnostics;
-using System.Net.Http.Json;
 
 namespace Shiemi.Services;
 

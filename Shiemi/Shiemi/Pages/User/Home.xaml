@@ -3,22 +3,37 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:homeviews="clr-namespace:Shiemi.Views.HomeViews"
-             Title="Home"
+             Title="Manage Projects"
              xmlns:userpagemodels="clr-namespace:Shiemi.PageModels.User"
              x:DataType="userpagemodels:HomePageModel"
              Shell.NavBarIsVisible="True"
              x:Class="Shiemi.Pages.User.Home">
-    <VerticalStackLayout Spacing="24" Margin="16,0,10,0">
+    <VerticalStackLayout Spacing="24"
+                         Margin="16,0,0,0">
         <VerticalStackLayout Spacing="8">
-            <Label Text="My Projects >" Style="{StaticResource TitleLabel}" />
+            <HorizontalStackLayout Spacing="4">
+                <Label VerticalOptions="Center"
+                       Text="My Projects"
+                       Style="{StaticResource TitleLabel}"/>
+                <ImageButton
+                    Source="ic_fluent_chevron_right_24_regular.png"
+                    Command="{Binding  GoToViewMyProjectsCommand}"/>
+            </HorizontalStackLayout>
+
             <homeviews:GalleryView
-                Store="{Binding MyProjectCollection }" />
+                Store="{Binding MyProjectCollection }"/>
         </VerticalStackLayout>
 
         <VerticalStackLayout Spacing="8">
-            <Label Text="Joined Projects >" Style="{StaticResource TitleLabel}" />
+            <HorizontalStackLayout Spacing="4">
+                <Label VerticalOptions="Center"
+                        Text="Joined Projects"
+                       Style="{StaticResource TitleLabel}"/>
+                <ImageButton Source="ic_fluent_chevron_right_24_regular.png"/>
+            </HorizontalStackLayout>
+
             <homeviews:GalleryView
-                Store="{Binding JoinedProjectCollection}" />
+                Store="{Binding JoinedProjectCollection}"/>
         </VerticalStackLayout>
     </VerticalStackLayout>
 </ContentPage>

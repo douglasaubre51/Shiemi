@@ -1,4 +1,5 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using MvvmHelpers;
 using Shiemi.Services;
 using Shiemi.Storage;
@@ -18,6 +19,27 @@ public partial class HomePageModel(
     [ObservableProperty] private bool isPageLoading;
     [ObservableProperty] private ObservableRangeCollection<GalleryViewModel> joinedProjectCollection = [];
     [ObservableProperty] private ObservableRangeCollection<GalleryViewModel> myProjectCollection = [];
+
+    [RelayCommand]
+    async Task GoToViewMyProjects()
+    {
+        if (MyProjectCollection.Count is 0) return;
+
+        try
+        {
+            await Shell.Current.GoToAsync(
+                "ViewMoreProjects",
+                true,
+                new Dictionary<string, object>()
+                {
+                    { "Projects", MyProjectCollection }
+                });
+        }
+        catch (Exception ex)
+        {
+            Debug.WriteLine(ex.Message);
+        }
+    }
 
     // fetch user joined projects!
     private async Task InitJoinedProjectsCollection()

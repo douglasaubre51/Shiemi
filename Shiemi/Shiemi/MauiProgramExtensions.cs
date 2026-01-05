@@ -76,6 +76,8 @@ public static class MauiProgramExtensions
         builder.Services.AddTransient<ProfilePageModel>();
         builder.Services.AddTransient<EditPageModel>();
         builder.Services.AddTransient<HomePageModel>();
+        builder.Services.AddTransient<ViewMoreProjectsPageModel>();
+        builder.Services.AddTransient<DevHubPageModel>();
 
         // project
         builder.Services.AddTransient<ProjectsPageModel>();
@@ -95,6 +97,7 @@ public static class MauiProgramExtensions
         builder.Services.AddTransient<PageModels.Dev.EditPageModel>();
         builder.Services.AddTransient<MarketpageModel>();
         builder.Services.AddTransient<PageModels.Dev.DetailsPageModel>();
+        builder.Services.AddTransient<PageModels.Dev.ChatPageModel>();
 
         return builder;
     }

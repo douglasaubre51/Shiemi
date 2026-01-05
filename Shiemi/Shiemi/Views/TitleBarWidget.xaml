@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<TitleBar xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+          xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+          x:Class="Shiemi.Views.TitleBarWidget"
+          Title="Shiemi"
+          Subtitle="Get started on your dev journey today!"
+          BackgroundColor="White"
+          HeightRequest="48">
+    <TitleBar.Content>
+        <SearchBar Placeholder="Search"
+                   PlaceholderColor="Grey"
+                   MaximumWidthRequest="300"
+                   MaximumHeightRequest="40"
+                   VerticalOptions="Center"/>
+    </TitleBar.Content>
+</TitleBar>

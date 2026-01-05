@@ -18,25 +18,28 @@
                     <Label
                         Text="{Binding CoverTitle}"
                         MaxLines="2"
-                        FontSize="18" />
+                        FontSize="18"/>
 
                     <Label
                         Text="{Binding CoverBlurb}"
                         VerticalOptions="End"
                         FontSize="14"
                         MaxLines="3"
-                        TextColor="Grey"
-                        LineBreakMode="WordWrap" />
+                        TextColor="Gray"
+                        LineBreakMode="WordWrap"/>
                 </VerticalStackLayout>
             </Border>
         </DataTemplate>
     </CollectionView.ItemTemplate>
 
     <CollectionView.ItemsLayout>
-        <LinearItemsLayout Orientation="Horizontal" ItemSpacing="8" />
+        <LinearItemsLayout Orientation="Horizontal"
+                           ItemSpacing="8"/>
     </CollectionView.ItemsLayout>
 
     <CollectionView.EmptyView>
-        <Label Text="Soo empty!" TextColor="LightGrey" FontSize="24" />
+        <Label Text="Soo empty!"
+               TextColor="LightGray"
+               FontSize="24"/>
     </CollectionView.EmptyView>
 </CollectionView>

@@ -21,8 +21,10 @@ public partial class AppShell : Shell
         // Dev
         Routing.RegisterRoute("EditDev", typeof(Pages.Dev.Edit));
         Routing.RegisterRoute("DetailsDev", typeof(Pages.Dev.Details));
+        Routing.RegisterRoute("ChatDev", typeof(Pages.Dev.Chat));
 
         // User
         Routing.RegisterRoute("EditProfile", typeof(Pages.User.Edit));
+        Routing.RegisterRoute("ViewMoreProjects", typeof(Pages.User.ViewMoreProjects));
     }
 }

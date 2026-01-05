@@ -9,16 +9,21 @@
     <Style
         x:Key="CardBorderStyle"
         TargetType="Border">
-        <Setter Property="StrokeThickness" Value="0" />
-        <Setter Property="BackgroundColor" Value="White" />
-        <Setter Property="Padding" Value="16" />
-        <Setter Property="StrokeShape" Value="RoundRectangle 8" />
+        <Setter Property="StrokeThickness"
+                Value="0"/>
+        <Setter Property="BackgroundColor"
+                Value="White"/>
+        <Setter Property="Padding"
+                Value="16"/>
+        <Setter Property="StrokeShape"
+                Value="RoundRectangle 8"/>
     </Style>
 
     <Style
         x:Key="HoverCardBorderStyle"
         TargetType="Border">
-        <Setter Property="BackgroundColor" Value="White" />
+        <Setter Property="BackgroundColor"
+                Value="White"/>
         <Setter Property="VisualStateManager.VisualStateGroups">
             <VisualStateGroupList>
                 <VisualStateGroup
@@ -26,18 +31,24 @@
                     <VisualState
                         Name="Normal">
                         <VisualState.Setters>
-                            <Setter Property="BackgroundColor" Value="White" />
-                            <Setter Property="Stroke" Value="White" />
-                            <Setter Property="StrokeShape" Value="RoundRectangle 8" />
+                            <Setter Property="BackgroundColor"
+                                    Value="White"/>
+                            <Setter Property="Stroke"
+                                    Value="White"/>
+                            <Setter Property="StrokeShape"
+                                    Value="RoundRectangle 8"/>
                         </VisualState.Setters>
                     </VisualState>
 
                     <VisualState
                         Name="PointerOver">
                         <VisualState.Setters>
-                            <Setter Property="BackgroundColor" Value="WhiteSmoke" />
-                            <Setter Property="Stroke" Value="White" />
-                            <Setter Property="StrokeShape" Value="RoundRectangle 8" />
+                            <Setter Property="BackgroundColor"
+                                    Value="WhiteSmoke"/>
+                            <Setter Property="Stroke"
+                                    Value="White"/>
+                            <Setter Property="StrokeShape"
+                                    Value="RoundRectangle 8"/>
                         </VisualState.Setters>
                     </VisualState>
                 </VisualStateGroup>
@@ -48,34 +59,64 @@
     <Style
         x:Key="ImageCardBorderStyle"
         TargetType="Border">
-        <Setter Property="StrokeThickness" Value="0" />
-        <Setter Property="BackgroundColor" Value="White" />
-        <Setter Property="StrokeShape" Value="RoundRectangle 4" />
+        <Setter Property="StrokeThickness"
+                Value="0"/>
+        <Setter Property="BackgroundColor"
+                Value="White"/>
+        <Setter Property="StrokeShape"
+                Value="RoundRectangle 4"/>
     </Style>
 
     <!--  labels  -->
     <Style
+        x:Key="CardTitleLabel"
+        TargetType="Label">
+        <Setter Property="FontSize"
+                Value="18"/>
+        <Setter Property="FontFamily"
+                Value="PoppinsRegular"/>
+    </Style>
+    <Style
+        x:Key="CardSubTitleLabel"
+        TargetType="Label">
+        <Setter Property="FontSize"
+                Value="14"/>
+        <Setter Property="TextColor"
+                Value="Gray"/>
+        <Setter Property="FontFamily"
+                Value="PoppinsRegular"/>
+    </Style>
+
+    <Style
         x:Key="TitleLabel"
         TargetType="Label">
-        <Setter Property="FontSize" Value="24" />
-        <Setter Property="FontFamily" Value="PoppinsSemiBold" />
+        <Setter Property="FontSize"
+                Value="24"/>
+        <Setter Property="FontFamily"
+                Value="PoppinsSemiBold"/>
     </Style>
 
     <Style
         x:Key="SubTitleLabel"
         TargetType="Label">
-        <Setter Property="FontSize" Value="16" />
-        <Setter Property="FontFamily" Value="PoppinsRegular" />
-        <Setter Property="TextColor" Value="LightGrey" />
+        <Setter Property="FontSize"
+                Value="16"/>
+        <Setter Property="FontFamily"
+                Value="PoppinsRegular"/>
+        <Setter Property="TextColor"
+                Value="LightGray"/>
     </Style>
 
     <!--  seperator  -->
     <Style
         x:Key="VerticalSeperator"
         TargetType="BoxView">
-        <Setter Property="WidthRequest" Value="1" />
-        <Setter Property="BackgroundColor" Value="LightGrey" />
-        <Setter Property="HorizontalOptions" Value="Fill" />
+        <Setter Property="WidthRequest"
+                Value="1"/>
+        <Setter Property="BackgroundColor"
+                Value="LightGray"/>
+        <Setter Property="HorizontalOptions"
+                Value="Fill"/>
     </Style>
 
     <!--  btns and icons  -->
@@ -89,16 +130,20 @@
                     <VisualState
                         x:Name="Normal">
                         <VisualState.Setters>
-                            <Setter Property="BackgroundColor" Value="{StaticResource Primary}" />
-                            <Setter Property="TextColor" Value="White" />
+                            <Setter Property="BackgroundColor"
+                                    Value="{StaticResource Primary}"/>
+                            <Setter Property="TextColor"
+                                    Value="White"/>
                         </VisualState.Setters>
                     </VisualState>
 
                     <VisualState
                         x:Name="PointerOver">
                         <VisualState.Setters>
-                            <Setter Property="BackgroundColor" Value="#7a56cc" />
-                            <Setter Property="TextColor" Value="White" />
+                            <Setter Property="BackgroundColor"
+                                    Value="#7a56cc"/>
+                            <Setter Property="TextColor"
+                                    Value="White"/>
                         </VisualState.Setters>
                     </VisualState>
                 </VisualStateGroup>
@@ -109,10 +154,14 @@
     <Style
         x:Key="SecondaryBtnStyle"
         TargetType="Button">
-        <Setter Property="BackgroundColor" Value="White" />
-        <Setter Property="BorderWidth" Value="1" />
-        <Setter Property="CornerRadius" Value="4" />
-        <Setter Property="ImageSource" Value="ic_fluent_arrow_left_28_regular.png" />
+        <Setter Property="BackgroundColor"
+                Value="White"/>
+        <Setter Property="BorderWidth"
+                Value="1"/>
+        <Setter Property="CornerRadius"
+                Value="4"/>
+        <Setter Property="ImageSource"
+                Value="ic_fluent_arrow_left_28_regular.png"/>
 
         <Setter Property="VisualStateManager.VisualStateGroups">
             <VisualStateGroupList>
@@ -121,14 +170,16 @@
                     <VisualState
                         x:Name="Normal">
                         <VisualState.Setters>
-                            <Setter Property="BackgroundColor" Value="White" />
+                            <Setter Property="BackgroundColor"
+                                    Value="White"/>
                         </VisualState.Setters>
                     </VisualState>
 
                     <VisualState
                         x:Name="PointerOver">
                         <VisualState.Setters>
-                            <Setter Property="BackgroundColor" Value="LightGrey" />
+                            <Setter Property="BackgroundColor"
+                                    Value="LightGray"/>
                         </VisualState.Setters>
                     </VisualState>
                 </VisualStateGroup>
@@ -146,16 +197,20 @@
                     <VisualState
                         x:Name="Normal">
                         <VisualState.Setters>
-                            <Setter Property="BackgroundColor" Value="White" />
-                            <Setter Property="TextColor" Value="Black" />
+                            <Setter Property="BackgroundColor"
+                                    Value="White"/>
+                            <Setter Property="TextColor"
+                                    Value="Black"/>
                         </VisualState.Setters>
                     </VisualState>
 
                     <VisualState
                         x:Name="PointerOver">
                         <VisualState.Setters>
-                            <Setter Property="BackgroundColor" Value="LightGrey" />
-                            <Setter Property="TextColor" Value="Black" />
+                            <Setter Property="BackgroundColor"
+                                    Value="LightGray"/>
+                            <Setter Property="TextColor"
+                                    Value="Black"/>
                         </VisualState.Setters>
                     </VisualState>
                 </VisualStateGroup>
@@ -166,7 +221,8 @@
     <Style
         x:Key="WarningIconStyle"
         TargetType="Button">
-        <Setter Property="BackgroundColor" Value="Transparent" />
+        <Setter Property="BackgroundColor"
+                Value="Transparent"/>
 
         <Setter Property="VisualStateManager.VisualStateGroups">
             <VisualStateGroupList>
@@ -175,16 +231,20 @@
                     <VisualState
                         x:Name="Normal">
                         <VisualState.Setters>
-                            <Setter Property="BorderColor" Value="White" />
-                            <Setter Property="BorderWidth" Value="1" />
+                            <Setter Property="BorderColor"
+                                    Value="White"/>
+                            <Setter Property="BorderWidth"
+                                    Value="1"/>
                         </VisualState.Setters>
                     </VisualState>
 
                     <VisualState
                         x:Name="PointerOver">
                         <VisualState.Setters>
-                            <Setter Property="BorderColor" Value="LightGrey" />
-                            <Setter Property="BorderWidth" Value="1" />
+                            <Setter Property="BorderColor"
+                                    Value="LightGray"/>
+                            <Setter Property="BorderWidth"
+                                    Value="1"/>
                         </VisualState.Setters>
                     </VisualState>
                 </VisualStateGroup>
@@ -202,14 +262,16 @@
                     <VisualState
                         x:Name="Normal">
                         <VisualState.Setters>
-                            <Setter Property="BackgroundColor" Value="White" />
+                            <Setter Property="BackgroundColor"
+                                    Value="White"/>
                         </VisualState.Setters>
                     </VisualState>
 
                     <VisualState
                         x:Name="PointerOver">
                         <VisualState.Setters>
-                            <Setter Property="BackgroundColor" Value="LightGrey" />
+                            <Setter Property="BackgroundColor"
+                                    Value="LightGray"/>
                         </VisualState.Setters>
                     </VisualState>
                 </VisualStateGroup>

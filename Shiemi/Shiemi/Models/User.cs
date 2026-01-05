@@ -16,3 +16,10 @@ public class User
     public Photo? ProfilePhoto { get; set; }
     public List<Project>? Projects { get; set; }
 }
+
+public record ProfileCardModel(
+    int Id,
+    string Username,
+    string ProfilePhotoURI,
+    int RoomId
+);
