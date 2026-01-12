@@ -1,4 +1,5 @@
 using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using MvvmHelpers;
 using Shiemi.Models;
 using Shiemi.Storage;
@@ -11,10 +12,6 @@ public partial class DevHubPageModel(
 ) : BasePageModel
 {
     [ObservableProperty]
-    private bool didSelectClientProfileCardChange;
-    [ObservableProperty]
-    private ProfileCardModel? selectedProfileCard;
-    [ObservableProperty]
     private bool isPageLoading;
     [ObservableProperty]
     private bool isPageExiting;
@@ -23,10 +20,9 @@ public partial class DevHubPageModel(
 
     private readonly RoomClient _roomClient = roomClient;
 
-    async partial void OnDidSelectClientProfileCardChangeChanged(bool value)
+	[RelayCommand]
+    async Task DidSelectedClientProfileChange(ProfileCardModel selectedProfileCard)
     {
-        if (value is false) return;
-
         try
         {
             await Shell.Current.GoToAsync(
@@ -34,16 +30,12 @@ public partial class DevHubPageModel(
                 true,
                 new Dictionary<string, object>()
                 {
-                    { "CurrentClient",SelectedProfileCard! }
+                    { "CurrentClient",selectedProfileCard! }
                 });
         }
         catch (Exception ex)
         {
-            Debug.WriteLine($"OnDidSelectClientProfileCardChangeChanged error: {ex.Message}");
-        }
-        finally
-        {
-            DidSelectClientProfileCardChange = false;
+            Debug.WriteLine($"DidSelectedClientProfileChange error: {ex.Message}");
         }
     }
 

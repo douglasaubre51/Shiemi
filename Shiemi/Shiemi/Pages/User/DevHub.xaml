@@ -12,11 +12,9 @@
               Margin="16,0,0,0">
             <!-- client profiles -->
             <VerticalStackLayout Grid.Row="0">
-                <Label Text="Clientele"/>
+                <Label Text="Clientele" />
 
                 <CollectionView
-                    SelectionChanged="CollectionView_SelectionChanged"
-                    SelectedItem="{Binding SelectedProfileCard}"
                     HorizontalScrollBarVisibility="Never"
                     ItemSizingStrategy="MeasureFirstItem"
                     ItemsSource="{Binding ClientProfiles}">
@@ -24,7 +22,14 @@
                         <DataTemplate x:DataType="usermodel:ProfileCardModel">
                             <views:ProfileCard Username="{Binding Username}"
                                                UserId="{Binding Id}"
-                                               ProfilePhoto="{Binding ProfilePhotoURI}"/>
+                                               ProfilePhoto="{Binding ProfilePhotoURI}">
+                                <views:ProfileCard.GestureRecognizers>
+                                    <TapGestureRecognizer
+                                        Command="{Binding Source={RelativeSource AncestorType={x:Type userpagemodels:DevHubPageModel}}, x:DataType=userpagemodels:DevHubPageModel, Path=DidSelectedClientProfileChangeCommand}"
+                                        CommandParameter="{Binding .}" />
+                                </views:ProfileCard.GestureRecognizers>
+                            </views:ProfileCard>
+
                         </DataTemplate>
                     </CollectionView.ItemTemplate>
 
@@ -32,7 +37,7 @@
                         <GridItemsLayout Span="2"
                                          Orientation="Horizontal"
                                          VerticalItemSpacing="4"
-                                         HorizontalItemSpacing="4"/>
+                                         HorizontalItemSpacing="4" />
                     </CollectionView.ItemsLayout>
                 </CollectionView>
             </VerticalStackLayout>
