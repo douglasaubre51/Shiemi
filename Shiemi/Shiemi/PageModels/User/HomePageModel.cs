@@ -1,8 +1,11 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
+﻿using AutoMapper;
+using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using MvvmHelpers;
+using Shiemi.Dtos;
 using Shiemi.Services;
 using Shiemi.Storage;
+using Shiemi.Utilities.ServiceProviders;
 using Shiemi.ViewModels;
 
 namespace Shiemi.PageModels.User;
@@ -19,6 +22,36 @@ public partial class HomePageModel(
     [ObservableProperty] private bool isPageLoading;
     [ObservableProperty] private ObservableRangeCollection<GalleryViewModel> joinedProjectCollection = [];
     [ObservableProperty] private ObservableRangeCollection<GalleryViewModel> myProjectCollection = [];
+    [ObservableProperty] private GalleryViewModel selectedMyProject;
+
+    [RelayCommand]
+    async Task MyProjectSelectionChanged()
+    {
+        try
+        {
+            if (SelectedMyProject is null) return;
+
+            ProjectDto? project = await _projectServ.GetById(SelectedMyProject.ItemId);
+            if (project is null) return;
+
+            Mapper mapper = MapperProvider.GetMapper<ProjectDto, ProjectsPageProjectViewModel>()!;
+            var projectDetailsViewModel = mapper.Map<ProjectsPageProjectViewModel>(project);
+            await Shell.Current.GoToAsync(
+                "Details",
+                new Dictionary<string, object>()
+                {
+                    { "CurrentProject", projectDetailsViewModel }
+                });
+        }
+        catch (Exception ex)
+        {
+            Debug.WriteLine("MyProjectsGalleryViewSelectionChanged: error: " + ex.Message);
+        }
+    }
+
+    [RelayCommand]
+    async Task GoToCreateProject()
+        => await Shell.Current.GoToAsync("CreateProject");
 
     [RelayCommand]
     async Task GoToViewMyProjects()
@@ -45,7 +78,7 @@ public partial class HomePageModel(
     private async Task InitJoinedProjectsCollection()
     {
         var projects = await projectServ.GetUserJoinedProjects(UserStorage.UserId);
-        if (projects!.Count is 0) return;
+        if (projects is null || projects!.Count is 0 ) return;
 
         List<GalleryViewModel> galleryModels = [];
         foreach (var i in projects)

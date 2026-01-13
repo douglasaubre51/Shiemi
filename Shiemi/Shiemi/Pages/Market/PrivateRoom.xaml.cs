@@ -45,7 +45,8 @@ public partial class PrivateRoom : ContentPage
 
             await _roomService.InitSignalR(
                     pageModel!.MessageCollection,
-                    roomId
+                    roomId,
+                    RoomTypes.PRIVATE
                     );
 
             UserDto? user = await _userService.GetUserById(pageModel.CurrentProjectVM.UserId);

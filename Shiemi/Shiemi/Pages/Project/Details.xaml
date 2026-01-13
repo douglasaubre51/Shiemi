@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 
 <ContentPage
     x:Class="Shiemi.Pages.Project.Details"
@@ -6,18 +6,31 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:pagemodel="clr-namespace:Shiemi.PageModels.Project"
     Title="{Binding CurrentProject.Title}"
-    x:DataType="pagemodel:DetailsPageModel">
-    <ScrollView Margin="10" Orientation="Vertical">
-        <VerticalStackLayout Spacing="4">
-            <Label
-                FontSize="14"
-                Text="Description"
-                TextColor="Gray" />
+    x:DataType="pagemodel:DetailsPageModel"
+    Shell.TabBarIsVisible="False">
+    <ScrollView Margin="16" Orientation="Vertical">
+        <Grid RowDefinitions="*,100">
+            <VerticalStackLayout Grid.Row="0" Spacing="4">
+                <Label
+                    FontSize="14"
+                    Text="Description"
+                    TextColor="Gray" />
 
-            <Label
-                FontSize="16"
-                LineBreakMode="WordWrap"
-                Text="{Binding CurrentProject.Description}" />
-        </VerticalStackLayout>
+                <Label
+                    FontSize="16"
+                    LineBreakMode="WordWrap"
+                    Text="{Binding CurrentProject.Description}" />
+            </VerticalStackLayout>
+
+            <HorizontalStackLayout
+                Grid.Row="1"
+                HorizontalOptions="End"
+                Spacing="8"
+                VerticalOptions="End">
+                <Button Command="{Binding GoToChatsCommand}" Text="chats" />
+                <Button Text="edit" />
+                <Button Text="delete" />
+            </HorizontalStackLayout>
+        </Grid>
     </ScrollView>
 </ContentPage>

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 
 <ContentPage
     x:Class="Shiemi.Pages.Market.PrivateRoom"
@@ -10,9 +10,7 @@
     Shell.NavBarIsVisible="False"
     Shell.TabBarIsVisible="False">
 
-    <Grid
-        ColumnDefinitions="*"
-        ColumnSpacing="10">
+    <Grid ColumnDefinitions="*" ColumnSpacing="10">
 
         <!--  chats view  -->
         <views:MessageView

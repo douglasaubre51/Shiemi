@@ -36,7 +36,6 @@ public class ProjectService
         var wrap = await response.Content.ReadFromJsonAsync<ProjectsWrap>();
         return wrap!.Projects;
     }
-
     public async Task<List<ProjectDto>?> GetUserJoinedProjects(int id)
     {
         var response = await _client.GetAsync(
@@ -47,7 +46,6 @@ public class ProjectService
         var wrap = await response.Content.ReadFromJsonAsync<ProjectsWrap>();
         return wrap!.Projects;
     }
-
     public async Task<List<ProjectDto>?> GetAll()
     {
         var response = await _client.GetAsync(
@@ -58,5 +56,14 @@ public class ProjectService
 
         var wrapper = await response.Content.ReadFromJsonAsync<ProjectWrapper>();
         return wrapper!.Projects;
+    }
+    public async Task<ProjectDto?> GetById(int id)
+    {
+        var response = await _client.GetAsync(
+            $"{projectBaseUri}/{id}");
+
+        Debug.WriteLine($"GetProjectById: status: {response.StatusCode}");
+
+        return await response.Content.ReadFromJsonAsync<ProjectDto>();
     }
 }

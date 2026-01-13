@@ -89,7 +89,7 @@ public partial class Rooms : ContentPage
             if (_roomService._hub is not null)  // for page reloads
                 await _roomService.DisconnectWebSocket();
 
-            await _roomService.InitSignalR(context.MessageCollection, UserStorage.RoomId);
+            await _roomService.InitSignalR(context.MessageCollection, UserStorage.RoomId,RoomTypes.PRIVATE);
         }
         catch (Exception ex)
         {

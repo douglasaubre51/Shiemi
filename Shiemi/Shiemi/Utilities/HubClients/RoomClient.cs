@@ -61,7 +61,8 @@ public class RoomClient
 
     public async Task InitSignalR(
             ObservableRangeCollection<MessageViewModel> messageCollection,
-            int roomId)
+            int roomId,
+            RoomTypes roomType)
     {
         _hub = new HubConnectionBuilder()
             .WithUrl(_envStorage.GetSHIEMIWebsocketUri() + "/room")
@@ -112,8 +113,10 @@ public class RoomClient
         await _hub.InvokeAsync(
                 "SetUserIdAndRoom",
                 UserStorage.UserId,
-                roomId);
+                roomId,
+                roomType);
     }
+
     // SignalR actions
     public async Task SendChat(SendMessageDto dto)
         => await _hub!.InvokeAsync("SendChat", dto);

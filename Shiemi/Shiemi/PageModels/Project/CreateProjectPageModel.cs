@@ -42,7 +42,7 @@ public partial class CreateProjectPageModel : BasePageModel
                 );
             await _projectService.Create(dto);
 
-            await Shell.Current.GoToAsync("//Projects");
+            await Shell.Current.GoToAsync("..");
         }
         catch (Exception ex)
         {

@@ -1,39 +1,50 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8" ?>
 
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:homeviews="clr-namespace:Shiemi.Views.HomeViews"
-             Title="Manage Projects"
-             xmlns:userpagemodels="clr-namespace:Shiemi.PageModels.User"
-             x:DataType="userpagemodels:HomePageModel"
-             Shell.NavBarIsVisible="True"
-             x:Class="Shiemi.Pages.User.Home">
-    <VerticalStackLayout Spacing="24"
-                         Margin="16,0,0,0">
+<ContentPage
+    x:Class="Shiemi.Pages.User.Home"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:homeviews="clr-namespace:Shiemi.Views.HomeViews"
+    xmlns:userpagemodels="clr-namespace:Shiemi.PageModels.User"
+    Title="Manage Projects"
+    x:DataType="userpagemodels:HomePageModel"
+    Shell.NavBarIsVisible="True">
+    <VerticalStackLayout Margin="16,0,0,0" Spacing="24">
         <VerticalStackLayout Spacing="8">
             <HorizontalStackLayout Spacing="4">
-                <Label VerticalOptions="Center"
-                       Text="My Projects"
-                       Style="{StaticResource TitleLabel}"/>
-                <ImageButton
-                    Source="ic_fluent_chevron_right_24_regular.png"
-                    Command="{Binding  GoToViewMyProjectsCommand}"/>
+                <Label
+                    Style="{StaticResource TitleLabel}"
+                    Text="My Projects"
+                    VerticalOptions="Center" />
+
+                <ImageButton Command="{Binding GoToViewMyProjectsCommand}" Source="ic_fluent_chevron_right_24_regular.png" />
+
+                <Button
+                    Command="{Binding GoToCreateProjectCommand}"
+                    HorizontalOptions="End"
+                    Text="add" />
             </HorizontalStackLayout>
 
             <homeviews:GalleryView
-                Store="{Binding MyProjectCollection }"/>
+                SelectedItem="{Binding SelectedMyProject}"
+                SelectionChangedCommand="{Binding MyProjectSelectionChangedCommand}"
+                SelectionMode="Single"
+                Store="{Binding MyProjectCollection}" />
         </VerticalStackLayout>
 
         <VerticalStackLayout Spacing="8">
             <HorizontalStackLayout Spacing="4">
-                <Label VerticalOptions="Center"
-                        Text="Joined Projects"
-                       Style="{StaticResource TitleLabel}"/>
-                <ImageButton Source="ic_fluent_chevron_right_24_regular.png"/>
+                <Label
+                    Style="{StaticResource TitleLabel}"
+                    Text="Joined Projects"
+                    VerticalOptions="Center" />
+
+                <ImageButton Source="ic_fluent_chevron_right_24_regular.png" />
+
+                <Button HorizontalOptions="End" Text="add" />
             </HorizontalStackLayout>
 
-            <homeviews:GalleryView
-                Store="{Binding JoinedProjectCollection}"/>
+            <homeviews:GalleryView Store="{Binding JoinedProjectCollection}" />
         </VerticalStackLayout>
     </VerticalStackLayout>
 </ContentPage>

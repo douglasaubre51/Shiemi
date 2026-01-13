@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 
 <ContentPage
     x:Class="Shiemi.Pages.Project.CreateProject"
@@ -7,7 +7,8 @@
     xmlns:pagemodel="clr-namespace:Shiemi.PageModels.Project"
     Title="Create new Project"
     x:DataType="pagemodel:CreateProjectPageModel"
-    Shell.NavBarIsVisible="False">
+    Shell.NavBarIsVisible="False"
+    Shell.TabBarIsVisible="False">
 
     <ScrollView
         Margin="10"

@@ -90,7 +90,7 @@ public partial class DetailsPageModel(
             }
 
             UserStorage.RoomId = roomId;
-            await _roomServ.InitSignalR(Messages, roomId);
+            await _roomServ.InitSignalR(Messages, roomId,RoomTypes.DEV);
             IsNotLoggedInUser = true;
         }
         catch (Exception ex)

@@ -1,4 +1,8 @@
-﻿using MvvmHelpers;
+﻿using AutoMapper;
+using MvvmHelpers;
+using Shiemi.Dtos;
+using Shiemi.Services;
+using Shiemi.Utilities.ServiceProviders;
 using Shiemi.ViewModels;
 
 namespace Shiemi.Views.HomeViews;
@@ -18,14 +22,21 @@ public partial class GalleryView : CollectionView
         }
     );
 
+    private readonly ProjectService _projectServ;
+
     public GalleryView()
     {
         InitializeComponent();
+        _projectServ = Provider.GetService<ProjectService>()!;
     }
 
     public ObservableRangeCollection<GalleryViewModel> Store
     {
         get => (ObservableRangeCollection<GalleryViewModel>)GetValue(StoreProperty);
         set => SetValue(StoreProperty, value);
+    }
+
+    private async Task GalleryCollectionView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+    {
     }
 }
