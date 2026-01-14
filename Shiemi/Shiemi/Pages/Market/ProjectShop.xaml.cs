@@ -1,4 +1,3 @@
-using System.Diagnostics;
 using Shiemi.Dtos;
 using Shiemi.PageModels.Market;
 using Shiemi.Services;
@@ -18,8 +17,13 @@ public partial class ProjectShop : ContentPage
     {
         InitializeComponent();
         BindingContext = pageModel;
-
         _projectService = projectService;
+    }
+
+    protected override void OnDisappearing()
+    {
+        Provider.GetTitleBarWidget()!.SearchBarIsEnabled = false;
+        base.OnDisappearing();
     }
 
     protected override async void OnAppearing()
@@ -36,6 +40,8 @@ public partial class ProjectShop : ContentPage
             List<ProjectViewModel> projectViewModels = mapper!.Map<List<ProjectViewModel>>(projects);
 
             pageModel!.ProjectCollection.AddRange(projectViewModels);
+
+            Provider.GetTitleBarWidget()!.SearchBarIsEnabled = true;
         }
         catch (Exception ex)
         {

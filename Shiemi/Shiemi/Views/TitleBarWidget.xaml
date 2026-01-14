@@ -1,16 +1,22 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<TitleBar xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-          xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-          x:Class="Shiemi.Views.TitleBarWidget"
-          Title="Shiemi"
-          Subtitle="Get started on your dev journey today!"
-          BackgroundColor="White"
-          HeightRequest="48">
+<TitleBar
+    x:Class="Shiemi.Views.TitleBarWidget"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:views="clr-namespace:Shiemi.Views"
+    Title="Shiemi"
+    x:DataType="views:TitleBarWidget"
+    BackgroundColor="White"
+    HeightRequest="48"
+    Subtitle="Get started on your dev journey today!">
     <TitleBar.Content>
-        <SearchBar Placeholder="Search"
-                   PlaceholderColor="Grey"
-                   MaximumWidthRequest="300"
-                   MaximumHeightRequest="40"
-                   VerticalOptions="Center"/>
+        <SearchBar
+            x:Name="SearchBarView"
+            IsVisible="false"
+            MaximumHeightRequest="40"
+            MaximumWidthRequest="300"
+            Placeholder="Search"
+            PlaceholderColor="Grey"
+            VerticalOptions="Center" />
     </TitleBar.Content>
 </TitleBar>

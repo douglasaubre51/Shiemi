@@ -19,6 +19,11 @@ public partial class Market : ContentPage
         _devServ = devServ;
     }
 
+    protected override void OnDisappearing()
+    {
+        Provider.GetTitleBarWidget()!.SearchBarIsEnabled = false;
+        base.OnDisappearing();
+    }
     protected override async void OnAppearing()
     {
         try
@@ -33,8 +38,9 @@ public partial class Market : ContentPage
             {
                 devModels[i].StartingPrice = Math.Round(devModels[i].StartingPrice);
             }
-
             DevCollectionView.ItemsSource = devModels;
+
+            Provider.GetTitleBarWidget()!.SearchBarIsEnabled = true;
         }
         catch (Exception ex)
         {

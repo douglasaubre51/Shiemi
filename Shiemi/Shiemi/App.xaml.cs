@@ -1,5 +1,6 @@
 ﻿using Shiemi.Utilities.ServiceProviders;
 using Shiemi.Views;
+using Shiemi.ViewModels;
 
 namespace Shiemi;
 
@@ -29,7 +30,9 @@ public partial class App : Application
         window.X = displayInfo.Height / displayInfo.Density - window.Height;
 
         // Add custom titlebar
-        window.TitleBar = new TitleBarWidget();
+        var newTitleBarWidget = new TitleBarWidget();
+        window.TitleBar = newTitleBarWidget;
+        Provider.SetTitleBarWidget(newTitleBarWidget);
 
         return window;
     }

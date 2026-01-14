@@ -11,6 +11,8 @@ using Shiemi.Services;
 using Shiemi.Storage;
 using Shiemi.Utilities;
 using Shiemi.Utilities.HubClients;
+using Shiemi.ViewModels;
+using Shiemi.Views;
 using Shiemi.Views.DevViews;
 using DetailsPageModel = Shiemi.PageModels.Project.DetailsPageModel;
 using EditPageModel = Shiemi.PageModels.User.EditPageModel;
