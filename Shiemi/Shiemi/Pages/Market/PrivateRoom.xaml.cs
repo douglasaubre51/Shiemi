@@ -3,7 +3,6 @@ using Shiemi.PageModels.Market;
 using Shiemi.Services;
 using Shiemi.Storage;
 using Shiemi.Utilities.HubClients;
-using System.Diagnostics;
 
 namespace Shiemi.Pages.Market;
 
@@ -38,7 +37,7 @@ public partial class PrivateRoom : ContentPage
             int roomId = await _roomService.GetPrivateRoom(
                     UserStorage.UserId,
                     pageModel.CurrentProjectVM.Id,
-					0,
+                    0,
                     RoomTypes.PRIVATE
                     );
             UserStorage.RoomId = roomId;
@@ -46,6 +45,7 @@ public partial class PrivateRoom : ContentPage
             await _roomService.InitSignalR(
                     pageModel!.MessageCollection,
                     roomId,
+                    pageModel.CurrentProjectVM.Id,
                     RoomTypes.PRIVATE
                     );
 

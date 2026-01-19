@@ -1,16 +1,16 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8" ?>
 
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:userpagemodels="clr-namespace:Shiemi.PageModels.User"
-             x:DataType="userpagemodels:DevHubPageModel"
-             xmlns:usermodel="clr-namespace:Shiemi.Models"
-             xmlns:views="clr-namespace:Shiemi.Views"
-             x:Class="Shiemi.Pages.User.DevHub">
+<ContentPage
+    x:Class="Shiemi.Pages.User.DevHub"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:usermodel="clr-namespace:Shiemi.Models"
+    xmlns:userpagemodels="clr-namespace:Shiemi.PageModels.User"
+    xmlns:views="clr-namespace:Shiemi.Views"
+    x:DataType="userpagemodels:DevHubPageModel">
     <ScrollView Orientation="Vertical">
-        <Grid RowDefinitions="200,*"
-              Margin="16,0,0,0">
-            <!-- client profiles -->
+        <Grid Margin="16,0,0,0" RowDefinitions="200,*">
+            <!--  client profiles  -->
             <VerticalStackLayout Grid.Row="0">
                 <Label Text="Clientele" />
 
@@ -20,13 +20,12 @@
                     ItemsSource="{Binding ClientProfiles}">
                     <CollectionView.ItemTemplate>
                         <DataTemplate x:DataType="usermodel:ProfileCardModel">
-                            <views:ProfileCard Username="{Binding Username}"
-                                               UserId="{Binding Id}"
-                                               ProfilePhoto="{Binding ProfilePhotoURI}">
+                            <views:ProfileCard
+                                ProfilePhoto="{Binding ProfilePhotoURI}"
+                                UserId="{Binding Id}"
+                                Username="{Binding Username}">
                                 <views:ProfileCard.GestureRecognizers>
-                                    <TapGestureRecognizer
-                                        Command="{Binding Source={RelativeSource AncestorType={x:Type userpagemodels:DevHubPageModel}}, x:DataType=userpagemodels:DevHubPageModel, Path=DidSelectedClientProfileChangeCommand}"
-                                        CommandParameter="{Binding .}" />
+                                    <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type userpagemodels:DevHubPageModel}}, x:DataType=userpagemodels:DevHubPageModel, Path=DidSelectedClientProfileChangeCommand}" CommandParameter="{Binding .}" />
                                 </views:ProfileCard.GestureRecognizers>
                             </views:ProfileCard>
 
@@ -34,10 +33,11 @@
                     </CollectionView.ItemTemplate>
 
                     <CollectionView.ItemsLayout>
-                        <GridItemsLayout Span="2"
-                                         Orientation="Horizontal"
-                                         VerticalItemSpacing="4"
-                                         HorizontalItemSpacing="4" />
+                        <GridItemsLayout
+                            HorizontalItemSpacing="4"
+                            Orientation="Horizontal"
+                            Span="2"
+                            VerticalItemSpacing="4" />
                     </CollectionView.ItemsLayout>
                 </CollectionView>
             </VerticalStackLayout>

@@ -1,5 +1,4 @@
-﻿using System.Net.Http.Json;
-using AutoMapper;
+﻿using AutoMapper;
 using Microsoft.AspNetCore.SignalR.Client;
 using MvvmHelpers;
 using Shiemi.Dtos;
@@ -7,6 +6,7 @@ using Shiemi.HubModels;
 using Shiemi.Storage;
 using Shiemi.Utilities.ServiceProviders;
 using Shiemi.ViewModels;
+using System.Net.Http.Json;
 
 namespace Shiemi.Utilities.HubClients;
 
@@ -62,6 +62,7 @@ public class RoomClient
     public async Task InitSignalR(
             ObservableRangeCollection<MessageViewModel> messageCollection,
             int roomId,
+            int projectOrDevId,
             RoomTypes roomType)
     {
         _hub = new HubConnectionBuilder()

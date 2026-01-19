@@ -1,11 +1,11 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using MvvmHelpers;
-using Shiemi.Models;
-using Shiemi.ViewModels;
 using Shiemi.Dtos;
-using Shiemi.Utilities.HubClients;
-using Shiemi.Storage;
+using Shiemi.Models;
 using Shiemi.Services;
+using Shiemi.Storage;
+using Shiemi.Utilities.HubClients;
+using Shiemi.ViewModels;
 
 namespace Shiemi.PageModels.Dev;
 
@@ -65,7 +65,7 @@ public partial class DetailsPageModel(
 
         try
         {
-			// check if logged in user owns this page
+            // check if logged in user owns this page
             DevDto loggedInUserDevDto = await _devServ.GetByUserId(UserStorage.UserId);
             if (loggedInUserDevDto.Id == CurrentDev.Id)
             {
@@ -76,7 +76,7 @@ public partial class DetailsPageModel(
 
             int roomId = await _roomServ.GetPrivateRoom(
                     UserStorage.UserId,
-					0,
+                    0,
                     CurrentDev.Id,
                     RoomTypes.DEV);
             if (roomId is 0)
@@ -90,7 +90,11 @@ public partial class DetailsPageModel(
             }
 
             UserStorage.RoomId = roomId;
-            await _roomServ.InitSignalR(Messages, roomId,RoomTypes.DEV);
+            await _roomServ.InitSignalR(
+                Messages,
+                roomId,
+                CurrentDev.Id,
+                RoomTypes.DEV);
             IsNotLoggedInUser = true;
         }
         catch (Exception ex)
