@@ -75,13 +75,13 @@ public partial class Rooms : ContentPage
             if (context is null)
                 return;
 
-            var selectedChat = e.CurrentSelection.FirstOrDefault() as ChatRoomViewModel;
+            var selectedChat = e.CurrentSelection.SingleOrDefault() as ChatRoomViewModel;
             if (selectedChat is null)
                 return;
 
-            Debug.WriteLine($"room id: {selectedChat.RoomId}");
-
             UserStorage.RoomId = selectedChat.RoomId;  // store RoomId for later use !
+            Debug.WriteLine($"room id changed: {selectedChat.RoomId}");
+
             context.Sender = selectedChat.Title;
             context.MessageCollection.Clear();
 
