@@ -12,8 +12,6 @@
         <Grid Margin="16,0,0,0" RowDefinitions="200,*">
             <!--  client profiles  -->
             <VerticalStackLayout Grid.Row="0" Spacing="16">
-                <Label FontSize="Subtitle" Text="Clientele" />
-
                 <CollectionView
                     HorizontalScrollBarVisibility="Never"
                     ItemSizingStrategy="MeasureFirstItem"

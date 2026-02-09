@@ -11,20 +11,16 @@
     HorizontalScrollBarVisibility="Never">
     <CollectionView.ItemTemplate>
         <DataTemplate x:DataType="viewmodels:GalleryViewModel">
-            <Border
-                BackgroundColor="LightBlue"
-                Style="{StaticResource CardBorderStyle}"
-                WidthRequest="300">
+            <Border Style="{StaticResource CardBorderStyle}" WidthRequest="300">
                 <VerticalStackLayout Spacing="8">
                     <Label
                         FontSize="18"
-                        MaxLines="2"
+                        LineBreakMode="TailTruncation"
                         Text="{Binding CoverTitle}" />
 
                     <Label
                         FontSize="14"
-                        LineBreakMode="WordWrap"
-                        MaxLines="3"
+                        LineBreakMode="TailTruncation"
                         Text="{Binding CoverBlurb}"
                         TextColor="Gray"
                         VerticalOptions="End" />
@@ -39,6 +35,7 @@
 
     <CollectionView.EmptyView>
         <Label
+            Padding="16,0,0,0"
             FontSize="24"
             Text="Soo empty!"
             TextColor="LightGray" />

@@ -9,10 +9,11 @@
     Title="Manage Projects"
     x:DataType="userpagemodels:HomePageModel"
     Shell.NavBarIsVisible="True">
-    <VerticalStackLayout Margin="16,0,0,0" Spacing="24">
+    <VerticalStackLayout Margin="0,0,0,0" Spacing="24">
         <VerticalStackLayout Spacing="8">
             <HorizontalStackLayout Spacing="4">
                 <Label
+                    Margin="16,0,0,0"
                     Style="{StaticResource TitleLabel}"
                     Text="My Projects"
                     VerticalOptions="Center" />
@@ -21,8 +22,8 @@
 
                 <Button
                     Command="{Binding GoToCreateProjectCommand}"
-                    HorizontalOptions="End"
-                    Text="add" />
+                    ImageSource="ic_fluent_add_circle_24_regular.png"
+                    Style="{StaticResource IconStyle}" />
             </HorizontalStackLayout>
 
             <homeviews:GalleryView
@@ -35,11 +36,17 @@
         <VerticalStackLayout Spacing="8">
             <HorizontalStackLayout Spacing="4">
                 <Label
+                    Margin="16,0,0,0"
                     Style="{StaticResource TitleLabel}"
                     Text="Joined Projects"
                     VerticalOptions="Center" />
 
                 <ImageButton Source="ic_fluent_chevron_right_24_regular.png" />
+
+                <Button
+                    Command="{Binding GoToProjectShopCommand}"
+                    ImageSource="ic_fluent_add_circle_24_regular.png"
+                    Style="{StaticResource IconStyle}" />
             </HorizontalStackLayout>
 
             <homeviews:GalleryView Store="{Binding JoinedProjectCollection}" />

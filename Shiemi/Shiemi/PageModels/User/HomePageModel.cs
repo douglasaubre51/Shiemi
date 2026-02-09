@@ -34,6 +34,10 @@ public partial class HomePageModel(
     private GalleryViewModel selectedMyProject;
 
     [RelayCommand]
+    async Task GoToProjectShop()
+        => await Shell.Current.GoToAsync("///ProjectShop");
+
+    [RelayCommand]
     async Task MyProjectSelectionChanged()
     {
         try

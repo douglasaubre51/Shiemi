@@ -7,26 +7,26 @@
     xmlns:views="clr-namespace:Shiemi.Views"
     x:DataType="views:ProfileCard">
     <Border
-        BackgroundColor="#f4f4f4"
-        HeightRequest="150"
-        MinimumWidthRequest="300"
-        Style="{StaticResource CardBorderStyle}">
-        <Grid
-            ColumnDefinitions="Auto,*"
-            ColumnSpacing="8"
-            RowDefinitions="Auto">
-            <Border Grid.Column="0" StrokeShape="RoundRectangle 50">
+        HeightRequest="250"
+        Stroke="Transparent"
+        WidthRequest="200">
+        <Grid RowDefinitions="Auto,Auto">
+            <Border
+                Grid.Row="0"
+                HeightRequest="150"
+                Stroke="Transparent"
+                StrokeShape="RoundRectangle 4">
                 <Image
                     x:Name="ProfileImage"
-                    Aspect="AspectFit"
-                    HeightRequest="100"
-                    WidthRequest="100" />
+                    Grid.Row="0"
+                    Aspect="AspectFill" />
             </Border>
 
             <Label
                 x:Name="UsernameLabel"
-                Grid.Column="1"
-                LineBreakMode="WordWrap"
+                Grid.Row="1"
+                FontSize="16"
+                LineBreakMode="TailTruncation"
                 Style="{StaticResource CardTitleLabel}" />
         </Grid>
     </Border>

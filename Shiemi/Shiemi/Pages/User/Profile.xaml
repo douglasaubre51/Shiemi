@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 
 <ContentPage
     x:Class="Shiemi.Pages.User.Profile"
@@ -7,101 +7,92 @@
     xmlns:pagemodel="clr-namespace:Shiemi.PageModels.User"
     Title="Profile"
     x:DataType="pagemodel:ProfilePageModel"
-    BackgroundColor="Lavender"
     SafeAreaEdges="Default"
     Shell.NavBarIsVisible="True">
     <Grid
-        Padding="10"
-        ColumnDefinitions="Auto,Auto"
+        Margin="16,0,0,0"
+        ColumnDefinitions="*,*"
         ColumnSpacing="16"
-        IsClippedToBounds="False">
+        IsClippedToBounds="False"
+        RowDefinitions="Auto,Auto"
+        RowSpacing="16">
         <!--  user details card  -->
-        <Border
-            Grid.Column="0"
-            HorizontalOptions="Start"
-            Style="{StaticResource CardBorderStyle}"
-            VerticalOptions="Start">
-            <Grid
-                ColumnDefinitions="*"
-                ColumnSpacing="4"
-                IsClippedToBounds="False"
-                RowDefinitions="Auto,Auto,Auto,*">
-                <Border
-                    Grid.Row="0"
-                    BackgroundColor="Transparent"
-                    StrokeThickness="0">
-                    <Border.Shadow>
-                        <Shadow
-                            Opacity="0.4"
-                            Radius="10"
-                            Offset="1,1" />
-                    </Border.Shadow>
-                    <Border.StrokeShape>
-                        <RoundRectangle
-                            CornerRadius="4" />
-                    </Border.StrokeShape>
-                    <Image
-                        Aspect="AspectFill"
-                        HeightRequest="250"
-                        Source="{Binding ProfileURL}"
-                        WidthRequest="360" />
-                </Border>
+        <Grid
+            Grid.ColumnSpan="2"
+            ColumnDefinitions="Auto,Auto"
+            ColumnSpacing="16"
+            IsClippedToBounds="False"
+            RowDefinitions="Auto,Auto">
+            <Border
+                Grid.RowSpan="2"
+                Grid.Column="0"
+                BackgroundColor="Transparent"
+                StrokeThickness="0">
+                <Border.Shadow>
+                    <Shadow
+                        Opacity="0.4"
+                        Radius="10"
+                        Offset="1,1" />
+                </Border.Shadow>
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="4" />
+                </Border.StrokeShape>
+                <Image
+                    Aspect="AspectFill"
+                    HeightRequest="250"
+                    Source="{Binding ProfileURL}"
+                    WidthRequest="360" />
+            </Border>
+
+            <VerticalStackLayout Grid.Row="0" Grid.Column="1">
+                <Label FontSize="56" Text="{Binding UserName}" />
 
                 <Label
-                    Grid.Row="1"
-                    Grid.ColumnSpan="2"
-                    FontSize="42"
-                    Text="{Binding UserName}" />
-
-                <Label
-                    Grid.Row="2"
-                    Grid.ColumnSpan="2"
                     Margin="0,0,0,40"
                     FontSize="15"
                     Text="{Binding Email}"
                     TextColor="Grey" />
+            </VerticalStackLayout>
 
-                <HorizontalStackLayout
-                    Grid.Row="3"
-                    Spacing="8">
-                    <Button
-                        Command="{Binding LogoutCommand}"
-                        HorizontalOptions="Start"
-                        ImageSource="ic_fluent_sign_out_24_regular.png"
-                        Style="{StaticResource WarningIconStyle}" />
+            <HorizontalStackLayout
+                Grid.Row="1"
+                Grid.Column="1"
+                Spacing="8"
+                VerticalOptions="End">
+                <Button
+                    Command="{Binding GoToProfileEditPageCommand}"
+                    HorizontalOptions="End"
+                    ImageSource="ic_fluent_edit_person_24_regular.png"
+                    Style="{StaticResource IconStyle}" />
+                <!--  separator  -->
+                <BoxView Style="{StaticResource VerticalSeperator}" />
 
-                    <!--  separator  -->
-                    <BoxView
-                        Style="{StaticResource VerticalSeperator}" />
-
-                    <Button
-                        Command="{Binding GoToProfileEditPageCommand}"
-                        HorizontalOptions="End"
-                        ImageSource="ic_fluent_edit_person_24_regular.png"
-                        Style="{StaticResource IconStyle}" />
-                </HorizontalStackLayout>
-            </Grid>
-        </Border>
+                <Button
+                    Command="{Binding LogoutCommand}"
+                    HorizontalOptions="Start"
+                    ImageSource="ic_fluent_sign_out_24_regular.png"
+                    Style="{StaticResource WarningIconStyle}"
+                    Text="Logout"
+                    TextColor="Black" />
+            </HorizontalStackLayout>
+        </Grid>
 
         <!--  dev profile  -->
         <Border
             x:Name="DevProfileCard_NotJoined"
-            Grid.Column="1"
-            Padding="16"
+            Grid.Row="1"
             IsVisible="{Binding ShowDevCard_NotJoined}"
-            Style="{StaticResource CardBorderStyle}"
+            Stroke="Transparent"
             VerticalOptions="Start">
-            <VerticalStackLayout
-                Spacing="16">
-                <Label
-                    Style="{StaticResource TitleLabel}"
-                    Text="Dev Profile" />
+            <VerticalStackLayout>
+                <Label Style="{StaticResource TitleLabel}" Text="Dev Profile" />
 
-                <Label
-                    Text="Become a dev and get hired !" />
+                <Label Text="Become a dev and get hired !" />
 
                 <Button
+                    Margin="0,16,0,0"
                     Command="{Binding GoToDevEditPageCommand}"
+                    HorizontalOptions="Start"
                     Text="Start now" />
             </VerticalStackLayout>
         </Border>

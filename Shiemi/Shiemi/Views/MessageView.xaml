@@ -6,13 +6,15 @@
     xmlns:viewmodels="clr-namespace:Shiemi.ViewModels"
     xmlns:views="clr-namespace:Shiemi.Views"
     x:DataType="views:MessageView"
-    BackgroundColor="LightSlateGray"
     ColumnDefinitions="*"
     RowDefinitions="50,*,60">
 
     <!--  header  -->
     <VerticalStackLayout Grid.Row="0" BackgroundColor="#f9f9f9">
-        <Label x:Name="SenderLabel" Margin="20" />
+        <Label
+            x:Name="SenderLabel"
+            Padding="20"
+            FontSize="Title" />
     </VerticalStackLayout>
 
     <!--  body  -->
