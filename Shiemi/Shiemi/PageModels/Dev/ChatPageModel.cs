@@ -22,20 +22,4 @@ public partial class ChatPageModel(
     private bool isPageLoading;
     [ObservableProperty]
     private bool isPageExiting;
-
-    async partial void OnIsPageLoadingChanged(bool value)
-    {
-        try
-        {
-            if (value is false) return;
-        }
-        catch (Exception ex)
-        {
-            Debug.WriteLine(ex.Message);
-        }
-        finally
-        {
-            IsPageLoading = false;
-        }
-    }
 }
