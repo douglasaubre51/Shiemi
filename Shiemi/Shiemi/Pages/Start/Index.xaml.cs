@@ -1,7 +1,6 @@
 using Shiemi.PageModels.Start;
 using Shiemi.Services;
 using Shiemi.Storage;
-using System.Diagnostics;
 
 namespace Shiemi.Pages.Start;
 
@@ -33,7 +32,6 @@ public partial class Index : ContentPage
             // check if user logged in!
             if (DataStorage.Get("UserId") is not "")
             {
-                // store userId<string> in temp data storage
                 string userIdString = DataStorage.Get("UserId");
                 var userIdDto = await _userService.GetUserId(
                     userIdString
@@ -44,6 +42,7 @@ public partial class Index : ContentPage
                     return;
                 }
 
+                // reroute to profile page
                 UserStorage.UserId = userIdDto!.Id;
                 await Shell.Current.GoToAsync("//Profile");
             }

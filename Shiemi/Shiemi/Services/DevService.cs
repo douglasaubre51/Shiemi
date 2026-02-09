@@ -1,6 +1,6 @@
-using System.Net.Http.Json;
 using Shiemi.Dtos;
 using Shiemi.Utilities;
+using System.Net.Http.Json;
 
 namespace Shiemi.Services;
 
@@ -72,7 +72,13 @@ public class DevService
             $"{devBaseUri}/all"
         );
     public async Task<DevDto?> GetByUserId(int userId)
-        => await _httpClient.GetFromJsonAsync<DevDto>(
+    {
+        var response = await _httpClient.GetAsync(
             $"{devBaseUri}/{userId}/userId/dev"
         );
+        if (response.IsSuccessStatusCode is false)
+            return null;
+
+        return await response.Content.ReadFromJsonAsync<DevDto>();
+    }
 }

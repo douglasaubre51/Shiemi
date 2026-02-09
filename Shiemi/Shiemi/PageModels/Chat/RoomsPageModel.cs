@@ -4,8 +4,12 @@ using Shiemi.ViewModels;
 
 namespace Shiemi.PageModels.Chat;
 
+[QueryProperty(nameof(CurrentProject), "SelectedProject")]
 public partial class RoomsPageModel : BasePageModel
 {
+    [ObservableProperty]
+    private ProjectsPageProjectViewModel? currentProject;
+
     [ObservableProperty]
     private ObservableRangeCollection<ChatRoomViewModel> chatCollection = [];
 

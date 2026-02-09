@@ -1,7 +1,7 @@
-﻿using System.Net.Http.Json;
-using Shiemi.Dtos;
+﻿using Shiemi.Dtos;
 using Shiemi.Utilities;
 using Shiemi.Wrappers;
+using System.Net.Http.Json;
 
 namespace Shiemi.Services;
 
@@ -24,6 +24,40 @@ public class ProjectService
             projectBaseUri,
             dto
         );
+    }
+
+    public async Task RemoveDevFromProject(int projectId, int clientId)
+    {
+        var response = await _client.GetAsync(
+            $"{projectBaseUri}/{projectId}/{clientId}/remove-client");
+        if (response.IsSuccessStatusCode is false)
+        {
+            Debug.WriteLine($"get error:{response.StatusCode}");
+            return;
+        }
+    }
+    public async Task AddDevToProject(int projectId, int clientId)
+    {
+        var response = await _client.GetAsync(
+            $"{projectBaseUri}/{projectId}/{clientId}/add-client");
+        if (response.IsSuccessStatusCode is false)
+        {
+            Debug.WriteLine($"get error:{response.StatusCode}");
+            return;
+        }
+    }
+
+    public async Task<List<UserDetailsDto>?> GetAllPotentialCandidates(int projectId)
+    {
+        var response = await _client.GetAsync(
+            $"{projectBaseUri}/{projectId}/devs-contacted/all");
+        if (response.IsSuccessStatusCode is false)
+        {
+            Debug.WriteLine($"get error:{response.StatusCode}");
+            return null!;
+        }
+
+        return await response.Content.ReadFromJsonAsync<List<UserDetailsDto>>();
     }
 
     public async Task<List<ProjectDto>?> GetAllByUser(int id)

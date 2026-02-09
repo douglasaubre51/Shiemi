@@ -58,6 +58,9 @@
 	  <MauiXaml Update="Pages\Chats\Channels.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="Pages\Project\AddDevs.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Resources\StyleSheet\StyleSheet.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>

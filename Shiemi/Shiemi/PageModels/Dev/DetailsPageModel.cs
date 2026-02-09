@@ -66,8 +66,10 @@ public partial class DetailsPageModel(
         try
         {
             // check if logged in user owns this page
-            DevDto loggedInUserDevDto = await _devServ.GetByUserId(UserStorage.UserId);
-            if (loggedInUserDevDto.Id == CurrentDev.Id)
+            DevDto? loggedInUserDevDto = await _devServ.GetByUserId(UserStorage.UserId)!;
+            if (loggedInUserDevDto is null)
+                IsNotLoggedInUser = true;
+            else if (loggedInUserDevDto!.Id == CurrentDev!.Id)
             {
                 Debug.WriteLine("users own dev profile!");
                 IsNotLoggedInUser = false;
@@ -100,6 +102,7 @@ public partial class DetailsPageModel(
         catch (Exception ex)
         {
             Debug.WriteLine(ex.Message);
+            IsNotLoggedInUser = false;
         }
         finally
         {
@@ -116,7 +119,7 @@ public partial class DetailsPageModel(
         {
             await _roomServ.SendChat(new SendMessageDto(
                         SendChatText,
-                        DateTime.UtcNow.ToLocalTime(),
+                        DateTime.UtcNow,
                         UserStorage.UserId,
                         0,
                         UserStorage.RoomId

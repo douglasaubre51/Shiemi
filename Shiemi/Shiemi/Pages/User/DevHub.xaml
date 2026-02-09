@@ -11,8 +11,8 @@
     <ScrollView Orientation="Vertical">
         <Grid Margin="16,0,0,0" RowDefinitions="200,*">
             <!--  client profiles  -->
-            <VerticalStackLayout Grid.Row="0">
-                <Label Text="Clientele" />
+            <VerticalStackLayout Grid.Row="0" Spacing="16">
+                <Label FontSize="Subtitle" Text="Clientele" />
 
                 <CollectionView
                     HorizontalScrollBarVisibility="Never"
@@ -28,16 +28,11 @@
                                     <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type userpagemodels:DevHubPageModel}}, x:DataType=userpagemodels:DevHubPageModel, Path=DidSelectedClientProfileChangeCommand}" CommandParameter="{Binding .}" />
                                 </views:ProfileCard.GestureRecognizers>
                             </views:ProfileCard>
-
                         </DataTemplate>
                     </CollectionView.ItemTemplate>
 
                     <CollectionView.ItemsLayout>
-                        <GridItemsLayout
-                            HorizontalItemSpacing="4"
-                            Orientation="Horizontal"
-                            Span="2"
-                            VerticalItemSpacing="4" />
+                        <LinearItemsLayout ItemSpacing="4" Orientation="Horizontal" />
                     </CollectionView.ItemsLayout>
                 </CollectionView>
             </VerticalStackLayout>

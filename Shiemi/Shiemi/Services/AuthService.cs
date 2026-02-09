@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.SignalR.Client;
 using Shiemi.Storage;
-using System.Diagnostics;
 
 namespace Shiemi.Services;
 
@@ -12,6 +11,7 @@ public class AuthService(EnvironmentStorage envService)
     {
         var conn = new HubConnectionBuilder()
             .WithUrl(_envService.GetWAGURIWebsocketUri())
+            .WithAutomaticReconnect()
             .Build();
 
         conn.Closed += async (error) =>

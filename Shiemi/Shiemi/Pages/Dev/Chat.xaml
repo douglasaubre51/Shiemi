@@ -1,13 +1,15 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:devpagemodels="clr-namespace:Shiemi.PageModels.Dev"
-             Shell.TabBarIsVisible="false"
-             x:Class="Shiemi.Pages.Dev.Chat"
-             x:DataType="devpagemodels:ChatPageModel"
-             Title="{Binding CurrentClient.Username}">
+<ContentPage
+    x:Class="Shiemi.Pages.Dev.Chat"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:devpagemodels="clr-namespace:Shiemi.PageModels.Dev"
+    xmlns:views="clr-namespace:Shiemi.Views"
+    Title="Chat"
+    x:DataType="devpagemodels:ChatPageModel"
+    Shell.TabBarIsVisible="false">
     <Grid Margin="16,0,0,0">
-        <CollectionView />
+        <views:MessageView SenderName="{Binding CurrentClient.Username}" />
     </Grid>
 </ContentPage>

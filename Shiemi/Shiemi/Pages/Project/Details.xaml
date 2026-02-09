@@ -27,6 +27,7 @@
                 HorizontalOptions="End"
                 Spacing="8"
                 VerticalOptions="End">
+                <Button Command="{Binding GoToAddDevelopersCommand}" Text="Manage Devs" />
                 <Button Command="{Binding GoToChatsCommand}" Text="chats" />
                 <Button Text="edit" />
                 <Button Text="delete" />

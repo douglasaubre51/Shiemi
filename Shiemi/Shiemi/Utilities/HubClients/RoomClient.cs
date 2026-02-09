@@ -77,6 +77,10 @@ public class RoomClient
                 "LoadChat",
                 async (dtos) =>
                 {
+                    // change all msg times to local time
+                    foreach (var m in dtos)
+                        m.CreatedAt = m.CreatedAt.ToLocalTime();
+
                     var ownerMessages = dtos.Where(c => c.UserId == UserStorage.UserId)
                     .ToList();
                     foreach (var m in ownerMessages)
@@ -100,6 +104,9 @@ public class RoomClient
                     if (dto.UserId == UserStorage.UserId)
                         dto.IsOwner = true;
 
+                    // change to local time
+                    dto.CreatedAt = dto.CreatedAt.ToLocalTime();
+
                     Mapper? mapper = MapperProvider.GetMapper<RoomMessageHubModel, MessageViewModel>();
                     if (mapper is null)
                         return;
@@ -113,6 +120,7 @@ public class RoomClient
 
         await _hub.InvokeAsync(
                 "SetUserIdAndRoom",
+                projectOrDevId,
                 UserStorage.UserId,
                 roomId,
                 roomType);

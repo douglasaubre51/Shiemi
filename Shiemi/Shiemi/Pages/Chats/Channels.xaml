@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 
 <ContentPage
     x:Class="Shiemi.Pages.Chats.Channels"
@@ -9,13 +9,10 @@
     Title="Chats"
     x:DataType="chatmodel:ChannelsPageModel">
 
-    <Grid
-        ColumnDefinitions="*,2*">
+    <Grid ColumnDefinitions="*,2*">
 
         <!--  chat list  -->
-        <views:ProjectListView
-            Grid.Column="0"
-            ProjectCollection="{Binding ProjectCollection}" />
+        <views:ProjectListView Grid.Column="0" ProjectCollection="{Binding ProjectCollection}" />
 
         <!--  chat area  -->
         <views:ChannelMessageView

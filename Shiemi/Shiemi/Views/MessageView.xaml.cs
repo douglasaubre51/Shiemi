@@ -4,7 +4,6 @@ using Shiemi.Storage;
 using Shiemi.Utilities.HubClients;
 using Shiemi.Utilities.ServiceProviders;
 using Shiemi.ViewModels;
-using System.Diagnostics;
 
 namespace Shiemi.Views;
 
@@ -72,7 +71,7 @@ public partial class MessageView : Grid
 
             var dto = new SendMessageDto(
                 Text: MessageBox.Text,
-                CreatedAt: DateTime.UtcNow.ToLocalTime(),
+                CreatedAt: DateTime.UtcNow,
                 UserId: UserStorage.UserId,
                 RoomId: UserStorage.RoomId,
                 ChannelId: 0  // channel id 0 since message is in room !

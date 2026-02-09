@@ -1,4 +1,3 @@
-using System.Diagnostics;
 using MvvmHelpers;
 using Shiemi.Models;
 using Shiemi.Services;
@@ -75,7 +74,7 @@ public partial class ReviewCard : Border
                 UserId = UserStorage.UserId,
                 ProjectId = CurrentProjectId,
                 Text = ReviewEditorView.Text,
-                CreatedAt = DateTime.UtcNow.ToLocalTime()
+                CreatedAt = DateTime.UtcNow
             };
             bool result = await _reviewService.CreateReview(review);
             if (result is false)

@@ -1,6 +1,5 @@
 ﻿using CommunityToolkit.Mvvm.Input;
 using Shiemi.Storage;
-using System.Diagnostics;
 
 namespace Shiemi.PageModels.Start
 {

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 
 <ContentPage
     x:Class="Shiemi.Pages.Dev.Details"
@@ -6,39 +6,27 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:devpagemodels="clr-namespace:Shiemi.PageModels.Dev"
     xmlns:devviews="clr-namespace:Shiemi.Views.DevViews"
-    BackgroundColor="Gainsboro"
     Title="{Binding CurrentDev.Username}"
     x:DataType="devpagemodels:DetailsPageModel"
     Shell.TabBarIsVisible="False">
-    <Grid
-        ColumnDefinitions="*,1,*">
+    <Grid ColumnDefinitions="*,1,*">
         <ScrollView
             Margin="10"
             Padding="10"
             Orientation="Vertical">
-            <VerticalStackLayout
-                Spacing="8">
-                <Border
-                    Style="{StaticResource ImageCardBorderStyle}">
-                    <Image
-                        Aspect="Fill"
-                        HeightRequest="500"
-                        Source="{Binding CurrentDev.Profile}" />
+            <VerticalStackLayout Spacing="8">
+                <Border Style="{StaticResource ImageCardBorderStyle}">
+                    <Image Aspect="AspectFill" Source="{Binding CurrentDev.Profile}" />
                 </Border>
 
-                <Label
-                    Text="Description:" />
+                <Label Text="Description:" />
 
-                <Label
-                    Text="{Binding CurrentDev.ShortDesc}" />
-                <Label
-                    Text="{Binding CurrentDev.StartingPrice, StringFormat='Starting At: ₹{0}'}" />
+                <Label Text="{Binding CurrentDev.ShortDesc}" />
+                <Label Text="{Binding CurrentDev.StartingPrice, StringFormat='Starting At: ₹{0}'}" />
             </VerticalStackLayout>
         </ScrollView>
 
-        <BoxView
-            Grid.Column="1"
-            Style="{StaticResource VerticalSeperator}" />
+        <BoxView Grid.Column="1" Style="{StaticResource VerticalSeperator}" />
 
         <devviews:ChatWidget
             Grid.Column="2"

@@ -11,8 +11,6 @@ using Shiemi.Services;
 using Shiemi.Storage;
 using Shiemi.Utilities;
 using Shiemi.Utilities.HubClients;
-using Shiemi.ViewModels;
-using Shiemi.Views;
 using Shiemi.Views.DevViews;
 using DetailsPageModel = Shiemi.PageModels.Project.DetailsPageModel;
 using EditPageModel = Shiemi.PageModels.User.EditPageModel;
@@ -85,6 +83,7 @@ public static class MauiProgramExtensions
         builder.Services.AddTransient<ProjectsPageModel>();
         builder.Services.AddTransient<CreateProjectPageModel>();
         builder.Services.AddTransient<DetailsPageModel>();
+        builder.Services.AddTransient<AddDevsPageModel>();
 
         // market
         builder.Services.AddTransient<ProjectShopPageModel>();

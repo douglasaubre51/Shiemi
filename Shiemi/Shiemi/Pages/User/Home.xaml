@@ -40,8 +40,6 @@
                     VerticalOptions="Center" />
 
                 <ImageButton Source="ic_fluent_chevron_right_24_regular.png" />
-
-                <Button HorizontalOptions="End" Text="add" />
             </HorizontalStackLayout>
 
             <homeviews:GalleryView Store="{Binding JoinedProjectCollection}" />

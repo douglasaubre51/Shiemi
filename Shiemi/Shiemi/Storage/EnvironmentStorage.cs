@@ -2,41 +2,22 @@
 
 public class EnvironmentStorage
 {
-    public EnvironmentStorage()
-    {
-        Preferences.Default.Set(
-            "WAGURI_LOGIN_URI",
-            "http://localhost:5020/api/NativeAuth/Login/002"
-            );
-        Preferences.Default.Set(
-            "WAGURI_WEBSOCKET_URI",
-            "http://localhost:5020/native-auth"
-            );
+    private string WAGURI_LOGIN_URI = "https://waguri-hofi.onrender.com/api/NativeAuth/Login/002";
+    private string WAGURI_LOGIN_HUB_URI = "https://waguri-hofi.onrender.com/native-auth";
 
-        Preferences.Default.Set(
-            "SHIEMI_BASE_URI",
-            "https://localhost:7268/api"
-            );
-
-        Preferences.Default.Set(
-            "SHIEMI_HUB_URI",
-            "https://localhost:7268/hubs"
-            );
-    }
+    private string SHIEMI_BASE_URI = "https://shiemiapi.onrender.com/api";
+    private string SHIEMI_HUB_URI = "https://shiemiapi.onrender.com/hubs";
 
     // WAGURI SCS env
     public string GetWAGURILoginUri()
-        => Preferences.Default.Get("WAGURI_LOGIN_URI", "");
+        => WAGURI_LOGIN_URI;
     public string GetWAGURIWebsocketUri()
-        => Preferences.Default.Get("WAGURI_WEBSOCKET_URI", "");
-
+        => WAGURI_LOGIN_HUB_URI;
 
     // SHIEMI api env
     public string GetSHIEMIBaseUri()
-        => Preferences.Default.Get("SHIEMI_BASE_URI", "");
-
-
+        => SHIEMI_BASE_URI;
     // SHIEMI SignalR hub env
     public string GetSHIEMIWebsocketUri()
-        => Preferences.Default.Get("SHIEMI_HUB_URI", "");
+        => SHIEMI_HUB_URI;
 }

@@ -18,11 +18,20 @@ public partial class HomePageModel(
     private readonly ProjectService _projectServ = projectServ;
     private readonly UserService _userServ = userServ;
 
-    [ObservableProperty] private bool isPageExiting;
-    [ObservableProperty] private bool isPageLoading;
-    [ObservableProperty] private ObservableRangeCollection<GalleryViewModel> joinedProjectCollection = [];
-    [ObservableProperty] private ObservableRangeCollection<GalleryViewModel> myProjectCollection = [];
-    [ObservableProperty] private GalleryViewModel selectedMyProject;
+    [ObservableProperty]
+    private bool isPageExiting;
+
+    [ObservableProperty]
+    private bool isPageLoading;
+
+    [ObservableProperty]
+    private ObservableRangeCollection<GalleryViewModel> joinedProjectCollection = [];
+
+    [ObservableProperty]
+    private ObservableRangeCollection<GalleryViewModel> myProjectCollection = [];
+
+    [ObservableProperty]
+    private GalleryViewModel selectedMyProject;
 
     [RelayCommand]
     async Task MyProjectSelectionChanged()
@@ -78,7 +87,7 @@ public partial class HomePageModel(
     private async Task InitJoinedProjectsCollection()
     {
         var projects = await projectServ.GetUserJoinedProjects(UserStorage.UserId);
-        if (projects is null || projects!.Count is 0 ) return;
+        if (projects is null || projects!.Count is 0) return;
 
         List<GalleryViewModel> galleryModels = [];
         foreach (var i in projects)
@@ -91,18 +100,21 @@ public partial class HomePageModel(
             galleryModels.Add(model);
         }
 
-        JoinedProjectCollection.ReplaceRange(galleryModels);
+        JoinedProjectCollection.AddRange(galleryModels);
     }
 
     // fetch user made projects!
     private async Task InitMyProjectsCollection()
     {
         var projects = await projectServ.GetAllByUser(UserStorage.UserId);
-        if (projects!.Count is 0) return;
+        if (projects is null || projects!.Count is 0) return;
 
         List<GalleryViewModel> galleryModels = [];
         foreach (var i in projects)
         {
+            if (i.Id != UserStorage.UserId)
+                continue;
+
             var model = new GalleryViewModel(
                 i.Id,
                 CoverBlurb: i.ShortDesc,
@@ -111,7 +123,7 @@ public partial class HomePageModel(
             galleryModels.Add(model);
         }
 
-        MyProjectCollection.ReplaceRange(galleryModels);
+        MyProjectCollection.AddRange(galleryModels);
     }
 
     async partial void OnIsPageLoadingChanged(bool value)
@@ -120,12 +132,8 @@ public partial class HomePageModel(
 
         try
         {
-            // just user id init! belongs at start page!
-            if (DataStorage.Get("UserId") is not "")
-            {
-                var dto = await _userServ.GetUserId(DataStorage.Get("UserId"));
-                UserStorage.UserId = dto!.Id;
-            }
+            MyProjectCollection.Clear();
+            JoinedProjectCollection.Clear();
 
             await InitMyProjectsCollection();
             await InitJoinedProjectsCollection();

@@ -2,7 +2,6 @@ using Shiemi.Models;
 using Shiemi.PageModels.Market;
 using Shiemi.Services;
 using Shiemi.Storage;
-using System.Diagnostics;
 
 namespace Shiemi.Pages.Market;
 
@@ -33,10 +32,14 @@ public partial class ProjectDetails : ContentPage
             IAsyncEnumerable<Review?> reviews = _reviewService.GetReviewsByProject(context.ProjectVM.Id);
             if (reviews is null)
                 return;
+
             // flush reviews to review cards collection !
             context.ReviewList.Clear();
             await foreach (var r in reviews)
+            {
+                r!.CreatedAt = r.CreatedAt.ToLocalTime();
                 context.ReviewList.Add(r!);
+            }
         }
         catch (Exception ex)
         {

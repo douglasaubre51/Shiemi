@@ -16,3 +16,11 @@ public record ProfilePageUserDto(
     bool IsDeveloper,
     string ProfilePhotoURL
 );
+
+public record UserDetailsDto(
+    int Id,
+    string FirstName,
+    string LastName,
+    string Email,
+    string? ProfilePhotoURL
+);

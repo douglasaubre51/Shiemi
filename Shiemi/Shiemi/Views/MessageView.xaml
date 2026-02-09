@@ -11,12 +11,8 @@
     RowDefinitions="50,*,60">
 
     <!--  header  -->
-    <VerticalStackLayout
-        Grid.Row="0"
-        BackgroundColor="#f9f9f9">
-        <Label
-            x:Name="SenderLabel"
-            Margin="20" />
+    <VerticalStackLayout Grid.Row="0" BackgroundColor="#f9f9f9">
+        <Label x:Name="SenderLabel" Margin="20" />
     </VerticalStackLayout>
 
     <!--  body  -->
@@ -26,8 +22,7 @@
         ItemSizingStrategy="MeasureFirstItem"
         ItemsUpdatingScrollMode="KeepLastItemInView">
         <CollectionView.ItemTemplate>
-            <DataTemplate
-                x:DataType="viewmodels:MessageViewModel">
+            <DataTemplate x:DataType="viewmodels:MessageViewModel">
                 <Grid>
                     <Grid.Triggers>
 
