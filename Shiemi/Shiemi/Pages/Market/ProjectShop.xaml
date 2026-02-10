@@ -13,7 +13,6 @@
         RowDefinitions="*">
         <!--  Projects  -->
         <CollectionView
-            Margin="0,30,0,0"
             ItemSizingStrategy="MeasureFirstItem"
             ItemsSource="{Binding ProjectCollection}"
             SelectionMode="Single">
@@ -28,8 +27,7 @@
             <CollectionView.ItemTemplate>
                 <DataTemplate
                     x:DataType="viewmodel:ProjectViewModel">
-                    <Border
-                        MinimumHeightRequest="120">
+                    <Border>
                         <Border.Style>
                             <Style
                                 TargetType="Border">
@@ -72,7 +70,7 @@
                             Spacing="8">
                             <Label
                                 FontSize="16"
-                                LineBreakMode="WordWrap"
+                                LineBreakMode="TailTruncation"
                                 Text="{Binding Title}" />
 
                             <Label

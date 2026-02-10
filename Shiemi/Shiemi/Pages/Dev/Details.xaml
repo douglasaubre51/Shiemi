@@ -15,14 +15,15 @@
             Padding="10"
             Orientation="Vertical">
             <VerticalStackLayout Spacing="8">
-                <Border Style="{StaticResource ImageCardBorderStyle}">
+                <Border HeightRequest="300"  HorizontalOptions="Start" Style="{StaticResource ImageCardBorderStyle}">
                     <Image Aspect="AspectFill" Source="{Binding CurrentDev.Profile}" />
                 </Border>
 
-                <Label Text="Description:" />
+                <Label FontSize="16" Text="Description" />
 
                 <Label Text="{Binding CurrentDev.ShortDesc}" />
-                <Label Text="{Binding CurrentDev.StartingPrice, StringFormat='Starting At: ₹{0}'}" />
+
+                <Label FontSize="24" Text="{Binding CurrentDev.StartingPrice, StringFormat='Starting At: ₹{0}'}" />
             </VerticalStackLayout>
         </ScrollView>
 

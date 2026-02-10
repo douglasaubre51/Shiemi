@@ -5,6 +5,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:views="clr-namespace:Shiemi.Views"
     Title="Shiemi"
+    BackgroundColor="White"
     x:DataType="views:TitleBarWidget"
     HeightRequest="48"
     Subtitle="Get started on your dev journey today!">
@@ -15,7 +16,6 @@
             MaximumHeightRequest="40"
             MaximumWidthRequest="300"
             Placeholder="Search"
-            PlaceholderColor="Grey"
             VerticalOptions="Center" />
     </TitleBar.Content>
 </TitleBar>

@@ -3,6 +3,7 @@ using Shiemi.Dtos;
 using Shiemi.Models;
 using Shiemi.PageModels.Dev;
 using Shiemi.Services;
+using Shiemi.Storage;
 using Shiemi.Utilities.ServiceProviders;
 
 namespace Shiemi.Pages.Dev;
@@ -37,6 +38,11 @@ public partial class Market : ContentPage
             {
                 devModels[i].StartingPrice = Math.Round(devModels[i].StartingPrice);
             }
+
+            //// search remove current dev from market
+            //DevModel current = devModels.Where(dev => dev.Id == UserStorage.UserId).SingleOrDefault()!;
+            //devModels.Remove(current);
+
             DevCollectionView.ItemsSource = devModels;
 
             Provider.GetTitleBarWidget()!.SearchBarIsEnabled = true;

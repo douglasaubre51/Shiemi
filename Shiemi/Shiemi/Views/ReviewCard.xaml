@@ -5,16 +5,15 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:models="clr-namespace:Shiemi.Models"
     xmlns:views="clr-namespace:Shiemi.Views"
-    Margin="0,0,0,0"
     x:DataType="views:ReviewCard"
-    BackgroundColor="#ffffff">
+    >
     <Border.StrokeShape>
         <RoundRectangle CornerRadius="8" />
     </Border.StrokeShape>
 
     <Grid
         Margin="4"
-        RowDefinitions="50,*,100,100"
+        RowDefinitions="Auto,*,Auto,Auto"
         RowSpacing="10">
         <!--  title  -->
         <Label
@@ -34,6 +33,7 @@
                     <Border
                         Stroke="Black"
                         StrokeThickness="0"
+                        Background="LightGrey"
                         Style="{StaticResource HoverCardBorderStyle}">
                         <Border.StrokeShape>
                             <RoundRectangle CornerRadius="4" />
@@ -70,8 +70,8 @@
         <Editor
             x:Name="ReviewEditorView"
             Grid.Row="2"
-            Margin="0,4,0,0"
-            VerticalOptions="Fill" />
+            HeightRequest="100"
+            VerticalOptions="End" />
 
         <!--  add review btn  -->
         <Button
@@ -80,6 +80,6 @@
             Clicked="CreateReviewButton_Clicked"
             Style="{StaticResource PrimaryBtnStyle}"
             Text="Add a review"
-            VerticalOptions="Start" />
+            VerticalOptions="End" />
     </Grid>
 </Border>

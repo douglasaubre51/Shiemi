@@ -9,15 +9,15 @@
     xmlns:marketpages="clr-namespace:Shiemi.Pages.Market"
     xmlns:startpages="clr-namespace:Shiemi.Pages.Start"
     xmlns:userpages="clr-namespace:Shiemi.Pages.User"
-    Shell.FlyoutBehavior="Flyout"
-    Shell.FlyoutWidth="200">
+    Shell.FlyoutBehavior="Locked"
+    >
     <FlyoutItem Title="GetStarted" FlyoutItemIsVisible="False">
         <Tab>
             <ShellContent ContentTemplate="{DataTemplate startpages:Index}" Route="Index" />
         </Tab>
     </FlyoutItem>
 
-    <FlyoutItem Title="Profile" FlyoutIcon="ic_fluent_home_28_regular.png">
+    <FlyoutItem Title="Profile" FlyoutIcon="ic_fluent_person_28_regular.png">
         <Tab FlyoutIcon="ic_fluent_home_28_regular.png">
             <ShellContent
                 ContentTemplate="{DataTemplate userpages:Profile}"

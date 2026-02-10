@@ -10,54 +10,43 @@
     x:DataType="pagemodel:ProjectDetailsPageModel"
     Shell.NavBarIsVisible="True"
     Shell.TabBarIsVisible="False">
-    <Grid
-        Margin="10"
+        <Grid
+        Margin="16,0,0,10"
         ColumnDefinitions="2*,Auto,*"
         ColumnSpacing="16"
         RowDefinitions="Auto,*,Auto"
         RowSpacing="8">
-        <Label
+            <Label
             Grid.Row="0"
             Grid.Column="0"
             FontSize="16"
             Text="Description"
             TextColor="Black" />
 
-        <ScrollView
-            Grid.Row="1"
-            Grid.Column="0"
-            BackgroundColor="#ffffff"
-            Orientation="Vertical">
             <Label
+                Grid.Row="1"
+                Grid.Column="0"
                 Padding="0,0,8,0"
                 FontSize="18"
                 LineBreakMode="WordWrap"
                 Text="{Binding ProjectVM.Description}" />
-        </ScrollView>
 
-        <Grid
+            <Grid
             Grid.Row="3"
-            Grid.Column="0"
+            HorizontalOptions="End"
+            Padding="0,0,0,20"
             VerticalOptions="Start">
-            <Label
-                FontSize="14"
-                HorizontalOptions="Start"
-                Text="{Binding ProjectVM.Cost, StringFormat='Estimated Cost: ${0}'}"
-                TextColor="Black"
-                VerticalOptions="End" />
-
-            <Button
+                <Button
                 Command="{Binding GoToPrivateRoomCommand}"
-                HorizontalOptions="End"
+                ImageSource="fluent_chat_24_regular.png"
+                Style="{StaticResource SecondaryIconBtnStyle}"
                 IsEnabled="{Binding NotOwner}"
-                Style="{StaticResource PrimaryBtnStyle}"
-                Text="Chat"
-                VerticalOptions="End"
-                WidthRequest="100" />
-        </Grid>
+                Text="Send request"
+                 />
+            </Grid>
 
-        <!--  vertical line  -->
-        <Line
+            <!--  vertical line  -->
+            <Line
             Grid.RowSpan="3"
             Grid.Column="1"
             Aspect="UniformToFill"
@@ -67,13 +56,14 @@
             Y1="0"
             Y2="180" />
 
-        <!--  review card  -->
-        <views:ReviewCard
+            <!--  review card  -->
+            <views:ReviewCard
+            Padding="0,0,0,20"
             Grid.RowSpan="3"
             Grid.Column="2"
             CurrentProjectId="{Binding ProjectVM.Id}"
             NotAllowedToWrite="{Binding NotAllowedToReview}"
             ReviewCollection="{Binding ReviewList}"
-            VerticalOptions="Fill" />
-    </Grid>
+            VerticalOptions="End" />
+        </Grid>
 </ContentPage>
