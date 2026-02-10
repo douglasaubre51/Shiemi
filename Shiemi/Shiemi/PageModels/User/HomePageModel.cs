@@ -116,7 +116,7 @@ public partial class HomePageModel(
         List<GalleryViewModel> galleryModels = [];
         foreach (var i in projects)
         {
-            if (i.Id != UserStorage.UserId)
+            if (i.UserId != UserStorage.UserId)
                 continue;
 
             var model = new GalleryViewModel(

@@ -12,9 +12,8 @@
         <Grid RowDefinitions="*,100">
             <VerticalStackLayout Grid.Row="0" Spacing="4">
                 <Label
-                    FontSize="14"
                     Text="Description"
-                    TextColor="Gray" />
+                     />
 
                 <Label
                     FontSize="16"

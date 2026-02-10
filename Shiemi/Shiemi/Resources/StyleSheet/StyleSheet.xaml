@@ -7,7 +7,7 @@
 
     <!--  cards  -->
     <Style x:Key="CardBorderStyle" TargetType="Border">
-        <Setter Property="StrokeThickness" Value="0" />
+        <Setter Property="StrokeThickness" Value="1" />
         <Setter Property="BackgroundColor" Value="White" />
         <Setter Property="Padding" Value="16" />
         <Setter Property="StrokeShape" Value="RoundRectangle 8" />
