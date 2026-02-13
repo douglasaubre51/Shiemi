@@ -8,14 +8,15 @@
     x:DataType="views:ProfileCard">
     <Border
         HeightRequest="250"
-        Stroke="Transparent"
+        Stroke="LightGrey"
+        StrokeShape="RoundRectangle 16"
+        StrokeThickness="1"
         WidthRequest="200">
         <Grid RowDefinitions="Auto,Auto">
             <Border
                 Grid.Row="0"
                 HeightRequest="150"
-                Stroke="Transparent"
-                StrokeShape="RoundRectangle 4">
+                Stroke="Transparent">
                 <Image
                     x:Name="ProfileImage"
                     Grid.Row="0"
@@ -25,7 +26,8 @@
             <Label
                 x:Name="UsernameLabel"
                 Grid.Row="1"
-                FontSize="16"
+                Padding="4,0,0,0"
+                FontSize="20"
                 LineBreakMode="TailTruncation"
                 Style="{StaticResource CardTitleLabel}" />
         </Grid>

@@ -8,6 +8,9 @@ namespace Shiemi.PageModels.Chat;
 public partial class RoomsPageModel : BasePageModel
 {
     [ObservableProperty]
+    private bool chatWasSelected;
+
+    [ObservableProperty]
     private ProjectsPageProjectViewModel? currentProject;
 
     [ObservableProperty]

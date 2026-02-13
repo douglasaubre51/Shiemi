@@ -55,7 +55,7 @@ public partial class Rooms : ContentPage
                         user.Id,
                         user.FirstName + " " + user.LastName
                         );  // create new chat model
-                context.ChatCollection.Replace(chat);
+                context.ChatCollection.Add(chat);
             }
         }
         catch (Exception ex)
@@ -72,12 +72,13 @@ public partial class Rooms : ContentPage
         try
         {
             var context = BindingContext as RoomsPageModel;
-            if (context is null)
-                return;
 
             var selectedChat = e.CurrentSelection.SingleOrDefault() as ChatRoomViewModel;
             if (selectedChat is null)
                 return;
+
+            // show textbox and send msg btn!
+            if (context!.ChatWasSelected is false) context.ChatWasSelected = true;
 
             UserStorage.RoomId = selectedChat.RoomId;  // store RoomId for later use !
             Debug.WriteLine($"room id changed: {selectedChat.RoomId}");

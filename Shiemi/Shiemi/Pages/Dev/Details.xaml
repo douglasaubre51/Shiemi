@@ -15,7 +15,10 @@
             Padding="10"
             Orientation="Vertical">
             <VerticalStackLayout Spacing="8">
-                <Border HeightRequest="300"  HorizontalOptions="Start" Style="{StaticResource ImageCardBorderStyle}">
+                <Border
+                    HeightRequest="300"
+                    HorizontalOptions="Start"
+                    Style="{StaticResource ImageCardBorderStyle}">
                     <Image Aspect="AspectFill" Source="{Binding CurrentDev.Profile}" />
                 </Border>
 

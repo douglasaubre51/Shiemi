@@ -9,6 +9,26 @@ namespace Shiemi.Views;
 
 public partial class MessageView : Grid
 {
+    public static readonly BindableProperty DidChatSelectedProperty =
+        BindableProperty.Create(
+            nameof(DidChatSelected),
+            typeof(bool),
+            typeof(MessageView),
+            false,
+            propertyChanged: (bindable, oldValue, newValue) =>
+            {
+                var context = (MessageView)bindable;
+                if (newValue is true)
+                {
+                    context.MessageBox.IsVisible = true;
+                    context.SendMessageBtn.IsVisible = true;
+                }
+            });
+    public bool DidChatSelected
+    {
+        get => (bool)GetValue(DidChatSelectedProperty);
+        set => SetValue(DidChatSelectedProperty, value);
+    }
 
     // Messages Collection bindable prop
 
@@ -59,9 +79,7 @@ public partial class MessageView : Grid
         _roomService = Provider.GetService<RoomClient>();
     }
 
-
     // user clicks send btn !
-
     private async void Send_Btn_Clicked(object sender, EventArgs e)
     {
         try

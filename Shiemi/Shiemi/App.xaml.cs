@@ -1,6 +1,5 @@
 ﻿using Shiemi.Utilities.ServiceProviders;
 using Shiemi.Views;
-using Shiemi.ViewModels;
 
 namespace Shiemi;
 
@@ -20,7 +19,7 @@ public partial class App : Application
         var window = new Window(new AppShell())
         {
             // set window launch size
-            Width = 1050,
+            Width = 1300,
             Height = 650
         };
 

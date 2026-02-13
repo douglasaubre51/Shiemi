@@ -30,11 +30,21 @@
                     </Grid>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
+
+            <CollectionView.EmptyView>
+                <Label
+                    Padding="16,0,0,0"
+                    FontSize="16"
+                    Text="Contacts will be shown here!"
+                    TextColor="LightGrey" />
+            </CollectionView.EmptyView>
         </CollectionView>
 
         <!--  chat area  -->
         <views:MessageView
             Grid.Column="1"
+            BackgroundColor="WhiteSmoke"
+            DidChatSelected="{Binding ChatWasSelected}"
             MessageCollection="{Binding MessageCollection}"
             SenderName="{Binding Sender}" />
     </Grid>

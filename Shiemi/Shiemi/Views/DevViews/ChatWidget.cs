@@ -1,6 +1,6 @@
-using Shiemi.ViewModels;
 using Microsoft.Maui.Controls.Shapes;
 using MvvmHelpers;
+using Shiemi.ViewModels;
 using static CommunityToolkit.Maui.Markup.GridRowsColumns;
 
 namespace Shiemi.Views.DevViews;
@@ -42,12 +42,12 @@ public class ChatWidget : ContentView
         {
             Label text = new();
             text.FontSize = 16;
-            text.TextColor = Colors.White;
+            text.TextColor = Colors.Black;
             text.SetBinding(Label.TextProperty, static (MessageViewModel chat) => chat.Text);
 
             Label dateTime = new();
             dateTime.FontSize = 10;
-            dateTime.TextColor = Colors.WhiteSmoke;
+            dateTime.TextColor = Colors.Grey;
             dateTime.SetBinding(Label.TextProperty, static (MessageViewModel chat) => chat.CreatedAt);
 
             VerticalStackLayout cardLayout = new();
@@ -77,6 +77,17 @@ public class ChatWidget : ContentView
             return layout;
         });
         chatCollectionView.Row(1);
+        chatCollectionView.ItemsUpdatingScrollMode = ItemsUpdatingScrollMode.KeepLastItemInView;
+        chatCollectionView.EmptyView = new Label()
+        {
+            Text = "Loading ....",
+            TextColor = Colors.LightGrey,
+            FontSize = 16,
+            Padding = new Thickness()
+            {
+                Left = 16
+            },
+        };
 
         // bottom bar
         chatBox = new()

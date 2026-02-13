@@ -62,6 +62,7 @@ public partial class DetailsPageModel(
     async Task PageIsLoading(bool value)
     {
         if (value is false) return;
+        IsBusy = true;
 
         try
         {
@@ -106,6 +107,7 @@ public partial class DetailsPageModel(
         }
         finally
         {
+            IsBusy = false;
             IsPageLoading = false;
         }
     }

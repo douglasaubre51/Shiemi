@@ -11,9 +11,7 @@
     <ScrollView Margin="16" Orientation="Vertical">
         <Grid RowDefinitions="*,100">
             <VerticalStackLayout Grid.Row="0" Spacing="4">
-                <Label
-                    Text="Description"
-                     />
+                <Label Text="Description" />
 
                 <Label
                     FontSize="16"

@@ -6,13 +6,11 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:chatpages="clr-namespace:Shiemi.Pages.Chats"
     xmlns:devpages="clr-namespace:Shiemi.Pages.Dev"
-    Background='White'
     xmlns:marketpages="clr-namespace:Shiemi.Pages.Market"
-    FlyoutBackground="White"
     xmlns:startpages="clr-namespace:Shiemi.Pages.Start"
     xmlns:userpages="clr-namespace:Shiemi.Pages.User"
-    Shell.FlyoutBehavior="Flyout"
-    >
+    Background="Transparent"
+    FlyoutBackground="Transparent">
     <FlyoutItem Title="GetStarted" FlyoutItemIsVisible="False">
         <Tab>
             <ShellContent ContentTemplate="{DataTemplate startpages:Index}" Route="Index" />

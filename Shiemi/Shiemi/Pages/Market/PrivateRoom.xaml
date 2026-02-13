@@ -16,6 +16,7 @@
         <views:MessageView
             Grid.Row="0"
             Grid.ColumnSpan="2"
+            DidChatSelected="True"
             MessageCollection="{Binding MessageCollection}"
             SenderName="{Binding Sender}" />
 

@@ -8,7 +8,7 @@
     Title="Manage Developers"
     x:DataType="pagemodels:AddDevsPageModel"
     Shell.TabBarIsVisible="False">
-    <VerticalStackLayout>
+    <Grid Margin="16">
         <CollectionView
             ItemSizingStrategy="MeasureFirstItem"
             ItemsSource="{Binding DeveloperCardCollection}"
@@ -44,6 +44,14 @@
                     </VerticalStackLayout>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
+
+            <CollectionView.EmptyView>
+                <Label
+                    FontSize="42"
+                    HorizontalOptions="Center"
+                    Text="Soo empty!"
+                    TextColor="LightGrey" />
+            </CollectionView.EmptyView>
         </CollectionView>
-    </VerticalStackLayout>
+    </Grid>
 </ContentPage>

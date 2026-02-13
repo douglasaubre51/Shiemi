@@ -10,7 +10,7 @@
     RowDefinitions="50,*,60">
 
     <!--  header  -->
-    <VerticalStackLayout Grid.Row="0" BackgroundColor="#f9f9f9">
+    <VerticalStackLayout Grid.Row="0">
         <Label
             x:Name="SenderLabel"
             Padding="20"
@@ -84,12 +84,15 @@
         <Editor
             x:Name="MessageBox"
             Grid.Column="0"
-            BackgroundColor="#eeeeee" />
+            BackgroundColor="#eeeeee"
+            IsVisible="False" />
 
         <Button
+            x:Name="SendMessageBtn"
             Grid.Column="1"
             Clicked="Send_Btn_Clicked"
             CornerRadius="4"
+            IsVisible="False"
             Text="Send" />
 
     </Grid>

@@ -8,10 +8,8 @@
     Title="Dev Market"
     x:DataType="devpagemodels:MarketpageModel">
     <!--  dev cards  -->
-    <VerticalStackLayout
-        Margin="10">
-        <CollectionView
-            x:Name="DevCollectionView">
+    <VerticalStackLayout Margin="10">
+        <CollectionView x:Name="DevCollectionView">
             <CollectionView.ItemsLayout>
                 <GridItemsLayout
                     HorizontalItemSpacing="8"
@@ -22,26 +20,20 @@
 
             <CollectionView.ItemTemplate>
                 <!--  dev card  -->
-                <DataTemplate
-                    x:DataType="models:DevModel">
-                    <Border
-                        StrokeThickness="0">
+                <DataTemplate x:DataType="models:DevModel">
+                    <Border StrokeThickness="0">
                         <Border.Style>
-                            <Style
-                                TargetType="Border">
+                            <Style TargetType="Border">
                                 <Setter Property="VisualStateManager.VisualStateGroups">
                                     <VisualStateGroupList>
-                                        <VisualStateGroup
-                                            x:Name="CommonStates">
-                                            <VisualState
-                                                x:Name="Normal">
+                                        <VisualStateGroup x:Name="CommonStates">
+                                            <VisualState x:Name="Normal">
                                                 <VisualState.Setters>
                                                     <Setter Property="BackgroundColor" Value="White" />
                                                 </VisualState.Setters>
                                             </VisualState>
 
-                                            <VisualState
-                                                x:Name="PointerOver">
+                                            <VisualState x:Name="PointerOver">
                                                 <VisualState.Setters>
                                                     <Setter Property="BackgroundColor" Value="LightGray" />
                                                 </VisualState.Setters>
@@ -57,9 +49,7 @@
                             RowSpacing="10">
                             <!--  touch  -->
                             <Grid.GestureRecognizers>
-                                <TapGestureRecognizer
-                                    Command="{Binding Source={RelativeSource AncestorType={x:Type devpagemodels:MarketpageModel}}, x:DataType=devpagemodels:MarketpageModel, Path=GoToDetailsPageCommand}"
-                                    CommandParameter="{Binding .}" />
+                                <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type devpagemodels:MarketpageModel}}, x:DataType=devpagemodels:MarketpageModel, Path=GoToDetailsPageCommand}" CommandParameter="{Binding .}" />
                             </Grid.GestureRecognizers>
 
                             <Border
@@ -92,9 +82,7 @@
                                     Text="Starts at"
                                     TextColor="Grey" />
 
-                                <Label
-                                    FontSize="16"
-                                    Text="{Binding StartingPrice, StringFormat='₹{0}'}" />
+                                <Label FontSize="16" Text="{Binding StartingPrice, StringFormat='₹{0}'}" />
                             </VerticalStackLayout>
 
                             <VerticalStackLayout
@@ -109,8 +97,7 @@
                                     Text="Developer"
                                     TextColor="Grey" />
 
-                                <Label
-                                    Text="{Binding Username}" />
+                                <Label Text="{Binding Username}" />
                             </VerticalStackLayout>
                         </Grid>
                     </Border>
