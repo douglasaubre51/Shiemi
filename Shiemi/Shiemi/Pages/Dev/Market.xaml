@@ -45,7 +45,7 @@
                         </Border.Style>
                         <Grid
                             ColumnDefinitions="*,*"
-                            RowDefinitions="Auto,*,Auto"
+                            RowDefinitions="Auto,*,*,Auto"
                             RowSpacing="10">
                             <!--  touch  -->
                             <Grid.GestureRecognizers>
@@ -67,12 +67,20 @@
                                 Grid.Row="1"
                                 Grid.ColumnSpan="2"
                                 Margin="4,0,0,0"
+                                FontSize="18"
+                                LineBreakMode="WordWrap"
+                                Text="{Binding Username}" />
+
+                            <Label
+                                Grid.Row="2"
+                                Grid.ColumnSpan="2"
+                                Margin="4,0,0,0"
                                 FontSize="13"
                                 LineBreakMode="WordWrap"
                                 Text="{Binding ShortDesc}" />
 
                             <VerticalStackLayout
-                                Grid.Row="2"
+                                Grid.Row="3"
                                 Grid.Column="0"
                                 Padding="4"
                                 Spacing="2"
@@ -86,7 +94,7 @@
                             </VerticalStackLayout>
 
                             <VerticalStackLayout
-                                Grid.Row="2"
+                                Grid.Row="3"
                                 Grid.Column="1"
                                 Padding="4"
                                 HorizontalOptions="End"

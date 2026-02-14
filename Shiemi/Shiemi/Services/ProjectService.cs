@@ -47,6 +47,18 @@ public class ProjectService
         }
     }
 
+    public async Task<List<SearchProjectsDto>?> GetSearchedProjects(string title)
+    {
+        var response = await _client.GetAsync($"{projectBaseUri}/{title}/search");
+        if (response.IsSuccessStatusCode is false)
+        {
+            Debug.WriteLine($"get error:{response.StatusCode}");
+            return null!;
+        }
+
+        return await response.Content.ReadFromJsonAsync<List<SearchProjectsDto>>();
+    }
+
     public async Task<List<UserDetailsDto>?> GetAllPotentialCandidates(int projectId)
     {
         var response = await _client.GetAsync(

@@ -22,7 +22,6 @@ public partial class ProjectShop : ContentPage
 
     protected override void OnDisappearing()
     {
-        Provider.GetTitleBarWidget()!.SearchBarIsEnabled = false;
         base.OnDisappearing();
     }
 
@@ -41,7 +40,6 @@ public partial class ProjectShop : ContentPage
 
             pageModel!.ProjectCollection.AddRange(projectViewModels);
 
-            Provider.GetTitleBarWidget()!.SearchBarIsEnabled = true;
         }
         catch (Exception ex)
         {

@@ -21,7 +21,6 @@ public partial class Market : ContentPage
 
     protected override void OnDisappearing()
     {
-        Provider.GetTitleBarWidget()!.SearchBarIsEnabled = false;
         base.OnDisappearing();
     }
     protected override async void OnAppearing()
@@ -45,7 +44,6 @@ public partial class Market : ContentPage
 
             DevCollectionView.ItemsSource = devModels;
 
-            Provider.GetTitleBarWidget()!.SearchBarIsEnabled = true;
         }
         catch (Exception ex)
         {

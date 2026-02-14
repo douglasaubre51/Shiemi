@@ -20,3 +20,10 @@ public record CreateProjectDto(
     string Description,
     int UserId
 );
+
+public record SearchProjectsDto(
+    int Id,
+    string Title,
+    string? ShortDesc,
+    int UserId
+    );
