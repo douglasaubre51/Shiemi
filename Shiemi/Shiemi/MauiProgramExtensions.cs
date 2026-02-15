@@ -11,6 +11,7 @@ using Shiemi.Services;
 using Shiemi.Storage;
 using Shiemi.Utilities;
 using Shiemi.Utilities.HubClients;
+using Shiemi.ViewModels;
 using Shiemi.Views.DevViews;
 using DetailsPageModel = Shiemi.PageModels.Project.DetailsPageModel;
 using EditPageModel = Shiemi.PageModels.User.EditPageModel;
@@ -68,6 +69,7 @@ public static class MauiProgramExtensions
 
         // Add Page Models
         builder.Services.AddSingleton<BasePageModel>();
+        builder.Services.AddSingleton<FlyoutFooterModel>();
 
         // start
         builder.Services.AddTransient<IndexPageModel>();
@@ -91,8 +93,8 @@ public static class MauiProgramExtensions
         builder.Services.AddTransient<PrivateRoomPageModel>();
 
         // chat
+        builder.Services.AddSingleton<ChannelsPageModel>();
         builder.Services.AddTransient<RoomsPageModel>();
-        builder.Services.AddTransient<ChannelsPageModel>();
 
         // Dev
         builder.Services.AddTransient<PageModels.Dev.EditPageModel>();

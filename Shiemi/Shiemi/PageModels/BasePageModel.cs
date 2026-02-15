@@ -17,11 +17,6 @@ public partial class BasePageModel : ObservableObject
     [ObservableProperty]
     private string title = string.Empty;
 
-    public BasePageModel()
-    {
-        SearchText = "hey !";
-    }
-
     [RelayCommand]
     async Task SearchSelectedItem()
     {

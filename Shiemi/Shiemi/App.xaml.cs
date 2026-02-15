@@ -1,4 +1,7 @@
-﻿using Shiemi.Utilities.ServiceProviders;
+﻿using MvvmHelpers;
+using Shiemi.Utilities.ServiceProviders;
+using Shiemi.ViewModels;
+using Shiemi.Views;
 
 namespace Shiemi;
 
@@ -8,21 +11,24 @@ public partial class App : Application
     {
         InitializeComponent();
 
-        // init ServiceProvider utility
+        // Init ServiceProvider utility
         Provider.SetProvider(provider);
     }
 
-
     protected override Window CreateWindow(IActivationState? activationState)
     {
-        var window = new Window(new AppShell())
+        // Send flyout footer model to Shell.Flyout !
+        var titleBarViewModel = Provider.GetService<BaseViewModel>();
+        var flyoutFooterModel = Provider.GetService<FlyoutFooterModel>();
+        var window = new Window(new AppShell(flyoutFooterModel!))
         {
-            // set window launch size
             Width = 1300,
-            Height = 650
+            Height = 650,
+            TitleBar = new TitleBarView(),
+            BindingContext = titleBarViewModel
         };
 
-        // center window launch position
+        // Center window launch position
         var displayInfo = DeviceDisplay.Current.MainDisplayInfo;
         window.X = displayInfo.Width / displayInfo.Density - window.Width;
         window.X = displayInfo.Height / displayInfo.Density - window.Height;

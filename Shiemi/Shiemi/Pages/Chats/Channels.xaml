@@ -11,5 +11,7 @@
     Shell.TabBarIsVisible="False">
     <Grid Margin="16">
         <Label Text="Life in the Fastlane!" />
+
+        <Editor Text="{x:Binding ChatBoxText}" />
     </Grid>
 </ContentPage>

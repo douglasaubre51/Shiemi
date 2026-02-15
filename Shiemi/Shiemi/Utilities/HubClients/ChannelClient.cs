@@ -1,5 +1,4 @@
-﻿using System.Diagnostics;
-using AutoMapper;
+﻿using AutoMapper;
 using Microsoft.AspNetCore.SignalR.Client;
 using MvvmHelpers;
 using Shiemi.Dtos;

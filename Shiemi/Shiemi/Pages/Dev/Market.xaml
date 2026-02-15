@@ -40,13 +40,13 @@
                                         <VisualStateGroup x:Name="CommonStates">
                                             <VisualState x:Name="Normal">
                                                 <VisualState.Setters>
-                                                    <Setter Property="BackgroundColor" Value="White" />
+                                                    <Setter Property="BackgroundColor" Value="WhiteSmoke" />
                                                 </VisualState.Setters>
                                             </VisualState>
 
                                             <VisualState x:Name="PointerOver">
                                                 <VisualState.Setters>
-                                                    <Setter Property="BackgroundColor" Value="LightGray" />
+                                                    <Setter Property="BackgroundColor" Value="{x:StaticResource PrimaryDark}" />
                                                 </VisualState.Setters>
                                             </VisualState>
                                         </VisualStateGroup>
@@ -54,10 +54,7 @@
                                 </Setter>
                             </Style>
                         </Border.Style>
-                        <Grid
-                            ColumnDefinitions="*,*"
-                            RowDefinitions="Auto,*,*,Auto"
-                            RowSpacing="10">
+                        <Grid ColumnDefinitions="*,*" RowDefinitions="Auto,*,*,Auto">
                             <!--  touch  -->
                             <Grid.GestureRecognizers>
                                 <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type devpagemodels:MarketpageModel}}, x:DataType=devpagemodels:MarketpageModel, Path=GoToDetailsPageCommand}" CommandParameter="{Binding .}" />
@@ -78,23 +75,24 @@
                                 Grid.Row="1"
                                 Grid.ColumnSpan="2"
                                 Margin="4,0,0,0"
-                                FontSize="18"
-                                LineBreakMode="WordWrap"
+                                FontFamily="PoppinsBold"
+                                FontSize="24"
+                                LineBreakMode="TailTruncation"
+                                MaxLines="2"
                                 Text="{Binding Username}" />
 
                             <Label
                                 Grid.Row="2"
                                 Grid.ColumnSpan="2"
                                 Margin="4,0,0,0"
-                                FontSize="13"
-                                LineBreakMode="WordWrap"
+                                FontSize="16"
+                                LineBreakMode="TailTruncation"
                                 Text="{Binding ShortDesc}" />
 
                             <VerticalStackLayout
                                 Grid.Row="3"
                                 Grid.Column="0"
                                 Padding="4"
-                                Spacing="2"
                                 VerticalOptions="End">
                                 <Label
                                     FontSize="10"
@@ -109,7 +107,6 @@
                                 Grid.Column="1"
                                 Padding="4"
                                 HorizontalOptions="End"
-                                Spacing="2"
                                 VerticalOptions="End">
                                 <Label
                                     FontSize="10"

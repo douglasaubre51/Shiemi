@@ -1,13 +1,18 @@
 ﻿using Shiemi.Pages.Market;
 using Shiemi.Pages.Project;
+using Shiemi.ViewModels;
 
 namespace Shiemi;
 
 public partial class AppShell : Shell
 {
-    public AppShell()
+    public AppShell(FlyoutFooterModel flyoutFooterModel)
     {
         InitializeComponent();
+
+        // Init flyout footer binding context!
+        BindingContext = flyoutFooterModel;
+
 
         // Register routes
         // Project

@@ -96,5 +96,15 @@
                     Text="Start now" />
             </VerticalStackLayout>
         </Border>
+
+        <!--  dev sign  -->
+        <Label
+            Grid.Row="1"
+            Grid.ColumnSpan="2"
+            FontFamily="PoppinsBold"
+            FontSize="300"
+            IsVisible="{x:Binding DevModeActive}"
+            Text="DEV"
+            TextColor="LightGrey" />
     </Grid>
 </ContentPage>

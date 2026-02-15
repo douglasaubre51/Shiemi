@@ -10,7 +10,6 @@
     Title="{x:Binding CurrentProject.Title,
                       StringFormat='{0} Chats'}"
     x:DataType="pagemodel:RoomsPageModel"
-    Shell.FlyoutBehavior="Disabled"
     Shell.TabBarIsVisible="False">
     <Grid ColumnDefinitions="*,2*" RowDefinitions="*">
         <!--  chat list  -->

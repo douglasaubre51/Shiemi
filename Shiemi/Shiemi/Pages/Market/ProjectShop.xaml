@@ -45,8 +45,8 @@
                                         <VisualStateGroup Name="CommonStates">
                                             <VisualState Name="Normal">
                                                 <VisualState.Setters>
-                                                    <Setter Property="BackgroundColor" Value="White" />
-                                                    <Setter Property="Stroke" Value="LightGray" />
+                                                    <Setter Property="BackgroundColor" Value="WhiteSmoke" />
+                                                    <Setter Property="Stroke" Value="Transparent" />
                                                 </VisualState.Setters>
                                             </VisualState>
 
@@ -66,18 +66,18 @@
                             <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type pagemodel:ProjectShopPageModel}}, x:DataType=pagemodel:ProjectShopPageModel, Path=GoToProjectDetailsCommand}" CommandParameter="{Binding .}" />
                         </Border.GestureRecognizers>
                         <!--  Project card  -->
-                        <VerticalStackLayout Padding="10,10,10,30" Spacing="8">
+                        <VerticalStackLayout Padding="10,10,10,60">
                             <Label
-                                FontSize="16"
+                                FontFamily="PoppinsBold"
+                                FontSize="20"
                                 LineBreakMode="TailTruncation"
                                 Text="{Binding Title}" />
 
                             <Label
                                 FontFamily="PoppinsRegular"
-                                FontSize="10"
+                                FontSize="16"
                                 LineBreakMode="WordWrap"
-                                Text="{Binding ShortDesc}"
-                                TextColor="Gray" />
+                                Text="{Binding ShortDesc}" />
                         </VerticalStackLayout>
                     </Border>
                 </DataTemplate>

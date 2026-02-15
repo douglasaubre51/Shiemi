@@ -6,4 +6,7 @@ public partial class ChannelsPageModel : BasePageModel
 {
     [ObservableProperty]
     private string channelTitle = "Channel Title";
+
+    [ObservableProperty]
+    private string chatBoxText = string.Empty;
 }
