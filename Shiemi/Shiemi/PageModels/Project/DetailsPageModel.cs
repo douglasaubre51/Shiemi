@@ -11,6 +11,12 @@ public partial class DetailsPageModel : BasePageModel
     private ProjectsPageProjectViewModel? currentProject;
 
     [RelayCommand]
+    async Task GoToChannel()
+        => await Shell.Current.GoToAsync(
+            "Channels",
+            true);
+
+    [RelayCommand]
     async Task GoToChats()
         => await Shell.Current.GoToAsync(
             "ChatRooms",

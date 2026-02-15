@@ -11,7 +11,7 @@
     HorizontalScrollBarVisibility="Never">
     <CollectionView.ItemTemplate>
         <DataTemplate x:DataType="viewmodels:GalleryViewModel">
-            <Border  Style="{StaticResource CardBorderStyle}" WidthRequest="300">
+            <Border Style="{StaticResource CardBorderStyle}" WidthRequest="300">
                 <VerticalStackLayout Spacing="8">
                     <Label
                         FontSize="18"

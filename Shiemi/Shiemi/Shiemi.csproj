@@ -49,9 +49,6 @@
 	  <Compile Update="Views\MessageView.xaml.cs">
 	    <DependentUpon>MessageView.xaml</DependentUpon>
 	  </Compile>
-	  <Compile Update="Views\ProjectListView.xaml.cs">
-	    <DependentUpon>ProjectListView.xaml</DependentUpon>
-	  </Compile>
 	</ItemGroup>
 
 	<ItemGroup>
@@ -65,9 +62,6 @@
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\MessageCardView.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Views\ProjectListView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\ChatListView.xaml">

@@ -66,6 +66,22 @@ public class DevService
 
         return true;
     }
+    public async Task<List<SearchDevDto>?> GetSearchedDevs(string username)
+        => await _httpClient.GetFromJsonAsync<List<SearchDevDto>>(
+            $"{devBaseUri}/{username}/search"
+        );
+
+    public async Task<DevDto?> GetById(int id)
+    {
+        var response = await _httpClient.GetAsync(
+            $"{devBaseUri}/{id}"
+        );
+        if (response.IsSuccessStatusCode is false)
+            return null;
+
+        var wrappedDto = await response.Content.ReadFromJsonAsync<DevDtoWrap>();
+        return wrappedDto!.Dev;
+    }
 
     public async Task<List<DevDto>?> GetAll()
         => await _httpClient.GetFromJsonAsync<List<DevDto>>(
@@ -82,3 +98,7 @@ public class DevService
         return await response.Content.ReadFromJsonAsync<DevDto>();
     }
 }
+
+public record DevDtoWrap(
+    DevDto Dev
+    );

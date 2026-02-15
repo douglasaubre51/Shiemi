@@ -4,9 +4,20 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:devpagemodels="clr-namespace:Shiemi.PageModels.Dev"
+    xmlns:dtos="clr-namespace:Shiemi.Dtos"
+    xmlns:handlers="clr-namespace:Shiemi.Utilities.Handlers"
     xmlns:models="clr-namespace:Shiemi.Models"
     Title="Dev Market"
     x:DataType="devpagemodels:MarketpageModel">
+    <Shell.SearchHandler>
+        <handlers:DevSearchHandler>
+            <handlers:DevSearchHandler.ItemTemplate>
+                <DataTemplate x:DataType="dtos:SearchDevDto">
+                    <Label Text="{x:Binding Username}" />
+                </DataTemplate>
+            </handlers:DevSearchHandler.ItemTemplate>
+        </handlers:DevSearchHandler>
+    </Shell.SearchHandler>
     <!--  dev cards  -->
     <VerticalStackLayout Margin="10">
         <CollectionView x:Name="DevCollectionView">

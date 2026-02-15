@@ -46,16 +46,14 @@
                                             <VisualState Name="Normal">
                                                 <VisualState.Setters>
                                                     <Setter Property="BackgroundColor" Value="White" />
-                                                    <Setter Property="Stroke" Value="White" />
-                                                    <Setter Property="StrokeShape" Value="RoundRectangle 8" />
+                                                    <Setter Property="Stroke" Value="LightGray" />
                                                 </VisualState.Setters>
                                             </VisualState>
 
                                             <VisualState Name="PointerOver">
                                                 <VisualState.Setters>
-                                                    <Setter Property="BackgroundColor" Value="WhiteSmoke" />
-                                                    <Setter Property="Stroke" Value="White" />
-                                                    <Setter Property="StrokeShape" Value="RoundRectangle 8" />
+                                                    <Setter Property="BackgroundColor" Value="{StaticResource PrimaryDark}" />
+                                                    <Setter Property="Stroke" Value="Transparent" />
                                                 </VisualState.Setters>
                                             </VisualState>
                                         </VisualStateGroup>

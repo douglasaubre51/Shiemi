@@ -12,3 +12,11 @@ public record DevDto
     public string Username { get; set; } = string.Empty;
     public string Profile { get; set; } = string.Empty;
 }
+
+public class SearchDevDto
+{
+    public int UserId { get; set; }
+    public int DevId { get; set; }
+    public string ShortDesc { get; set; }
+    public string Username { get; set; }
+}

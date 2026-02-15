@@ -8,27 +8,52 @@
     Title="{Binding CurrentProject.Title}"
     x:DataType="pagemodel:DetailsPageModel"
     Shell.TabBarIsVisible="False">
-    <ScrollView Margin="16" Orientation="Vertical">
-        <Grid RowDefinitions="*,100">
-            <VerticalStackLayout Grid.Row="0" Spacing="4">
-                <Label Text="Description" />
+    <Grid
+        Margin="16"
+        RowDefinitions="*,Auto"
+        VerticalOptions="Fill">
+        <ScrollView
+            Grid.Row="0"
+            Orientation="Vertical"
+            VerticalOptions="Fill">
+            <VerticalStackLayout Spacing="4">
+                <Label Text="Description" TextColor="{x:StaticResource Primary}" />
 
                 <Label
                     FontSize="16"
                     LineBreakMode="WordWrap"
-                    Text="{Binding CurrentProject.Description}" />
+                    Text="{x:Binding CurrentProject.Description}" />
             </VerticalStackLayout>
+        </ScrollView>
 
-            <HorizontalStackLayout
-                Grid.Row="1"
-                HorizontalOptions="End"
-                Spacing="8"
-                VerticalOptions="End">
-                <Button Command="{Binding GoToAddDevelopersCommand}" Text="Manage Devs" />
-                <Button Command="{Binding GoToChatsCommand}" Text="chats" />
-                <Button Text="edit" />
-                <Button Text="delete" />
-            </HorizontalStackLayout>
-        </Grid>
-    </ScrollView>
+        <HorizontalStackLayout
+            Grid.Row="1"
+            HorizontalOptions="End"
+            Spacing="8"
+            VerticalOptions="End">
+            <Button
+                Command="{x:Binding GoToAddDevelopersCommand}"
+                ImageSource="ic_fluent_people_24_regular.png"
+                Style="{x:StaticResource IconStyle}"
+                Text="Manage Devs" />
+
+            <Button
+                Command="{x:Binding GoToChannelCommand}"
+                ImageSource="ic_fluent_chat_multiple_person_24_regular.png"
+                Style="{x:StaticResource IconStyle}"
+                Text="Group Chat" />
+
+            <Button
+                Command="{x:Binding GoToChatsCommand}"
+                ImageSource="ic_fluent_chat_more_24_color.png"
+                Style="{x:StaticResource IconStyle}"
+                Text="Private Chats" />
+
+            <Button
+                ImageSource="ic_fluent_edit_24_regular.png"
+                Style="{x:StaticResource IconStyle}"
+                Text="Edit" />
+            <Button ImageSource="ic_fluent_bin_recycle_24_regular.png" Style="{x:StaticResource DangerBtnStyle}" />
+        </HorizontalStackLayout>
+    </Grid>
 </ContentPage>

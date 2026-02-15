@@ -6,19 +6,10 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:chatmodel="clr-namespace:Shiemi.PageModels.Chat"
     xmlns:views="clr-namespace:Shiemi.Views"
-    Title="Chats"
-    x:DataType="chatmodel:ChannelsPageModel">
-
-    <Grid ColumnDefinitions="*,2*">
-
-        <!--  chat list  -->
-        <views:ProjectListView Grid.Column="0" ProjectCollection="{Binding ProjectCollection}" />
-
-        <!--  chat area  -->
-        <views:ChannelMessageView
-            Grid.Column="1"
-            MessageCollection="{Binding MessageCollection}"
-            SenderName="{Binding ChannelTitle}" />
-
+    Title="Channel"
+    x:DataType="chatmodel:ChannelsPageModel"
+    Shell.TabBarIsVisible="False">
+    <Grid Margin="16">
+        <Label Text="Life in the Fastlane!" />
     </Grid>
 </ContentPage>
