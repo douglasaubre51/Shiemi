@@ -24,8 +24,12 @@ public partial class Market : ContentPage
     }
     protected override async void OnAppearing()
     {
+
+        var context = BindingContext as MarketpageModel;
+
         try
         {
+            context.IsBusy = true;
             List<DevDto>? devDtos = await _devServ.GetAll();
             if (devDtos is null)
                 return;
@@ -46,7 +50,8 @@ public partial class Market : ContentPage
         }
         finally
         {
-            base.OnAppearing();
+            context.IsBusy = false;
+        base.OnAppearing();
         }
     }
 }

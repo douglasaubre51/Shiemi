@@ -20,6 +20,8 @@
     </Shell.SearchHandler>
     <!--  dev cards  -->
     <VerticalStackLayout Margin="10">
+        <ActivityIndicator IsVisible="{x:Binding IsBusy}" IsRunning="{x:Binding IsBusy}" />
+
         <CollectionView x:Name="DevCollectionView">
             <CollectionView.ItemsLayout>
                 <GridItemsLayout

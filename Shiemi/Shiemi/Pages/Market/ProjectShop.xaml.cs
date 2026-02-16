@@ -32,6 +32,8 @@ public partial class ProjectShop : ContentPage
 
         try
         {
+            pageModel!.IsBusy = true;
+
             pageModel!.ProjectCollection.Clear();
             var projects = await _projectService.GetAll();
 
@@ -44,6 +46,10 @@ public partial class ProjectShop : ContentPage
         catch (Exception ex)
         {
             Debug.WriteLine($"ProjectShop error: {ex.Message}");
+        }
+        finally
+        {
+            pageModel.IsBusy = false;
         }
     }
 }

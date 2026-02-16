@@ -21,6 +21,8 @@
     </Shell.SearchHandler>
 
     <Grid Margin="10" RowDefinitions="*">
+        <ActivityIndicator  IsVisible="{x:Binding IsBusy}" IsRunning="{x:Binding IsBusy}" />
+
         <!--  Projects  -->
         <CollectionView
             ItemSizingStrategy="MeasureFirstItem"
