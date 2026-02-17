@@ -7,33 +7,50 @@
     xmlns:usermodel="clr-namespace:Shiemi.Models"
     xmlns:userpagemodels="clr-namespace:Shiemi.PageModels.User"
     xmlns:views="clr-namespace:Shiemi.Views"
-    x:DataType="userpagemodels:DevHubPageModel">
-    <ScrollView Orientation="Vertical">
-        <Grid Margin="16,0,0,0" RowDefinitions="200,*">
-            <!--  client profiles  -->
-            <VerticalStackLayout Grid.Row="0" Spacing="16">
-                <CollectionView
-                    HorizontalScrollBarVisibility="Never"
-                    ItemSizingStrategy="MeasureFirstItem"
-                    ItemsSource="{Binding ClientProfiles}">
-                    <CollectionView.ItemTemplate>
-                        <DataTemplate x:DataType="usermodel:ProfileCardModel">
-                            <views:ProfileCard
-                                ProfilePhoto="{Binding ProfilePhotoURI}"
-                                UserId="{Binding Id}"
-                                Username="{Binding Username}">
-                                <views:ProfileCard.GestureRecognizers>
-                                    <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type userpagemodels:DevHubPageModel}}, x:DataType=userpagemodels:DevHubPageModel, Path=DidSelectedClientProfileChangeCommand}" CommandParameter="{Binding .}" />
-                                </views:ProfileCard.GestureRecognizers>
-                            </views:ProfileCard>
-                        </DataTemplate>
-                    </CollectionView.ItemTemplate>
+    x:DataType="userpagemodels:DevHubPageModel"
+    Shell.NavBarIsVisible="False">
+    <Grid
+        Margin="16,0,0,0"
+        RowDefinitions="Auto,Auto,*"
+        RowSpacing="16">
+        <Label
+            Grid.Row="0"
+            FontFamily="PoppinsBold"
+            FontSize="32"
+            Text="Client Chats" />
 
-                    <CollectionView.ItemsLayout>
-                        <LinearItemsLayout ItemSpacing="4" Orientation="Horizontal" />
-                    </CollectionView.ItemsLayout>
-                </CollectionView>
-            </VerticalStackLayout>
-        </Grid>
-    </ScrollView>
+        <ActivityIndicator
+            Grid.Row="1"
+            IsRunning="{x:Binding IsBusy}"
+            IsVisible="{x:Binding IsBusy}" />
+
+        <!--  client profiles  -->
+        <CollectionView
+            Grid.Row="1"
+            HorizontalScrollBarVisibility="Never"
+            ItemSizingStrategy="MeasureFirstItem"
+            ItemsSource="{Binding ClientProfiles}"
+            VerticalOptions="Start">
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="usermodel:ProfileCardModel">
+                    <views:ProfileCard
+                        ProfilePhoto="{Binding ProfilePhotoURI}"
+                        UserId="{Binding Id}"
+                        Username="{Binding Username}">
+                        <views:ProfileCard.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type userpagemodels:DevHubPageModel}}, x:DataType=userpagemodels:DevHubPageModel, Path=DidSelectedClientProfileChangeCommand}" CommandParameter="{Binding .}" />
+                        </views:ProfileCard.GestureRecognizers>
+                    </views:ProfileCard>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+
+            <CollectionView.ItemsLayout>
+                <GridItemsLayout
+                    HorizontalItemSpacing="4"
+                    Orientation="Vertical"
+                    Span="4"
+                    VerticalItemSpacing="4" />
+            </CollectionView.ItemsLayout>
+        </CollectionView>
+    </Grid>
 </ContentPage>

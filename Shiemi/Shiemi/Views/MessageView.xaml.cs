@@ -20,6 +20,7 @@ public partial class MessageView : Grid
                 var context = (MessageView)bindable;
                 if (newValue is true)
                 {
+                    context.MessageSenderBar.IsVisible = true;
                     context.MessageBox.IsVisible = true;
                     context.SendMessageBtn.IsVisible = true;
                 }
@@ -31,7 +32,6 @@ public partial class MessageView : Grid
     }
 
     // Messages Collection bindable prop
-
     public static readonly BindableProperty MessageCollectionProperty =
         BindableProperty.Create(
             nameof(MessageCollection),
@@ -52,7 +52,6 @@ public partial class MessageView : Grid
 
 
     // sender name bindable prop
-
     public static readonly BindableProperty SenderNameProperty =
         BindableProperty.Create(
             nameof(SenderName),
@@ -84,6 +83,8 @@ public partial class MessageView : Grid
     {
         try
         {
+            SendMessageBtn.IsEnabled = false;
+
             if (string.IsNullOrWhiteSpace(MessageBox.Text))
                 return;
 
@@ -106,6 +107,10 @@ public partial class MessageView : Grid
                 "Couldnot send the message!",
                 "Ok"
                 );
+        }
+        finally
+        {
+            SendMessageBtn.IsEnabled = true;
         }
     }
 }

@@ -8,8 +8,8 @@
     xmlns:handler="clr-namespace:Shiemi.Utilities.Handlers"
     xmlns:pagemodel="clr-namespace:Shiemi.PageModels.Market"
     xmlns:viewmodel="clr-namespace:Shiemi.ViewModels"
-    Title="Project Market"
-    x:DataType="pagemodel:ProjectShopPageModel">
+    x:DataType="pagemodel:ProjectShopPageModel"
+    Shell.NavBarIsVisible="False">
     <Shell.SearchHandler>
         <handler:ProjectSearchHandler>
             <handler:ProjectSearchHandler.ItemTemplate>
@@ -21,7 +21,7 @@
     </Shell.SearchHandler>
 
     <Grid Margin="10" RowDefinitions="*">
-        <ActivityIndicator  IsVisible="{x:Binding IsBusy}" IsRunning="{x:Binding IsBusy}" />
+        <ActivityIndicator IsRunning="{x:Binding IsBusy}" IsVisible="{x:Binding IsBusy}" />
 
         <!--  Projects  -->
         <CollectionView

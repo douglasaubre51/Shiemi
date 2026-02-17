@@ -5,12 +5,10 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:pagemodel="clr-namespace:Shiemi.PageModels.User"
-    Title="Profile"
     x:DataType="pagemodel:ProfilePageModel"
-    SafeAreaEdges="Default"
-    Shell.NavBarIsVisible="True">
+    Shell.NavBarIsVisible="False">
     <Grid
-        Margin="16,0,0,0"
+        Margin="16,16,0,0"
         ColumnDefinitions="*,*"
         ColumnSpacing="16"
         IsClippedToBounds="False"

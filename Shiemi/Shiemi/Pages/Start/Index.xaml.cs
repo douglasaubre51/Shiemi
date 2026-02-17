@@ -26,9 +26,14 @@ public partial class Index : ContentPage
 
     protected override async void OnAppearing()
     {
+        base.OnAppearing();
+
+        var context = BindingContext as IndexPageModel;
 
         try
         {
+            context!.IsBusy = true;
+
             // check if user logged in!
             if (DataStorage.Get("UserId") is not "")
             {
@@ -55,8 +60,10 @@ public partial class Index : ContentPage
                 "Error Logging in to SHIEMI Api",
                 "Ok");
         }
-
-        base.OnAppearing();
+        finally
+        {
+            context.IsBusy = false;
+        }
     }
 
     private async void Button_Clicked(object sender, EventArgs e)
@@ -93,6 +100,8 @@ public partial class Index : ContentPage
                     await Shell.Current.GoToAsync("//Profile");
                     return;
                 }
+
+                await Task.Delay(100);
             }
         }
         catch (Exception ex)
