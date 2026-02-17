@@ -6,9 +6,8 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:homeviews="clr-namespace:Shiemi.Views.HomeViews"
     xmlns:userpagemodels="clr-namespace:Shiemi.PageModels.User"
-    Title="Manage Projects"
     x:DataType="userpagemodels:HomePageModel"
-    Shell.NavBarIsVisible="True">
+    Shell.NavBarIsVisible="False">
     <VerticalStackLayout Margin="0,0,0,0" Spacing="24">
         <VerticalStackLayout Spacing="8">
             <HorizontalStackLayout Spacing="4">
@@ -21,9 +20,12 @@
                 <ImageButton Command="{Binding GoToViewMyProjectsCommand}" Source="ic_fluent_chevron_right_24_regular.png" />
 
                 <Button
+                    BorderWidth="0"
                     Command="{Binding GoToCreateProjectCommand}"
                     ImageSource="ic_fluent_add_circle_24_regular.png"
                     Style="{StaticResource IconStyle}" />
+
+                <ActivityIndicator IsRunning="{x:Binding IsBusy}" IsVisible="{x:Binding IsBusy}" />
             </HorizontalStackLayout>
 
             <homeviews:GalleryView
@@ -43,10 +45,7 @@
 
                 <ImageButton Source="ic_fluent_chevron_right_24_regular.png" />
 
-                <Button
-                    Command="{Binding GoToProjectShopCommand}"
-                    ImageSource="ic_fluent_add_circle_24_regular.png"
-                    Style="{StaticResource IconStyle}" />
+                <ActivityIndicator IsRunning="{x:Binding IsBusy}" IsVisible="{x:Binding IsBusy}" />
             </HorizontalStackLayout>
 
             <homeviews:GalleryView Store="{Binding JoinedProjectCollection}" />

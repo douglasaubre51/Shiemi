@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 
 <ContentPage
     x:Class="Shiemi.Pages.Project.Projects"
@@ -10,30 +10,23 @@
     x:DataType="pagemodel:ProjectsPageModel"
     BackgroundColor="FloralWhite">
 
-    <Grid
-        Margin="10"
-        RowDefinitions="*,50">
+    <Grid Margin="10" RowDefinitions="*,50">
         <!--  grid styles  -->
         <Grid.Resources>
-            <Style
-                x:Key="AddBtn"
-                TargetType="Button">
+            <Style x:Key="AddBtn" TargetType="Button">
                 <Setter Property="BackgroundColor" Value="{StaticResource Primary}" />
                 <Setter Property="CornerRadius" Value="50" />
                 <Setter Property="WidthRequest" Value="50" />
                 <Setter Property="FontSize" Value="30" />
                 <Setter Property="VisualStateManager.VisualStateGroups">
                     <VisualStateGroupList>
-                        <VisualStateGroup
-                            Name="CommonStates">
-                            <VisualState
-                                Name="PointerOver">
+                        <VisualStateGroup Name="CommonStates">
+                            <VisualState Name="PointerOver">
                                 <VisualState.Setters>
                                     <Setter Property="BackgroundColor" Value="{StaticResource PrimaryDark}" />
                                 </VisualState.Setters>
                             </VisualState>
-                            <VisualState
-                                Name="Normal">
+                            <VisualState Name="Normal">
                                 <VisualState.Setters>
                                     <Setter Property="BackgroundColor" Value="{StaticResource Primary}" />
                                 </VisualState.Setters>
@@ -59,20 +52,15 @@
             </CollectionView.ItemsLayout>
             <CollectionView.ItemTemplate>
                 <!--  data template  -->
-                <DataTemplate
-                    x:DataType="viewmodels:ProjectsPageProjectViewModel">
-                    <Grid
-                        ColumnSpacing="20">
+                <DataTemplate x:DataType="viewmodels:ProjectsPageProjectViewModel">
+                    <Grid ColumnSpacing="20">
                         <!--  grid styles  -->
                         <Grid.Resources>
-                            <Style
-                                TargetType="Border">
+                            <Style TargetType="Border">
                                 <Setter Property="VisualStateManager.VisualStateGroups">
                                     <VisualStateGroupList>
-                                        <VisualStateGroup
-                                            Name="CommonStates">
-                                            <VisualState
-                                                Name="Normal">
+                                        <VisualStateGroup Name="CommonStates">
+                                            <VisualState Name="Normal">
                                                 <VisualState.Setters>
                                                     <Setter Property="BackgroundColor" Value="White" />
                                                 </VisualState.Setters>
@@ -87,8 +75,7 @@
                             Padding="16"
                             MinimumHeightRequest="120"
                             Style="{StaticResource CardBorderStyle}">
-                            <VerticalStackLayout
-                                Spacing="8">
+                            <VerticalStackLayout Spacing="8">
                                 <Label
                                     FontSize="16"
                                     LineBreakMode="WordWrap"

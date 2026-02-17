@@ -7,8 +7,8 @@
     xmlns:dtos="clr-namespace:Shiemi.Dtos"
     xmlns:handlers="clr-namespace:Shiemi.Utilities.Handlers"
     xmlns:models="clr-namespace:Shiemi.Models"
-    Title="Dev Market"
-    x:DataType="devpagemodels:MarketpageModel">
+    x:DataType="devpagemodels:MarketpageModel"
+    Shell.NavBarIsVisible="False">
     <Shell.SearchHandler>
         <handlers:DevSearchHandler>
             <handlers:DevSearchHandler.ItemTemplate>
@@ -20,7 +20,7 @@
     </Shell.SearchHandler>
     <!--  dev cards  -->
     <VerticalStackLayout Margin="10">
-        <ActivityIndicator IsVisible="{x:Binding IsBusy}" IsRunning="{x:Binding IsBusy}" />
+        <ActivityIndicator IsRunning="{x:Binding IsBusy}" IsVisible="{x:Binding IsBusy}" />
 
         <CollectionView x:Name="DevCollectionView">
             <CollectionView.ItemsLayout>

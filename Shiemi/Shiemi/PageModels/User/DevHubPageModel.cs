@@ -20,7 +20,7 @@ public partial class DevHubPageModel(
 
     private readonly RoomClient _roomClient = roomClient;
 
-	[RelayCommand]
+    [RelayCommand]
     async Task DidSelectedClientProfileChange(ProfileCardModel selectedProfileCard)
     {
         try
@@ -52,6 +52,8 @@ public partial class DevHubPageModel(
 
         try
         {
+            IsBusy = true;
+
             List<Dtos.GetDevRoomDto>? profiles = await _roomClient.GetAllDevRoomDtos(UserStorage.UserId);
             if (profiles!.Count is 0) return;
 
@@ -77,6 +79,7 @@ public partial class DevHubPageModel(
         }
         finally
         {
+            IsBusy = false;
             IsPageLoading = false;
         }
     }

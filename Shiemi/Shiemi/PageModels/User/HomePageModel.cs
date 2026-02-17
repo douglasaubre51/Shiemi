@@ -16,7 +16,6 @@ public partial class HomePageModel(
 ) : BasePageModel
 {
     private readonly ProjectService _projectServ = projectServ;
-    private readonly UserService _userServ = userServ;
 
     [ObservableProperty]
     private bool isPageExiting;
@@ -139,6 +138,8 @@ public partial class HomePageModel(
             MyProjectCollection.Clear();
             JoinedProjectCollection.Clear();
 
+            IsBusy = true;
+
             await InitMyProjectsCollection();
             await InitJoinedProjectsCollection();
         }
@@ -148,6 +149,7 @@ public partial class HomePageModel(
         }
         finally
         {
+            IsBusy = false;
             IsPageLoading = false;
         }
     }

@@ -12,7 +12,7 @@
     xmlns:viewmodels="clr-namespace:Shiemi.ViewModels"
     Background="Transparent"
     FlyoutBackground="Transparent"
-    FlyoutBehavior="Locked">
+    FlyoutBehavior="Flyout">
     <FlyoutItem Title="GetStarted" FlyoutItemIsVisible="False">
         <Tab>
             <ShellContent ContentTemplate="{DataTemplate startpages:Index}" Route="Index" />
@@ -54,10 +54,10 @@
     <Shell.FlyoutFooterTemplate>
         <DataTemplate x:DataType="viewmodels:FlyoutFooterModel">
             <Grid
-                ColumnDefinitions="*,*"
+                ColumnDefinitions="*,2*"
                 ColumnSpacing="8"
                 RowDefinitions="Auto">
-                <Border Grid.Column="0" StrokeShape="RoundRectangle 16">
+                <Border Grid.Column="0" StrokeShape="RoundRectangle 100">
                     <Image Source="{x:Binding Profile}" />
 
                 </Border>
@@ -65,16 +65,11 @@
                 <VerticalStackLayout
                     Grid.Column="1"
                     Padding="0,8,0,0"
-                    VerticalOptions="Start">
+                    VerticalOptions="Center">
                     <Label
                         FontFamily="PoppinsBold"
                         FontSize="16"
                         Text="{x:Binding Username}" />
-
-                    <!--<Label
-                        FontSize="Caption"
-                        LineBreakMode="TailTruncation"
-                        Text="{x:Binding EmailId}" />-->
 
                     <Label Text="{x:Binding Role}" />
                 </VerticalStackLayout>

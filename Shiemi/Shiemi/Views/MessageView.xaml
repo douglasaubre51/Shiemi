@@ -10,12 +10,18 @@
     RowDefinitions="50,*,60">
 
     <!--  header  -->
-    <VerticalStackLayout Grid.Row="0">
+    <Grid
+        x:Name="MessageSenderBar"
+        Grid.Row="0"
+        Background="LightGray"
+        IsVisible="False"
+        RowDefinitions="*">
         <Label
             x:Name="SenderLabel"
-            Padding="20"
-            FontSize="Title" />
-    </VerticalStackLayout>
+            Margin="16,0,0,0"
+            FontSize="Title"
+            VerticalOptions="Center" />
+    </Grid>
 
     <!--  body  -->
     <CollectionView
@@ -35,6 +41,7 @@
                             Value="False">
                             <Setter Property="ColumnDefinitions" Value="Auto,*" />
                         </DataTrigger>
+
                         <!--  is owner  -->
                         <DataTrigger
                             Binding="{Binding IsOwner}"
@@ -42,14 +49,12 @@
                             Value="True">
                             <Setter Property="ColumnDefinitions" Value="*,Auto" />
                         </DataTrigger>
-
                     </Grid.Triggers>
 
                     <views:MessageCardView
                         MaximumWidthRequest="600"
                         MessageText="{Binding Text}"
                         MessageTime="{Binding CreatedAt}">
-
                         <!--  card position trigger  -->
                         <views:MessageCardView.Triggers>
                             <!--  is not owner  -->
@@ -59,6 +64,7 @@
                                 Value="False">
                                 <Setter Property="Grid.Column" Value="0" />
                             </DataTrigger>
+
                             <!--  is owner  -->
                             <DataTrigger
                                 Binding="{Binding IsOwner}"
@@ -67,11 +73,21 @@
                                 <Setter Property="Grid.Column" Value="1" />
                             </DataTrigger>
                         </views:MessageCardView.Triggers>
-
                     </views:MessageCardView>
                 </Grid>
             </DataTemplate>
         </CollectionView.ItemTemplate>
+
+        <CollectionView.EmptyView>
+            <Grid RowDefinitions="*">
+                <Label
+                    Padding="0,16,16,0"
+                    FontSize="16"
+                    HorizontalOptions="End"
+                    Text="Send chats to get started!"
+                    TextColor="LightGrey" />
+            </Grid>
+        </CollectionView.EmptyView>
     </CollectionView>
 
     <!--  send chat area  -->
