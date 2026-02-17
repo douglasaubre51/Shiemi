@@ -69,6 +69,8 @@ public partial class ReviewCard : Border
 
         try
         {
+            CreateReviewButton.IsEnabled = false;
+
             Review review = new()
             {
                 UserId = UserStorage.UserId,
@@ -89,6 +91,10 @@ public partial class ReviewCard : Border
         catch (Exception ex)
         {
             Debug.WriteLine($"CreateReview: error: {ex.Message}");
+        }
+        finally
+        {
+            CreateReviewButton.IsEnabled = true;
         }
     }
 }
