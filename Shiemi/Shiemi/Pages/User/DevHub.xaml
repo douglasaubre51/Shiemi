@@ -28,9 +28,8 @@
         <CollectionView
             Grid.Row="1"
             HorizontalScrollBarVisibility="Never"
-            ItemSizingStrategy="MeasureFirstItem"
-            ItemsSource="{Binding ClientProfiles}"
-            VerticalOptions="Start">
+            ItemSizingStrategy="MeasureAllItems"
+            ItemsSource="{Binding ClientProfiles}">
             <CollectionView.ItemTemplate>
                 <DataTemplate x:DataType="usermodel:ProfileCardModel">
                     <views:ProfileCard
@@ -45,12 +44,16 @@
             </CollectionView.ItemTemplate>
 
             <CollectionView.ItemsLayout>
-                <GridItemsLayout
-                    HorizontalItemSpacing="4"
-                    Orientation="Vertical"
-                    Span="4"
-                    VerticalItemSpacing="4" />
+                <GridItemsLayout Orientation="Vertical" Span="3" />
             </CollectionView.ItemsLayout>
+
+            <CollectionView.EmptyView>
+                <Label
+                    FontSize="32"
+                    HorizontalTextAlignment="Center"
+                    Text="Clients contacting you will be shown here !"
+                    TextColor="LightGrey" />
+            </CollectionView.EmptyView>
         </CollectionView>
     </Grid>
 </ContentPage>

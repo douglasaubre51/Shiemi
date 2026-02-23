@@ -2,6 +2,22 @@ namespace Shiemi.Views;
 
 public partial class MessageCardView : Border
 {
+    public static readonly BindableProperty MessageSenderProperty = BindableProperty.Create(
+            nameof(MessageSender),
+            typeof(string),
+            typeof(MessageCardView),
+            "loading message!",
+            propertyChanged: (bindable, oldValue, newValue) =>
+            {
+                var context = (MessageCardView)bindable;
+                context.MessageSenderLabel.Text = (string)newValue;
+            }
+            );
+    public string MessageSender
+    {
+        get => (string)GetValue(MessageSenderProperty);
+        set => SetValue(MessageSenderProperty, value);
+    }
     public static readonly BindableProperty MessageTextProperty = BindableProperty.Create(
             nameof(MessageText),
             typeof(string),

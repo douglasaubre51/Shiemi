@@ -5,13 +5,78 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:chatmodel="clr-namespace:Shiemi.PageModels.Chat"
+    xmlns:models="clr-namespace:Shiemi.Models"
     xmlns:views="clr-namespace:Shiemi.Views"
-    Title="Channel"
+    Title="{x:Binding CurrentProjectTitle,
+                      StringFormat='{0} channel'}"
     x:DataType="chatmodel:ChannelsPageModel"
     Shell.TabBarIsVisible="False">
-    <Grid Margin="16">
-        <Label Text="Life in the Fastlane!" />
+    <Grid Margin="16" RowDefinitions="*,Auto">
+        <CollectionView
+            Grid.Row="0"
+            ItemsSource="{x:Binding MessageCollection}"
+            ItemsUpdatingScrollMode="KeepLastItemInView">
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="models:Message">
+                    <Grid ColumnDefinitions="Auto,*">
+                        <views:MessageCardView
+                            MessageSender="{x:Binding Username}"
+                            MessageText="{x:Binding Text}"
+                            MessageTime="{x:Binding CreatedAt}">
+                            <views:MessageCardView.Triggers>
+                                <DataTrigger
+                                    Binding="{x:Binding IsOwner}"
+                                    TargetType="views:MessageCardView"
+                                    Value="False">
+                                    <Setter Property="Grid.Column" Value="0" />
+                                </DataTrigger>
 
-        <Editor Text="{x:Binding ChatBoxText}" />
+                                <DataTrigger
+                                    Binding="{x:Binding IsOwner}"
+                                    TargetType="views:MessageCardView"
+                                    Value="True">
+                                    <Setter Property="Grid.Column" Value="1" />
+                                </DataTrigger>
+                            </views:MessageCardView.Triggers>
+                        </views:MessageCardView>
+
+                        <Grid.Triggers>
+                            <DataTrigger
+                                Binding="{x:Binding IsOwner}"
+                                TargetType="Grid"
+                                Value="False">
+                                <Setter Property="ColumnDefinitions" Value="Auto,*" />
+                            </DataTrigger>
+
+                            <DataTrigger
+                                Binding="{x:Binding IsOwner}"
+                                TargetType="Grid"
+                                Value="True">
+                                <Setter Property="ColumnDefinitions" Value="*,Auto" />
+                            </DataTrigger>
+                        </Grid.Triggers>
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+
+            <CollectionView.EmptyView>
+                <Label
+                    FontSize="32"
+                    HorizontalTextAlignment="Center"
+                    Text="Send chats to get started!"
+                    TextColor="LightGrey" />
+            </CollectionView.EmptyView>
+        </CollectionView>
+
+        <Grid
+            Grid.Row="1"
+            ColumnDefinitions="*,Auto"
+            ColumnSpacing="8">
+            <Editor Grid.Column="0" Text="{x:Binding ChatBoxText}" />
+            <Button
+                Grid.Column="1"
+                Command="{x:Binding SendChatCommand}"
+                Text="Send" />
+        </Grid>
     </Grid>
 </ContentPage>

@@ -48,7 +48,11 @@
                 <ActivityIndicator IsRunning="{x:Binding IsBusy}" IsVisible="{x:Binding IsBusy}" />
             </HorizontalStackLayout>
 
-            <homeviews:GalleryView Store="{Binding JoinedProjectCollection}" />
+            <homeviews:GalleryView
+                SelectedItem="{x:Binding SelectedJoinedProject}"
+                SelectionChangedCommand="{x:Binding JoinedProjectSelectionChangedCommand}"
+                SelectionMode="Single"
+                Store="{x:Binding JoinedProjectCollection}" />
         </VerticalStackLayout>
     </VerticalStackLayout>
 </ContentPage>

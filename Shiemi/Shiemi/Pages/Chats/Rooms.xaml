@@ -17,6 +17,7 @@
             Grid.Column="0"
             ItemsLayout="VerticalList"
             ItemsSource="{x:Binding ChatCollection}"
+            ItemsUpdatingScrollMode="KeepLastItemInView"
             SelectionChanged="CollectionView_SelectionChanged"
             SelectionMode="Single">
             <CollectionView.ItemTemplate>

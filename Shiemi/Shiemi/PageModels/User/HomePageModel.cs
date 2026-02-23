@@ -32,9 +32,42 @@ public partial class HomePageModel(
     [ObservableProperty]
     private GalleryViewModel selectedMyProject;
 
+    [ObservableProperty]
+    private GalleryViewModel selectedJoinedProject;
+
     [RelayCommand]
     async Task GoToProjectShop()
         => await Shell.Current.GoToAsync("///ProjectShop");
+
+    [RelayCommand]
+    async Task JoinedProjectSelectionChanged()
+    {
+        if (SelectedJoinedProject is null) return;
+
+        try
+        {
+            ProjectDto? project = await _projectServ.GetById(SelectedJoinedProject.ItemId);
+            if (project is null) return;
+
+            Mapper mapper = MapperProvider.GetMapper<ProjectDto, ProjectsPageProjectViewModel>()!;
+            var projectDetailsViewModel = mapper.Map<ProjectsPageProjectViewModel>(project);
+            await Shell.Current.GoToAsync(
+                "Details",
+                new Dictionary<string, object>()
+                {
+                    { "CurrentProject", projectDetailsViewModel },
+                    { "IsJoinedProject", true }
+                });
+        }
+        catch (Exception ex)
+        {
+            Debug.WriteLine(ex.Message);
+            await Shell.Current.DisplayAlertAsync(
+                "Project load error",
+                "Couldnot load project",
+                "Ok");
+        }
+    }
 
     [RelayCommand]
     async Task MyProjectSelectionChanged()

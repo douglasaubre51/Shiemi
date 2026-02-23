@@ -3,9 +3,9 @@ using Microsoft.AspNetCore.SignalR.Client;
 using MvvmHelpers;
 using Shiemi.Dtos;
 using Shiemi.HubModels;
+using Shiemi.Models;
 using Shiemi.Storage;
 using Shiemi.Utilities.ServiceProviders;
-using Shiemi.ViewModels;
 
 namespace Shiemi.Utilities.HubClients;
 
@@ -18,8 +18,8 @@ public class ChannelClient(
     public HubConnection? _conn;
 
     public async Task StartClient(
-        ObservableRangeCollection<MessageViewModel> messageCollection,
-        int channelId
+        int channelId,
+        ObservableRangeCollection<Message> MessageCollection
         )
     {
         _conn = new HubConnectionBuilder()
@@ -28,27 +28,22 @@ public class ChannelClient(
            .Build();
 
         _conn.Closed += async (err) =>
-        {
             Debug.WriteLine($"socket conn closed !");
-        };
 
         _conn.On<RoomMessageHubModel>(
             "UpdateChat",
             async (dto) =>
             {
-                Debug.WriteLine("updating message collection ...");
                 if (dto.UserId == UserStorage.UserId)
                     dto.IsOwner = true;
 
-                Mapper? mapper = MapperProvider.GetMapper<RoomMessageHubModel, MessageViewModel>();
-                if (mapper is null)
-                    return;
+                Mapper? mapper = MapperProvider.GetMapper<RoomMessageHubModel, Message>();
+                Message newMessage = mapper!.Map<Message>(dto);
 
-                var messageViewModel = mapper.Map<MessageViewModel>(dto);
-                MainThread.BeginInvokeOnMainThread(() => messageCollection.Add(messageViewModel));
+                MainThread.BeginInvokeOnMainThread(() => MessageCollection.Add(newMessage));
             });
 
-        // load previous chats
+        // Load database chats !
         _conn.On<List<RoomMessageHubModel>>(
             "LoadChat",
             async (dtos) =>
@@ -56,26 +51,21 @@ public class ChannelClient(
                 if (dtos is null)
                     return;
 
+                // Owner chats go left !
                 var ownerMessages = dtos.Where(c => c.UserId == UserStorage.UserId)
                     .ToList();
                 foreach (var m in ownerMessages)
                     m.IsOwner = true;
 
-                Mapper? mapper = MapperProvider.GetMapper<RoomMessageHubModel, MessageViewModel>();
-                if (mapper is null)
-                {
-                    Debug.WriteLine("ChannelClient: LoadChat: error: GetMapper returned null!");
-                    return;
-                }
+                Mapper? mapper = MapperProvider.GetMapper<RoomMessageHubModel, Message>();
+                List<Message> oldMessages = mapper!.Map<List<Message>>(dtos);
 
-                var messageViewModels = mapper.Map<List<MessageViewModel>>(dtos);
                 await MainThread.InvokeOnMainThreadAsync(() =>
-                    messageCollection.AddRange(messageViewModels)
+                    MessageCollection.AddRange(oldMessages)
                 );
             });
 
         await _conn.StartAsync();
-
         await _conn.InvokeAsync(
             "Init",
             UserStorage.UserId,
@@ -83,6 +73,7 @@ public class ChannelClient(
         );
     }
 
+    // Channel client actions:
     public async Task StopClient()
         => await _conn!.StopAsync();
     public async Task RestartClient()

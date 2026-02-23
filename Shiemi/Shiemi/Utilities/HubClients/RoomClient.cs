@@ -81,10 +81,14 @@ public class RoomClient
                     foreach (var m in dtos)
                         m.CreatedAt = m.CreatedAt.ToLocalTime();
 
+                    Debug.WriteLine("Loading dev chats...");
+                    Debug.WriteLine("is dev chats count: " + dtos.Count);
+
                     var ownerMessages = dtos.Where(c => c.UserId == UserStorage.UserId)
                     .ToList();
                     foreach (var m in ownerMessages)
                         m.IsOwner = true;
+
 
                     Mapper? mapper = MapperProvider.GetMapper<RoomMessageHubModel, MessageViewModel>();
                     if (mapper is null)

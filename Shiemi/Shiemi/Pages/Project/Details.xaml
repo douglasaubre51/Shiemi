@@ -26,6 +26,46 @@
             </VerticalStackLayout>
         </ScrollView>
 
+        <!--  user joined project button bar  -->
+        <HorizontalStackLayout
+            Grid.Row="1"
+            HorizontalOptions="End"
+            Spacing="8"
+            VerticalOptions="End">
+            <Button
+                Command="{x:Binding GoToChannelCommand}"
+                ImageSource="ic_fluent_chat_multiple_person_24_regular.png"
+                Style="{x:StaticResource IconStyle}"
+                Text="Group Chat" />
+
+            <Button
+                Command="{x:Binding GoToPrivateRoomCommand}"
+                ImageSource="ic_fluent_chat_more_24_color.png"
+                Style="{x:StaticResource IconStyle}"
+                Text="Chat with Owner" />
+
+            <Button ImageSource="ic_fluent_bin_recycle_24_regular.png" Style="{x:StaticResource DangerBtnStyle}" />
+
+            <HorizontalStackLayout.Triggers>
+                <!--  user joined project  -->
+                <DataTrigger
+                    Binding="{x:Binding IsJoinedProject}"
+                    TargetType="HorizontalStackLayout"
+                    Value="True">
+                    <Setter Property="IsVisible" Value="True" />
+                </DataTrigger>
+
+                <!--  user created project  -->
+                <DataTrigger
+                    Binding="{x:Binding IsJoinedProject}"
+                    TargetType="HorizontalStackLayout"
+                    Value="False">
+                    <Setter Property="IsVisible" Value="False" />
+                </DataTrigger>
+            </HorizontalStackLayout.Triggers>
+        </HorizontalStackLayout>
+
+        <!--  user created project button bar  -->
         <HorizontalStackLayout
             Grid.Row="1"
             HorizontalOptions="End"
@@ -54,6 +94,24 @@
                 Style="{x:StaticResource IconStyle}"
                 Text="Edit" />
             <Button ImageSource="ic_fluent_bin_recycle_24_regular.png" Style="{x:StaticResource DangerBtnStyle}" />
+
+            <HorizontalStackLayout.Triggers>
+                <!--  user joined project  -->
+                <DataTrigger
+                    Binding="{x:Binding IsJoinedProject}"
+                    TargetType="HorizontalStackLayout"
+                    Value="True">
+                    <Setter Property="IsVisible" Value="False" />
+                </DataTrigger>
+
+                <!--  user created project  -->
+                <DataTrigger
+                    Binding="{x:Binding IsJoinedProject}"
+                    TargetType="HorizontalStackLayout"
+                    Value="False">
+                    <Setter Property="IsVisible" Value="True" />
+                </DataTrigger>
+            </HorizontalStackLayout.Triggers>
         </HorizontalStackLayout>
     </Grid>
 </ContentPage>

@@ -18,20 +18,21 @@
                 HorizontalOptions="Fill"
                 Spacing="4"
                 VerticalOptions="Start">
-                <Label Style="{StaticResource SubTitleLabel}" Text="Advert" />
+                <Label Text="Profile" TextColor="Grey" />
 
                 <Border
-                    BackgroundColor="Transparent"
-                    HeightRequest="400"
-                    HorizontalOptions="Fill"
+                    HeightRequest="200"
+                    HorizontalOptions="Start"
                     StrokeThickness="0"
-                    VerticalOptions="Start">
+                    VerticalOptions="Start"
+                    WidthRequest="200">
                     <Border.StrokeShape>
                         <RoundRectangle CornerRadius="4" />
                     </Border.StrokeShape>
 
                     <ImageButton
                         Aspect="AspectFill"
+                        BackgroundColor="LightGray"
                         Command="{Binding ChoosePhotoCommand}"
                         Source="{Binding AdvertPhotoURI}"
                         Style="{StaticResource ImageIconBtnStyle}" />

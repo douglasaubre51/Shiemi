@@ -237,7 +237,7 @@
                 <VisualStateGroup x:Name="CommonStates">
                     <VisualState x:Name="Normal">
                         <VisualState.Setters>
-                            <Setter Property="BackgroundColor" Value="White" />
+                            <Setter Property="BackgroundColor" Value="Grey" />
                         </VisualState.Setters>
                     </VisualState>
 

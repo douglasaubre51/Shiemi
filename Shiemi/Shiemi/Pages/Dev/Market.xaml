@@ -121,6 +121,14 @@
                     </Border>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
+
+            <CollectionView.EmptyView>
+                <Label
+                    FontSize="32"
+                    HorizontalTextAlignment="Center"
+                    Text="Devs will be shown here !"
+                    TextColor="LightGrey" />
+            </CollectionView.EmptyView>
         </CollectionView>
     </VerticalStackLayout>
 </ContentPage>

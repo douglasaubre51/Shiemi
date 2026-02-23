@@ -12,4 +12,19 @@ public partial class Channels : ContentPage
         InitializeComponent();
         BindingContext = pageModel;
     }
+
+    protected override void OnDisappearing()
+    {
+        ChannelsPageModel? pageModel = BindingContext as ChannelsPageModel;
+        pageModel!.IsPageExiting = true;
+
+        base.OnDisappearing();
+    }
+    protected override void OnAppearing()
+    {
+        base.OnAppearing();
+
+        ChannelsPageModel? pageModel = BindingContext as ChannelsPageModel;
+        pageModel!.IsPageLoading = true;
+    }
 }

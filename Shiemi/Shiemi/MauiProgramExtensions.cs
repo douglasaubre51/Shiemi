@@ -53,12 +53,13 @@ public static class MauiProgramExtensions
         // Add Rest Services
         builder.Services.AddSingleton<RestClient>();
 
-        builder.Services.AddTransient<UserService>();
-        builder.Services.AddTransient<AuthService>();
-        builder.Services.AddTransient<ProjectService>();
-        builder.Services.AddTransient<ChatService>();
-        builder.Services.AddTransient<ReviewService>();
-        builder.Services.AddTransient<DevService>();
+        builder.Services.AddSingleton<UserService>();
+        builder.Services.AddSingleton<AuthService>();
+        builder.Services.AddSingleton<ProjectService>();
+        builder.Services.AddSingleton<ChatService>();
+        builder.Services.AddSingleton<ReviewService>();
+        builder.Services.AddSingleton<DevService>();
+        builder.Services.AddSingleton<ChannelService>();
 
 
         // Add HubClients

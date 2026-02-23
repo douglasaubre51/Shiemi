@@ -84,6 +84,14 @@
                     </Border>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
+
+            <CollectionView.EmptyView>
+                <Label
+                    FontSize="32"
+                    HorizontalTextAlignment="Center"
+                    Text="Projects will be shown here !"
+                    TextColor="LightGrey" />
+            </CollectionView.EmptyView>
         </CollectionView>
     </Grid>
 </ContentPage>

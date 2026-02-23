@@ -26,5 +26,6 @@ public record ProjectsPageProjectViewModel(
     string ShortDesc,
     string Description,
     string CreatedAt,
-    int UserId
+    int UserId,
+    int ChannelId = 0
 );

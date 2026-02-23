@@ -27,7 +27,7 @@ public class ChatWidget : ContentView
         };
         topBar.Row(0);
         topBar.BackgroundColor = Colors.WhiteSmoke;
-        topBar.Padding(4, 16);
+        topBar.Padding(4);
 
         // chat collection view
         chatCollectionView = new()
@@ -80,7 +80,7 @@ public class ChatWidget : ContentView
         chatCollectionView.ItemsUpdatingScrollMode = ItemsUpdatingScrollMode.KeepLastItemInView;
         chatCollectionView.EmptyView = new Label()
         {
-            Text = "Loading ....",
+            Text = "Send chats to get started !",
             TextColor = Colors.LightGrey,
             FontSize = 16,
             Padding = new Thickness()

@@ -9,4 +9,5 @@ public class RoomMessageHubModel
     public int UserId { get; set; }
     public int ChannelId { get; set; }
     public int RoomId { get; set; }
+    public string Username { get; set; } = string.Empty;
 }
