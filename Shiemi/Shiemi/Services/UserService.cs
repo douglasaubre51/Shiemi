@@ -19,6 +19,20 @@ public class UserService
         userBaseUri = $"{_httpClient.BaseAddress}/User";
     }
 
+    public async Task<bool> CheckIfReviewIsAllowed(int userId, int projectId)
+    {
+        var response = await _httpClient.GetAsync(
+            $"{userBaseUri}/{userId}/past-projects");
+        if(response.IsSuccessStatusCode is false)
+        {
+            Debug.WriteLine("CheckIfReviewIsAllowed get error: " + response.IsSuccessStatusCode);
+            return false;
+        }
+
+        List<int>? pastProjects = await response.Content.ReadFromJsonAsync<List<int>>();
+        return pastProjects!.Contains(projectId);
+    }
+
     public async Task<bool> Update(User user, string profilePath)
     {
         var profileContent = new ByteArrayContent(await File.ReadAllBytesAsync(profilePath));

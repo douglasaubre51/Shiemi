@@ -14,7 +14,7 @@
         Margin="16,0,0,10"
         ColumnDefinitions="2*,Auto,*"
         ColumnSpacing="16"
-        RowDefinitions="Auto,*,Auto"
+        RowDefinitions="Auto,*,80"
         RowSpacing="8">
             <Label
             Grid.Row="0"
@@ -23,20 +23,20 @@
             Text="Description"
             TextColor="Black" />
 
+        <ScrollView Orientation="Vertical" Grid.Row="1" Grid.Column="0"
+                Padding="0,0,8,0">
             <Label
-                Grid.Row="1"
-                Grid.Column="0"
-                Padding="0,0,8,0"
                 FontSize="18"
                 LineBreakMode="WordWrap"
                 Text="{Binding ProjectVM.Description}" />
+        </ScrollView>
 
-            <Grid
+        <Grid
             Grid.Row="3"
             HorizontalOptions="End"
-            Padding="0,0,0,20"
-            VerticalOptions="Start">
-                <Button
+            VerticalOptions="Start"
+            >
+            <Button
                 Command="{Binding GoToPrivateRoomCommand}"
                 ImageSource="fluent_chat_24_regular.png"
                 Style="{StaticResource SecondaryIconBtnStyle}"

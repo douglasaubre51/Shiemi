@@ -55,11 +55,13 @@ public partial class ReviewCard : Border
     }
 
     private readonly ReviewService _reviewService;
+    private readonly UserService _userService;
 
     public ReviewCard()
     {
         InitializeComponent();
         _reviewService = Provider.GetService<ReviewService>()!;
+        _userService = Provider.GetService<UserService>()!;
     }
 
     private async void CreateReviewButton_Clicked(object sender, EventArgs e)
@@ -71,6 +73,17 @@ public partial class ReviewCard : Border
         {
             CreateReviewButton.IsEnabled = false;
 
+            // Check if review is allowed !
+            var flag = await _userService.CheckIfReviewIsAllowed(UserStorage.UserId, CurrentProjectId);
+            if(flag is false)
+            {
+                await Shell.Current.DisplayAlertAsync(
+                    "Invalid attempt",
+                    "Users who are not on this project can't write a review!",
+                    "Ok");
+                return;
+            }
+
             Review review = new()
             {
                 UserId = UserStorage.UserId,
@@ -78,6 +91,7 @@ public partial class ReviewCard : Border
                 Text = ReviewEditorView.Text,
                 CreatedAt = DateTime.UtcNow
             };
+
             bool result = await _reviewService.CreateReview(review);
             if (result is false)
                 await Shell.Current.DisplayAlertAsync(
