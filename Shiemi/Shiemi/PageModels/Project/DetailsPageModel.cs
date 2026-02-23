@@ -6,6 +6,8 @@ using Shiemi.ViewModels;
 
 namespace Shiemi.PageModels.Project;
 
+// Project Details in Home !
+
 [QueryProperty(nameof(IsJoinedProject), "IsJoinedProject")]
 [QueryProperty(nameof(CurrentProject), "CurrentProject")]
 public partial class DetailsPageModel(

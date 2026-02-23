@@ -23,10 +23,10 @@ public class ChatService
         _envStorage = envStorage;
     }
 
-    public async Task<List<RoomDto>?> GetAllRooms()
+    public async Task<List<RoomDto>?> GetAllRooms(int projectId)
     {
         var response = await _httpClient.GetAsync(
-            $"{chatBaseURI}/Private/{UserStorage.UserId}/all"
+            $"{chatBaseURI}/Private/{projectId}/{UserStorage.UserId}/all"
             );
         if (!response.IsSuccessStatusCode)
             return null;
