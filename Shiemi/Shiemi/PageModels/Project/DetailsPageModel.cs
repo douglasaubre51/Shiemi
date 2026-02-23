@@ -2,6 +2,7 @@
 using CommunityToolkit.Mvvm.Input;
 using Shiemi.Pages.Market;
 using Shiemi.Services;
+using Shiemi.Storage;
 using Shiemi.ViewModels;
 
 namespace Shiemi.PageModels.Project;
@@ -11,8 +12,10 @@ namespace Shiemi.PageModels.Project;
 [QueryProperty(nameof(IsJoinedProject), "IsJoinedProject")]
 [QueryProperty(nameof(CurrentProject), "CurrentProject")]
 public partial class DetailsPageModel(
-    ChannelService channelService) : BasePageModel
+    ChannelService channelService,
+    ProjectService projectServ) : BasePageModel
 {
+    private readonly ProjectService _projectServ = projectServ;
     private readonly ChannelService _channelService = channelService;
 
     [ObservableProperty]
@@ -20,6 +23,20 @@ public partial class DetailsPageModel(
 
     [ObservableProperty]
     private ProjectsPageProjectViewModel? currentProject;
+
+    [RelayCommand]
+    async Task LeaveProject()
+    {
+        var response = await Shell.Current.DisplayAlertAsync(
+            "Warning",
+            "Do you want to leave this project?",
+            "Yes",
+            "No");
+        if (response is false) return;
+
+        await _projectServ.RemoveDevFromProject(CurrentProject!.Id, UserStorage.UserId);
+        await Shell.Current.GoToAsync("..");
+    }
 
     [RelayCommand]
     async Task GoToChannel()

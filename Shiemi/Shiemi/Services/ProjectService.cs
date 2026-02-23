@@ -32,7 +32,7 @@ public class ProjectService
             $"{projectBaseUri}/{projectId}/{clientId}/remove-client");
         if (response.IsSuccessStatusCode is false)
         {
-            Debug.WriteLine($"get error:{response.StatusCode}");
+            Debug.WriteLine($"RemoveDevFromProject get error:{response.StatusCode}");
             return;
         }
     }

@@ -44,7 +44,7 @@
                 Style="{x:StaticResource IconStyle}"
                 Text="Chat with Owner" />
 
-            <Button ImageSource="ic_fluent_bin_recycle_24_regular.png" Style="{x:StaticResource DangerBtnStyle}" />
+            <Button Command="{x:Binding LeaveProjectCommand}" ImageSource="ic_fluent_bin_recycle_24_regular.png" Style="{x:StaticResource DangerBtnStyle}" />
 
             <HorizontalStackLayout.Triggers>
                 <!--  user joined project  -->
