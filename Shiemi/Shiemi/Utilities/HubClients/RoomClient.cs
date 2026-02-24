@@ -28,11 +28,36 @@ public class RoomClient
         _envStorage = envStorage;
     }
 
+    // Fetch all dev rooms for a client !
+    public async Task<List<GetDevProfileForClientDto>?> GetAllDevProfilesForClient(int userId)
+    {
+        var response = await _httpClient.GetAsync(
+                $"{roomBaseURI}/Client/{userId}/all"
+            );
+        if (response.IsSuccessStatusCode is false)
+        {
+            Debug.WriteLine($"GetAllDevProfiles get: error: {response.StatusCode}");
+            return null;
+        }
+
+        return await response.Content.ReadFromJsonAsync<List<GetDevProfileForClientDto>>();
+    }
+
     // fetch all dev rooms of a Dev
     public async Task<List<GetDevRoomDto>?> GetAllDevRoomDtos(int userId)
-             => await _httpClient.GetFromJsonAsync<List<GetDevRoomDto>>(
+    {
+        var response = await _httpClient.GetAsync(
                 $"{roomBaseURI}/Dev/{userId}/all"
             );
+        if (response.IsSuccessStatusCode is false)
+        {
+            Debug.WriteLine($"GetAllDevRoomDtos get: error: {response.StatusCode}");
+            return null;
+        }
+
+        return await response.Content.ReadFromJsonAsync<List<GetDevRoomDto>>();
+    }
+
     // fetch room id
     public async Task<int> GetPrivateRoom(
             int userId,

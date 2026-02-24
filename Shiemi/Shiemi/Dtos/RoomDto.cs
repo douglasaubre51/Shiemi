@@ -24,3 +24,11 @@ public class GetDevRoomDto
     public string ClientName { get; set; } = string.Empty;
     public RoomTypes RoomType { get; set; } = RoomTypes.DEV;
 }
+
+public record GetDevProfileForClientDto(
+    int RoomId,
+    int OwnerId,
+    string OwnerName,
+    string OwnerProfile,
+    int DevId
+    );

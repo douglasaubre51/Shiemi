@@ -12,7 +12,7 @@
     xmlns:viewmodels="clr-namespace:Shiemi.ViewModels"
     Background="Transparent"
     FlyoutBackground="Transparent"
-    FlyoutBehavior="Locked">
+    FlyoutBehavior="Flyout">
     <FlyoutItem Title="GetStarted" FlyoutItemIsVisible="False">
         <Tab>
             <ShellContent ContentTemplate="{DataTemplate startpages:Index}" Route="Index" />
@@ -29,7 +29,7 @@
     </FlyoutItem>
 
     <FlyoutItem Title="Home" FlyoutIcon="ic_fluent_home_28_regular.png">
-        <Tab Title="Projects" Icon="ic_fluent_grid_28_filled.png">
+        <Tab Title="Project Hub" Icon="ic_fluent_grid_28_filled.png">
             <ShellContent ContentTemplate="{DataTemplate userpages:Home}" Route="HomeProjects" />
         </Tab>
         <Tab Title="DevHub" Icon="ic_fluent_people_28_filled.png">

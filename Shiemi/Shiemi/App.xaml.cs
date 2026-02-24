@@ -22,8 +22,8 @@ public partial class App : Application
         var flyoutFooterModel = Provider.GetService<FlyoutFooterModel>();
         var window = new Window(new AppShell(flyoutFooterModel!))
         {
-            Width = 1300,
-            Height = 750,
+            Width = 1200,
+            Height = 650,
             TitleBar = new TitleBarView(),
             BindingContext = titleBarViewModel
         };

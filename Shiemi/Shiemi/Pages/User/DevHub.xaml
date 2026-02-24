@@ -9,51 +9,89 @@
     xmlns:views="clr-namespace:Shiemi.Views"
     x:DataType="userpagemodels:DevHubPageModel"
     Shell.NavBarIsVisible="False">
-    <Grid
-        Margin="16,0,0,0"
-        RowDefinitions="Auto,Auto,*"
-        RowSpacing="16">
-        <Label
-            Grid.Row="0"
-            FontFamily="PoppinsBold"
-            FontSize="32"
-            Text="Client Chats" />
+    <ScrollView Margin="16,0,0,16" Orientation="Vertical">
+        <Grid RowDefinitions="Auto,Auto,*,Auto,*" RowSpacing="16">
+            <Label
+                Grid.Row="0"
+                FontFamily="PoppinsBold"
+                FontSize="32"
+                Text="Client Chats" />
 
-        <ActivityIndicator
-            Grid.Row="1"
-            IsRunning="{x:Binding IsBusy}"
-            IsVisible="{x:Binding IsBusy}" />
+            <ActivityIndicator
+                Grid.Row="1"
+                IsRunning="{x:Binding IsBusy}"
+                IsVisible="{x:Binding IsBusy}" />
 
-        <!--  client profiles  -->
-        <CollectionView
-            Grid.Row="1"
-            HorizontalScrollBarVisibility="Never"
-            ItemSizingStrategy="MeasureAllItems"
-            ItemsSource="{Binding ClientProfiles}">
-            <CollectionView.ItemTemplate>
-                <DataTemplate x:DataType="usermodel:ProfileCardModel">
-                    <views:ProfileCard
-                        ProfilePhoto="{Binding ProfilePhotoURI}"
-                        UserId="{Binding Id}"
-                        Username="{Binding Username}">
-                        <views:ProfileCard.GestureRecognizers>
-                            <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type userpagemodels:DevHubPageModel}}, x:DataType=userpagemodels:DevHubPageModel, Path=DidSelectedClientProfileChangeCommand}" CommandParameter="{Binding .}" />
-                        </views:ProfileCard.GestureRecognizers>
-                    </views:ProfileCard>
-                </DataTemplate>
-            </CollectionView.ItemTemplate>
+            <!--  client profiles  -->
+            <CollectionView
+                Grid.Row="2"
+                HorizontalScrollBarVisibility="Never"
+                ItemSizingStrategy="MeasureAllItems"
+                ItemsSource="{Binding ClientProfiles}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="usermodel:ProfileCardModel">
+                        <views:ProfileCard
+                            ProfilePhoto="{Binding ProfilePhotoURI}"
+                            UserId="{Binding Id}"
+                            Username="{Binding Username}">
+                            <views:ProfileCard.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type userpagemodels:DevHubPageModel}}, x:DataType=userpagemodels:DevHubPageModel, Path=DidSelectedClientProfileChangeCommand}" CommandParameter="{Binding .}" />
+                            </views:ProfileCard.GestureRecognizers>
+                        </views:ProfileCard>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
 
-            <CollectionView.ItemsLayout>
-                <GridItemsLayout Orientation="Vertical" Span="3" />
-            </CollectionView.ItemsLayout>
+                <CollectionView.ItemsLayout>
+                    <LinearItemsLayout ItemSpacing="4" Orientation="Horizontal" />
+                </CollectionView.ItemsLayout>
 
-            <CollectionView.EmptyView>
-                <Label
-                    FontSize="32"
-                    HorizontalTextAlignment="Center"
-                    Text="Clients contacting you will be shown here !"
-                    TextColor="LightGrey" />
-            </CollectionView.EmptyView>
-        </CollectionView>
-    </Grid>
+                <CollectionView.EmptyView>
+                    <Label
+                        FontSize="32"
+                        HorizontalTextAlignment="Start"
+                        Text="Clients contacting you will be shown here !"
+                        TextColor="LightGrey" />
+                </CollectionView.EmptyView>
+            </CollectionView>
+
+            <Label
+                Grid.Row="3"
+                FontFamily="PoppinsBold"
+                FontSize="32"
+                Text="Dev Chats" />
+
+            <!--  dev profiles  -->
+            <CollectionView
+                Grid.Row="4"
+                HorizontalScrollBarVisibility="Never"
+                ItemSizingStrategy="MeasureAllItems"
+                ItemsSource="{x:Binding DevProfiles}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="usermodel:ProfileCardModel">
+                        <views:ProfileCard
+                            ProfilePhoto="{x:Binding ProfilePhotoURI}"
+                            UserId="{x:Binding Id}"
+                            Username="{x:Binding Username}">
+                            <views:ProfileCard.GestureRecognizers>
+                                <TapGestureRecognizer Command="{x:Binding Source={RelativeSource AncestorType={x:Type userpagemodels:DevHubPageModel}}, x:DataType=userpagemodels:DevHubPageModel, Path=DidSelectedDevProfileChangeCommand}" CommandParameter="{x:Binding .}" />
+                            </views:ProfileCard.GestureRecognizers>
+                        </views:ProfileCard>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+
+                <CollectionView.ItemsLayout>
+                    <LinearItemsLayout ItemSpacing="4" Orientation="Horizontal" />
+                </CollectionView.ItemsLayout>
+
+                <CollectionView.EmptyView>
+                    <Label
+                        FontSize="32"
+                        HorizontalTextAlignment="Start"
+                        Text="Devs you are in contact with will be shown here !"
+                        TextColor="LightGrey" />
+                </CollectionView.EmptyView>
+            </CollectionView>
+        </Grid>
+
+    </ScrollView>
 </ContentPage>
