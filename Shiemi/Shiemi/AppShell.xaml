@@ -12,7 +12,7 @@
     xmlns:viewmodels="clr-namespace:Shiemi.ViewModels"
     Background="Transparent"
     FlyoutBackground="Transparent"
-    FlyoutBehavior="Flyout">
+    FlyoutBehavior="Locked">
     <FlyoutItem Title="GetStarted" FlyoutItemIsVisible="False">
         <Tab>
             <ShellContent ContentTemplate="{DataTemplate startpages:Index}" Route="Index" />

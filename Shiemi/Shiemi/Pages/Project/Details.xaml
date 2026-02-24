@@ -44,7 +44,10 @@
                 Style="{x:StaticResource IconStyle}"
                 Text="Chat with Owner" />
 
-            <Button Command="{x:Binding LeaveProjectCommand}" ImageSource="ic_fluent_bin_recycle_24_regular.png" Style="{x:StaticResource DangerBtnStyle}" />
+            <Button
+                Command="{x:Binding LeaveProjectCommand}"
+                ImageSource="ic_fluent_bin_recycle_24_regular.png"
+                Style="{x:StaticResource DangerBtnStyle}" />
 
             <HorizontalStackLayout.Triggers>
                 <!--  user joined project  -->
@@ -90,6 +93,7 @@
                 Text="Private Chats" />
 
             <Button
+                Command="{x:Binding GoToEditProjectCommand}"
                 ImageSource="ic_fluent_edit_24_regular.png"
                 Style="{x:StaticResource IconStyle}"
                 Text="Edit" />

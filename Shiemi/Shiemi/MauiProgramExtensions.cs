@@ -87,6 +87,7 @@ public static class MauiProgramExtensions
         builder.Services.AddTransient<CreateProjectPageModel>();
         builder.Services.AddTransient<DetailsPageModel>();
         builder.Services.AddTransient<AddDevsPageModel>();
+        builder.Services.AddTransient<EditProjectPageModel>();
 
         // market
         builder.Services.AddTransient<ProjectShopPageModel>();

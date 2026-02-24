@@ -25,6 +25,18 @@ public partial class DetailsPageModel(
     private ProjectsPageProjectViewModel? currentProject;
 
     [RelayCommand]
+    async Task GoToEditProject()
+    {
+        await Shell.Current.GoToAsync(
+            "EditProject",
+            true,
+            new Dictionary<string, object>()
+            {
+                {"CurrentProject", CurrentProject! }
+            });
+    }
+
+    [RelayCommand]
     async Task LeaveProject()
     {
         var response = await Shell.Current.DisplayAlertAsync(

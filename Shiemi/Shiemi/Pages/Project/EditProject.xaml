@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="Shiemi.Pages.Project.EditProject"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:projectpagemodels="clr-namespace:Shiemi.PageModels.Project"
+    Title="{x:Binding CurrentProject.Title,
+                      StringFormat='Edit {0}'}"
+    x:DataType="projectpagemodels:EditProjectPageModel"
+    Shell.TabBarIsVisible="False">
+    <ScrollView Margin="16" Orientation="Vertical">
+        <VerticalStackLayout Spacing="16">
+            <VerticalStackLayout Spacing="4">
+                <Label Text="Project Title" />
+                <Entry Text="{x:Binding CurrentProject.Title}" />
+            </VerticalStackLayout>
+
+            <VerticalStackLayout>
+                <Label Text="Short Description" />
+                <Editor Text="{x:Binding CurrentProject.ShortDesc}" />
+            </VerticalStackLayout>
+
+            <VerticalStackLayout>
+                <Label Text="Description" />
+                <Editor Text="{x:Binding CurrentProject.Description}" />
+            </VerticalStackLayout>
+
+            <Button Text="Continue" />
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

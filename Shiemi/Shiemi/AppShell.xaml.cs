@@ -17,8 +17,9 @@ public partial class AppShell : Shell
         // Register routes
         // Project
         Routing.RegisterRoute(nameof(CreateProject), typeof(CreateProject));
-        Routing.RegisterRoute(nameof(Pages.Project.Details), typeof(Pages.Project.Details));
-        Routing.RegisterRoute("AddDevs", typeof(Pages.Project.AddDevs));
+        Routing.RegisterRoute(nameof(Details), typeof(Details));
+        Routing.RegisterRoute("AddDevs", typeof(AddDevs));
+        Routing.RegisterRoute("EditProject", typeof(EditProject));
 
         // Market
         Routing.RegisterRoute(nameof(ProjectDetails), typeof(ProjectDetails));
