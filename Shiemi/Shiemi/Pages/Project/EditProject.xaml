@@ -7,6 +7,7 @@
     Title="{x:Binding CurrentProject.Title,
                       StringFormat='Edit {0}'}"
     x:DataType="projectpagemodels:EditProjectPageModel"
+    BackgroundColor="#EEEEEE"
     Shell.TabBarIsVisible="False">
     <ScrollView Margin="16" Orientation="Vertical">
         <VerticalStackLayout Spacing="16">
@@ -25,7 +26,7 @@
                 <Editor Text="{x:Binding CurrentProject.Description}" />
             </VerticalStackLayout>
 
-            <Button Text="Continue" />
+            <Button Command="{x:Binding EditCurrentProjectCommand}" Text="Continue" />
         </VerticalStackLayout>
     </ScrollView>
 </ContentPage>

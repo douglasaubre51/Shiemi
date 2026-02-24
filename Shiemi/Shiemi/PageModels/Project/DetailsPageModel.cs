@@ -37,6 +37,20 @@ public partial class DetailsPageModel(
     }
 
     [RelayCommand]
+    async Task DeleteProject()
+    {
+        var response = await Shell.Current.DisplayAlertAsync(
+            "Warning",
+            "Do you want to delete this project? It can't be undone!",
+            "Yes",
+            "No");
+        if (response is false) return;
+
+        await _projectServ.DeleteProject(CurrentProject!.Id);
+        await Shell.Current.GoToAsync("..");
+    }
+
+    [RelayCommand]
     async Task LeaveProject()
     {
         var response = await Shell.Current.DisplayAlertAsync(

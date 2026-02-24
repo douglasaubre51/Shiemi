@@ -97,7 +97,11 @@
                 ImageSource="ic_fluent_edit_24_regular.png"
                 Style="{x:StaticResource IconStyle}"
                 Text="Edit" />
-            <Button ImageSource="ic_fluent_bin_recycle_24_regular.png" Style="{x:StaticResource DangerBtnStyle}" />
+
+            <Button
+                Command="{x:Binding DeleteProjectCommand}"
+                ImageSource="ic_fluent_bin_recycle_24_regular.png"
+                Style="{x:StaticResource DangerBtnStyle}" />
 
             <HorizontalStackLayout.Triggers>
                 <!--  user joined project  -->

@@ -27,3 +27,10 @@ public record SearchProjectsDto(
     string? ShortDesc,
     int UserId
     );
+
+public record EditProjectDto(
+    int Id,
+    string Title,
+    string ShortDesc,
+    string Description
+    );

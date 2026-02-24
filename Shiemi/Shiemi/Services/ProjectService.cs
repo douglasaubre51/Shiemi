@@ -18,6 +18,28 @@ public class ProjectService
         projectBaseUri = $"{_client.BaseAddress}/Project";
     }
 
+    public async Task DeleteProject(int projectId)
+    {
+        var response = await _client.GetAsync(
+            $"{projectBaseUri}/{projectId}/delete"
+            );
+        if(response.IsSuccessStatusCode is false)
+        {
+            Debug.WriteLine("EditProject post: error: " + response.StatusCode);
+        }
+    }
+
+    public async Task EditProject(EditProjectDto dto)
+    {
+        var response = await _client.PostAsJsonAsync<EditProjectDto>(
+            $"{projectBaseUri}/edit",
+            dto);
+        if(response.IsSuccessStatusCode is false)
+        {
+            Debug.WriteLine("EditProject post: error: " + response.StatusCode);
+        }
+    }
+
     public async Task Create(CreateProjectDto dto)
     {
         await _client.PostAsJsonAsync<CreateProjectDto>(
