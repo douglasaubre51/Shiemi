@@ -10,9 +10,8 @@
     xmlns:startpages="clr-namespace:Shiemi.Pages.Start"
     xmlns:userpages="clr-namespace:Shiemi.Pages.User"
     xmlns:viewmodels="clr-namespace:Shiemi.ViewModels"
-    Background="Transparent"
-    FlyoutBackground="Transparent"
-    FlyoutBehavior="Flyout">
+    FlyoutBehavior="Flyout"
+    Shell.NavBarIsVisible="True">
     <FlyoutItem Title="GetStarted" FlyoutItemIsVisible="False">
         <Tab>
             <ShellContent ContentTemplate="{DataTemplate startpages:Index}" Route="Index" />

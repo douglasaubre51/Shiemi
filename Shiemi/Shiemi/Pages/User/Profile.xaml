@@ -6,14 +6,15 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:pagemodel="clr-namespace:Shiemi.PageModels.User"
     x:DataType="pagemodel:ProfilePageModel"
-    Shell.NavBarIsVisible="False">
+    Shell.FlyoutBehavior="Flyout"
+    Shell.NavBarIsVisible="True">
     <Grid
         Margin="16,16,0,0"
         ColumnDefinitions="*,*"
         ColumnSpacing="16"
         IsClippedToBounds="False"
-        RowDefinitions="Auto,Auto"
         RowSpacing="16">
+
         <!--  user details card  -->
         <Grid
             Grid.ColumnSpan="2"
@@ -100,7 +101,7 @@
             Grid.Row="1"
             Grid.ColumnSpan="2"
             FontFamily="PoppinsBold"
-            FontSize="300"
+            FontSize="16"
             IsVisible="{x:Binding DevModeActive}"
             Text="DEV"
             TextColor="LightGrey" />

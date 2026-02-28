@@ -9,7 +9,7 @@
     xmlns:pagemodel="clr-namespace:Shiemi.PageModels.Market"
     xmlns:viewmodel="clr-namespace:Shiemi.ViewModels"
     x:DataType="pagemodel:ProjectShopPageModel"
-    Shell.NavBarIsVisible="False">
+    Shell.NavBarIsVisible="True">
     <Shell.SearchHandler>
         <handler:ProjectSearchHandler>
             <handler:ProjectSearchHandler.ItemTemplate>

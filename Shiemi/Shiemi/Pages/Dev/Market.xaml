@@ -8,12 +8,14 @@
     xmlns:handlers="clr-namespace:Shiemi.Utilities.Handlers"
     xmlns:models="clr-namespace:Shiemi.Models"
     x:DataType="devpagemodels:MarketpageModel"
-    Shell.NavBarIsVisible="False">
+    Shell.NavBarIsVisible="True">
     <Shell.SearchHandler>
         <handlers:DevSearchHandler>
             <handlers:DevSearchHandler.ItemTemplate>
                 <DataTemplate x:DataType="dtos:SearchDevDto">
-                    <Label Text="{x:Binding Username}" />
+                    <VerticalStackLayout Padding="16" Spacing="16">
+                        <Label Text="{x:Binding Username}" />
+                    </VerticalStackLayout>
                 </DataTemplate>
             </handlers:DevSearchHandler.ItemTemplate>
         </handlers:DevSearchHandler>
@@ -27,7 +29,6 @@
                 <GridItemsLayout
                     HorizontalItemSpacing="8"
                     Orientation="Vertical"
-                    Span="3"
                     VerticalItemSpacing="8" />
             </CollectionView.ItemsLayout>
 
