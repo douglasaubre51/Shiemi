@@ -49,7 +49,7 @@ public partial class Index : ContentPage
 
                 // reroute to profile page
                 UserStorage.UserId = userIdDto!.Id;
-                await Shell.Current.GoToAsync("//Profile");
+                await Shell.Current.GoToAsync("//DevHub");
             }
         }
         catch (Exception ex)

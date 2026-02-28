@@ -10,12 +10,13 @@
     x:DataType="userpagemodels:DevHubPageModel"
     Shell.NavBarIsVisible="False">
     <ScrollView Margin="16,0,0,16" Orientation="Vertical">
-        <Grid RowDefinitions="Auto,Auto,*,Auto,*" RowSpacing="16">
+        <Grid RowDefinitions="Auto,Auto,Auto,Auto,Auto">
             <Label
                 Grid.Row="0"
-                FontFamily="PoppinsBold"
-                FontSize="32"
-                Text="Client Chats" />
+                Margin="8,0,0,0"
+                FontFamily="PoppinsSemiBold"
+                FontSize="Subtitle"
+                Text="Chat with clients" />
 
             <ActivityIndicator
                 Grid.Row="1"
@@ -56,9 +57,10 @@
 
             <Label
                 Grid.Row="3"
-                FontFamily="PoppinsBold"
-                FontSize="32"
-                Text="Dev Chats" />
+                Margin="8,32,0,0"
+                FontFamily="PoppinsSemiBold"
+                FontSize="Subtitle"
+                Text="Chat with developers" />
 
             <!--  dev profiles  -->
             <CollectionView
@@ -80,7 +82,7 @@
                 </CollectionView.ItemTemplate>
 
                 <CollectionView.ItemsLayout>
-                    <LinearItemsLayout ItemSpacing="4" Orientation="Horizontal" />
+                    <LinearItemsLayout Orientation="Horizontal" />
                 </CollectionView.ItemsLayout>
 
                 <CollectionView.EmptyView>

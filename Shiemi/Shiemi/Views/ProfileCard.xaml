@@ -6,17 +6,13 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:views="clr-namespace:Shiemi.Views"
     x:DataType="views:ProfileCard">
-    <Border
-        HeightRequest="250"
-        Stroke="LightGrey"
-        StrokeShape="RoundRectangle 16"
-        StrokeThickness="1"
-        WidthRequest="200">
-        <Grid RowDefinitions="Auto,Auto">
-            <Border
-                Grid.Row="0"
-                HeightRequest="150"
-                Stroke="Transparent">
+    <Border Margin="10" Style="{x:StaticResource FluentCardBorderStyle}">
+        <Grid
+            Padding="8"
+            ColumnDefinitions="Auto,Auto"
+            RowDefinitions="Auto,*"
+            Style="{x:StaticResource FluentCardContentStyle}">
+            <Border Grid.Row="0" Style="{x:StaticResource FluentCardAvatarStyle}">
                 <Image
                     x:Name="ProfileImage"
                     Grid.Row="0"
@@ -25,11 +21,10 @@
 
             <Label
                 x:Name="UsernameLabel"
-                Grid.Row="1"
-                Padding="4,0,0,0"
-                FontSize="20"
-                LineBreakMode="TailTruncation"
-                Style="{StaticResource CardTitleLabel}" />
+                Grid.Row="0"
+                Grid.Column="1"
+                Padding="8,4,0,0"
+                Style="{x:StaticResource FluentCardUsernameStyle}" />
         </Grid>
     </Border>
 </ContentView>
