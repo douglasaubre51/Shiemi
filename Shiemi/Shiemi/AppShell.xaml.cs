@@ -37,5 +37,9 @@ public partial class AppShell : Shell
         // Chats
         Routing.RegisterRoute("ChatRooms", typeof(Pages.Chats.Rooms));
         Routing.RegisterRoute("Channels", typeof(Pages.Chats.Channels));
+
+        // Android Specific Pages
+        // Private Room Chats
+        Routing.RegisterRoute("ManagePrivateChats", typeof(Pages.Chats.PrivateRoomChats));
     }
 }

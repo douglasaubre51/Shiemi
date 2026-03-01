@@ -106,13 +106,25 @@ public partial class DetailsPageModel(
 
     [RelayCommand]
     async Task GoToChats()
-        => await Shell.Current.GoToAsync(
-            "ChatRooms",
-            true,
-            new Dictionary<string, object>
-            {
+    {
+        if (DeviceInfo.Platform == DevicePlatform.Android)
+            await Shell.Current.GoToAsync(
+                "ManagePrivateChats",
+                true,
+                new Dictionary<string, object>
+                {
                 {"SelectedProject",CurrentProject! }
-            });
+                });
+
+        else
+            await Shell.Current.GoToAsync(
+                "ChatRooms",
+                true,
+                new Dictionary<string, object>
+                {
+                {"SelectedProject",CurrentProject! }
+                });
+    }
 
     [RelayCommand]
     async Task GoToAddDevelopers()

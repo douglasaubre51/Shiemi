@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="Shiemi.Pages.Chats.PrivateRoomChats"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:models="clr-namespace:Shiemi.ViewModels"
+    xmlns:pagemodels="clr-namespace:Shiemi.PageModels.Chat"
+    Title="{x:Binding CurrentProject.Title,
+                      StringFormat='{0} Chats'}"
+    x:DataType="pagemodels:PrivateRoomChatsPageModel"
+    Shell.TabBarIsVisible="False">
+    <Grid RowDefinitions="*">
+        <CollectionView Grid.Row="0" ItemsSource="{x:Binding ChatRoomsList}">
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="models:PrivateChatRoomViewModel">
+                    <Border Style="{x:StaticResource FluentCardBorderStyle}">
+                        <Grid
+                            Margin="10"
+                            ColumnDefinitions="Auto,*"
+                            Style="{x:StaticResource FluentCardContentStyle}">
+                            <Border Grid.Column="0" Style="{x:StaticResource FluentCardAvatarStyle}">
+                                <Image Aspect="AspectFill" Source="{x:Binding Profile}" />
+                            </Border>
+
+                            <Label Grid.Column="1" Text="{x:Binding Title}" />
+                        </Grid>
+                    </Border>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+
+            <CollectionView.ItemsLayout>
+                <GridItemsLayout Orientation="Vertical" Span="1" />
+            </CollectionView.ItemsLayout>
+        </CollectionView>
+    </Grid>
+</ContentPage>

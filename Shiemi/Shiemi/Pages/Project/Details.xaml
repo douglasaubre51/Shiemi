@@ -20,18 +20,14 @@
                 <Label Text="Description" TextColor="{x:StaticResource Primary}" />
 
                 <Label
-                    FontSize="16"
+                    FontSize="Body"
                     LineBreakMode="WordWrap"
                     Text="{x:Binding CurrentProject.Description}" />
             </VerticalStackLayout>
         </ScrollView>
 
         <!--  user joined project button bar  -->
-        <HorizontalStackLayout
-            Grid.Row="1"
-            HorizontalOptions="End"
-            Spacing="8"
-            VerticalOptions="End">
+        <VerticalStackLayout Grid.Row="1" Spacing="8">
             <Button
                 Command="{x:Binding GoToChannelCommand}"
                 ImageSource="ic_fluent_chat_multiple_person_24_regular.png"
@@ -49,11 +45,11 @@
                 ImageSource="ic_fluent_bin_recycle_24_regular.png"
                 Style="{x:StaticResource DangerBtnStyle}" />
 
-            <HorizontalStackLayout.Triggers>
+            <VerticalStackLayout.Triggers>
                 <!--  user joined project  -->
                 <DataTrigger
                     Binding="{x:Binding IsJoinedProject}"
-                    TargetType="HorizontalStackLayout"
+                    TargetType="VerticalStackLayout"
                     Value="True">
                     <Setter Property="IsVisible" Value="True" />
                 </DataTrigger>
@@ -61,19 +57,15 @@
                 <!--  user created project  -->
                 <DataTrigger
                     Binding="{x:Binding IsJoinedProject}"
-                    TargetType="HorizontalStackLayout"
+                    TargetType="VerticalStackLayout"
                     Value="False">
                     <Setter Property="IsVisible" Value="False" />
                 </DataTrigger>
-            </HorizontalStackLayout.Triggers>
-        </HorizontalStackLayout>
+            </VerticalStackLayout.Triggers>
+        </VerticalStackLayout>
 
         <!--  user created project button bar  -->
-        <HorizontalStackLayout
-            Grid.Row="1"
-            HorizontalOptions="End"
-            Spacing="8"
-            VerticalOptions="End">
+        <VerticalStackLayout Grid.Row="1" Spacing="8">
             <Button
                 Command="{x:Binding GoToAddDevelopersCommand}"
                 ImageSource="ic_fluent_people_24_regular.png"
@@ -103,11 +95,11 @@
                 ImageSource="ic_fluent_bin_recycle_24_regular.png"
                 Style="{x:StaticResource DangerBtnStyle}" />
 
-            <HorizontalStackLayout.Triggers>
+            <VerticalStackLayout.Triggers>
                 <!--  user joined project  -->
                 <DataTrigger
                     Binding="{x:Binding IsJoinedProject}"
-                    TargetType="HorizontalStackLayout"
+                    TargetType="VerticalStackLayout"
                     Value="True">
                     <Setter Property="IsVisible" Value="False" />
                 </DataTrigger>
@@ -115,11 +107,11 @@
                 <!--  user created project  -->
                 <DataTrigger
                     Binding="{x:Binding IsJoinedProject}"
-                    TargetType="HorizontalStackLayout"
+                    TargetType="VerticalStackLayout"
                     Value="False">
                     <Setter Property="IsVisible" Value="True" />
                 </DataTrigger>
-            </HorizontalStackLayout.Triggers>
-        </HorizontalStackLayout>
+            </VerticalStackLayout.Triggers>
+        </VerticalStackLayout>
     </Grid>
 </ContentPage>

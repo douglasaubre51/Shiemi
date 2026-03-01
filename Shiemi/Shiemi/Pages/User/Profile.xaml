@@ -7,55 +7,128 @@
     xmlns:pagemodel="clr-namespace:Shiemi.PageModels.User"
     x:DataType="pagemodel:ProfilePageModel"
     Shell.FlyoutBehavior="Flyout"
-    Shell.NavBarIsVisible="True">
-    <Grid
-        Margin="16,16,0,0"
-        ColumnDefinitions="*,*"
-        ColumnSpacing="16"
-        IsClippedToBounds="False"
-        RowSpacing="16">
+    Shell.NavBarIsVisible="True"
+    Shell.TabBarIsVisible="False">
+    <Grid Margin="16">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
 
-        <!--  user details card  -->
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <OnIdiom x:TypeArguments="ColumnDefinitionCollection">
+                <OnIdiom.Phone>
+                    <ColumnDefinitionCollection>
+                        <ColumnDefinition Width="*" />
+                    </ColumnDefinitionCollection>
+                </OnIdiom.Phone>
+
+                <OnIdiom.Desktop>
+                    <ColumnDefinitionCollection>
+                        <ColumnDefinition Width="Auto" />
+
+                        <ColumnDefinition Width="Auto" />
+                    </ColumnDefinitionCollection>
+                </OnIdiom.Desktop>
+            </OnIdiom>
+        </Grid.ColumnDefinitions>
+
         <Grid
-            Grid.ColumnSpan="2"
-            ColumnDefinitions="Auto,Auto"
+            Grid.Row="0"
+            Grid.ColumnSpan="{OnIdiom Default=2,
+                                      Phone=1}"
             ColumnSpacing="16"
-            IsClippedToBounds="False"
-            RowDefinitions="Auto,Auto">
+            HorizontalOptions="Center">
+            <Grid.ColumnDefinitions>
+                <OnIdiom x:TypeArguments="ColumnDefinitionCollection">
+                    <OnIdiom.Phone>
+                        <ColumnDefinitionCollection>
+                            <ColumnDefinition Width="*" />
+                        </ColumnDefinitionCollection>
+                    </OnIdiom.Phone>
+
+                    <OnIdiom.Desktop>
+                        <ColumnDefinitionCollection>
+                            <ColumnDefinition Width="Auto" />
+
+                            <ColumnDefinition Width="Auto" />
+                        </ColumnDefinitionCollection>
+                    </OnIdiom.Desktop>
+                </OnIdiom>
+            </Grid.ColumnDefinitions>
+
+            <Grid.RowDefinitions>
+                <OnIdiom x:TypeArguments="RowDefinitionCollection">
+                    <OnIdiom.Phone>
+                        <RowDefinitionCollection>
+                            <RowDefinition Height="Auto" />
+
+                            <RowDefinition Height="Auto" />
+
+                            <RowDefinition Height="Auto" />
+                        </RowDefinitionCollection>
+                    </OnIdiom.Phone>
+
+                    <OnIdiom.Desktop>
+                        <RowDefinitionCollection>
+                            <RowDefinition Height="Auto" />
+
+                            <RowDefinition Height="Auto" />
+                        </RowDefinitionCollection>
+                    </OnIdiom.Desktop>
+                </OnIdiom>
+            </Grid.RowDefinitions>
+
             <Border
-                Grid.RowSpan="2"
+                Grid.RowSpan="{OnIdiom Default=2,
+                                       Phone=1}"
                 Grid.Column="0"
-                BackgroundColor="Transparent"
-                StrokeThickness="0">
-                <Border.Shadow>
-                    <Shadow
-                        Opacity="0.4"
-                        Radius="10"
-                        Offset="1,1" />
-                </Border.Shadow>
-                <Border.StrokeShape>
-                    <RoundRectangle CornerRadius="4" />
-                </Border.StrokeShape>
+                Margin="10"
+                HorizontalOptions="{OnIdiom Default=Start,
+                                            Phone=Center}"
+                Shadow="0 1 10 rgba(0,0,0,0.14)"
+                Stroke="WhiteSmoke"
+                StrokeShape="RoundRectangle 90"
+                StrokeThickness="5">
+
                 <Image
                     Aspect="AspectFill"
-                    HeightRequest="250"
+                    HeightRequest="180"
                     Source="{Binding ProfileURL}"
-                    WidthRequest="360" />
+                    WidthRequest="180" />
             </Border>
 
-            <VerticalStackLayout Grid.Row="0" Grid.Column="1">
-                <Label FontSize="56" Text="{Binding UserName}" />
+            <VerticalStackLayout Grid.Row="{OnIdiom Default=0, Phone=1}" Grid.Column="{OnIdiom Default=1, Phone=0}">
+                <Label
+                    FontFamily="PoppinsSemiBold"
+                    FontSize="{OnIdiom Default=32,
+                                       Phone=24}"
+                    HorizontalOptions="Center"
+                    Text="{Binding UserName}" />
 
                 <Label
-                    Margin="0,0,0,40"
-                    FontSize="15"
+                    FontSize="16"
+                    HorizontalOptions="Center"
                     Text="{Binding Email}"
-                    TextColor="Grey" />
+                    TextColor="Purple" />
+
+                <Label
+                    FontFamily="PoppinsRegular"
+                    FontSize="{OnIdiom Default=16,
+                                       Phone=12}"
+                    HorizontalOptions="Center"
+                    IsVisible="{x:Binding DevModeActive}"
+                    Text="Developer" />
             </VerticalStackLayout>
 
             <HorizontalStackLayout
-                Grid.Row="1"
-                Grid.Column="1"
+                Grid.Row="{OnIdiom Default=1,
+                                   Phone=2}"
+                Grid.Column="{OnIdiom Default=1,
+                                      Phone=0}"
+                Margin="0,16,0,0"
+                HorizontalOptions="Center"
                 Spacing="8"
                 VerticalOptions="End">
                 <Button
@@ -63,6 +136,7 @@
                     HorizontalOptions="End"
                     ImageSource="ic_fluent_edit_person_24_regular.png"
                     Style="{StaticResource IconStyle}" />
+
                 <!--  separator  -->
                 <BoxView Style="{StaticResource VerticalSeperator}" />
 
@@ -95,15 +169,5 @@
                     Text="Start now" />
             </VerticalStackLayout>
         </Border>
-
-        <!--  dev sign  -->
-        <Label
-            Grid.Row="1"
-            Grid.ColumnSpan="2"
-            FontFamily="PoppinsBold"
-            FontSize="16"
-            IsVisible="{x:Binding DevModeActive}"
-            Text="DEV"
-            TextColor="LightGrey" />
     </Grid>
 </ContentPage>

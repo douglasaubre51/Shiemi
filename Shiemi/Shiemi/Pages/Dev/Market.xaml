@@ -125,7 +125,7 @@
 
             <CollectionView.EmptyView>
                 <Label
-                    FontSize="32"
+                    FontSize="Body"
                     HorizontalTextAlignment="Center"
                     Text="Devs will be shown here !"
                     TextColor="LightGrey" />

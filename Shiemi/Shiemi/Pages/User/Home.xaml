@@ -8,22 +8,20 @@
     xmlns:userpagemodels="clr-namespace:Shiemi.PageModels.User"
     x:DataType="userpagemodels:HomePageModel"
     Shell.NavBarIsVisible="True">
-    <VerticalStackLayout Margin="0,0,0,0" Spacing="24">
+    <VerticalStackLayout Margin="16" Spacing="24">
         <VerticalStackLayout Spacing="8">
             <HorizontalStackLayout Spacing="4">
                 <Label
-                    Margin="16,0,0,0"
                     Style="{StaticResource TitleLabel}"
                     Text="My Projects"
                     VerticalOptions="Center" />
-
-                <ImageButton Command="{Binding GoToViewMyProjectsCommand}" Source="ic_fluent_chevron_right_24_regular.png" />
 
                 <Button
                     BorderWidth="0"
                     Command="{Binding GoToCreateProjectCommand}"
                     ImageSource="ic_fluent_add_circle_24_regular.png"
-                    Style="{StaticResource IconStyle}" />
+                    Style="{StaticResource IconStyle}"
+                    VerticalOptions="Start" />
 
                 <ActivityIndicator IsRunning="{x:Binding IsBusy}" IsVisible="{x:Binding IsBusy}" />
             </HorizontalStackLayout>
@@ -38,12 +36,9 @@
         <VerticalStackLayout Spacing="8">
             <HorizontalStackLayout Spacing="4">
                 <Label
-                    Margin="16,0,0,0"
                     Style="{StaticResource TitleLabel}"
                     Text="Joined Projects"
                     VerticalOptions="Center" />
-
-                <ImageButton Source="ic_fluent_chevron_right_24_regular.png" />
 
                 <ActivityIndicator IsRunning="{x:Binding IsBusy}" IsVisible="{x:Binding IsBusy}" />
             </HorizontalStackLayout>

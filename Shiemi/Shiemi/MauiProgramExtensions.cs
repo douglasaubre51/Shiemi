@@ -97,6 +97,7 @@ public static class MauiProgramExtensions
         // chat
         builder.Services.AddSingleton<ChannelsPageModel>();
         builder.Services.AddTransient<RoomsPageModel>();
+        builder.Services.AddTransient<PrivateRoomChatsPageModel>();
 
         // Dev
         builder.Services.AddTransient<PageModels.Dev.EditPageModel>();

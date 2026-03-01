@@ -36,7 +36,7 @@ public partial class Rooms : ContentPage
             if (context is null)
                 return;
 
-            var rooms = await _chatService.GetAllRooms(context.CurrentProject.Id);
+            var rooms = await _chatService.GetAllRooms(context.CurrentProject!.Id);
             if (rooms is null)
             {
                 Debug.WriteLine("Fetching Rooms: null");

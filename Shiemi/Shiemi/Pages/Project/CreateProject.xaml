@@ -8,38 +8,41 @@
     Title="Create new Project"
     x:DataType="pagemodel:CreateProjectPageModel"
     Shell.FlyoutBehavior="Flyout"
-    Shell.NavBarIsVisible="False"
     Shell.TabBarIsVisible="False">
     <ScrollView
         Margin="10"
         Padding="20"
         Orientation="Vertical">
-        <Grid RowDefinitions="20,Auto,20,Auto,20,Auto,Auto" RowSpacing="16">
-            <Label Grid.Row="0" Text="Title" />
-            <Entry
-                Grid.Row="1"
-                Text="{Binding ProjectTitle}"
-                VerticalOptions="Start" />
+        <Grid RowDefinitions="Auto,Auto,Auto,190" RowSpacing="16">
+            <VerticalStackLayout Grid.Row="0" Spacing="4">
+                <Label Text="Title" />
 
-            <Label Grid.Row="2" Text="Cover Details" />
-            <Editor
-                Grid.Row="3"
-                HeightRequest="100"
-                Text="{Binding ShortDesc}"
-                VerticalOptions="Start" />
+                <Entry Text="{Binding ProjectTitle}" VerticalOptions="Start" />
+            </VerticalStackLayout>
 
-            <Label Grid.Row="4" Text="Description" />
-            <Editor
-                Grid.Row="5"
-                HeightRequest="200"
-                Text="{Binding Description}"
-                VerticalOptions="Center" />
+            <VerticalStackLayout Grid.Row="1" Spacing="4">
+                <Label Text="Cover Details" />
+
+                <Editor
+                    HeightRequest="100"
+                    Text="{Binding ShortDesc}"
+                    VerticalOptions="Start" />
+            </VerticalStackLayout>
+
+            <VerticalStackLayout Grid.Row="2">
+                <Label Text="Description" />
+
+                <Editor
+                    HeightRequest="200"
+                    Text="{Binding Description}"
+                    VerticalOptions="Center" />
+            </VerticalStackLayout>
 
             <Button
-                Grid.Row="6"
+                Grid.Row="3"
                 Command="{Binding CreateCommand}"
-                Text="continue" />
+                Text="continue"
+                VerticalOptions="End" />
         </Grid>
-
     </ScrollView>
 </ContentPage>

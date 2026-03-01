@@ -17,3 +17,9 @@ public record ChatMessageViewModel(
         bool IsOwner = false
 );
 
+public record PrivateChatRoomViewModel(
+    int RoomId,
+    int SenderId,
+    string Title,
+    string Profile
+);

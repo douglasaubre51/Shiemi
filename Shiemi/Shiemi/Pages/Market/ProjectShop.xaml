@@ -9,12 +9,19 @@
     xmlns:pagemodel="clr-namespace:Shiemi.PageModels.Market"
     xmlns:viewmodel="clr-namespace:Shiemi.ViewModels"
     x:DataType="pagemodel:ProjectShopPageModel"
-    Shell.NavBarIsVisible="True">
+    Shell.NavBarIsVisible="True"
+    Shell.TabBarIsVisible="True">
     <Shell.SearchHandler>
         <handler:ProjectSearchHandler>
             <handler:ProjectSearchHandler.ItemTemplate>
                 <DataTemplate x:DataType="dtos:SearchProjectsDto">
-                    <Label Text="{Binding Title}" />
+                    <VerticalStackLayout Padding="16">
+                        <Label LineBreakMode="TailTruncation" Text="{Binding Title}" />
+                        <Label
+                            FontSize="10"
+                            LineBreakMode="TailTruncation"
+                            Text="{Binding ShortDesc}" />
+                    </VerticalStackLayout>
                 </DataTemplate>
             </handler:ProjectSearchHandler.ItemTemplate>
         </handler:ProjectSearchHandler>
@@ -32,8 +39,9 @@
                 <GridItemsLayout
                     HorizontalItemSpacing="4"
                     Orientation="Vertical"
-                    Span="3"
-                    VerticalItemSpacing="4" />
+                    Span="{OnIdiom Default=3,
+                                   Phone=1}"
+                    VerticalItemSpacing="8" />
             </CollectionView.ItemsLayout>
 
             <CollectionView.ItemTemplate>
@@ -87,7 +95,7 @@
 
             <CollectionView.EmptyView>
                 <Label
-                    FontSize="32"
+                    FontSize="Body"
                     HorizontalTextAlignment="Center"
                     Text="Projects will be shown here !"
                     TextColor="LightGrey" />

@@ -1,11 +1,15 @@
+using Shiemi.Dtos;
 using Shiemi.PageModels.Start;
 using Shiemi.Services;
 using Shiemi.Storage;
+using Shiemi.ViewModels;
 
 namespace Shiemi.Pages.Start;
 
 public partial class Index : ContentPage
 {
+    private readonly FlyoutFooterModel _flyoutFooterModel;
+
     private readonly AuthService _authService;
     private readonly UserService _userService;
     private readonly EnvironmentStorage _envStorage;
@@ -14,14 +18,18 @@ public partial class Index : ContentPage
         IndexPageModel pageModel,
         AuthService authService,
         EnvironmentStorage envStorage,
-        UserService userService
+        UserService userService,
+        FlyoutFooterModel flyoutFooterModel
         )
     {
         InitializeComponent();
         BindingContext = pageModel;
+
         _authService = authService;
         _envStorage = envStorage;
         _userService = userService;
+
+        _flyoutFooterModel = flyoutFooterModel;
     }
 
     protected override async void OnAppearing()
@@ -49,7 +57,13 @@ public partial class Index : ContentPage
 
                 // reroute to profile page
                 UserStorage.UserId = userIdDto!.Id;
-                await Shell.Current.GoToAsync("//Profile");
+
+                ProfilePageUserDto? user = await _userService.Get(DataStorage.Get("UserId"));
+                _flyoutFooterModel.Profile = user!.ProfilePhotoURL;
+                _flyoutFooterModel.Username = user.FirstName + " " + user.LastName;
+                _flyoutFooterModel.EmailId = user.Email;
+                _flyoutFooterModel.Role = user.IsDeveloper is true ? "Developer" : string.Empty;
+                await Shell.Current.GoToAsync("//ProjectShop");
             }
         }
         catch (Exception ex)
@@ -62,7 +76,7 @@ public partial class Index : ContentPage
         }
         finally
         {
-            context.IsBusy = false;
+            context!.IsBusy = false;
         }
     }
 

@@ -4,6 +4,8 @@
 
     <Style TargetType="ActivityIndicator">
         <Setter Property="Color" Value="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource White}}" />
+        <Setter Property="HeightRequest" Value="{OnIdiom Default=50, Phone=20}" />
+        <Setter Property="WidthRequest" Value="{OnIdiom Default=50, Phone=20}" />
     </Style>
 
     <Style TargetType="IndicatorView">

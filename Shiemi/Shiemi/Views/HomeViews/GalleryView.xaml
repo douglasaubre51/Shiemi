@@ -12,7 +12,7 @@
     <CollectionView.ItemTemplate>
         <DataTemplate x:DataType="viewmodels:GalleryViewModel">
             <Border Style="{StaticResource CardBorderStyle}" WidthRequest="300">
-                <VerticalStackLayout Spacing="8">
+                <VerticalStackLayout Spacing="4">
                     <Label
                         FontSize="18"
                         LineBreakMode="TailTruncation"
@@ -21,9 +21,9 @@
                     <Label
                         FontSize="14"
                         LineBreakMode="TailTruncation"
+                        MaxLines="3"
                         Text="{Binding CoverBlurb}"
-                        TextColor="Gray"
-                        VerticalOptions="End" />
+                        VerticalOptions="Start" />
                 </VerticalStackLayout>
             </Border>
         </DataTemplate>
@@ -36,7 +36,7 @@
     <CollectionView.EmptyView>
         <Label
             Padding="16,0,0,0"
-            FontSize="24"
+            FontSize="Body"
             Text="Soo empty!"
             TextColor="LightGray" />
     </CollectionView.EmptyView>

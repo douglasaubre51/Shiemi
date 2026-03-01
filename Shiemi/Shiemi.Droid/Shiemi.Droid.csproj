@@ -22,4 +22,9 @@
 		<ProjectReference Include="..\Shiemi\Shiemi.csproj" />
 	</ItemGroup>
 
+	<ItemGroup>
+	  <Folder Include="PageModels\" />
+	  <Folder Include="Pages\" />
+	</ItemGroup>
+
 </Project>

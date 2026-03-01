@@ -10,21 +10,24 @@
     x:DataType="pagemodel:ProjectDetailsPageModel"
     Shell.NavBarIsVisible="True"
     Shell.TabBarIsVisible="False">
-        <Grid
+    <Grid
         Margin="16,0,0,10"
         ColumnDefinitions="2*,Auto,*"
         ColumnSpacing="16"
         RowDefinitions="Auto,*,80"
         RowSpacing="8">
-            <Label
+        <Label
             Grid.Row="0"
             Grid.Column="0"
             FontSize="16"
             Text="Description"
             TextColor="Black" />
 
-        <ScrollView Orientation="Vertical" Grid.Row="1" Grid.Column="0"
-                Padding="0,0,8,0">
+        <ScrollView
+            Grid.Row="1"
+            Grid.Column="0"
+            Padding="0,0,8,0"
+            Orientation="Vertical">
             <Label
                 FontSize="18"
                 LineBreakMode="WordWrap"
@@ -34,19 +37,17 @@
         <Grid
             Grid.Row="3"
             HorizontalOptions="End"
-            VerticalOptions="Start"
-            >
+            VerticalOptions="Start">
             <Button
                 Command="{Binding GoToPrivateRoomCommand}"
                 ImageSource="fluent_chat_24_regular.png"
-                Style="{StaticResource SecondaryIconBtnStyle}"
                 IsEnabled="{Binding NotOwner}"
-                Text="Send request"
-                 />
-            </Grid>
+                Style="{StaticResource SecondaryIconBtnStyle}"
+                Text="Send request" />
+        </Grid>
 
-            <!--  vertical line  -->
-            <Line
+        <!--  vertical line  -->
+        <Line
             Grid.RowSpan="3"
             Grid.Column="1"
             Aspect="UniformToFill"
@@ -56,14 +57,14 @@
             Y1="0"
             Y2="180" />
 
-            <!--  review card  -->
-            <views:ReviewCard
-            Padding="0,0,0,20"
+        <!--  review card  -->
+        <views:ReviewCard
             Grid.RowSpan="3"
             Grid.Column="2"
+            Padding="0,0,0,20"
             CurrentProjectId="{Binding ProjectVM.Id}"
             NotAllowedToWrite="{Binding NotAllowedToReview}"
             ReviewCollection="{Binding ReviewList}"
             VerticalOptions="End" />
-        </Grid>
+    </Grid>
 </ContentPage>

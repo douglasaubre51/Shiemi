@@ -47,10 +47,10 @@ public partial class Profile : ContentPage
             pageModel.ProfileURL = user.ProfilePhotoURL;
 
             // Set Flyout Footer data !
-            _flyoutFooterModel.Profile = user.ProfilePhotoURL;
-            _flyoutFooterModel.Username = user.FirstName + " " + user.LastName;
-            _flyoutFooterModel.EmailId = user.Email;
-            _flyoutFooterModel.Role = user.IsDeveloper is true ? "Developer" : string.Empty;
+            //_flyoutFooterModel.Profile = user.ProfilePhotoURL;
+            //_flyoutFooterModel.Username = user.FirstName + " " + user.LastName;
+            //_flyoutFooterModel.EmailId = user.Email;
+            //_flyoutFooterModel.Role = user.IsDeveloper is true ? "Developer" : string.Empty;
 
             // Show Activate Dev card !
             if (user.IsDeveloper is true)
