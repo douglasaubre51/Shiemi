@@ -55,10 +55,17 @@ public partial class Index : ContentPage
                     return;
                 }
 
-                // reroute to profile page
+                // reroute to ProjectShop page
                 UserStorage.UserId = userIdDto!.Id;
 
                 ProfilePageUserDto? user = await _userService.Get(DataStorage.Get("UserId"));
+                // Check if user is banned !
+                if (user!.IsBanned is true)
+                {
+                    await Shell.Current.GoToAsync("GotBanned");
+                    return;
+                }
+
                 _flyoutFooterModel.Profile = user!.ProfilePhotoURL;
                 _flyoutFooterModel.Username = user.FirstName + " " + user.LastName;
                 _flyoutFooterModel.EmailId = user.Email;

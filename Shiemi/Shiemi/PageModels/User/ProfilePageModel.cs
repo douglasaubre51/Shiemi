@@ -1,7 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Shiemi.Storage;
-using System.Diagnostics;
 
 namespace Shiemi.PageModels.User;
 
@@ -23,6 +22,28 @@ public partial class ProfilePageModel : BasePageModel
     [NotifyPropertyChangedFor(nameof(ShowDevCard_NotJoined))]
     private bool devModeActive;
     public bool ShowDevCard_NotJoined => !DevModeActive;
+
+    [RelayCommand]
+    async Task SendReportEmailHandler()
+    {
+        string gmailBaseUrl = "https://mail.google.com/mail/u/0";
+        string subject = "To report an issue with a user account!";
+        string body = "write issue here!";
+        string to = "douglasaubre@gmail.com";
+
+        try
+        {
+            await Browser.Default.OpenAsync($"{gmailBaseUrl}/?view=cm&tf=1&to={to}&subject={subject}&body={body}");
+        }
+        catch (Exception ex)
+        {
+            await Shell.Current.DisplayAlertAsync(
+                "Mail error",
+                "Something went wrong while launching gmail email !",
+                "Ok");
+        }
+    }
+
 
     [RelayCommand]
     async Task GoToProfileEditPage()

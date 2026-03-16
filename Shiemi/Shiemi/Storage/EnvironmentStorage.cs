@@ -9,8 +9,8 @@ public class EnvironmentStorage
 
     private string SHIEMI_BASE_URI = "https://shiemiapi.onrender.com/api";
     private string SHIEMI_HUB_URI = "https://shiemiapi.onrender.com/hubs";
-    // private string SHIEMI_BASE_URI = "https://localhost:7268/api";
-    // private string SHIEMI_HUB_URI = "https://localhost:7268/hubs";
+    //private string SHIEMI_BASE_URI = "https://localhost:7268/api";
+    //private string SHIEMI_HUB_URI = "https://localhost:7268/hubs";
 
     // WAGURI SCS env
     public string GetWAGURILoginUri()

@@ -15,7 +15,8 @@ public record ProfilePageUserDto(
     string Email,
     string UserId,
     bool IsDeveloper,
-    string ProfilePhotoURL
+    string ProfilePhotoURL,
+    bool IsBanned
 );
 
 public record UserDetailsDto(

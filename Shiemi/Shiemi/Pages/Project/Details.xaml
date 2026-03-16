@@ -27,7 +27,10 @@
         </ScrollView>
 
         <!--  user joined project button bar  -->
-        <VerticalStackLayout Grid.Row="1" Spacing="8">
+        <HorizontalStackLayout
+            Grid.Row="1"
+            HorizontalOptions="End"
+            Spacing="8">
             <Button
                 Command="{x:Binding GoToChannelCommand}"
                 ImageSource="ic_fluent_chat_multiple_person_24_regular.png"
@@ -45,11 +48,11 @@
                 ImageSource="ic_fluent_bin_recycle_24_regular.png"
                 Style="{x:StaticResource DangerBtnStyle}" />
 
-            <VerticalStackLayout.Triggers>
+            <HorizontalStackLayout.Triggers>
                 <!--  user joined project  -->
                 <DataTrigger
                     Binding="{x:Binding IsJoinedProject}"
-                    TargetType="VerticalStackLayout"
+                    TargetType="HorizontalStackLayout"
                     Value="True">
                     <Setter Property="IsVisible" Value="True" />
                 </DataTrigger>
@@ -57,15 +60,18 @@
                 <!--  user created project  -->
                 <DataTrigger
                     Binding="{x:Binding IsJoinedProject}"
-                    TargetType="VerticalStackLayout"
+                    TargetType="HorizontalStackLayout"
                     Value="False">
                     <Setter Property="IsVisible" Value="False" />
                 </DataTrigger>
-            </VerticalStackLayout.Triggers>
-        </VerticalStackLayout>
+            </HorizontalStackLayout.Triggers>
+        </HorizontalStackLayout>
 
         <!--  user created project button bar  -->
-        <VerticalStackLayout Grid.Row="1" Spacing="8">
+        <HorizontalStackLayout
+            Grid.Row="1"
+            HorizontalOptions="End"
+            Spacing="8">
             <Button
                 Command="{x:Binding GoToAddDevelopersCommand}"
                 ImageSource="ic_fluent_people_24_regular.png"
@@ -95,11 +101,11 @@
                 ImageSource="ic_fluent_bin_recycle_24_regular.png"
                 Style="{x:StaticResource DangerBtnStyle}" />
 
-            <VerticalStackLayout.Triggers>
+            <HorizontalStackLayout.Triggers>
                 <!--  user joined project  -->
                 <DataTrigger
                     Binding="{x:Binding IsJoinedProject}"
-                    TargetType="VerticalStackLayout"
+                    TargetType="HorizontalStackLayout"
                     Value="True">
                     <Setter Property="IsVisible" Value="False" />
                 </DataTrigger>
@@ -107,11 +113,11 @@
                 <!--  user created project  -->
                 <DataTrigger
                     Binding="{x:Binding IsJoinedProject}"
-                    TargetType="VerticalStackLayout"
+                    TargetType="HorizontalStackLayout"
                     Value="False">
                     <Setter Property="IsVisible" Value="True" />
                 </DataTrigger>
-            </VerticalStackLayout.Triggers>
-        </VerticalStackLayout>
+            </HorizontalStackLayout.Triggers>
+        </HorizontalStackLayout>
     </Grid>
 </ContentPage>

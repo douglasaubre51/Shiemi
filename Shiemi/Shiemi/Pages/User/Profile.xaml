@@ -12,34 +12,19 @@
     <Grid Margin="16">
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
-
             <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
         <Grid.ColumnDefinitions>
-            <OnIdiom x:TypeArguments="ColumnDefinitionCollection">
-                <OnIdiom.Phone>
-                    <ColumnDefinitionCollection>
-                        <ColumnDefinition Width="*" />
-                    </ColumnDefinitionCollection>
-                </OnIdiom.Phone>
-
-                <OnIdiom.Desktop>
-                    <ColumnDefinitionCollection>
-                        <ColumnDefinition Width="Auto" />
-
-                        <ColumnDefinition Width="Auto" />
-                    </ColumnDefinitionCollection>
-                </OnIdiom.Desktop>
-            </OnIdiom>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
 
         <Grid
             Grid.Row="0"
-            Grid.ColumnSpan="{OnIdiom Default=2,
-                                      Phone=1}"
-            ColumnSpacing="16"
-            HorizontalOptions="Center">
+            Grid.ColumnSpan="2"
+            ColumnSpacing="16">
             <Grid.ColumnDefinitions>
                 <OnIdiom x:TypeArguments="ColumnDefinitionCollection">
                     <OnIdiom.Phone>
@@ -51,7 +36,6 @@
                     <OnIdiom.Desktop>
                         <ColumnDefinitionCollection>
                             <ColumnDefinition Width="Auto" />
-
                             <ColumnDefinition Width="Auto" />
                         </ColumnDefinitionCollection>
                     </OnIdiom.Desktop>
@@ -63,9 +47,7 @@
                     <OnIdiom.Phone>
                         <RowDefinitionCollection>
                             <RowDefinition Height="Auto" />
-
                             <RowDefinition Height="Auto" />
-
                             <RowDefinition Height="Auto" />
                         </RowDefinitionCollection>
                     </OnIdiom.Phone>
@@ -73,7 +55,6 @@
                     <OnIdiom.Desktop>
                         <RowDefinitionCollection>
                             <RowDefinition Height="Auto" />
-
                             <RowDefinition Height="Auto" />
                         </RowDefinitionCollection>
                     </OnIdiom.Desktop>
@@ -169,5 +150,17 @@
                     Text="Start now" />
             </VerticalStackLayout>
         </Border>
+
+        <Label
+            Grid.Row="2"
+            Grid.Column="1"
+            HorizontalOptions="End"
+            Text="Report an account ?"
+            TextColor="HotPink"
+            VerticalOptions="End">
+            <Label.GestureRecognizers>
+                <TapGestureRecognizer Command="{x:Binding SendReportEmailHandlerCommand}" />
+            </Label.GestureRecognizers>
+        </Label>
     </Grid>
 </ContentPage>

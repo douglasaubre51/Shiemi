@@ -74,6 +74,7 @@ public static class MauiProgramExtensions
 
         // start
         builder.Services.AddTransient<IndexPageModel>();
+        builder.Services.AddTransient<GotBannedPageModel>();
 
         // user
         builder.Services.AddTransient<ProfilePageModel>();

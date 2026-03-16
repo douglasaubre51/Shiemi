@@ -1,5 +1,6 @@
 ﻿using Shiemi.Pages.Market;
 using Shiemi.Pages.Project;
+using Shiemi.Pages.Start;
 using Shiemi.ViewModels;
 
 namespace Shiemi;
@@ -15,6 +16,9 @@ public partial class AppShell : Shell
 
 
         // Register routes
+        Routing.RegisterRoute("GotBanned", typeof(GotBanned));
+
+
         // Project
         Routing.RegisterRoute(nameof(CreateProject), typeof(CreateProject));
         Routing.RegisterRoute(nameof(Details), typeof(Details));
