@@ -29,6 +29,7 @@
                 <GridItemsLayout
                     HorizontalItemSpacing="8"
                     Orientation="Vertical"
+                    Span="3"
                     VerticalItemSpacing="8" />
             </CollectionView.ItemsLayout>
 

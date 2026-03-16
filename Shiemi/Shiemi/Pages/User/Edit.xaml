@@ -5,7 +5,8 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:profilepagemodels="clr-namespace:Shiemi.PageModels.User"
     Title="Edit Profile"
-    x:DataType="profilepagemodels:EditPageModel">
+    x:DataType="profilepagemodels:EditPageModel"
+    Shell.TabBarIsVisible="False">
     <Grid
         Margin="20"
         RowDefinitions="Auto,Auto,Auto,*"
