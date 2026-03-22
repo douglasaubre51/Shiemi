@@ -5,6 +5,147 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
 
+    <!--  Material 3 Expressive  -->
+    <!--  Insets  -->
+    <Style x:Key="MaterialInsetStyle" TargetType="Button">
+        <Setter Property="HeightRequest" Value="20" />
+        <Setter Property="HorizontalOptions" Value="Fill" />
+
+        <Setter Property="VisualStateManager.VisualStateGroups">
+            <VisualStateGroupList>
+                <VisualStateGroup Name="CommonStates">
+                    <VisualState x:Name="Normal">
+                        <VisualState.Setters>
+                            <Setter Property="TextColor" Value="#205014" />
+                            <Setter Property="BackgroundColor" Value="#e2ffd3" />
+                            <Setter Property="BorderColor" Value="Transparent" />
+                            <Setter Property="BorderWidth" Value="0" />
+                        </VisualState.Setters>
+                    </VisualState>
+                    <VisualState x:Name="PointerOver">
+                        <VisualState.Setters>
+                            <Setter Property="Background" Value="#6a9c59" />
+                            <Setter Property="TextColor" Value="#e2ffd3" />
+                        </VisualState.Setters>
+                    </VisualState>
+                    <VisualState x:Name="Selected">
+                        <VisualState.Setters>
+                            <Setter Property="Background" Value="White" />
+                            <Setter Property="TextColor" Value="#205014" />
+                        </VisualState.Setters>
+                    </VisualState>
+                </VisualStateGroup>
+            </VisualStateGroupList>
+        </Setter>
+    </Style>
+    <!--  Editor  -->
+    <Style x:Key="MaterialEditorStyle" TargetType="Editor">
+        <Setter Property="HeightRequest" Value="200" />
+
+        <Setter Property="VisualStateManager.VisualStateGroups">
+            <VisualStateGroupList>
+                <VisualStateGroup Name="CommonStates">
+                    <VisualState x:Name="Normal">
+                        <VisualState.Setters>
+                            <Setter Property="Background" Value="#e2ffd3" />
+                        </VisualState.Setters>
+                    </VisualState>
+                    <VisualState x:Name="Selected">
+                        <VisualState.Setters>
+                            <Setter Property="Background" Value="White" />
+                        </VisualState.Setters>
+                    </VisualState>
+                </VisualStateGroup>
+            </VisualStateGroupList>
+        </Setter>
+    </Style>
+    <!--  Entry  -->
+    <Style x:Key="MaterialEntryStyle" TargetType="Entry">
+        <Setter Property="HeightRequest" Value="64" />
+
+        <Setter Property="VisualStateManager.VisualStateGroups">
+            <VisualStateGroupList>
+                <VisualStateGroup Name="CommonStates">
+                    <VisualState x:Name="Normal">
+                        <VisualState.Setters>
+                            <Setter Property="Background" Value="#e2ffd3" />
+                        </VisualState.Setters>
+                    </VisualState>
+                    <VisualState x:Name="Selected">
+                        <VisualState.Setters>
+                            <Setter Property="Background" Value="White" />
+                        </VisualState.Setters>
+                    </VisualState>
+                </VisualStateGroup>
+            </VisualStateGroupList>
+        </Setter>
+    </Style>
+
+    <!--  Buttons  -->
+    <Style x:Key="MaterialTonalBtnStyle" TargetType="Button">
+        <Setter Property="HeightRequest" Value="64" />
+        <Setter Property="Padding" Value="32,0,32,0" />
+        <Setter Property="CornerRadius" Value="32" />
+
+        <Setter Property="VisualStateManager.VisualStateGroups">
+            <VisualStateGroupList>
+                <VisualStateGroup Name="CommonStates">
+                    <VisualState x:Name="Normal">
+                        <VisualState.Setters>
+                            <Setter Property="TextColor" Value="#205014" />
+                            <Setter Property="Background" Value="#e2ffd3" />
+                            <Setter Property="BorderWidth" Value="0" />
+                        </VisualState.Setters>
+                    </VisualState>
+                    <VisualState x:Name="PointerOver">
+                        <VisualState.Setters>
+                            <Setter Property="Background" Value="#8BC34A" />
+                            <Setter Property="TextColor" Value="#e2ffd3" />
+                        </VisualState.Setters>
+                    </VisualState>
+                    <VisualState x:Name="Selected">
+                        <VisualState.Setters>
+                            <Setter Property="Background" Value="White" />
+                            <Setter Property="TextColor" Value="#205014" />
+                        </VisualState.Setters>
+                    </VisualState>
+                </VisualStateGroup>
+            </VisualStateGroupList>
+        </Setter>
+    </Style>
+    <Style x:Key="MaterialBtnStyle" TargetType="Button">
+        <Setter Property="HeightRequest" Value="64" />
+        <Setter Property="Padding" Value="32,0,32,0" />
+        <Setter Property="CornerRadius" Value="32" />
+
+        <Setter Property="VisualStateManager.VisualStateGroups">
+            <VisualStateGroupList>
+                <VisualStateGroup Name="CommonStates">
+                    <VisualState x:Name="Normal">
+                        <VisualState.Setters>
+                            <Setter Property="Background" Value="#205014" />
+                            <Setter Property="TextColor" Value="#e2ffd3" />
+                            <Setter Property="BorderColor" Value="Transparent" />
+                            <Setter Property="BorderWidth" Value="0" />
+                        </VisualState.Setters>
+                    </VisualState>
+                    <VisualState x:Name="PointerOver">
+                        <VisualState.Setters>
+                            <Setter Property="Background" Value="#6a9c59" />
+                            <Setter Property="TextColor" Value="#e2ffd3" />
+                        </VisualState.Setters>
+                    </VisualState>
+                    <VisualState x:Name="Selected">
+                        <VisualState.Setters>
+                            <Setter Property="Background" Value="White" />
+                            <Setter Property="TextColor" Value="#205014" />
+                        </VisualState.Setters>
+                    </VisualState>
+                </VisualStateGroup>
+            </VisualStateGroupList>
+        </Setter>
+    </Style>
+
     <!--  fluent btns  -->
     <Style x:Key="FluentSecondaryBtnStyle" TargetType="Button">
         <Setter Property="VisualStateManager.VisualStateGroups">

@@ -4,64 +4,130 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:profilepagemodels="clr-namespace:Shiemi.PageModels.User"
-    Title="Edit Profile"
     x:DataType="profilepagemodels:EditPageModel"
+    Shell.NavBarIsVisible="False"
     Shell.TabBarIsVisible="False">
-    <Grid
-        Margin="20"
-        RowDefinitions="Auto,Auto,Auto,*"
-        RowSpacing="16">
-        <VerticalStackLayout Grid.Row="0" Spacing="4">
-            <Label Text="First name" TextColor="Gray" />
-            <Entry
-                IsEnabled="{Binding IsNotBusy}"
-                Text="{Binding FirstName}"
-                VerticalOptions="Start" />
-        </VerticalStackLayout>
 
-        <VerticalStackLayout Grid.Row="1" Spacing="4">
-            <Label Text="Last name" TextColor="Gray" />
-            <Entry
-                IsEnabled="{Binding IsNotBusy}"
-                Text="{Binding LastName}"
-                VerticalOptions="Start" />
-        </VerticalStackLayout>
-
-        <Button
-            Grid.Row="2"
-            Command="{Binding ChooseProfilePhotoCommand}"
-            HorizontalOptions="Start"
-            ImageSource="ic_fluent_image_add_28_regular.png"
-            Style="{StaticResource IconStyle}"
-            Text="Add profile" />
-
-        <Button
-            Grid.Row="3"
-            Command="{Binding GoBackCommand}"
-            HorizontalOptions="Start"
-            IsEnabled="{Binding IsNotBusy}"
-            IsVisible="{Binding IsNotBusy}"
-            Style="{StaticResource SecondaryBtnStyle}"
-            VerticalOptions="End" />
-        <Button
-            Grid.Row="3"
-            Command="{Binding EditProfileCommand}"
-            HorizontalOptions="End"
-            IsEnabled="{Binding IsNotBusy}"
-            IsVisible="{Binding IsNotBusy}"
-            Text="continue"
-            VerticalOptions="End"
-            WidthRequest="150" />
-
-        <!--  loading  -->
-        <ProgressBar
-            x:Name="ProgressView"
-            Grid.Row="3"
-            BackgroundColor="Lavender"
+    <ScrollView Margin="8" Orientation="Vertical">
+        <Grid
             HorizontalOptions="Fill"
-            IsEnabled="{Binding IsBusy}"
-            IsVisible="{Binding IsBusy}"
-            ProgressColor="MediumPurple"
-            VerticalOptions="End" />
-    </Grid>
+            MaximumWidthRequest="700"
+            RowDefinitions="Auto,*,Auto"
+            RowSpacing="16">
+            <VerticalStackLayout Grid.Row="0" Spacing="16">
+                <Label FontSize="32" Text="Edit Profile" />
+                <Label Style="{x:StaticResource TitleLabel}" Text="Personal Details" />
+
+                <!--  Personal Details (important)  -->
+                <Label Text="First name" />
+                <Entry
+                    ClearButtonVisibility="WhileEditing"
+                    IsEnabled="{Binding IsNotBusy}"
+                    Style="{x:StaticResource MaterialEntryStyle}"
+                    Text="{Binding FirstName}"
+                    VerticalOptions="Start" />
+
+                <Label Text="Last name" />
+                <Entry
+                    ClearButtonVisibility="WhileEditing"
+                    IsEnabled="{Binding IsNotBusy}"
+                    Style="{x:StaticResource MaterialEntryStyle}"
+                    Text="{Binding LastName}"
+                    VerticalOptions="Start" />
+
+                <Label
+                    Margin="0,32,0,0"
+                    Style="{x:StaticResource TitleLabel}"
+                    Text="Optional" />
+
+                <!--  Optional Details (nullable)  -->
+                <Label Text="About me" />
+                <Editor
+                    HeightRequest="200"
+                    IsEnabled="{Binding IsNotBusy}"
+                    Style="{x:StaticResource MaterialEditorStyle}"
+                    Text="{Binding OptionalUserDetails.AboutMe}"
+                    VerticalOptions="Start" />
+
+                <Label Text="Contact" />
+                <Entry
+                    ClearButtonVisibility="WhileEditing"
+                    IsEnabled="{Binding IsNotBusy}"
+                    Style="{x:StaticResource MaterialEntryStyle}"
+                    Text="{Binding OptionalUserDetails.Contact}"
+                    VerticalOptions="Start" />
+
+                <Label Text="LinkedIn Account" />
+                <Entry
+                    ClearButtonVisibility="WhileEditing"
+                    IsEnabled="{Binding IsNotBusy}"
+                    Style="{x:StaticResource MaterialEntryStyle}"
+                    Text="{Binding OptionalUserDetails.LinkedIn}"
+                    VerticalOptions="Start" />
+
+                <Label Text="Github Account" />
+                <Entry
+                    ClearButtonVisibility="WhileEditing"
+                    IsEnabled="{Binding IsNotBusy}"
+                    Style="{x:StaticResource MaterialEntryStyle}"
+                    Text="{Binding OptionalUserDetails.Github}"
+                    VerticalOptions="Start" />
+
+                <Label Text="Gmail Account" />
+                <Entry
+                    ClearButtonVisibility="WhileEditing"
+                    IsEnabled="{Binding IsNotBusy}"
+                    Style="{x:StaticResource MaterialEntryStyle}"
+                    Text="{Binding OptionalUserDetails.Gmail}"
+                    VerticalOptions="Start" />
+
+                <Label Text="Whatsaap Number" />
+                <Entry
+                    ClearButtonVisibility="WhileEditing"
+                    IsEnabled="{Binding IsNotBusy}"
+                    Style="{x:StaticResource MaterialEntryStyle}"
+                    Text="{Binding OptionalUserDetails.Whatsaap}"
+                    VerticalOptions="Start" />
+
+                <!--  Add Profile Pic  -->
+                <Button
+                    Grid.Row="2"
+                    Command="{Binding ChooseProfilePhotoCommand}"
+                    HorizontalOptions="Start"
+                    ImageSource="ic_fluent_image_add_28_regular.png"
+                    Style="{StaticResource IconStyle}"
+                    Text="Add profile" />
+            </VerticalStackLayout>
+
+            <Button
+                Grid.Row="2"
+                Command="{Binding GoBackCommand}"
+                HorizontalOptions="Start"
+                IsEnabled="{Binding IsNotBusy}"
+                IsVisible="{Binding IsNotBusy}"
+                Style="{StaticResource SecondaryBtnStyle}"
+                VerticalOptions="End" />
+
+            <Button
+                Grid.Row="2"
+                Command="{Binding EditProfileCommand}"
+                HorizontalOptions="End"
+                IsEnabled="{Binding IsNotBusy}"
+                IsVisible="{Binding IsNotBusy}"
+                Style="{x:StaticResource MaterialBtnStyle}"
+                Text="Continue"
+                VerticalOptions="End" />
+
+            <!--  loading  -->
+            <ProgressBar
+                x:Name="ProgressView"
+                Grid.Row="2"
+                BackgroundColor="Lavender"
+                HorizontalOptions="Fill"
+                IsEnabled="{Binding IsBusy}"
+                IsVisible="{Binding IsBusy}"
+                ProgressColor="MediumPurple"
+                VerticalOptions="End" />
+        </Grid>
+    </ScrollView>
 </ContentPage>

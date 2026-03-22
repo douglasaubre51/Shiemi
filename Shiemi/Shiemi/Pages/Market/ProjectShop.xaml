@@ -6,8 +6,8 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:dtos="clr-namespace:Shiemi.Dtos"
     xmlns:handler="clr-namespace:Shiemi.Utilities.Handlers"
+    xmlns:models="clr-namespace:Shiemi.Models.ProjectModels"
     xmlns:pagemodel="clr-namespace:Shiemi.PageModels.Market"
-    xmlns:viewmodel="clr-namespace:Shiemi.ViewModels"
     x:DataType="pagemodel:ProjectShopPageModel"
     Shell.NavBarIsVisible="True"
     Shell.TabBarIsVisible="True">
@@ -39,14 +39,51 @@
                 <GridItemsLayout
                     HorizontalItemSpacing="4"
                     Orientation="Vertical"
-                    Span="{OnIdiom Default=3,
-                                   Phone=1}"
+                    Span="3"
                     VerticalItemSpacing="8" />
             </CollectionView.ItemsLayout>
 
             <CollectionView.ItemTemplate>
-                <DataTemplate x:DataType="viewmodel:ProjectViewModel">
+                <DataTemplate x:DataType="models:ProjectShopCardModel">
                     <Border>
+                        <!--  Project card  -->
+                        <VerticalStackLayout Padding="10,10,10,10" Spacing="4">
+                            <Label
+                                FontFamily="PoppinsBold"
+                                FontSize="20"
+                                LineBreakMode="TailTruncation"
+                                Text="{x:Binding Title}" />
+
+                            <Label
+                                FontFamily="PoppinsRegular"
+                                FontSize="16"
+                                LineBreakMode="WordWrap"
+                                Text="{x:Binding Short}" />
+
+                            <HorizontalStackLayout Margin="0,8,0,0" Spacing="8">
+                                <Border
+                                    HeightRequest="30"
+                                    HorizontalOptions="Start"
+                                    StrokeShape="RoundRectangle 30"
+                                    WidthRequest="30">
+                                    <Image Aspect="AspectFit" Source="{x:Binding UserProfilePhoto}" />
+                                </Border>
+
+                                <Label
+                                    FontSize="10"
+                                    Text="{x:Binding Username}"
+                                    VerticalOptions="Center" />
+
+                                <HorizontalStackLayout.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{x:Binding}" CommandParameter="{x:Binding .}" />
+                                </HorizontalStackLayout.GestureRecognizers>
+                            </HorizontalStackLayout>
+                        </VerticalStackLayout>
+
+                        <Border.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type pagemodel:ProjectShopPageModel}}, x:DataType=pagemodel:ProjectShopPageModel, Path=GoToProjectDetailsCommand}" CommandParameter="{Binding .}" />
+                        </Border.GestureRecognizers>
+
                         <Border.Style>
                             <Style TargetType="Border">
                                 <Setter Property="BackgroundColor" Value="White" />
@@ -71,24 +108,6 @@
                                 </Setter>
                             </Style>
                         </Border.Style>
-
-                        <Border.GestureRecognizers>
-                            <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type pagemodel:ProjectShopPageModel}}, x:DataType=pagemodel:ProjectShopPageModel, Path=GoToProjectDetailsCommand}" CommandParameter="{Binding .}" />
-                        </Border.GestureRecognizers>
-                        <!--  Project card  -->
-                        <VerticalStackLayout Padding="10,10,10,60">
-                            <Label
-                                FontFamily="PoppinsBold"
-                                FontSize="20"
-                                LineBreakMode="TailTruncation"
-                                Text="{Binding Title}" />
-
-                            <Label
-                                FontFamily="PoppinsRegular"
-                                FontSize="16"
-                                LineBreakMode="WordWrap"
-                                Text="{Binding ShortDesc}" />
-                        </VerticalStackLayout>
                     </Border>
                 </DataTemplate>
             </CollectionView.ItemTemplate>

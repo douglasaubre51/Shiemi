@@ -1,17 +1,28 @@
 ﻿using CommunityToolkit.Mvvm.Input;
 using MvvmHelpers;
+using Shiemi.Models.ProjectModels;
 using Shiemi.Pages.Market;
 using Shiemi.ViewModels;
-using System.Diagnostics;
 
 namespace Shiemi.PageModels.Market;
 
 public partial class ProjectShopPageModel : BasePageModel
 {
-    public ObservableRangeCollection<ProjectViewModel> ProjectCollection { get; set; } = [];
+    public ObservableRangeCollection<ProjectShopCardModel> ProjectCollection { get; set; } = [];
 
     public ProjectShopPageModel()
         => Title = "Project Shop";
+
+    [RelayCommand]
+    async Task GoToUserProfilePage(ProjectShopCardModel projectShopCard)
+        => await Shell.Current.GoToAsync(
+            "///Profile",
+            true,
+            new Dictionary<string, object>
+            {
+                { "IsWatchingProfile",true },
+                { "UserId",projectShopCard.UserId}
+            });
 
     [RelayCommand]
     async Task GoToProjectDetails(ProjectViewModel projectVM)

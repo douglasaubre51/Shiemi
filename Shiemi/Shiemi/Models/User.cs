@@ -23,3 +23,13 @@ public record ProfileCardModel(
     string ProfilePhotoURI,
     int RoomId
 );
+
+public class OptionalUserDetails
+{
+    public string Contact { get; set; } = string.Empty;
+    public string Whatsaap { get; set; } = string.Empty;
+    public string LinkedIn { get; set; } = string.Empty;
+    public string Gmail { get; set; } = string.Empty;
+    public string Github { get; set; } = string.Empty;
+    public string AboutMe { get; set; } = string.Empty;
+}

@@ -5,7 +5,7 @@ using System.Net.Http.Json;
 
 namespace Shiemi.Services;
 
-internal record ProjectWrapper(List<ProjectDto> Projects);
+internal record ProjectWrapper(List<ProjectShopDto> Projects);
 
 public class ProjectService
 {
@@ -23,7 +23,7 @@ public class ProjectService
         var response = await _client.GetAsync(
             $"{projectBaseUri}/{projectId}/delete"
             );
-        if(response.IsSuccessStatusCode is false)
+        if (response.IsSuccessStatusCode is false)
         {
             Debug.WriteLine("EditProject post: error: " + response.StatusCode);
         }
@@ -34,7 +34,7 @@ public class ProjectService
         var response = await _client.PostAsJsonAsync<EditProjectDto>(
             $"{projectBaseUri}/edit",
             dto);
-        if(response.IsSuccessStatusCode is false)
+        if (response.IsSuccessStatusCode is false)
         {
             Debug.WriteLine("EditProject post: error: " + response.StatusCode);
         }
@@ -114,7 +114,7 @@ public class ProjectService
         var wrap = await response.Content.ReadFromJsonAsync<ProjectsWrap>();
         return wrap!.Projects;
     }
-    public async Task<List<ProjectDto>?> GetAll()
+    public async Task<List<ProjectShopDto>?> GetAll()
     {
         var response = await _client.GetAsync(
             $"{projectBaseUri}/all"

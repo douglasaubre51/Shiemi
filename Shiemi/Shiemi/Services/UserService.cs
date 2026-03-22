@@ -1,7 +1,6 @@
 ﻿using Shiemi.Dtos;
 using Shiemi.Models;
 using Shiemi.Utilities;
-using System.Diagnostics;
 using System.Net.Http.Json;
 
 namespace Shiemi.Services;
@@ -23,7 +22,7 @@ public class UserService
     {
         var response = await _httpClient.GetAsync(
             $"{userBaseUri}/{userId}/past-projects");
-        if(response.IsSuccessStatusCode is false)
+        if (response.IsSuccessStatusCode is false)
         {
             Debug.WriteLine("CheckIfReviewIsAllowed get error: " + response.IsSuccessStatusCode);
             return false;
@@ -33,18 +32,41 @@ public class UserService
         return pastProjects!.Contains(projectId);
     }
 
-    public async Task<bool> Update(User user, string profilePath)
+    // Update User Profile without Profile Photo!
+    public async Task<bool> UpdateUserDetails(
+        User user,
+        OptionalUserDetails optionalUserDetails)
+    {
+        var result = await _httpClient.PutAsJsonAsync(
+            $"{userBaseUri}/user-details",
+            new
+            {
+                UserDto = user,
+                OptionalUserDetailsDto = optionalUserDetails
+            }
+            );
+
+        if (result.IsSuccessStatusCode is false)
+        {
+            var dto = await result.Content.ReadFromJsonAsync<StatusMessageDto>();
+            Debug.WriteLine(dto!.Message);
+
+            return false;
+        }
+
+        return true;
+    }
+    public async Task<bool> UpdateUserProfilePhoto(int id, string profilePath)
     {
         var profileContent = new ByteArrayContent(await File.ReadAllBytesAsync(profilePath));
         using var form = new MultipartFormDataContent
         {
-            { new StringContent(user.Id.ToString()), "id" },
-            { new StringContent(user.FirstName), "firstName" },
-            { new StringContent(user.LastName), "lastName" },
+            { new StringContent(id.ToString()), "id" },
             { profileContent, "profilePhoto", Path.GetFileName(profilePath) }
         };
+
         var result = await _httpClient.PutAsync(
-            $"{userBaseUri}",
+            $"{userBaseUri}/user-profile-photo",
             form
             );
 
@@ -55,6 +77,11 @@ public class UserService
 
         return true;
     }
+
+    // Get Optional User details via id!
+    public async Task<OptionalUserDetails?> GetOptionalDetails(int userId)
+        => await _httpClient.GetFromJsonAsync<OptionalUserDetails>(
+            $"{userBaseUri}/{userId}/optional-details");
 
     // get dbuser via string id!
     public async Task<ProfilePageUserDto?> Get(string userId)

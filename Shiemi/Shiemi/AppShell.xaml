@@ -10,8 +10,12 @@
     xmlns:startpages="clr-namespace:Shiemi.Pages.Start"
     xmlns:userpages="clr-namespace:Shiemi.Pages.User"
     xmlns:viewmodels="clr-namespace:Shiemi.ViewModels"
-    FlyoutBehavior="Flyout"
+    FlyoutBackground="Transparent"
+    FlyoutBehavior="Locked"
+    FlyoutWidth="300"
     Shell.NavBarIsVisible="True"
+    Shell.NavBarVisibilityAnimationEnabled="True"
+    Shell.TabBarBackgroundColor="Transparent"
     Shell.TabBarIsVisible="True">
     <FlyoutItem Title="GetStarted" FlyoutItemIsVisible="False">
         <Tab>
@@ -58,7 +62,6 @@
     <FlyoutItem Title="Profile" FlyoutIcon="ic_fluent_person_28_regular.png">
         <Tab FlyoutIcon="ic_fluent_home_28_regular.png">
             <ShellContent
-                Title="Profile"
                 ContentTemplate="{DataTemplate userpages:Profile}"
                 FlyoutIcon="ic_fluent_home_28_regular.png"
                 Route="Profile" />

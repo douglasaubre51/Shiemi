@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:userpagemodels="clr-namespace:Shiemi.PageModels.User"
-             x:DataType="userpagemodels:ViewMoreProjectsPageModel"
-             xmlns:viewmodels="clr-namespace:Shiemi.ViewModels"
-             Shell.TabBarIsVisible="False"
-             x:Class="Shiemi.Pages.User.ViewMoreProjects"
-             Title="More Projects">
+<ContentPage
+    x:Class="Shiemi.Pages.User.ViewMoreProjects"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:userpagemodels="clr-namespace:Shiemi.PageModels.User"
+    xmlns:viewmodels="clr-namespace:Shiemi.ViewModels"
+    Title="More Projects"
+    x:DataType="userpagemodels:ViewMoreProjectsPageModel"
+    Shell.TabBarIsVisible="False">
     <CollectionView
         Margin="8,0,0,0"
         HorizontalScrollBarVisibility="Never"
@@ -14,40 +15,42 @@
         <CollectionView.ItemTemplate>
             <DataTemplate x:DataType="viewmodels:GalleryViewModel">
                 <Border
-                    Style="{StaticResource CardBorderStyle}"
                     BackgroundColor="LightBlue"
                     MinimumHeightRequest="160"
-                    MinimumWidthRequest="200">
+                    MinimumWidthRequest="200"
+                    Style="{StaticResource CardBorderStyle}">
                     <VerticalStackLayout Spacing="8">
                         <Label
-                            Text="{Binding CoverTitle}"
-                            MaxLines="2"
+                            FontSize="18"
                             LineBreakMode="WordWrap"
-                            FontSize="18"/>
+                            MaxLines="2"
+                            Text="{Binding CoverTitle}" />
 
                         <Label
-                            Text="{Binding CoverBlurb}"
-                            VerticalOptions="End"
                             FontSize="14"
+                            LineBreakMode="WordWrap"
                             MaxLines="3"
+                            Text="{Binding CoverBlurb}"
                             TextColor="Gray"
-                            LineBreakMode="WordWrap"/>
+                            VerticalOptions="End" />
                     </VerticalStackLayout>
                 </Border>
             </DataTemplate>
         </CollectionView.ItemTemplate>
 
         <CollectionView.ItemsLayout>
-            <GridItemsLayout Orientation="Vertical"
-                             Span="3"
-                             HorizontalItemSpacing="4"
-                             VerticalItemSpacing="4"/>
+            <GridItemsLayout
+                HorizontalItemSpacing="4"
+                Orientation="Vertical"
+                Span="3"
+                VerticalItemSpacing="4" />
         </CollectionView.ItemsLayout>
 
         <CollectionView.EmptyView>
-            <Label Text="Soo empty!"
-                   TextColor="LightGray"
-                   FontSize="24"/>
+            <Label
+                FontSize="24"
+                Text="Soo empty!"
+                TextColor="LightGray" />
         </CollectionView.EmptyView>
     </CollectionView>
 </ContentPage>

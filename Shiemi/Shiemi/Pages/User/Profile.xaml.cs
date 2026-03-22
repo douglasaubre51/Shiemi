@@ -1,4 +1,5 @@
 using Shiemi.Dtos;
+using Shiemi.Models;
 using Shiemi.PageModels.User;
 using Shiemi.Services;
 using Shiemi.Storage;
@@ -32,6 +33,29 @@ public partial class Profile : ContentPage
         try
         {
             ProfilePageModel? pageModel = BindingContext as ProfilePageModel;
+            if (pageModel!.IsWatchingProfile is true)
+            {
+                UserDto? foreignUser = await _userService.GetUserById(pageModel.ForeignUserId);
+                if (foreignUser is null)
+                {
+                    await Shell.Current.GoToAsync("///Profile");
+                    return;
+                }
+
+                // Set profile view details
+                pageModel!.FirstName = foreignUser.FirstName;
+                pageModel.LastName = foreignUser.LastName;
+                pageModel.UserName = foreignUser.FirstName + "  " + foreignUser.LastName;
+                pageModel.Email = foreignUser.Email;
+                pageModel.ProfileURL = foreignUser.ProfilePhotoURL;
+                pageModel.Id = foreignUser.Id;
+
+                // Set optional user details
+                OptionalUserDetails? optionalDetails = await _userService.GetOptionalDetails(pageModel.ForeignUserId);
+                pageModel.OptionalUserDetails = optionalDetails;
+
+                return;
+            }
 
             // Fetch user data using String userId !
             string userId = DataStorage.Get("UserId");
@@ -45,6 +69,11 @@ public partial class Profile : ContentPage
             pageModel.Email = user.Email;
             pageModel.UserId = user.UserId;
             pageModel.ProfileURL = user.ProfilePhotoURL;
+            pageModel.Id = user.Id;
+
+            // Set optional user details
+            OptionalUserDetails? optionalUserDetails = await _userService.GetOptionalDetails(user.Id);
+            pageModel.OptionalUserDetails = optionalUserDetails;
 
             // Set Flyout Footer data !
             _flyoutFooterModel.Profile = user.ProfilePhotoURL;

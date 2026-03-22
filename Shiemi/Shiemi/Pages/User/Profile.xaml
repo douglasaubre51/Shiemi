@@ -6,161 +6,173 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:pagemodel="clr-namespace:Shiemi.PageModels.User"
     x:DataType="pagemodel:ProfilePageModel"
-    Shell.FlyoutBehavior="Flyout"
-    Shell.NavBarIsVisible="True"
+    Shell.NavBarIsVisible="False"
     Shell.TabBarIsVisible="False">
-    <Grid Margin="16">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="*" />
-            <RowDefinition Height="*" />
-            <RowDefinition Height="Auto" />
-        </Grid.RowDefinitions>
-
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*" />
-            <ColumnDefinition Width="*" />
-        </Grid.ColumnDefinitions>
-
+    <ScrollView Margin="8" Orientation="Vertical">
         <Grid
-            Grid.Row="0"
-            Grid.ColumnSpan="2"
-            ColumnSpacing="16">
-            <Grid.ColumnDefinitions>
-                <OnIdiom x:TypeArguments="ColumnDefinitionCollection">
-                    <OnIdiom.Phone>
-                        <ColumnDefinitionCollection>
-                            <ColumnDefinition Width="*" />
-                        </ColumnDefinitionCollection>
-                    </OnIdiom.Phone>
-
-                    <OnIdiom.Desktop>
-                        <ColumnDefinitionCollection>
-                            <ColumnDefinition Width="Auto" />
-                            <ColumnDefinition Width="Auto" />
-                        </ColumnDefinitionCollection>
-                    </OnIdiom.Desktop>
-                </OnIdiom>
-            </Grid.ColumnDefinitions>
-
-            <Grid.RowDefinitions>
-                <OnIdiom x:TypeArguments="RowDefinitionCollection">
-                    <OnIdiom.Phone>
-                        <RowDefinitionCollection>
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="Auto" />
-                        </RowDefinitionCollection>
-                    </OnIdiom.Phone>
-
-                    <OnIdiom.Desktop>
-                        <RowDefinitionCollection>
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="Auto" />
-                        </RowDefinitionCollection>
-                    </OnIdiom.Desktop>
-                </OnIdiom>
-            </Grid.RowDefinitions>
-
-            <Border
-                Grid.RowSpan="{OnIdiom Default=2,
-                                       Phone=1}"
-                Grid.Column="0"
-                Margin="10"
-                HorizontalOptions="{OnIdiom Default=Start,
-                                            Phone=Center}"
-                Shadow="0 1 10 rgba(0,0,0,0.14)"
-                Stroke="WhiteSmoke"
-                StrokeShape="RoundRectangle 90"
-                StrokeThickness="5">
-
-                <Image
-                    Aspect="AspectFill"
-                    HeightRequest="180"
-                    Source="{Binding ProfileURL}"
-                    WidthRequest="180" />
-            </Border>
-
-            <VerticalStackLayout Grid.Row="{OnIdiom Default=0, Phone=1}" Grid.Column="{OnIdiom Default=1, Phone=0}">
-                <Label
-                    FontFamily="PoppinsSemiBold"
-                    FontSize="{OnIdiom Default=32,
-                                       Phone=24}"
+            Padding="4"
+            RowDefinitions="Auto,Auto"
+            RowSpacing="32">
+            <Grid
+                Grid.Row="0"
+                ColumnDefinitions="*,*"
+                MinimumWidthRequest="700"
+                RowDefinitions="Auto,Auto,Auto,Auto"
+                RowSpacing="16">
+                <!--  profile picture  -->
+                <Border
+                    Grid.Column="0"
+                    Margin="10"
                     HorizontalOptions="Center"
-                    Text="{Binding UserName}" />
+                    Shadow="0 1 10 rgba(0,0,0,0.14)"
+                    Stroke="WhiteSmoke"
+                    StrokeShape="RoundRectangle 300"
+                    StrokeThickness="5">
 
-                <Label
-                    FontSize="16"
-                    HorizontalOptions="Center"
-                    Text="{Binding Email}"
-                    TextColor="Purple" />
+                    <Image
+                        Aspect="AspectFill"
+                        HeightRequest="300"
+                        Source="{Binding ProfileURL}"
+                        WidthRequest="300" />
+                </Border>
 
-                <Label
-                    FontFamily="PoppinsRegular"
-                    FontSize="{OnIdiom Default=16,
-                                       Phone=12}"
-                    HorizontalOptions="Center"
-                    IsVisible="{x:Binding DevModeActive}"
-                    Text="Developer" />
-            </VerticalStackLayout>
+                <!--  user personal details  -->
+                <VerticalStackLayout
+                    Grid.Row="1"
+                    Grid.Column="0"
+                    HorizontalOptions="Center">
+                    <Label
+                        FontFamily="PoppinsSemiBold"
+                        FontSize="32"
+                        HorizontalOptions="Center"
+                        Text="{Binding UserName}" />
 
-            <HorizontalStackLayout
-                Grid.Row="{OnIdiom Default=1,
-                                   Phone=2}"
-                Grid.Column="{OnIdiom Default=1,
-                                      Phone=0}"
-                Margin="0,16,0,0"
-                HorizontalOptions="Center"
-                Spacing="8"
-                VerticalOptions="End">
-                <Button
-                    Command="{Binding GoToProfileEditPageCommand}"
-                    HorizontalOptions="End"
-                    ImageSource="ic_fluent_edit_person_24_regular.png"
-                    Style="{StaticResource IconStyle}" />
+                    <Label
+                        FontSize="16"
+                        HorizontalOptions="Center"
+                        Text="{Binding Email}"
+                        TextColor="Purple" />
 
-                <!--  separator  -->
-                <BoxView Style="{StaticResource VerticalSeperator}" />
+                    <Label
+                        FontFamily="PoppinsRegular"
+                        FontSize="{OnIdiom Default=16,
+                                           Phone=12}"
+                        HorizontalOptions="Center"
+                        IsVisible="{x:Binding DevModeActive}"
+                        Text="Developer" />
+                </VerticalStackLayout>
 
-                <Button
-                    Command="{Binding LogoutCommand}"
-                    HorizontalOptions="Start"
-                    ImageSource="ic_fluent_sign_out_24_regular.png"
-                    Style="{StaticResource WarningIconStyle}"
-                    Text="Logout"
-                    TextColor="Black" />
-            </HorizontalStackLayout>
-        </Grid>
-
-        <!--  dev profile  -->
-        <Border
-            x:Name="DevProfileCard_NotJoined"
-            Grid.Row="1"
-            IsVisible="{Binding ShowDevCard_NotJoined}"
-            Stroke="Transparent"
-            VerticalOptions="Start">
-            <VerticalStackLayout>
-                <Label Style="{StaticResource TitleLabel}" Text="Dev Profile" />
-
-                <Label Text="Become a dev and get hired !" />
-
-                <Button
+                <!--  User actions  -->
+                <HorizontalStackLayout
+                    Grid.Row="2"
+                    Grid.Column="0"
                     Margin="0,16,0,0"
-                    Command="{Binding GoToDevEditPageCommand}"
-                    HorizontalOptions="Start"
-                    Text="Start now" />
-            </VerticalStackLayout>
-        </Border>
+                    HorizontalOptions="Center"
+                    Spacing="8"
+                    VerticalOptions="End">
+                    <Button
+                        Command="{Binding GoToProfileEditPageCommand}"
+                        HorizontalOptions="End"
+                        ImageSource="ic_fluent_edit_person_24_regular.png"
+                        Style="{StaticResource IconStyle}" />
 
-        <Label
-            Grid.Row="2"
-            Grid.Column="1"
-            HorizontalOptions="End"
-            Text="Report an account ?"
-            TextColor="HotPink"
-            VerticalOptions="End">
-            <Label.GestureRecognizers>
-                <TapGestureRecognizer Command="{x:Binding SendReportEmailHandlerCommand}" />
-            </Label.GestureRecognizers>
-        </Label>
-    </Grid>
+                    <!--  separator  -->
+                    <BoxView Style="{StaticResource VerticalSeperator}" />
+
+                    <Button
+                        Command="{Binding LogoutCommand}"
+                        HorizontalOptions="Start"
+                        ImageSource="ic_fluent_sign_out_24_regular.png"
+                        Style="{StaticResource WarningIconStyle}"
+                        Text="Logout"
+                        TextColor="Black" />
+                </HorizontalStackLayout>
+
+                <!--  User details panel  -->
+                <Border
+                    Grid.RowSpan="3"
+                    Grid.Column="1"
+                    Background="#C8E6C9"
+                    StrokeShape="RoundRectangle 16"
+                    StrokeThickness="0">
+                    <Grid
+                        Padding="16"
+                        RowDefinitions="Auto,*,Auto"
+                        RowSpacing="8">
+                        <VerticalStackLayout Grid.Row="0">
+                            <Label FontSize="32" Text="About Me" />
+
+                            <Label Text="{x:Binding OptionalUserDetails.AboutMe}" />
+                        </VerticalStackLayout>
+
+                        <VerticalStackLayout Grid.Row="2" Spacing="8">
+                            <Button
+                                Margin="0,32,0,0"
+                                HorizontalOptions="Fill"
+                                ImageSource="phone_icon.png"
+                                Style="{x:StaticResource MaterialInsetStyle}"
+                                Text="{x:Binding OptionalUserDetails.Contact}" />
+                            <Button
+                                ImageSource="whatsaap_icon.png"
+                                Style="{x:StaticResource MaterialInsetStyle}"
+                                Text="{x:Binding OptionalUserDetails.Whatsaap}" />
+                            <Button
+                                HorizontalOptions="Fill"
+                                ImageSource="linkedin_icon.png"
+                                Style="{x:StaticResource MaterialInsetStyle}"
+                                Text="{x:Binding OptionalUserDetails.LinkedIn}" />
+                            <Button
+                                ImageSource="github_icon.png"
+                                Style="{x:StaticResource MaterialInsetStyle}"
+                                Text="{x:Binding OptionalUserDetails.Github}" />
+                            <Button
+                                ImageSource="google_gmail_icon.png"
+                                Style="{x:StaticResource MaterialInsetStyle}"
+                                Text="{x:Binding OptionalUserDetails.Gmail}" />
+                        </VerticalStackLayout>
+                    </Grid>
+                </Border>
+
+                <!--  Dev profile join card  -->
+                <Border
+                    x:Name="DevProfileCard_NotJoined"
+                    Grid.Row="3"
+                    Grid.Column="0"
+                    Margin="0,32,0,0"
+                    Padding="64,32,64,32"
+                    BackgroundColor="#C8E6C9"
+                    HorizontalOptions="Center"
+                    IsVisible="{x:Binding ShowDevCard_NotJoined}"
+                    Stroke="Transparent"
+                    StrokeShape="RoundRectangle 64"
+                    WidthRequest="400">
+                    <VerticalStackLayout>
+                        <Label Style="{StaticResource TitleLabel}" Text="Dev Profile" />
+
+                        <Label Text="Become a dev and get hired !" />
+
+                        <Button
+                            Margin="0,16,0,0"
+                            Command="{Binding GoToDevEditPageCommand}"
+                            HorizontalOptions="Start"
+                            Style="{x:StaticResource MaterialBtnStyle}"
+                            Text="Start now" />
+                    </VerticalStackLayout>
+                </Border>
+            </Grid>
+
+            <!--  Report issue link  -->
+            <Label
+                Grid.Row="2"
+                Grid.Column="1"
+                HorizontalOptions="End"
+                Text="Report an account ?"
+                TextColor="HotPink"
+                VerticalOptions="End">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Command="{x:Binding SendReportEmailHandlerCommand}" />
+                </Label.GestureRecognizers>
+            </Label>
+        </Grid>
+    </ScrollView>
 </ContentPage>

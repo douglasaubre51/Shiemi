@@ -1,8 +1,8 @@
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using Shiemi.Models;
 using Shiemi.Services;
 using Shiemi.Storage;
-using System.Diagnostics;
 
 namespace Shiemi.PageModels.User;
 
@@ -11,17 +11,23 @@ public partial class EditPageModel(
     UserService userServ) : BasePageModel
 {
     [ObservableProperty]
+    private OptionalUserDetails? _optionalUserDetails = new();
+
+    [ObservableProperty]
     private Models.User? currentUser;
+
     [ObservableProperty]
     private string firstName = string.Empty;
     [ObservableProperty]
     private string lastName = string.Empty;
     [ObservableProperty]
-    private ProgressBar? customProgressBar;
-    [ObservableProperty]
     private FileResult? profilePhoto;
 
+    [ObservableProperty]
+    private ProgressBar? customProgressBar;
+
     private readonly UserService _userServ = userServ;
+
 
     [RelayCommand]
     async Task ChooseProfilePhoto()
@@ -73,19 +79,13 @@ public partial class EditPageModel(
         if (IsBusy is true) return;
         IsBusy = true;
 
-        if (string.IsNullOrWhiteSpace(FirstName) || string.IsNullOrWhiteSpace(LastName))
-        {
-            IsBusy = false;
-            return;
-        }
-        if (ProfilePhoto is null)
-        {
-            IsBusy = false;
-            return;
-        }
-
         try
         {
+            if (string.IsNullOrWhiteSpace(FirstName) || string.IsNullOrWhiteSpace(LastName))
+            {
+                IsBusy = false;
+                return;
+            }
             CustomProgressBar!.Progress = 0;
             _ = Loader();
 
@@ -96,19 +96,40 @@ public partial class EditPageModel(
                 LastName = LastName,
             };
 
-            bool response = await _userServ.Update(
+            // Update User Details!
+            bool userDetailsUploadResponse = await _userServ.UpdateUserDetails(
                 user,
-                ProfilePhoto.FullPath
+                OptionalUserDetails!
                 );
-            if (response is false)
+            if (userDetailsUploadResponse is false)
             {
-                Debug.WriteLine("failed to update user account!");
                 IsBusy = false;
                 await Shell.Current.DisplayAlertAsync(
                     "Update Error",
                     "Couldnot update user account!",
                     "Ok");
+
                 return;
+            }
+
+            // Update Profile Photo!
+            bool userProfilePhotoUploadResponse = false;
+            if (ProfilePhoto is not null)
+            {
+                userProfilePhotoUploadResponse = await _userServ.UpdateUserProfilePhoto(
+                    user.Id,
+                    ProfilePhoto.FullPath
+                    );
+                if (userProfilePhotoUploadResponse is false)
+                {
+                    IsBusy = false;
+                    await Shell.Current.DisplayAlertAsync(
+                        "Update Error",
+                        "Couldnot update user profile Photo!",
+                        "Ok");
+
+                    return;
+                }
             }
 
             await Shell.Current.GoToAsync("..");

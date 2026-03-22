@@ -7,7 +7,6 @@
     xmlns:pagemodel="clr-namespace:Shiemi.PageModels.Project"
     Title="Create new Project"
     x:DataType="pagemodel:CreateProjectPageModel"
-    Shell.FlyoutBehavior="Flyout"
     Shell.TabBarIsVisible="False">
     <ScrollView
         Margin="10"

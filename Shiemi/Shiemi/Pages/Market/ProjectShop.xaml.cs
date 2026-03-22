@@ -1,8 +1,6 @@
-using Shiemi.Dtos;
+using Shiemi.Models.ProjectModels;
 using Shiemi.PageModels.Market;
 using Shiemi.Services;
-using Shiemi.Utilities.ServiceProviders;
-using Shiemi.ViewModels;
 
 namespace Shiemi.Pages.Market;
 
@@ -36,11 +34,24 @@ public partial class ProjectShop : ContentPage
 
             pageModel!.ProjectCollection.Clear();
             var projects = await _projectService.GetAll();
+            if (projects is null || projects.Count == 0) return;
 
-            var mapper = MapperProvider.GetMapper<ProjectDto, ProjectViewModel>();
-            List<ProjectViewModel> projectViewModels = mapper!.Map<List<ProjectViewModel>>(projects);
+            List<ProjectShopCardModel> projectCards = [];
+            foreach (var project in projects)
+            {
+                projectCards.Add(new ProjectShopCardModel
+                {
+                    ProjectId = project.Id,
+                    UserId = project.UserId,
+                    UserProfilePhoto = project.UserProfilePhoto,
+                    Title = project.Title,
+                    Short = project.ShortDesc,
+                    Desc = project.Description,
+                    Username = project.Username
+                });
+            }
 
-            pageModel!.ProjectCollection.AddRange(projectViewModels);
+            pageModel!.ProjectCollection.AddRange(projectCards);
 
         }
         catch (Exception ex)
@@ -49,7 +60,7 @@ public partial class ProjectShop : ContentPage
         }
         finally
         {
-            pageModel.IsBusy = false;
+            pageModel!.IsBusy = false;
         }
     }
 }

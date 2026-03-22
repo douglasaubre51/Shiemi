@@ -1,11 +1,25 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using Shiemi.Models;
 using Shiemi.Storage;
 
 namespace Shiemi.PageModels.User;
 
+[QueryProperty(nameof(IsWatchingProfile), "IsWatchingProfile")]
+[QueryProperty(nameof(ForeignUserId), "UserId")]
 public partial class ProfilePageModel : BasePageModel
 {
+    [ObservableProperty]
+    private int foreignUserId;
+    [ObservableProperty]
+    private bool isWatchingProfile;
+
+    [ObservableProperty]
+    private OptionalUserDetails? optionalUserDetails = new();
+
+    [ObservableProperty]
+    private int id = 0;
+
     [ObservableProperty]
     private string profileURL = string.Empty;
     [ObservableProperty]
@@ -18,6 +32,7 @@ public partial class ProfilePageModel : BasePageModel
     private string email = string.Empty;
     [ObservableProperty]
     private string userId = string.Empty;
+
     [ObservableProperty]
     [NotifyPropertyChangedFor(nameof(ShowDevCard_NotJoined))]
     private bool devModeActive;
@@ -44,7 +59,6 @@ public partial class ProfilePageModel : BasePageModel
         }
     }
 
-
     [RelayCommand]
     async Task GoToProfileEditPage()
     {
@@ -55,9 +69,11 @@ public partial class ProfilePageModel : BasePageModel
         {
             Models.User currentUser = new()
             {
+                Id = Id,
                 FirstName = FirstName,
                 LastName = LastName
             };
+
             await Shell.Current.GoToAsync(
                 "EditProfile",
                 new Dictionary<string, object>()

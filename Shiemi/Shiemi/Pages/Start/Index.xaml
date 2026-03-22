@@ -11,11 +11,11 @@
         Margin="8"
         HorizontalOptions="Fill"
         RowDefinitions="*,Auto"
-        VerticalOptions="Fill">
+        VerticalOptions="Center">
         <Label
             Grid.Row="0"
             Padding="0,0,0,60"
-            FontSize="48"
+            FontSize="64"
             HorizontalOptions="Center"
             Text="Shiemi"
             VerticalOptions="Center" />
@@ -26,17 +26,21 @@
             IsRunning="{Binding IsBusy}"
             IsVisible="{Binding IsBusy}" />
 
-        <VerticalStackLayout Grid.Row="1" Spacing="4">
+        <VerticalStackLayout
+            Grid.Row="1"
+            HorizontalOptions="Center"
+            Spacing="16">
             <Button
                 Clicked="Button_Clicked"
                 IsVisible="{Binding IsNotBusy}"
+                Style="{x:StaticResource MaterialBtnStyle}"
                 Text="Get started" />
 
             <Button
                 Command="{Binding LogoutPressedCommand}"
                 HorizontalOptions="Fill"
                 IsVisible="{Binding IsNotBusy}"
-                Style="{x:StaticResource FluentSecondaryBtnStyle}"
+                Style="{x:StaticResource MaterialTonalBtnStyle}"
                 Text="Logout" />
         </VerticalStackLayout>
     </Grid>
