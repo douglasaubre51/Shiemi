@@ -26,6 +26,14 @@
                 <Editor Text="{x:Binding CurrentProject.Description}" />
             </VerticalStackLayout>
 
+            <VerticalStackLayout Spacing="4">
+                <Label Text="Tags" />
+
+                <Entry Text="{x:Binding Tag1}" />
+                <Entry Text="{x:Binding Tag2}" />
+                <Entry Text="{x:Binding Tag3}" />
+            </VerticalStackLayout>
+
             <Button Command="{x:Binding EditCurrentProjectCommand}" Text="Continue" />
         </VerticalStackLayout>
     </ScrollView>

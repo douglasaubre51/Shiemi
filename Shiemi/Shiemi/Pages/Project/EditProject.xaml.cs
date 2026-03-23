@@ -9,4 +9,12 @@ public partial class EditProject : ContentPage
         InitializeComponent();
         BindingContext = pageModel;
     }
+
+    protected override void OnAppearing()
+    {
+        base.OnAppearing();
+
+        var context = BindingContext as EditProjectPageModel;
+        context.IsPageLoading = true;
+    }
 }

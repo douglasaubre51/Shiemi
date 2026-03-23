@@ -45,5 +45,6 @@ public record EditProjectDto(
     int Id,
     string Title,
     string ShortDesc,
-    string Description
+    string Description,
+    List<string> Tags 
     );

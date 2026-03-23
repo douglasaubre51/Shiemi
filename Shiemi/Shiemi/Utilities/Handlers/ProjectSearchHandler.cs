@@ -9,6 +9,8 @@ public class ProjectSearchHandler : SearchHandler
 {
     private readonly ProjectService _projectService;
 
+    bool IsTagSearchEnabled;
+
     public object? PageContext { get; set; }
     public List<SearchProjectsDto> SearchProjectsCollection { get; set; } = [];
 
@@ -23,6 +25,17 @@ public class ProjectSearchHandler : SearchHandler
 
         try
         {
+            if (newValue is "#") IsTagSearchEnabled = true;
+            if (IsTagSearchEnabled)
+            {
+                List<SearchProjectsDto>? tagResults = await _projectService.GetSearchedProjectsByTags(newValue);
+                if (tagResults is null || tagResults.Count == 0)
+                    return;
+
+                ItemsSource = tagResults;
+                return;
+            }
+
             Debug.WriteLine($"text: {newValue}");
             List<SearchProjectsDto>? results = await _projectService.GetSearchedProjects(newValue);
             if (results is null || results.Count == 0)

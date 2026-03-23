@@ -69,6 +69,29 @@ public class ProjectService
         }
     }
 
+    public async Task<List<string>?> GetTags(int projectId)
+    {
+        var response = await _client.GetAsync($"{projectBaseUri}/{projectId}/get-tags");
+        if (response.IsSuccessStatusCode is false)
+        {
+            Debug.WriteLine($"get error:{response.StatusCode}");
+            return null!;
+        }
+
+        return await response.Content.ReadFromJsonAsync<List<string>>();
+    }
+
+    public async Task<List<SearchProjectsDto>?> GetSearchedProjectsByTags(string tag)
+    {
+        var response = await _client.GetAsync($"{projectBaseUri}/{tag}/tag-search");
+        if (response.IsSuccessStatusCode is false)
+        {
+            Debug.WriteLine($"get error:{response.StatusCode}");
+            return null!;
+        }
+
+        return await response.Content.ReadFromJsonAsync<List<SearchProjectsDto>>();
+    }
     public async Task<List<SearchProjectsDto>?> GetSearchedProjects(string title)
     {
         var response = await _client.GetAsync($"{projectBaseUri}/{title}/search");

@@ -58,6 +58,9 @@ public partial class Profile : ContentPage
                 return;
             }
 
+            UserActionsBtnLayout.IsVisible = true;
+            GoBackBtn.IsVisible = false;
+
             // Fetch user data using String userId !
             string userId = DataStorage.Get("UserId");
             ProfilePageUserDto? user = await _userService.Get(userId);
