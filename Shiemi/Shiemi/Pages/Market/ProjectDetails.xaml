@@ -31,7 +31,7 @@
             <Label
                 FontSize="18"
                 LineBreakMode="WordWrap"
-                Text="{Binding ProjectVM.Description}" />
+                Text="{Binding ProjectVM.Desc}" />
         </ScrollView>
 
         <Grid
@@ -62,7 +62,7 @@
             Grid.RowSpan="3"
             Grid.Column="2"
             Padding="0,0,0,20"
-            CurrentProjectId="{Binding ProjectVM.Id}"
+            CurrentProjectId="{Binding ProjectVM.ProjectId}"
             NotAllowedToWrite="{Binding NotAllowedToReview}"
             ReviewCollection="{Binding ReviewList}"
             VerticalOptions="End" />

@@ -28,8 +28,6 @@ public partial class Profile : ContentPage
     {
         base.OnAppearing();
 
-        // Set TitleBar title this pages title !
-
         try
         {
             ProfilePageModel? pageModel = BindingContext as ProfilePageModel;
@@ -53,6 +51,9 @@ public partial class Profile : ContentPage
                 // Set optional user details
                 OptionalUserDetails? optionalDetails = await _userService.GetOptionalDetails(pageModel.ForeignUserId);
                 pageModel.OptionalUserDetails = optionalDetails;
+
+                UserActionsBtnLayout.IsVisible = false;
+                GoBackBtn.IsVisible = true;
 
                 return;
             }

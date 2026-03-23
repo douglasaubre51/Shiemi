@@ -5,10 +5,15 @@ using Shiemi.Storage;
 
 namespace Shiemi.PageModels.User;
 
+
+[QueryProperty(nameof(IsComingFromProjectShop), "IsComingFromProjectShop")]
 [QueryProperty(nameof(IsWatchingProfile), "IsWatchingProfile")]
 [QueryProperty(nameof(ForeignUserId), "UserId")]
 public partial class ProfilePageModel : BasePageModel
 {
+    [ObservableProperty]
+    private bool isComingFromProjectShop;
+
     [ObservableProperty]
     private int foreignUserId;
     [ObservableProperty]
@@ -37,6 +42,15 @@ public partial class ProfilePageModel : BasePageModel
     [NotifyPropertyChangedFor(nameof(ShowDevCard_NotJoined))]
     private bool devModeActive;
     public bool ShowDevCard_NotJoined => !DevModeActive;
+
+    [RelayCommand]
+    async Task GoBackAPage()
+    {
+        if (IsComingFromProjectShop)
+            await Shell.Current.GoToAsync("///ProjectShop", true);
+        else
+            await Shell.Current.GoToAsync("///DevMarket", true);
+    }
 
     [RelayCommand]
     async Task SendReportEmailHandler()

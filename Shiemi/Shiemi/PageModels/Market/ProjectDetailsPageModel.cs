@@ -2,9 +2,8 @@
 using CommunityToolkit.Mvvm.Input;
 using MvvmHelpers;
 using Shiemi.Models;
+using Shiemi.Models.ProjectModels;
 using Shiemi.Pages.Market;
-using Shiemi.ViewModels;
-using System.Diagnostics;
 
 namespace Shiemi.PageModels.Market;
 
@@ -12,7 +11,7 @@ namespace Shiemi.PageModels.Market;
 public partial class ProjectDetailsPageModel : BasePageModel
 {
     [ObservableProperty]
-    private ProjectViewModel projectVM;
+    private ProjectShopCardModel projectVM;
 
     [ObservableProperty]
     private ObservableRangeCollection<Review> reviewList = [];

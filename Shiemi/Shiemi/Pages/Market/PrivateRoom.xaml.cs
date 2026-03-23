@@ -36,7 +36,7 @@ public partial class PrivateRoom : ContentPage
         {
             int roomId = await _roomService.GetPrivateRoom(
                     UserStorage.UserId,
-                    pageModel.CurrentProjectVM.Id,
+                    pageModel.CurrentProjectVM.ProjectId,
                     0,
                     RoomTypes.PRIVATE
                     );
@@ -45,7 +45,7 @@ public partial class PrivateRoom : ContentPage
             await _roomService.InitSignalR(
                     pageModel!.MessageCollection,
                     roomId,
-                    pageModel.CurrentProjectVM.Id,
+                    pageModel.CurrentProjectVM.ProjectId,
                     RoomTypes.PRIVATE
                     );
 

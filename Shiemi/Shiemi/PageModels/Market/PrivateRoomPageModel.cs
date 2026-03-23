@@ -1,5 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using MvvmHelpers;
+using Shiemi.Models.ProjectModels;
 using Shiemi.ViewModels;
 
 namespace Shiemi.PageModels.Market;
@@ -8,7 +9,7 @@ namespace Shiemi.PageModels.Market;
 public partial class PrivateRoomPageModel : BasePageModel
 {
     [ObservableProperty]
-    private ProjectViewModel currentProjectVM;
+    private ProjectShopCardModel currentProjectVM;
 
     public ObservableRangeCollection<MessageViewModel> MessageCollection { get; set; } = [];
 

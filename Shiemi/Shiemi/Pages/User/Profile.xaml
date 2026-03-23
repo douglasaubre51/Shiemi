@@ -11,10 +11,20 @@
     <ScrollView Margin="8" Orientation="Vertical">
         <Grid
             Padding="4"
-            RowDefinitions="Auto,Auto"
+            RowDefinitions="Auto,Auto,Auto"
             RowSpacing="32">
-            <Grid
+            <Button
+                x:Name="GoBackBtn"
                 Grid.Row="0"
+                Command="{x:Binding GoBackAPageCommand}"
+                HorizontalOptions="Start"
+                ImageSource="ic_fluent_arrow_left_28_regular.png"
+                IsVisible="False"
+                Style="{x:StaticResource IconStyle}"
+                Text="Go back" />
+
+            <Grid
+                Grid.Row="1"
                 ColumnDefinitions="*,*"
                 MinimumWidthRequest="700"
                 RowDefinitions="Auto,Auto,Auto,Auto"
@@ -64,6 +74,7 @@
 
                 <!--  User actions  -->
                 <HorizontalStackLayout
+                    x:Name="UserActionsBtnLayout"
                     Grid.Row="2"
                     Grid.Column="0"
                     Margin="0,16,0,0"

@@ -2,7 +2,6 @@
 using MvvmHelpers;
 using Shiemi.Models.ProjectModels;
 using Shiemi.Pages.Market;
-using Shiemi.ViewModels;
 
 namespace Shiemi.PageModels.Market;
 
@@ -21,11 +20,12 @@ public partial class ProjectShopPageModel : BasePageModel
             new Dictionary<string, object>
             {
                 { "IsWatchingProfile",true },
-                { "UserId",projectShopCard.UserId}
+                { "UserId",projectShopCard.UserId},
+                { "IsComingFromProjectShop", true}
             });
 
     [RelayCommand]
-    async Task GoToProjectDetails(ProjectViewModel projectVM)
+    async Task GoToProjectDetails(ProjectShopCardModel projectVM)
     {
         try
         {

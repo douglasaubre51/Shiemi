@@ -2,10 +2,10 @@
 
 public class EnvironmentStorage
 {
-    //private string WAGURI_LOGIN_URI = "https://waguri-hofi.onrender.com/api/NativeAuth/Login/002";
-    //private string WAGURI_LOGIN_HUB_URI = "https://waguri-hofi.onrender.com/native-auth";
-    private string WAGURI_LOGIN_URI = "http://localhost:5020/api/NativeAuth/Login/002";
-    private string WAGURI_LOGIN_HUB_URI = "http://localhost:5020/native-auth";
+    private string WAGURI_LOGIN_URI = "https://waguri-hofi.onrender.com/api/NativeAuth/Login/002";
+    private string WAGURI_LOGIN_HUB_URI = "https://waguri-hofi.onrender.com/native-auth";
+    //private string WAGURI_LOGIN_URI = "http://localhost:5020/api/NativeAuth/Login/002";
+    //private string WAGURI_LOGIN_HUB_URI = "http://localhost:5020/native-auth";
 
     //private string SHIEMI_BASE_URI = "https://shiemiapi.onrender.com/api";
     //private string SHIEMI_HUB_URI = "https://shiemiapi.onrender.com/hubs";

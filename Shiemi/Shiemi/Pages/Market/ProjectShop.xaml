@@ -16,11 +16,11 @@
             <handler:ProjectSearchHandler.ItemTemplate>
                 <DataTemplate x:DataType="dtos:SearchProjectsDto">
                     <VerticalStackLayout Padding="16">
-                        <Label LineBreakMode="TailTruncation" Text="{Binding Title}" />
+                        <Label LineBreakMode="TailTruncation" Text="{x:Binding Title}" />
                         <Label
                             FontSize="10"
                             LineBreakMode="TailTruncation"
-                            Text="{Binding ShortDesc}" />
+                            Text="{x:Binding ShortDesc}" />
                     </VerticalStackLayout>
                 </DataTemplate>
             </handler:ProjectSearchHandler.ItemTemplate>
@@ -33,7 +33,7 @@
         <!--  Projects  -->
         <CollectionView
             ItemSizingStrategy="MeasureFirstItem"
-            ItemsSource="{Binding ProjectCollection}"
+            ItemsSource="{x:Binding ProjectCollection}"
             SelectionMode="Single">
             <CollectionView.ItemsLayout>
                 <GridItemsLayout
@@ -48,17 +48,19 @@
                     <Border>
                         <!--  Project card  -->
                         <VerticalStackLayout Padding="10,10,10,10" Spacing="4">
-                            <Label
-                                FontFamily="PoppinsBold"
-                                FontSize="20"
-                                LineBreakMode="TailTruncation"
-                                Text="{x:Binding Title}" />
+                            <VerticalStackLayout>
+                                <Label
+                                    FontFamily="PoppinsBold"
+                                    FontSize="18"
+                                    LineBreakMode="TailTruncation"
+                                    Text="{x:Binding Title}" />
 
-                            <Label
-                                FontFamily="PoppinsRegular"
-                                FontSize="16"
-                                LineBreakMode="WordWrap"
-                                Text="{x:Binding Short}" />
+                                <Label
+                                    FontFamily="PoppinsRegular"
+                                    FontSize="14"
+                                    LineBreakMode="WordWrap"
+                                    Text="{x:Binding Short}" />
+                            </VerticalStackLayout>
 
                             <HorizontalStackLayout Margin="0,8,0,0" Spacing="8">
                                 <Border
@@ -75,13 +77,13 @@
                                     VerticalOptions="Center" />
 
                                 <HorizontalStackLayout.GestureRecognizers>
-                                    <TapGestureRecognizer Command="{x:Binding}" CommandParameter="{x:Binding .}" />
+                                    <TapGestureRecognizer Command="{x:Binding Source={x:RelativeSource AncestorType={x:Type pagemodel:ProjectShopPageModel}}, x:DataType=pagemodel:ProjectShopPageModel, Path=GoToUserProfilePageCommand}" CommandParameter="{x:Binding .}" />
                                 </HorizontalStackLayout.GestureRecognizers>
                             </HorizontalStackLayout>
                         </VerticalStackLayout>
 
                         <Border.GestureRecognizers>
-                            <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type pagemodel:ProjectShopPageModel}}, x:DataType=pagemodel:ProjectShopPageModel, Path=GoToProjectDetailsCommand}" CommandParameter="{Binding .}" />
+                            <TapGestureRecognizer Command="{x:Binding Source={x:RelativeSource AncestorType={x:Type pagemodel:ProjectShopPageModel}}, x:DataType=pagemodel:ProjectShopPageModel, Path=GoToProjectDetailsCommand}" CommandParameter="{x:Binding .}" />
                         </Border.GestureRecognizers>
 
                         <Border.Style>

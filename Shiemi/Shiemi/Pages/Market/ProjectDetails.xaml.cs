@@ -29,7 +29,7 @@ public partial class ProjectDetails : ContentPage
 
         try
         {
-            IAsyncEnumerable<Review?> reviews = _reviewService.GetReviewsByProject(context.ProjectVM.Id);
+            IAsyncEnumerable<Review?> reviews = _reviewService.GetReviewsByProject(context.ProjectVM.ProjectId);
             if (reviews is null)
                 return;
 
