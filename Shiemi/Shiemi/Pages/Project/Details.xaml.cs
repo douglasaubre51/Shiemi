@@ -9,4 +9,12 @@ public partial class Details : ContentPage
         InitializeComponent();
         BindingContext = pageModel;
     }
+
+    protected override void OnAppearing()
+    {
+        base.OnAppearing();
+
+        var context = BindingContext as DetailsPageModel;
+        context.IsPageLoading = true;
+    }
 }

@@ -33,7 +33,7 @@ public partial class EditProjectPageModel(
         {
             List<string> tags = [];
             tags = await _projectServ.GetTags(currentProject.Id);
-            if (tags.Count is 0) return;
+            if (tags is null || tags.Count is 0) return;
 
             Tag1 = tags[0];
             Tag2 = tags[1];

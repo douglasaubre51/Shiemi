@@ -19,10 +19,45 @@ public partial class DetailsPageModel(
     private readonly ChannelService _channelService = channelService;
 
     [ObservableProperty]
+    private bool isPageLoading;
+
+    [ObservableProperty]
     private bool isJoinedProject;
 
     [ObservableProperty]
+    private string tag1 = string.Empty;
+    [ObservableProperty]
+    private string tag2 = string.Empty;
+    [ObservableProperty]
+    private string tag3 = string.Empty;
+
+    [ObservableProperty]
     private ProjectsPageProjectViewModel? currentProject;
+
+
+    async partial void OnIsPageLoadingChanged(bool oldValue, bool newValue)
+    {
+        if (newValue is false) return;
+
+        try
+        {
+            List<string> tags = await _projectServ.GetTags(CurrentProject!.Id);
+            if (tags is null || tags.Count == 0) return;
+
+            Tag1 = tags[0];
+            Tag2 = tags[1];
+            Tag3 = tags[2];
+        }
+        catch (Exception ex)
+        {
+            Debug.WriteLine("Details page loading error: " + ex.Message);
+        }
+        finally
+        {
+            IsPageLoading = false;
+        }
+    }
+
 
     [RelayCommand]
     async Task GoToEditProject()

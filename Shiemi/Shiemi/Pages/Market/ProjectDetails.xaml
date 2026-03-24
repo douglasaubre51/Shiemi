@@ -28,10 +28,24 @@
             Grid.Column="0"
             Padding="0,0,8,0"
             Orientation="Vertical">
-            <Label
-                FontSize="18"
-                LineBreakMode="WordWrap"
-                Text="{Binding ProjectVM.Desc}" />
+            <VerticalStackLayout>
+                <Label
+                    FontSize="18"
+                    LineBreakMode="WordWrap"
+                    Text="{Binding ProjectVM.Desc}" />
+
+                <Label
+                    Margin="0,32,0,0"
+                    FontFamily="PoppinsBold"
+                    FontSize="24"
+                    Text="Search Tags" />
+
+                <HorizontalStackLayout Spacing="8">
+                    <Label FontSize="13" Text="{x:Binding Tag1, StringFormat='#{0}'}" />
+                    <Label FontSize="13" Text="{x:Binding Tag2, StringFormat='#{0}'}" />
+                    <Label FontSize="13" Text="{x:Binding Tag3, StringFormat='#{0}'}" />
+                </HorizontalStackLayout>
+            </VerticalStackLayout>
         </ScrollView>
 
         <Grid

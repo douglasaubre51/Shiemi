@@ -23,6 +23,8 @@ public partial class ProjectDetails : ContentPage
     {
         var context = BindingContext as ProjectDetailsPageModel;
 
+        context.IsPageLoading = true;
+
         // disable btn for non owners !
         if (context!.ProjectVM.UserId == UserStorage.UserId)
             context.NotOwner = false;

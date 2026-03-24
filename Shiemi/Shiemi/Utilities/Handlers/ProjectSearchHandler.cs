@@ -9,8 +9,6 @@ public class ProjectSearchHandler : SearchHandler
 {
     private readonly ProjectService _projectService;
 
-    bool IsTagSearchEnabled;
-
     public object? PageContext { get; set; }
     public List<SearchProjectsDto> SearchProjectsCollection { get; set; } = [];
 
@@ -25,23 +23,34 @@ public class ProjectSearchHandler : SearchHandler
 
         try
         {
-            if (newValue is "#") IsTagSearchEnabled = true;
-            if (IsTagSearchEnabled)
+            if (newValue.Length is 0) return;
+
+            if (newValue[0] is '#')
             {
-                List<SearchProjectsDto>? tagResults = await _projectService.GetSearchedProjectsByTags(newValue);
+                Debug.WriteLine("search word: " + newValue);
+
+                string tag = newValue.Substring(1);
+                Debug.WriteLine("search tag: " + tag);
+
+                List<SearchProjectsDto>? tagResults = await _projectService.GetSearchedProjectsByTags(tag);
                 if (tagResults is null || tagResults.Count == 0)
+                {
+
+                    ItemsSource = new List<SearchProjectsDto>();
                     return;
+                }
 
                 ItemsSource = tagResults;
-                return;
             }
+            else
+            {
+                Debug.WriteLine($"text: {newValue}");
+                List<SearchProjectsDto>? results = await _projectService.GetSearchedProjects(newValue);
+                if (results is null || results.Count == 0)
+                    return;
 
-            Debug.WriteLine($"text: {newValue}");
-            List<SearchProjectsDto>? results = await _projectService.GetSearchedProjects(newValue);
-            if (results is null || results.Count == 0)
-                return;
-
-            ItemsSource = results;
+                ItemsSource = results;
+            }
         }
         catch (Exception ex)
         {
