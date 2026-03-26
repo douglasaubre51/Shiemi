@@ -13,6 +13,7 @@
 
     <Grid
         Margin="4"
+        Padding="16"
         RowDefinitions="Auto,*,Auto,Auto"
         RowSpacing="10">
         <!--  title  -->

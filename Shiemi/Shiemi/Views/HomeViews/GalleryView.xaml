@@ -11,9 +11,10 @@
     HorizontalScrollBarVisibility="Never">
     <CollectionView.ItemTemplate>
         <DataTemplate x:DataType="viewmodels:GalleryViewModel">
-            <Border Style="{StaticResource CardBorderStyle}" WidthRequest="300">
-                <VerticalStackLayout Spacing="4">
+            <Border Style="{StaticResource CardBorderStyle}" WidthRequest="400" HeightRequest="200">
+                <VerticalStackLayout>
                     <Label
+                        FontFamily="PoppinsBold"
                         FontSize="18"
                         LineBreakMode="TailTruncation"
                         Text="{Binding CoverTitle}" />

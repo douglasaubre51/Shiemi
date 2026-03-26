@@ -20,8 +20,9 @@
             Grid.Row="0"
             Grid.Column="0"
             FontSize="16"
+            FontFamily="PoppinsBold"
             Text="Description"
-            TextColor="Black" />
+            />
 
         <ScrollView
             Grid.Row="1"
@@ -30,7 +31,7 @@
             Orientation="Vertical">
             <VerticalStackLayout>
                 <Label
-                    FontSize="18"
+                    FontSize="12"
                     LineBreakMode="WordWrap"
                     Text="{Binding ProjectVM.Desc}" />
 

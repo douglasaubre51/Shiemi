@@ -40,15 +40,15 @@
                     HorizontalItemSpacing="4"
                     Orientation="Vertical"
                     Span="3"
-                    VerticalItemSpacing="8" />
+                    VerticalItemSpacing="16" />
             </CollectionView.ItemsLayout>
 
             <CollectionView.ItemTemplate>
                 <DataTemplate x:DataType="models:ProjectShopCardModel">
-                    <Border>
+                    <Border WidthRequest="400" HeightRequest="160">
                         <!--  Project card  -->
-                        <VerticalStackLayout Padding="10,10,10,10" Spacing="4">
-                            <VerticalStackLayout>
+                        <Grid Padding="8" RowDefinitions="Auto,*,Auto">
+                            <VerticalStackLayout Grid.Row="0">
                                 <Label
                                     FontFamily="PoppinsBold"
                                     FontSize="18"
@@ -57,12 +57,13 @@
 
                                 <Label
                                     FontFamily="PoppinsRegular"
-                                    FontSize="14"
+                                    FontSize="10"
                                     LineBreakMode="WordWrap"
+                                    MaxLines="3"
                                     Text="{x:Binding Short}" />
                             </VerticalStackLayout>
 
-                            <HorizontalStackLayout Margin="0,8,0,0" Spacing="8">
+                            <HorizontalStackLayout Grid.Row="2" Margin="0,8,0,0" Spacing="8">
                                 <Border
                                     HeightRequest="30"
                                     HorizontalOptions="Start"
@@ -80,7 +81,7 @@
                                     <TapGestureRecognizer Command="{x:Binding Source={x:RelativeSource AncestorType={x:Type pagemodel:ProjectShopPageModel}}, x:DataType=pagemodel:ProjectShopPageModel, Path=GoToUserProfilePageCommand}" CommandParameter="{x:Binding .}" />
                                 </HorizontalStackLayout.GestureRecognizers>
                             </HorizontalStackLayout>
-                        </VerticalStackLayout>
+                        </Grid>
 
                         <Border.GestureRecognizers>
                             <TapGestureRecognizer Command="{x:Binding Source={x:RelativeSource AncestorType={x:Type pagemodel:ProjectShopPageModel}}, x:DataType=pagemodel:ProjectShopPageModel, Path=GoToProjectDetailsCommand}" CommandParameter="{x:Binding .}" />
